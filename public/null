@@ -4,3 +4,10 @@ use App\Models\AcademicYear;
 use App\Models\Grade;
 
 Grade::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+
+Subject::all()
