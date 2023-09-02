@@ -13,4 +13,19 @@ class Teacher extends Model
         'name',
         'gender',
     ];
+
+    public function academic()
+    {
+        return $this->belongsToMany(AcademicYear::class, 'teacher_subject');
+    }
+
+    public function grade()
+    {
+        return $this->belongsToMany(Grade::class, 'teacher_subject');
+    }
+    
+    public function subject()
+    {
+        return $this->belongsToMany(Subject::class, 'teacher_subject');
+    }
 }
