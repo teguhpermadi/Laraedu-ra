@@ -6,3 +6,13 @@ Student::all()
 use App\Models\Student;
 
 Student::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+
+AcademicYear::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+
+AcademicYear::all()
