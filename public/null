@@ -1,18 +1,6 @@
-Teacher::all()
-Student::all()
-use app\Models\Student;
-
-Student::all()
-use App\Models\Student;
-
-Student::all()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
+use App\Models\Grade;
 
-AcademicYear::all()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-
-AcademicYear::all()
+Grade::all()

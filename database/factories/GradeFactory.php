@@ -1,0 +1,38 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Grade>
+ */
+class GradeFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        $name = [
+            "Mimas",
+            "Enceladus",
+            "Tethys",
+            "Dione",
+            "Rhea",
+            "Titan",
+            "Hyperion",
+            "Iapetus",
+            "Phoebe",
+            "Janus",
+            "Epimetheus",
+        ];
+        
+        return [
+            'name' => fake()->randomElement($name),
+            'grade' => fake()->randomDigit(1),
+        ];
+    }
+}
