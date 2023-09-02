@@ -13,4 +13,14 @@ class Student extends Model
         'name',
         'gender',
     ];
+
+    public function grade()
+    {
+        return $this->belongsToMany(Grade::class, 'student_grade');
+    }
+
+    public function academic()
+    {
+        return $this->belongsToMany(AcademicYear::class, 'student_grade');
+    }
 }

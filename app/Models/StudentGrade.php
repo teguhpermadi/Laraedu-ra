@@ -11,6 +11,8 @@ class StudentGrade extends Model
 
     public $timestamps = false;
 
+    protected $table = 'student_grade';
+
     protected $fillable = [
         'academic_year_id',
         'grade_id',
