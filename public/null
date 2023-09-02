@@ -1,1 +1,8 @@
 Teacher::all()
+Student::all()
+use app\Models\Student;
+
+Student::all()
+use App\Models\Student;
+
+Student::all()
