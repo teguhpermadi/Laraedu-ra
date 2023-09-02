@@ -234,3 +234,174 @@ use App\Models\StudentGrade;
 use App\Models\TeacherSubject;
 
 $t = Teacher::with('subject')->first()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade')->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',1))->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',4))->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',1))->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',[1,2]))->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',[1,2]))->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',[1,2]))->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',[1,2]))->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',[1,2]))->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',[1,3]))->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',1)->where('academic_year_id',2))->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',1)->where('academic_year_id',2))->count()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',1)->where('academic_year_id',3))->count()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',1)->where('academic_year_id',2))->count()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',1))->count()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade', fn($query)=>$query->where('academic_year_id',1)->where('academic_year_id',2)->where('academic_year_id',3))->count()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade')->count()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade')->count()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+Student::whereDoesntHave('grade')->get()
