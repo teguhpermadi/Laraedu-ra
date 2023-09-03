@@ -16,6 +16,7 @@ return new class extends Migration
             $table->year('year');
             $table->enum('semester', ['ganjil', 'genap']);
             $table->timestamps();
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
         });
     }
 
