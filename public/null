@@ -740,3 +740,615 @@ use App\Models\TeacherSubject;
 
   
 Student::find(1)->first()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::factory(1)->create()->hasDataStudent();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::factory(1)->make()->hasDataStudent();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::factory(1)->hasDataStudent();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::factory(1)->hasDataStudent();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::factory(1)->hasDataStudent();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::factory(1)->hasDataStudent();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::factory(1)->hasDataStudent()->make();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::factory(1)->hasDataStudent()->create();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::find(52)
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::find(52)->with('dataStudent')
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::find(52)->with('dataStudent')->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::find(52)->with('dataStudent')->first()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::find(52)->with('dataStudent')
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::find(52)->with('dataStudent')->first()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::find(52)->with('dataStudent')->first()
+DataStudent::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+
+DataStudent::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::find(52)->with('dataStudent')->first()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::find(52)->with('dataStudent')->first()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::find(52)->with('dataStudent')->first()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::find(52)->with('dataStudent')->first()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::find(52)->with('dataStudent')->first()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::find(52)->with('dataStudent')->first()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->first()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->get()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->find(52)->get()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->find(52)->first()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->get()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::whereHas('dataStudent')->get()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->get()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->lastes()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->last()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->lastes()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->lastest()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+Student::with('dataStudent')->lasest()
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+
+$student = Student::find(1);
+
+
+$dataStudent = $student->dataStudent;
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+
+$student = Student::find(52);
+
+
+$dataStudent = $student->dataStudent;
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+
+$student = Student::find(52);
+
+
+$dataStudent = $student;
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+
+  
+
+$student = Student::find(52);
+
+
+$dataStudent = $student->dataStudent;
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+Student::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+Student::with('dataStudent')->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+DataStudent::with('student')->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+Student::with('dataStudent')->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+Student::find(1)->delete()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+DataStudent::find(1)->firts()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+DataStudent::find(1)->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+DataStudent::find(1)->first()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+Student::onlyTrashed()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+Student::onlyTrashed()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+Student::onlyTrashed()->first()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+Student::onlyTrashed()->first()->forceDelete()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+
+DataStudent::all()

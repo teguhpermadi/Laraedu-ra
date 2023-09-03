@@ -28,4 +28,9 @@ class Student extends Model
     {
         return $this->belongsToMany(AcademicYear::class, 'student_grade');
     }
+
+    public function dataStudent()
+    {
+        return $this->hasOne(DataStudent::class);
+    }
 }
