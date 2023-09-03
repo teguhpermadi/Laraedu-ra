@@ -33,4 +33,9 @@ class Teacher extends Model
     {
         return $this->belongsToMany(Subject::class, 'teacher_subject');
     }
+
+    public function dataTeacher()
+    {
+        return $this->hasOne(DataTeacher::class);
+    }
 }
