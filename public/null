@@ -608,3 +608,135 @@ use App\Models\TeacherSubject;
 
   
 Student::find(26)->delete()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::find(1)
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::find(1)->delete()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::find(1)
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::withTrashed()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::withTrashed()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::withTrashed()->first()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::withTrashed()->with('grade')->first()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::withTrashed()->with('grade')->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::withTrashed()->with('grade')->first()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::withTrashed()->restore()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::withTrashed()->find(1)->restore()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+
+
+  
+Student::find(1)->first()

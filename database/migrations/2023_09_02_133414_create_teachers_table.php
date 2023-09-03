@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female']);
             $table->boolean('is_active');
             $table->timestamps();
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
         });
     }
 
