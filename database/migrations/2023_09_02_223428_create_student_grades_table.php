@@ -17,6 +17,9 @@ return new class extends Migration
             $table->foreignId('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
             // $table->timestamps();
+            
+            // Tambahkan indeks unik pada kombinasi ketiga kolom tersebut
+            $table->unique(['academic_year_id', 'grade_id', 'student_id'], 'student_grade_unique');
         });
     }
 

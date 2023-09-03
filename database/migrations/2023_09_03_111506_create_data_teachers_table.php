@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('father_name');
             $table->string('mother_name');
             $table->timestamps();
+
+            $table->unique('teacher_id');
         });
     }
 

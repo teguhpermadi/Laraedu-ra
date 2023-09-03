@@ -19,6 +19,9 @@ return new class extends Migration
             $table->foreignId('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->string('passing_grade');
             // $table->timestamps();
+
+            // Tambahkan indeks unik pada kombinasi kolom yang diperlukan
+            $table->unique(['academic_year_id', 'grade_id', 'teacher_id', 'subject_id'], 'teacher_subject_unique');
         });
     }
 
