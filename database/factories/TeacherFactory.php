@@ -21,6 +21,7 @@ class TeacherFactory extends Factory
         return [
             'name' => fake()->name($gender),
             'gender' => $gender,
+            'is_active' => fake()->randomElement([1,0]),
         ];
     }
 }

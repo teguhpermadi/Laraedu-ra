@@ -12,6 +12,7 @@ class Student extends Model
     protected $fillable = [
         'name',
         'gender',
+        'is_active'
     ];
 
     public function grade()
