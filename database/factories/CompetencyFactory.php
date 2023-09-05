@@ -21,6 +21,7 @@ class CompetencyFactory extends Factory
 
         return [
             'teacher_subject_id' => fake()->randomElement($teacher_subject),
+            'passing_grade' => fake()->randomElement([70,75,80]),
             'description' => fake()->realTextBetween(50,100),
         ];
     }
