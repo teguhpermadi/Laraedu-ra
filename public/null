@@ -9,17 +9,7 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->get();
-
-
+Grade::with('student')->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -30,18 +20,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
-
- 
 
-$teachers = Teacher::with('grade.subject.competency')->get();
-
-
+Grade::with('student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -52,18 +32,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
 
- 
-
-$teachers = Teacher::with('grade.subject.competency')->get();
-
-
+Grade::with('student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -74,18 +44,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
 
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->get();
-
-
+Grade::with('student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -96,17 +56,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
-
-
- 
-
-$teachers = Teacher::with('subject.competency')->get();
-
+Grade::with('student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -117,17 +68,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
-
-
- 
-
-$teachers = Teacher::with('subject.competency', 'grade')->get();
-
+Grade::with('student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -138,17 +80,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
-
-
- 
-
-$teachers = Teacher::with(['grade'=> function($q){$q->with('subject')}])->get();
-
+Grade::with('student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -159,17 +92,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
-
-
- 
-
-$teachers = Teacher::with(['grade'=> function($q){$q->with('subject');}])->get();
-
+Grade::with('student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -180,17 +104,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
-
-
- 
-
-$teachers = Teacher::with(['subject'=> function($q){$q->with('rade');}])->get();
-
+Grade::with('student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -201,17 +116,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
-
-
- 
-
-$teachers = Teacher::with(['subject'=> function($q){$q->with('grade');}])->get();
-
+Grade::with('student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -222,17 +128,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
-
-
- 
-
-$teachers = Teacher::with('subject.competency')->get();
-
+Grade::with('student.student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -243,17 +140,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
-
-
- 
-
-$teachers = Teacher::with('subject.competency')->get();
-
+Grade::with('students.student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -264,18 +152,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
-
-
- 
-
-
-
-Grade::with('subject')
+Grade::with('subject')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -286,18 +164,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
 
-
-
-
- 
-
-
-
-Grade::with('subject')->get()
+Grade::with('subject.subject')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -308,18 +176,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
 
-
-
-
-
- 
-
-
-
-Grade::with('subject')->get()
+Grade::with('subject.subject')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -330,18 +188,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
 
-
-
-
-
-
- 
-
-
-
-Grade::with('subject.competency')->get()
+Grade::with('subject.subject')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -352,18 +200,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->get();
 
-
+Grade::with('subject.subject')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -374,18 +212,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
-
- 
 
-$teachers = Teacher::with('grade.subject')->get();
-
-
+Grade::with('subject.subject', 'student.student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -396,18 +224,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
 
- 
-
-$teachers = Teacher::with('subject')->get();
-
-
+Grade::with('subject.subject', 'student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -418,18 +236,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
 
-
- 
-
-$teachers = Teacher::with('grade.subject')->get();
-
-
+Grade::with('subject', 'student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -440,18 +248,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->get();
-
-
+Grade::with('subjects.competency', 'student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -462,18 +260,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
 
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->where('id', 1)->get();
-
-
+Grade::with('subject.competency', 'student')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -484,18 +272,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
 
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->where('id', 1)->get();
-
-
+Grade::with('subject.competency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -506,18 +284,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject','grade.subject.competency')->where('id', 1)->get();
-
 
+Grade::with('subject.competency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -529,17 +297,7 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('subject','grade.subject.competency')->where('id', 1)->get();
-
-
+Grade::with('subject.competency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -550,20 +308,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
-
- 
 
-$teachers = Teacher::with('grade.subject.competency')->where('id', 1)->get();
-
-$teacher->grade;
-
-
+Grade::with('subject')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -574,20 +320,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
 
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->where('id', 1)->get();
-
-$teacher->grade->name;
-
-
+Grade::with('subjects.competency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -598,20 +332,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
 
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->where('id', 1)->get();
-
-$teacher->grade()->name;
-
-
+Grade::with('subjects.subject.competency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -622,20 +344,8 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->where('id', 1)->get();
-
-$teacher->grade(1)->name;
-
 
+Grade::with('subjects.subject.competencies')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -648,1190 +358,7 @@ use App\Models\DataTeacher;
 use App\Models\Competency;
 
 
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->where('id', 1)->first();
-
-$teacher->grade()->name;
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->where('id', 1)->get();
-
-$teacher
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->where('id', 1)->get();
-
-$teacher;
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject.competency')->where('id', 1)->get();
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-
-
-
-
-$competency = Competency::with('teacherSubject')->get()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->get();
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->get();
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->get();
-
-foreach($teachers as $teacher){
-  $teacher->grade
-}
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->get();
-
-foreach($teachers as $teacher){
-  $teacher->grade;
-}
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->get();
-
-foreach($teachers as $teacher){
-  $teacher->grade();
-}
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->get();
-
-foreach($teachers as $teacher){
-  $teacher->grade->name;
-}
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->get();
-
-foreach($teachers as $teacher){
-  $teacher->grade()->name;
-}
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->get();
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->fist();
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->first();
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->first();
-$teacher->grade->name;
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->first();
-$teacher->grade()->name;
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->first();
-$teacher->grades()->name;
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->first();
-$teacher->grades->name;
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->first();
-$teacher;
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade.subject')->where('id', 1)->first();
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teachers = Teacher::with('grade')->where('id', 1)->first();
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(1)->with('grade')->first();
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('grade')->first();
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('grade')->first();
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('grade')->first();
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('grade')->first();
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(3)->with('grade')->first();
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(4)->with('grade')->first();
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::with('grade')->get();
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('subject')
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('subject')->get()
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('subject')
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('subject')
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)
-
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2);
-$teacher->with('subject');
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2);
-$teacher->with('subject')->get();
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2);
-$teacher->with('subject')->get();
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2);
-$teacher->with('subject');
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2);
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('subject');
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('subject')->first();
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('subject')->lastes();
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::find(2)->with('subject')->get();
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::with('subject')->where('id',2);
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::with('subject')->where('id',2)->get();
-
-
-
-
-
+Teacher::with('grades.grade')->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -1842,21 +369,9 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
-
- 
 
-$teacher = Teacher::with('subject.competency')->where('id',2)->get();
 
-
-
-
-
+Teacher::with('grades')->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -1867,21 +382,9 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
 
 
-
- 
-
-$teacher = Teacher::with('subject.competency')->where('id',1)->get();
-
-
-
-
-
+Teacher::with('grades.subjects')->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -1892,21 +395,9 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
 
 
-
-
-
-
- 
-
-$teacher = Teacher::with('grade.subject.competency')->where('id',1)->get();
-
-
-
-
-
+Teacher::with('grades.subjects.subject')->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -1917,21 +408,9 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
 
- 
 
-$teacher = Teacher::with('grade.subject.competency')->where('id',2)->get();
-
-
-
-
-
+Teacher::with('grades.subjects.subject.competencies')->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -1942,21 +421,9 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::with('grade.subject.competency')->where('id',2)->count();
-
-
-
 
 
+Teacher::with('grades.subjects.subject.competencies', 'grades.students')->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -1969,19 +436,7 @@ use App\Models\DataTeacher;
 use App\Models\Competency;
 
 
-
-
-
-
-
- 
-
-$teacher = Teacher::with('grade.subject.competency')->where('id',2)->cget();
-
-
-
-
-
+Teacher::with('grades.subjects.subject.competencies', 'grades.students')->first()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -1992,21 +447,10 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
 
 
- 
 
-$teacher = Teacher::with('grade.subject.competency')->where('id',2)->get();
-
-
-
-
-
+Student::with('grades')
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -2017,21 +461,10 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
 
 
 
-
- 
-
-$teacher = Teacher::with('grade.subject.competency')->where('id',2)->first();
-
-
-
-
-
+Student::with('grades')->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -2042,21 +475,10 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
 
 
 
-
-
-
- 
-
-$teacher = Teacher::with('teacherSubject')->where('id',2)->first();
-
-
-
-
-
+Student::with('grades.subjects')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -2067,21 +489,10 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
-
- 
 
-$teacher = Teacher::with('teacherSubject.grade')->where('id',2)->first();
 
 
-
-
-
+Student::with('grades.subjects.competencies')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -2092,21 +503,10 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
 
 
- 
 
-$teacher = Teacher::with('teacherSubject.grade.subject')->where('id',2)->first();
-
-
-
-
-
+Student::with('grades.subjects.competency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -2117,21 +517,10 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
 
 
 
-
- 
-
-$teacher = Teacher::with('teacherSubject.grade.subject.competency')->where('id',2)->first();
-
-
-
-
-
+Student::with('grades.subjects.subject.competency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -2142,18 +531,7 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
-
-
-
-
-
-
-
- 
-
-$teacher = Teacher::with('teacherSubject.grade.subject')->where('id',2)->first();
-
-
 
 
 
+Student::with('grades.subjects.subject.competencies')->get();

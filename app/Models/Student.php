@@ -19,12 +19,12 @@ class Student extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function grade()
+    public function grades()
     {
         return $this->belongsToMany(Grade::class, 'student_grade');
     }
 
-    public function academic()
+    public function academics()
     {
         return $this->belongsToMany(AcademicYear::class, 'student_grade');
     }
