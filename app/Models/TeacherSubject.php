@@ -40,4 +40,9 @@ class TeacherSubject extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+
+    public function competency()
+    {
+        return $this->hasMany(Competency::class, 'teacher_subject_id');
+    }
 }

@@ -38,4 +38,9 @@ class Teacher extends Model
     {
         return $this->hasOne(DataTeacher::class);
     }
+
+    public function teacherSubject()
+    {
+        return $this->hasMany(TeacherSubject::class, 'teacher_id');
+    }
 }
