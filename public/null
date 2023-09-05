@@ -535,3 +535,366 @@ use App\Models\Competency;
 
 
 Student::with('grades.subjects.subject.competencies')->get();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::isActive()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::isActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::isActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::isActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::isActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::isActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::isActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::isActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::isActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::isActive()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::scopeActive()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Student::scopeActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::scopeActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::all()->scopeActive()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::active()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::active()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::active()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::active()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::active()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::active()->get();
+Student::active()->get();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+
+
+
+
+Teacher::active()->get();
+Student::active()->get();
+AcademicYear::active()->get()

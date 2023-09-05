@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,7 +15,7 @@ class Student extends Model
     protected $fillable = [
         'name',
         'gender',
-        'is_active'
+        'active'
     ];
 
     protected $dates = ['deleted_at'];
@@ -32,5 +33,10 @@ class Student extends Model
     public function dataStudent()
     {
         return $this->hasOne(DataStudent::class);
+    }
+
+    public function scopeActive(Builder $builder)
+    {
+        return $builder->where('active',1);
     }
 }
