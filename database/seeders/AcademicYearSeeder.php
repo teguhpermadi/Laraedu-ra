@@ -14,5 +14,9 @@ class AcademicYearSeeder extends Seeder
     public function run(): void
     {
         AcademicYear::factory(2)->create();
+
+        // set active
+        $academic = AcademicYear::all()->random()->id;
+        AcademicYear::setActive($academic);
     }
 }

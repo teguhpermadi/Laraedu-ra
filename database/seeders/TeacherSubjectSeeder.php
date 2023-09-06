@@ -13,7 +13,7 @@ class TeacherSubjectSeeder extends Seeder
      */
     public function run(): void
     {
-        TeacherSubject::factory(10)->create()->each(function($query){
+        TeacherSubject::factory(10)->make()->each(function($query){
             TeacherSubject::insertOrIgnore($query->toArray());
         });
     }

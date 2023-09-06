@@ -20,12 +20,12 @@ class Student extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function grades()
+    public function grade()
     {
         return $this->belongsToMany(Grade::class, 'student_grade');
     }
 
-    public function academics()
+    public function academic()
     {
         return $this->belongsToMany(AcademicYear::class, 'student_grade');
     }
@@ -38,5 +38,10 @@ class Student extends Model
     public function scopeActive(Builder $builder)
     {
         return $builder->where('active',1);
+    }
+
+    public function score()
+    {
+        return $this->hasMany(StudentCompetency::class);
     }
 }

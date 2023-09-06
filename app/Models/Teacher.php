@@ -25,12 +25,12 @@ class Teacher extends Model
         return $this->belongsToMany(AcademicYear::class, 'teacher_subject');
     }
 
-    public function grades()
+    public function grade()
     {
         return $this->belongsToMany(Grade::class, 'teacher_subject');
     }
     
-    public function subjects()
+    public function subject()
     {
         return $this->belongsToMany(Subject::class, 'teacher_subject');
     }

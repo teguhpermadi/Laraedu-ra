@@ -8,8 +8,142 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
-Grade::with('student')->get()
+
+
+
+
+
+$academic = AcademicYear::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
+$academic = AcademicYear::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
+$academic = AcademicYear::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
+$academic = AcademicYear::find(1)->setActiveYear()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
+$academic = AcademicYear::find(1)->setActive()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
+$academic = AcademicYear::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
+$academic = AcademicYear::find(1)
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
+$academic = AcademicYear::find(1)
+  
+  $academic->setActive($academic->id)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -20,8 +154,16 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
-Grade::with('student')->get();
+
+
+
+
+
+$academic = AcademicYear::find(1);
+  
+  $academic->setActive($academic->id)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -32,8 +174,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
+
+  
+
+
 
-Grade::with('student')->get();
+AcademicYear::all()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -44,8 +197,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
-Grade::with('student')->get();
+
+
+
+
+
+$academic = AcademicYear::find(1);
+  
+
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -56,8 +220,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
+$academic = AcademicYear::find(1);
+  
+$academic->setActive($academic->id)
 
-Grade::with('student')->get();
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -68,8 +243,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
 
-Grade::with('student')->get();
+$academic = AcademicYear::find(1);
+  
+$academic->setActive($academic->id)
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -80,8 +266,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
 
-Grade::with('student')->get();
+
+  
+
+
+AcademicYear::all()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -92,8 +288,16 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
 
-Grade::with('student')->get();
+
+$academic = AcademicYear::find(1)->setActive()
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -104,8 +308,16 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
 
-Grade::with('student')->get();
+$academic = AcademicYear::find(1)
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -116,8 +328,16 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
 
-Grade::with('student')->get();
+$academic = AcademicYear::find(2)
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -128,8 +348,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
 
-Grade::with('student.student')->get();
+
+  
+ AcademicYear::setActive(2);
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -140,8 +370,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
 
-Grade::with('students.student')->get();
+
+
+  
+ AcademicYear::setActive(2);
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -152,8 +392,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
 
-Grade::with('subject')->get();
+
+
+  
+
+
+AcademicYear::all()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -164,8 +414,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
 
-Grade::with('subject.subject')->get();
+
+
+
+  
+AcademicYear::setActive(1);
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -176,8 +436,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
 
-Grade::with('subject.subject')->get();
+
+
+
+  
+
+
+AcademicYear::all()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -188,8 +458,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
 
-Grade::with('subject.subject')->get();
+
+
+
+
+  
+
+
+
+        $academic = AcademicYear::all()->random()->id;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -200,8 +481,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
-Grade::with('subject.subject')->get();
+
+
+
+
+
+  
+
+
+
+        $academic = AcademicYear::all()->random()->id;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -212,8 +504,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
 
-Grade::with('subject.subject', 'student.student')->get();
+  
+
+
+
+        $academic = AcademicYear::all()->random()->id;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -224,8 +527,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
 
-Grade::with('subject.subject', 'student')->get();
+
+
+  
+
+
+
+        $academic = AcademicYear::all()->random()->id;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -236,8 +550,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
 
-Grade::with('subject', 'student')->get();
+
+
+
+  
+
+
+
+        $academic = AcademicYear::all()->random()->id;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -248,8 +573,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
+
+  
+
 
-Grade::with('subjects.competency', 'student')->get();
+
+        $academic = AcademicYear::all()->random()->id;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -260,8 +596,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
+
 
-Grade::with('subject.competency', 'student')->get();
+  
+
+
+
+        $academic = AcademicYear::all()->random()->id;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -272,8 +619,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+
 
-Grade::with('subject.competency')->get();
+
+  
+
+
+
+        $academic = AcademicYear::all()->random()->id;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -284,8 +642,19 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
 
-Grade::with('subject.competency')->get();
+
+
+
+  
+
+
+
+        $academic = AcademicYear::all()->random()->id;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -296,8 +665,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
-Grade::with('subject.competency')->get();
+
+
+
+
+
+  
+
+
+AcademicYear::all()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -308,8 +687,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('score.competency.teacherSubject.subject.grade.teacher')->active()->get();
+
+
+  
+
+
 
-Grade::with('subject')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -320,8 +709,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
-Grade::with('subjects.competency')->get();
+
+
+
+Student::with('score.competency.teacherSubject.subject.grade.teacher')->active()->get();
+
+
+  
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -332,8 +731,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('score.competency.teacherSubject.subject.grade.teacher')->active()->get();
+
+
+  
+
 
-Grade::with('subjects.subject.competency')->get();
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -344,8 +753,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('score.competency.teacherSubject.subject.grade.teacher')->active()->get();
+
+
+  
 
-Grade::with('subjects.subject.competencies')->get();
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -356,9 +775,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('grade.teacher')->active()->get();
+
+
+  
 
 
-Teacher::with('grades.grade')->get()
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -369,9 +797,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('teacherSubject.subject.grade.teacher')->active()->get();
+
+
+  
 
 
-Teacher::with('grades')->get()
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -382,9 +819,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('grade')->active()->get();
+
+
+  
 
 
-Teacher::with('grades.subjects')->get()
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -395,9 +841,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('grade')->active()->get();
+
+
+  
 
 
-Teacher::with('grades.subjects.subject')->get()
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -408,9 +863,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('grade')->active()->get();
+
+
+  
+
 
 
-Teacher::with('grades.subjects.subject.competencies')->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -421,9 +885,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
-Teacher::with('grades.subjects.subject.competencies', 'grades.students')->get()
+
+
+Student::with('grade')->active()->get();
+
+
+  
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -434,9 +907,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
-Teacher::with('grades.subjects.subject.competencies', 'grades.students')->first()
+
+
+Student::with('grade')->active()->get();
+
+
+  
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -447,10 +929,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
-Student::with('grades')
+Student::with('grade')->active()->get();
+
+
+  
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -461,10 +951,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
 
 
+Student::with('grade')->get();
 
-Student::with('grades')->get()
+
+  
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -475,10 +973,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('grade')->get();
 
 
+  
 
-Student::with('grades.subjects')->get();
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -489,10 +995,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('grade')->get();
+
 
+  
 
 
-Student::with('grades.subjects.competencies')->get();
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -503,10 +1017,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('grade')->get();
+
+
+  
 
 
 
-Student::with('grades.subjects.competency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -517,10 +1039,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
-Student::with('grades.subjects.subject.competency')->get();
+
+Student::with('grade')->get();
+
+
+  
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -531,10 +1061,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
-Student::with('grades.subjects.subject.competencies')->get();
+Student::with('grade')->get();
+
+
+  
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -545,11 +1083,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
 
+Student::with('grade')->get();
 
 
+  
 
-Student::all()
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -560,11 +1105,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
+
+
+
+Student::with('grade')->get();
+
 
+  
 
 
 
-Student::isActive()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -575,11 +1127,18 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Student::isActive()->get()
+Student::with('grade')->get();
+
+
+  
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -590,11 +1149,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
 
-Student::isActive()->get()
+Grade::find(3)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -605,11 +1166,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Student::isActive()->get()
+
+Grade::all()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -620,11 +1183,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
+Student::with('grade')->get();
 
-Student::isActive()->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -635,11 +1200,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Student::isActive()->get()
+
+Grade::find(2)->with('student')->get()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -650,11 +1217,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Student::isActive()->get()
+
+Grade::find(2)->with('student')
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -665,11 +1234,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
 
-Student::isActive()->get()
+Grade::with('student')->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -680,11 +1251,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Student::isActive()->get()
+
+Grade::with('student.student')->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -695,11 +1268,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
 
-Student::isActive()
+Grade::with('student')->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -710,11 +1285,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Student::scopeActive()
+
+Grade::with('student')->where('student_id',4)->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -725,11 +1302,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
 
-Student::scopeActive()->get()
+Grade::with('student')->where('student_grade.student_id',4)->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -740,11 +1319,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Teacher::scopeActive()->get()
+
+Grade::with('student')->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -755,11 +1336,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
 
-Teacher::all()->scopeActive()->get()
+Grade::with(['student'=>fn($q)=>$q->where('student_id',4)])->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -770,11 +1353,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Teacher::active()->get()
+
+Grade::with(['student.student'=>fn($q)=>$q->where('student_id',4)])->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -785,11 +1370,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
 
-Teacher::active()->get()
+Grade::with(['student.student','student'=>fn($q)=>$q->where('student_id',4)])->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -800,11 +1387,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Teacher::active()->get()
+
+Grade::with(['student.student','student'=>fn($q)=>$q->where('student_id',1)])->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -815,11 +1404,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
 
-Teacher::all()
+Grade::with(['student.student','student'=>fn($q)=>$q->where('student_id',2)])->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -830,11 +1421,13 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Teacher::all()
+
+Grade::with(['student.student','student'=>fn($q)=>$q->where('student_id',3)])->find(2)
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -845,11 +1438,12 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
+
 
 
 
 
-Teacher::active()
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -860,11 +1454,12 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Teacher::active()->get()
+Student::with('grade')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -875,12 +1470,12 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Teacher::active()->get();
-Student::active()->get();
+Student::with('grade.subject')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -891,10 +1486,9 @@ use App\Models\TeacherSubject;
 use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
+use App\Models\StudentCompetency;
 
 
 
 
-Teacher::active()->get();
-Student::active()->get();
-AcademicYear::active()->get()
+Student::with('grade.subject.teacher')->get();

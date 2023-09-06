@@ -22,4 +22,9 @@ class Competency extends Model
     {
         return $this->belongsTo(TeacherSubject::class);
     }
+
+    public function score()
+    {
+        return $this->hasMany(StudentCompetency::class);
+    }
 }

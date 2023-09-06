@@ -18,9 +18,14 @@ class Subject extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function competencies()
+    public function competency()
     {
         return $this->hasMany(Competency::class, 'teacher_subject_id');
+    }
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
     }
 
 }

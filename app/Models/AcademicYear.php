@@ -24,4 +24,15 @@ class AcademicYear extends Model
     {
         return $builder->where('active',1);
     }
+
+    public static function setActive($yearId)
+    {
+        // Menonaktifkan semua tahun ajaran
+        self::query()->update(['active' => false]);
+
+        // Mengaktifkan tahun ajaran yang diberikan
+        self::where('id', $yearId)->update(['active' => true]);
+
+        return self::where('active', true)->first();
+    }
 }

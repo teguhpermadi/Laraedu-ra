@@ -19,7 +19,7 @@ class StudentGradeFactory extends Factory
      */
     public function definition(): array
     {
-        $academic = AcademicYear::pluck('id');
+        $academic = AcademicYear::active()->first()->pluck('id');
         $grade = Grade::pluck('id');
         $student = Student::pluck('id');
 

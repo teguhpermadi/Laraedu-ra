@@ -19,7 +19,7 @@ class AcademicYearFactory extends Factory
         return [
             'year' => fake()->year(),
             'semester' => fake()->randomElement(['ganjil', 'genap']),
-            'active' => fake()->randomElement([0,1]),
+            'active' => false,
         ];
     }
 }
