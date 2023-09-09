@@ -18,7 +18,7 @@ class Subject extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function competency()
+    public function competencies()
     {
         return $this->hasMany(Competency::class, 'teacher_subject_id');
     }

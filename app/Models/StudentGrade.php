@@ -19,9 +19,9 @@ class StudentGrade extends Model
         'student_id',
     ];
 
-    public function academicYear()
+    public function academic()
     {
-        return $this->belongsTo(AcademicYear::class);
+        return $this->belongsTo(AcademicYear::class, 'academic_year_id');
     }
 
     public function grade()

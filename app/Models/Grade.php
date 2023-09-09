@@ -18,12 +18,12 @@ class Grade extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function subject()
+    public function teacherSubject()
     {
         return $this->hasMany(TeacherSubject::class);
     }
 
-    public function student()
+    public function studentGrade()
     {
         return $this->hasMany(StudentGrade::class);
     }

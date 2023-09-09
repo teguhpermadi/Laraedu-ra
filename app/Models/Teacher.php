@@ -20,17 +20,17 @@ class Teacher extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function academic()
+    public function academics()
     {
         return $this->belongsToMany(AcademicYear::class, 'teacher_subject');
     }
 
-    public function grade()
+    public function grades()
     {
         return $this->belongsToMany(Grade::class, 'teacher_subject');
     }
     
-    public function subject()
+    public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'teacher_subject');
     }
@@ -40,7 +40,7 @@ class Teacher extends Model
         return $this->hasOne(DataTeacher::class);
     }
 
-    public function teacherSubject()
+    public function teacherSubjects()
     {
         return $this->hasMany(TeacherSubject::class, 'teacher_id');
     }

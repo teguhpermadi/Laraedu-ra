@@ -9,250 +9,23 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
-
-
-
-
-
-$academic = AcademicYear::all()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::all()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::all()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::find(1)->setActiveYear()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::find(1)->setActive()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::all()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::find(1)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::find(1)
-  
-  $academic->setActive($academic->id)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::find(1);
-  
-  $academic->setActive($academic->id)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-
-  
-
-
-
-AcademicYear::all()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::find(1);
+StudentCompetency::with('competency:competencies.id,passing_grade')->get();
   
 
 
 
 
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
 
 
 
 
 
 
-$academic = AcademicYear::find(1);
-  
-$academic->setActive($academic->id)
 
 
 
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::find(1);
-  
-$academic->setActive($academic->id)
 
 
 
@@ -267,210 +40,26 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
-
-
-
-
-
-
-  
-
-
-AcademicYear::all()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::find(1)->setActive()
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::find(1)
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-$academic = AcademicYear::find(2)
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-
-  
- AcademicYear::setActive(2);
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-
-  
- AcademicYear::setActive(2);
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-
-  
-
-
-AcademicYear::all()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-
-  
-AcademicYear::setActive(1);
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-
-  
-
-
-AcademicYear::all()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-
-
+StudentCompetency::with('competency')->get();
   
 
 
 
-        $academic = AcademicYear::all()->random()->id;
+
+
+
+
+
+
+
+
+
+
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -482,8 +71,2791 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->selectRaw('id');
+}])->get();
+  
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->selectRaw('passing_grade');
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->selectRaw('id','passing_grade');
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select('id','passing_grade');
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select('id',DB::raw('passing_grade'));
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select('id',DB::raw('passing_grade'));
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select('id',DB::raw('passing_grade'));
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select('id',DB::raw('passing_grade'));
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select('id',DB::raw('score'));
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with('competency')->select('id')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with('competency')->select('id', 'competency:id')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with('competency')->select('id', 'competencies:id')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with('competency')->select('id')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with('competency')->select()->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with('competency')->select('id', 'comptencies:id')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with('competency')->select('id')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with('competency')->select()->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select('id');
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select('id', DR::raw('StudentCompetency:id'));
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select('id', DB::raw('StudentCompetency:id'));
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::with(['competency'=>function($q){
+$q->select('id', DB::raw('id'));
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::join('comptencies', 'comptencies.id', '=', 'studentcomptency.competency_id');
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::join('comptencies', 'comptencies.id', '=', 'studentcomptency.competency_id')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::join('competencies', 'competencies.id', '=', 'studentcomptency.competency_id')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::join('competencies', 'competencies.id', '=', 'student_competencies.competency_id')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::join('competencies', 'competencies.id', '=', 'student_competencies.competency_id')->select('*', DB::raw('CONCAT(score, passing_grade)'))->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::join('competencies', 'competencies.id', '=', 'student_competencies.competency_id')->select('*', DB::raw('WHEN score >= passing_grade THEN "lulus"'))->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::join('competencies', 'competencies.id', '=', 'student_competencies.competency_id')->select('*', DB::raw('IF(score >= passing_grade), "lulus"'))->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::join('competencies', 'competencies.id', '=', 'student_competencies.competency_id')->select('*', DB::raw('IF(score > passing_grade), "lulus"'))->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::join('competencies', 'competencies.id', '=', 'student_competencies.competency_id')->select('*', DB::raw('IF(score = passing_grade), "lulus"'))->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('comptency')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with('studentCompetency')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with('studentCompetency')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with('studentCompetency')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with('studentCompetency')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with('studentCompetency')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with('studentCompetency.result')->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with('studentCompetency')->result()->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->result();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->join('competencies', 'competencies.id', '=', 'student_competencies.competency_id')->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->with('competency')->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+StudentCompetency::result()->get();
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['subject','studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades.teacherSubject.subject.competencies','studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades.teacherSubject.subject','studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades','studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -493,7 +2865,19 @@ use App\Models\StudentCompetency;
 
 
 
-        $academic = AcademicYear::all()->random()->id;
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.score')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -505,8 +2889,7 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
-
-
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -516,7 +2899,19 @@ use App\Models\StudentCompetency;
 
 
 
-        $academic = AcademicYear::all()->random()->id;
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.score.studentComptency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -528,8 +2923,7 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
-
-
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -539,7 +2933,19 @@ use App\Models\StudentCompetency;
 
 
 
-        $academic = AcademicYear::all()->random()->id;
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.score.studentCompetency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -551,8 +2957,7 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
-
-
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -562,7 +2967,19 @@ use App\Models\StudentCompetency;
 
 
 
-        $academic = AcademicYear::all()->random()->id;
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.score.result')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -574,8 +2991,7 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
-
-
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -585,7 +3001,19 @@ use App\Models\StudentCompetency;
 
 
 
-        $academic = AcademicYear::all()->random()->id;
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.score.result')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -597,8 +3025,7 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
-
-
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -608,7 +3035,19 @@ use App\Models\StudentCompetency;
 
 
 
-        $academic = AcademicYear::all()->random()->id;
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.score.result')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -620,8 +3059,7 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
-
-
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -631,7 +3069,19 @@ use App\Models\StudentCompetency;
 
 
 
-        $academic = AcademicYear::all()->random()->id;
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.score.result')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -643,8 +3093,7 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
-
-
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -654,7 +3103,19 @@ use App\Models\StudentCompetency;
 
 
 
-        $academic = AcademicYear::all()->random()->id;
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.score.result')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -666,8 +3127,7 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
-
-
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -676,7 +3136,20 @@ use App\Models\StudentCompetency;
   
 
 
-AcademicYear::all()
+
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.score')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -688,17 +3161,29 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
 
 
-
-Student::with('score.competency.teacherSubject.subject.grade.teacher')->active()->get();
 
 
   
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.score')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -710,17 +3195,29 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
 
 
-
-Student::with('score.competency.teacherSubject.subject.grade.teacher')->active()->get();
 
 
   
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with('grades.teacherSubject.subject.competencies.studentCompetency')->get();
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -732,17 +3229,29 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
 
-
-
-Student::with('score.competency.teacherSubject.subject.grade.teacher')->active()->get();
-
-
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
   
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -754,17 +3263,29 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
 
-
-
-Student::with('score.competency.teacherSubject.subject.grade.teacher')->active()->get();
-
-
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get()->toArray();
   
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -776,17 +3297,29 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
 
-
-
-Student::with('grade.teacher')->active()->get();
-
-
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get()->toJson();
   
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -798,17 +3331,29 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
 
-
-
-Student::with('teacherSubject.subject.grade.teacher')->active()->get();
-
-
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->where('id',1)->get()->toJson();
   
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -820,17 +3365,29 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
 
-
-
-Student::with('grade')->active()->get();
-
-
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get()->toJson();
   
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\AcademicYear;
@@ -842,653 +3399,26 @@ use App\Models\DataStudent;
 use App\Models\DataTeacher;
 use App\Models\Competency;
 use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
 
 
-
-
-Student::with('grade')->active()->get();
-
-
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get()->toArray();
   
 
 
 
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
 
 
 
 
-Student::with('grade')->active()->get();
 
 
-  
 
 
 
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
 
 
 
 
-Student::with('grade')->active()->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->active()->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->active()->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-
-
-  
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::find(3)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::all()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::find(2)->with('student')->get()
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::find(2)->with('student')
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with('student')->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with('student.student')->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with('student')->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with('student')->where('student_id',4)->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with('student')->where('student_grade.student_id',4)->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with('student')->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with(['student'=>fn($q)=>$q->where('student_id',4)])->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with(['student.student'=>fn($q)=>$q->where('student_id',4)])->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with(['student.student','student'=>fn($q)=>$q->where('student_id',4)])->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with(['student.student','student'=>fn($q)=>$q->where('student_id',1)])->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with(['student.student','student'=>fn($q)=>$q->where('student_id',2)])->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-Grade::with(['student.student','student'=>fn($q)=>$q->where('student_id',3)])->find(2)
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade')->get();
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade.subject')->get();
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\AcademicYear;
-use App\Models\Grade;
-use App\Models\Subject;
-use App\Models\StudentGrade;
-use App\Models\TeacherSubject;
-use App\Models\DataStudent;
-use App\Models\DataTeacher;
-use App\Models\Competency;
-use App\Models\StudentCompetency;
-
-
-
-
-Student::with('grade.subject.teacher')->get();

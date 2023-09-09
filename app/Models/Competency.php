@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,13 +19,14 @@ class Competency extends Model
         'description',
     ];
 
-    public function teacherSubject()
+    public function subject()
     {
-        return $this->belongsTo(TeacherSubject::class);
+        return $this->belongsTo(TeacherSubject::class,'teacher_subject_id');
     }
 
-    public function score()
+    public function studentCompetency()
     {
         return $this->hasMany(StudentCompetency::class);
     }
+    
 }
