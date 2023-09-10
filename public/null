@@ -740,3 +740,604 @@ use App\Models\StudentCompetency;
 use Illuminate\Support\Facades\DB;
 
 Grade::with('studentGrade.student', 'teacherSubject.subject')->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+AcademicYear::active()->id;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+AcademicYear::active()->get()->id;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+AcademicYear::active()->get();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+AcademicYear::active();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+AcademicYear::active()->id;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+AcademicYear::active()->first()->id;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+AcademicYear::active()->first()->id;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudenGrade::all();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::all();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::activeYear();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::academicYear();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::academicYear();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::academicYear();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::academicYear()->get();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::AcademicYear()->get();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::AcademicYear()->get();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::AcademicYear()->get();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::AcademicYear()->get();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::AcademicYear()->get();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::AcademicYear()->get();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::withGlobalScope('academicyear')
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::withGlobalScope('academicYear')
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::withGlobalScope('academicYear')->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::withGlobalScope('academicYear')->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::withGlobalScope('academicYear')->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::academicYear()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::AcademicYear()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::AcademicYear()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::AcademicYear()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::academicYear()->get()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::all()
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::all();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::all();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::all();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::all();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::all();
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+
+StudentGrade::all();
