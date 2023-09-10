@@ -3422,3 +3422,40 @@ $q->result()->get();
 
 
 
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\AcademicYear;
+use App\Models\Grade;
+use App\Models\Subject;
+use App\Models\StudentGrade;
+use App\Models\TeacherSubject;
+use App\Models\DataStudent;
+use App\Models\DataTeacher;
+use App\Models\Competency;
+use App\Models\StudentCompetency;
+use Illuminate\Support\Facades\DB;
+
+
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get();
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Student::with(['grades.teacherSubject.subject.competencies.studentCompetency'=>function($q){
+$q->result()->get();
+}])->get()
