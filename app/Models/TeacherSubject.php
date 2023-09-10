@@ -21,9 +21,9 @@ class TeacherSubject extends Model
         'passing_grade',
     ];
 
-    public function academicYear()
+    public function academic()
     {
-        return $this->belongsTo(AcademicYear::class);
+        return $this->belongsTo(AcademicYear::class, 'academic_year_id');
     }
 
     public function grade()

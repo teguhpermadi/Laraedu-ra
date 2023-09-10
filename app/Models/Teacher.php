@@ -40,9 +40,9 @@ class Teacher extends Model
         return $this->hasOne(DataTeacher::class);
     }
 
-    public function teacherSubjects()
+    public function teacherSubject()
     {
-        return $this->hasMany(TeacherSubject::class, 'teacher_id');
+        return $this->belongsTo(TeacherSubject::class, 'id','teacher_id');
     }
 
     public function scopeActive(Builder $query)

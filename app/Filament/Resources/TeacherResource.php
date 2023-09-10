@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TeacherResource\Pages;
 use App\Filament\Resources\TeacherResource\RelationManagers;
+use App\Filament\Resources\TeacherResource\RelationManagers\TeacherSubjectRelationManager;
 use App\Models\Teacher;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -66,7 +67,7 @@ class TeacherResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            TeacherSubjectRelationManager::class,
         ];
     }
     
