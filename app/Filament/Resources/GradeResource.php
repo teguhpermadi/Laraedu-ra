@@ -4,6 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\GradeResource\Pages;
 use App\Filament\Resources\GradeResource\RelationManagers;
+use App\Filament\Resources\GradeResource\RelationManagers\StudentGradeRelationManager;
+use App\Filament\Resources\GradeResource\RelationManagers\TeacherSubjectRelationManager;
+use App\Filament\Resources\StudentResource\RelationManagers\GradesRelationManager;
 use App\Models\Grade;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
@@ -62,7 +65,8 @@ class GradeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StudentGradeRelationManager::class,
+            TeacherSubjectRelationManager::class,
         ];
     }
     
