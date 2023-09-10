@@ -20,14 +20,19 @@ class Student extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function grades()
-    {
-        return $this->belongsToMany(Grade::class, 'student_grade');
-    }
+    // public function grades()
+    // {
+    //     return $this->belongsToMany(Grade::class, 'student_grade');
+    // }
 
-    public function academics()
+    // public function academics()
+    // {
+    //     return $this->belongsToMany(AcademicYear::class, 'student_grade');
+    // }
+
+    public function studentGrade()
     {
-        return $this->belongsToMany(AcademicYear::class, 'student_grade');
+        return $this->belongsTo(StudentGrade::class, 'id', 'student_id');
     }
 
     public function dataStudent()
