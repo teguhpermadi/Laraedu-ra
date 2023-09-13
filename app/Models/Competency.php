@@ -19,7 +19,7 @@ class Competency extends Model
         'description',
     ];
 
-    public function subject()
+    public function teacherSubject()
     {
         return $this->belongsTo(TeacherSubject::class,'teacher_subject_id');
     }
