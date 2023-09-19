@@ -13,6 +13,6 @@ class TeacherSeeder extends Seeder
      */
     public function run(): void
     {
-        Teacher::factory(2)->hasDataTeacher(1)->create();
+        Teacher::factory(5)->hasDataTeacher(1)->create();
     }
 }
