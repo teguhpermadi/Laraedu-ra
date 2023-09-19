@@ -49,4 +49,9 @@ class Teacher extends Model
     {
         $query->where('active', 1);
     }
+
+    public function userable()
+    {
+        return $this->morphOne(Userable::class, 'userable');
+    }
 }
