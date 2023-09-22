@@ -1,186 +1,63 @@
 use App\Models\Userable;
 
-
-User::find(20)->userable
-use App\Models\Userable;
-
-
-User::find(1)->userable
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 5)->get()
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->get()
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher')->get()
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable')->get()
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->get()
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->get()->pluck('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->get();
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->groupBy('subject_id')->get();
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->get()->groupBy('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->get()->groupBy('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->get()->groupBy('subject_id')->pluck('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->get()->groupBy('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->get()->pluck('subject_id')->groupBy('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->get()->pluck('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->get();
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->pluck('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->pluck('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->pluck('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->pluck('subject_id');
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->pluck('subject_id')->unique();
-use App\Models\Userable;
-
-TeacherSubject::where('teacher_id', 2)->orderBy('subject_id')->pluck('subject_id')->unique();
-use App\Models\Userable;
-
-Subject::all()
-use App\Models\Userable;
-
-$subjects_id = TeacherSubject::where('teacher_id', 2)->orderBy('subject_id')->pluck('subject_id')->unique();
-            $subjects = Subject::whereIn('id', $subjects_id)->get();
-use App\Models\Userable;
-
-
-
-Subject::all();
-use App\Models\Userable;
-
-
-
-Subject::all();
-use App\Models\Userable;
-
-
-
-Subject::all();
-use App\Models\Userable;
-
-
-
-Subject::all();
-use App\Models\Userable;
-
-$subjects_id = TeacherSubject::where('teacher_id', 2)->orderBy('subject_id')->pluck('subject_id')->unique();
-$subjects = Subject::whereIn('id', $subjects_id)->get();
-
-use App\Models\Userable;
-
-$subjects_id = TeacherSubject::where('teacher_id', 2)->orderBy('subject_id')->pluck('subject_id')->unique();
+$subjects_id = TeacherSubject::where('teacher_id', 2)->get()->pluck('grade_id');
 
 
 use App\Models\Userable;
 
-$subjects_id = TeacherSubject::where('teacher_id', 2)->with('teacher')->pluck('subject_id')->unique();
+$subjects_id = TeacherSubject::where('teacher_id', 2)->get();
 
 
-use App\Models\Userable;
+User::get()->userable()
+User::userable()->get()
+User::all()->userable()->get()
+User::all()->userable()
+User::all()->userable
+User::all()
+User::with('userable')->get()
+User::whereHas('userable')->get()
+User::whereHas('userable', function($q){
+$q->with('teacher');
+})->get()
+User::whereHas('userable', function($q){
+$q->with('userable');
+})->get()
+User::whereHas('userable', function($q){
+$q->with('teacher')->get();
+})->get()
+User::whereHas('userable', function($q){
+$q->with('userable.teacher')->get();
+})->get()
+User::whereHas('userable', function($q){
+$q->with('userable.teacher')->get();
+})->get()
+User::whereHas('userable', function($q){
+$q->with('userable.teacher')->get();
+})->get()
+User::whereHas('userable', function($q){
+$q->with('userable.teacher')->get();
+})->get()
+User::whereHas('userable', function($q){
+$q->with('userable.teacher')->get();
+})->get()
+User::whereHas('userable', function($q){
+$q->with('userable.teacher')->get();
+})->get()
+User::whereHas('userable', function($q){
+$q->with('userable.teacher')->get();
+})->get()
+User::whereHas('userable', function($q){
+$q->with('userable.teacher')->get();
+})->get()
+User::with('userable')->get()
+Grade::all()
+TeacherSubject::all()
 
-$subjects_id = TeacherSubject::where('teacher_id', 2)->with('teacher')->unique();
+Teacher::find(2)
 
+Teacher::find(2)->userable
 
-User::find(3)
-use App\Models\Userable;
-
-$subjects_id = TeacherSubject::where('teacher_id', 2)->with('teacher')->unique();
-
-
-User::find(3);
-use App\Models\Userable;
-
-
-
-
-User::find(3);
-use App\Models\Userable;
-
-
-
-
-User::find(6);
-use App\Models\Userable;
-
-
-
-
-User::find(3);
-use App\Models\Userable;
-
-
-
-
-User::find(2);
-use App\Models\Userable;
-
-
-
-
-User::find(6);
-use App\Models\Userable;
-
-
-
-
-User::find(9);
-use App\Models\Userable;
-
-$subjects_id = TeacherSubject::where('teacher_id', 2)->with('teacher')->unique();
-$subjects = Subject::whereIn('id', $subjects_id)->get();
-
-use App\Models\Userable;
-
-$subjects_id = TeacherSubject::where('teacher_id', 2)->with('teacher');
-$subjects = Subject::whereIn('id', $subjects_id)->get();
-
-use App\Models\Userable;
-
-$subjects_id = TeacherSubject::where('teacher_id', 2)->with('teacher')->get();
-$subjects = Subject::whereIn('id', $subjects_id)->get();
-
-use App\Models\Userable;
-
-$subjects_id = TeacherSubject::where('teacher_id', 2)->with('teacher')->get();
-
-
-use App\Models\Userable;
-
-$subjects_id = TeacherSubject::where('teacher_id', 2)->with('teacher.userable.user')->get();
-
-
+Teacher::find(2)->userable->user
+Grade::teacher()->get()
+Grade::teacher()->get();
+Grade::all()

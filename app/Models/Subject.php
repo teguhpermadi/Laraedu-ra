@@ -29,9 +29,6 @@ class Subject extends Model
         return $this->belongsTo(Grade::class);
     }
 
-    /**
-     * Scope a query to only include popular users.
-     */
     public function scopeTeacher(Builder $query): void
     {
         $userable_type = auth()->user()->userable->userable_type;
