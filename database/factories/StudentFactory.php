@@ -19,7 +19,7 @@ class StudentFactory extends Factory
         $gender = fake()->randomElement(['male', 'female']);
 
         return [
-            'name' => fake()->name($gender),
+            'name' => fake()->firstName($gender). ' '. fake()->lastName($gender),
             'gender' => $gender,
             'active' => fake()->randomElement([1,0]),
         ];

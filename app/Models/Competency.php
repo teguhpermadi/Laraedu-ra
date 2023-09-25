@@ -29,4 +29,10 @@ class Competency extends Model
         return $this->hasMany(StudentCompetency::class);
     }
     
+    public function scopeActive(Builder $query): void
+    {
+        $query->whereHas('teacherSubject', function($q){
+            $q->where('academic_year_id', AcademicYear::active()->first()->id);
+        });
+    }
 }

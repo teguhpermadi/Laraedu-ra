@@ -54,19 +54,22 @@ class TeacherResource extends Resource
             ])
             ->actions([
                 Action::make('Userable')->action(function (Teacher $record){
-                    $userable = Userable::where('userable_id', $record->id)->where('userable_type', 'App\Models\Teacher')->count();
+                    $userable = Userable::where([
+                        'userable_id' => $record->id,
+                        'userable_type' => 'Teacher'
+                    ])->count();
 
                     if($userable == 0){
                         $user = User::create([
                                     'name' => $record->name,
-                                    'email' => fake()->email(),
+                                    'email' => Str::slug($record->name).'@teacher.com',
                                     'password' => Hash::make('password'),
                                 ]);
 
                         Userable::create([
                             'user_id' => $user->id,
                             'userable_id' => $record->id,
-                            'userable_type' => Teacher::class,
+                            'userable_type' => 'Teacher',
                         ]);
 
                         Notification::make()->title('User berhasil dibuat')->success()->send();

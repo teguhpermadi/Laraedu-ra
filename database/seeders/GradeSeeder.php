@@ -13,6 +13,6 @@ class GradeSeeder extends Seeder
      */
     public function run(): void
     {
-        Grade::factory(2)->create();
+        Grade::factory(5)->create();
     }
 }

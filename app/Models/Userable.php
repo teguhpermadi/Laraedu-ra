@@ -20,13 +20,8 @@ class Userable extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function teacher()
+    public function userable()
     {
-        return $this->morphTo('userable', 'App\Teacher');
-    }
-
-    public function student()
-    {
-        return $this->morphTo('userable', 'App\Student');
+        return $this->morphTo();
     }
 }

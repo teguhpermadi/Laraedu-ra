@@ -6,17 +6,23 @@ use App\Filament\Resources\StudentResource\Pages;
 use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Filament\Resources\StudentResource\RelationManagers\GradesRelationManager;
 use App\Models\Student;
+use App\Models\User;
+use App\Models\Userable;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class StudentResource extends Resource
 {
@@ -46,6 +52,32 @@ class StudentResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Action::make('Userable')->action(function (Student $record){
+                    $userable = Userable::where([
+                        'userable_id' => $record->id,
+                        'userable_type' => 'Student'
+                    ])->count();
+
+                    if($userable == 0){
+                        $user = User::create([
+                                    'name' => $record->name,
+                                    'email' => Str::slug($record->name).'@student.com',
+                                    'password' => Hash::make('password'),
+                                ]);
+
+                        Userable::create([
+                            'user_id' => $user->id,
+                            'userable_id' => $record->id,
+                            'userable_type' => 'Student',
+                        ]);
+
+                        Notification::make()->title('User berhasil dibuat')->success()->send();
+                    } else {
+                        Notification::make()->title('User sudah dibuat')->warning()->send();
+
+                    }
+
+                })->icon('heroicon-m-user-circle'),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

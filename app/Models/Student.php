@@ -49,4 +49,9 @@ class Student extends Model
     {
         return $this->hasMany(StudentCompetency::class);
     }
+
+    public function userable()
+    {
+        return $this->morphOne(Userable::class, 'userable');
+    }
 }

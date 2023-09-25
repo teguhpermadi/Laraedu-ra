@@ -13,6 +13,6 @@ class CompetencySeeder extends Seeder
      */
     public function run(): void
     {
-        Competency::factory(15)->create();
+        Competency::factory(50)->create();
     }
 }

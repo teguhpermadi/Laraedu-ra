@@ -1,63 +1,255 @@
-use App\Models\Userable;
+Competency::all()
+Competency::with('subject')->get()
+Competency::with('subjects')->get()
+Competency::with('teacherSubject')->get()
+Competency::with('teacherSubject.subject')->get()
+Competency::with('teacherSubject', function($q){
+$q->where('teacher_id', 1);
+})->get()
+Competency::with('teacherSubject', function($q){
+$q->where('teacher_id', 1)->get();
+})->get()
+Competency::with('teacherSubject', function($q){
+return $q->where('teacher_id', 1)->get();
+})->get()
+Competency::with('teacherSubject', function($q){
+return $q->where('teacher_id', 1);
+})->get()
+Competency::with('teacherSubject', function($q){
+return $q->where('teacher_id', 1);
+})->get()
+Competency::with('teacherSubject', function($q){
+return $q->where('teacher_id', 1);
+})->get()
+Competency::with(['teacherSubject', function($q){
+return $q->where('teacher_id', 1);
+}])->get()
+Competency::with(['teacherSubject', function($q){
+return $q->where('teacher_id', 1);
+}])->get()
+Competency::with(['teacherSubject', function($q){
+return $q->where('teacher_id', 1);
+}])->get()
+Competency::with('teacherSubject' => function($q){
+return $q->where('teacher_id', 1);
+})->get()
+Competency::with(['teacherSubject' => function($q){
+return $q->where('teacher_id', 1);
+}])->get()
+Competency::with(['teacherSubject' => function($q){
+return $q->where('teacher_id', 1);
+}])
+Competency::with(['teacherSubject' => function($q){
+return $q->where('teacher_id', 1)->get();
+}])
+Competency::with(['teacherSubject' => function($q){
+return $q->where('teacher_id', 1)->get();
+}])->get()
+Competency::with(['teacherSubject' => function($q){
+return $q->where('teacher_id', 1);
+}])->get()
+Competency::with(['teacherSubject' => function($q){
+return $q->where('teacher_id', 1)->get();
+}])->get()
+Competency::with(['teacherSubject' => function($q){
+return $q->whereHas('teacher_id', 1)->get();
+}])->get()
+Competency::with(['teacherSubject' => function($q){
+return $q->where('teacher_id', 1)->get();
+}])->get()
+TeacherSubject::where('teacher_id', 1)->get()
+TeacherSubject::with('teacher')->where('teacher_id', 1)->get()
+TeacherSubject::where('teacher_id', 1)->get()
+TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->get()
+TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->get()->id
+TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->id
+TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->get()
+TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->pluck('id')
+TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->get()
+$data = TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->pluck('id');
+$data = TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->pluck('id');
 
-$subjects_id = TeacherSubject::where('teacher_id', 2)->get()->pluck('grade_id');
+Competency::whereIn('id', $data)->get()
+$data = TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->pluck('id');
 
 
-use App\Models\Userable;
-
-$subjects_id = TeacherSubject::where('teacher_id', 2)->get();
+$data = TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->get();
 
 
-User::get()->userable()
-User::userable()->get()
-User::all()->userable()->get()
-User::all()->userable()
-User::all()->userable
-User::all()
-User::with('userable')->get()
-User::whereHas('userable')->get()
-User::whereHas('userable', function($q){
-$q->with('teacher');
-})->get()
-User::whereHas('userable', function($q){
-$q->with('userable');
-})->get()
-User::whereHas('userable', function($q){
-$q->with('teacher')->get();
-})->get()
-User::whereHas('userable', function($q){
-$q->with('userable.teacher')->get();
-})->get()
-User::whereHas('userable', function($q){
-$q->with('userable.teacher')->get();
-})->get()
-User::whereHas('userable', function($q){
-$q->with('userable.teacher')->get();
-})->get()
-User::whereHas('userable', function($q){
-$q->with('userable.teacher')->get();
-})->get()
-User::whereHas('userable', function($q){
-$q->with('userable.teacher')->get();
-})->get()
-User::whereHas('userable', function($q){
-$q->with('userable.teacher')->get();
-})->get()
-User::whereHas('userable', function($q){
-$q->with('userable.teacher')->get();
-})->get()
-User::whereHas('userable', function($q){
-$q->with('userable.teacher')->get();
-})->get()
-User::with('userable')->get()
+$data = TeacherSubject::where(['teacher_id' => 1,'subject_id' => 2])->get();
+
+
+User::find(4)
+$data = TeacherSubject::where(['teacher_id' => 1,'subject_id' => 1])->get();
+
+
+$data = TeacherSubject::with('subject')->where(['teacher_id' => 1,'subject_id' => 1])->get();
+
+
+$data = TeacherSubject::with('subject.competencies')->where(['teacher_id' => 1,'subject_id' => 1])->get();
+
+
+$data = TeacherSubject::with('subject')->where(['teacher_id' => 1,'subject_id' => 1])->get();
+
+
+$data = TeacherSubject::with('subject')->where(['teacher_id' => 1,'subject_id' => 1])->get();
+
+Competency::with('subject')->get()
+$data = TeacherSubject::with('subject')->where(['teacher_id' => 1,'subject_id' => 1])->get();
+
+Competency::with('subject')->get();
+$data = TeacherSubject::with('subject')->where(['teacher_id' => 1,'subject_id' => 1])->get();
+
+Competency::with('teacherSubject.subject')->get();
+$data = TeacherSubject::with('subject')->where(['teacher_id' => 1,'subject_id' => 1])->get();
+
+
+$data = TeacherSubject::with('subject')->where(['teacher_id' => 1,'subject_id' => 1])->get();
+
+Competency::with('teacherSubject.subject')->where('teacher_subject_id', 13)->get();
+$data = TeacherSubject::with('subject')->where(['teacher_id' => 1,'subject_id' => 1])->get();
+
+Competency::with('teacherSubject.subject')->where('teacher_subject_id', 13)->get();
+
 Grade::all()
-TeacherSubject::all()
+Competency::all()
+Competency::with('teacherSubject')->get()
+Competency::with('teacherSubject')->whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->get()
+Competency::with('teacherSubject')->whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 2);
+})->get()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 2);
+})->get()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 2);
+})->count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 3);
+})->count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 2);
+})->count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 2);
+})->count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 3);
+})->count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 4);
+})->count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count()
+  
+  Competency::count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count();
+  
+  Competency::count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 2);
+})->count();
+Competency::active()->get()
+Competency::all()->active->get()
+Competency::all()->active()->get()
+Competency::all()->active()
+Competency::all()->active()
+Competency::all()->active()
+Competency::get()->active()
+Competency::get()->active
+Competency::active()
+Competency::active()
+Competency::active()->get()
+Competency::active()->get()
+Competency::active()
+Competency::active()->get()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 2);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 2);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 3);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 4);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count();
 
-Teacher::find(2)
+Competency::count()
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 2);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 3);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 2);
+})->count();
+Competency::whereHas('teacherSubject', function($q){
+$q->where('academic_year_id', 1);
+})->count();
+Competency::active()
+Competency::active()->get()
+Competency::active()->get()
+AcademicYear::active()
+AcademicYear::active()->get()
+AcademicYear::find(2)->setActive()
+AcademicYear::setActive(2)
+Competency::active()
+Competency::active()->get()
+AcademicYear::active()->id
+AcademicYear::active()->id
+AcademicYear::active()
+AcademicYear::active()->get()
+AcademicYear::active()->first()
+AcademicYear::active()->first()->id
+Competency::active()->get()
+Competency::active()->count()
+AcademicYear::setActive(1)
 
-Teacher::find(2)->userable
+Competency::active()->count()
+AcademicYear::setActive(1);
 
-Teacher::find(2)->userable->user
-Grade::teacher()->get()
-Grade::teacher()->get();
-Grade::all()
+Competency::active()->count()
+AcademicYear::setActive(3);
+
+Competency::active()->count()
+AcademicYear::setActive(2);
+
+Competency::active()->count()
+AcademicYear::setActive(1);
+
+Competency::active()->count()

@@ -13,7 +13,7 @@ class StudentGradeSeeder extends Seeder
      */
     public function run(): void
     {
-        StudentGrade::factory(10)->make()->each(function($query){
+        StudentGrade::factory(30)->make()->each(function($query){
             StudentGrade::insertOrIgnore($query->toArray());
         });
     }

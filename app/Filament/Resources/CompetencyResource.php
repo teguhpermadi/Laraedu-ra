@@ -32,12 +32,14 @@ class CompetencyResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('teacherSubject.subject.code')->wrap(),
+                TextColumn::make('teacherSubject.subject.code'),
+                TextColumn::make('teacherSubject.grade.grade'),
+                TextColumn::make('teacherSubject.grade.name'),
                 TextColumn::make('description')->wrap(),
                 TextColumn::make('passing_grade'),
             ])
             ->groups([
-                'teacherSubject.subject.id',
+                'teacherSubject.grade.name',
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

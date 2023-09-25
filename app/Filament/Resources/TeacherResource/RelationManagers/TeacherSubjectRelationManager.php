@@ -2,7 +2,11 @@
 
 namespace App\Filament\Resources\TeacherResource\RelationManagers;
 
+use App\Models\Grade;
+use App\Models\Subject;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -18,9 +22,12 @@ class TeacherSubjectRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                // Forms\Components\TextInput::make('name')
+                //     ->required()
+                //     ->maxLength(255),
+                Select::make('grade_id')->options(Grade::pluck('id', 'name'))->required(),
+                Select::make('subject_id')->options(Subject::pluck('id', 'name'))->required(),
+                TextInput::make('passing_grade')->rules('numeric'),
             ]);
     }
 
@@ -32,9 +39,9 @@ class TeacherSubjectRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('academic.year'),
                 Tables\Columns\TextColumn::make('academic.semester'),
                 Tables\Columns\TextColumn::make('subject.name'),
-                Tables\Columns\TextColumn::make('subject.code'),
-                Tables\Columns\TextColumn::make('grade.code'),
-                Tables\Columns\TextColumn::make('grade.grade'),
+                // Tables\Columns\TextColumn::make('subject.code'),
+                // Tables\Columns\TextColumn::make('grade.code'),
+                Tables\Columns\TextColumn::make('grade.name'),
             ])
             ->filters([
                 //
