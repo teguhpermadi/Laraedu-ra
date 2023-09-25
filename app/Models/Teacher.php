@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class Teacher extends Model
 {
@@ -52,6 +54,25 @@ class Teacher extends Model
 
     public function userable()
     {
-        return $this->morphOne(Userable::class, 'userable');
+        return $this->belongsTo(Userable::class,'id', 'userable_id');
+    }
+
+    public static function setUserable($id)
+    {
+        $teacher = self::find($id);
+
+        $user = User::create([
+            'name' => $teacher->name,
+            'email' => Str::slug($teacher->name).'@teacher.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        Userable::create([
+            'user_id' => $user->id,
+            'userable_id' => $teacher->id,
+            'userable_type' => 'Teacher',
+        ]);
+
+        return self::find($id);
     }
 }
