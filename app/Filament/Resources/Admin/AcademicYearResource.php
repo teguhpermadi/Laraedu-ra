@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Admin;
 
-use App\Filament\Resources\AcademicYearResource\Pages;
-use App\Filament\Resources\AcademicYearResource\RelationManagers;
+use App\Filament\Resources\Admin\AcademicYearResource\Pages;
+use App\Filament\Resources\Admin\AcademicYearResource\RelationManagers;
 use App\Models\AcademicYear;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
