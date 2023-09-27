@@ -28,7 +28,7 @@ class ListCompetencies extends ListRecords
             $subjects = $teacher->subjects;
 
             foreach ($subjects as $subject) {
-                $data[$subject->code] = Tab::make($subject->code)
+                $data[$subject->id] = Tab::make($subject->code)
                                         ->modifyQueryUsing(function($query) use ($subject) {
                                             $data = TeacherSubject::where([
                                                 'teacher_id' => auth()->user()->userable->userable_id,

@@ -68,7 +68,7 @@ class StudentResource extends Resource
                         Userable::create([
                             'user_id' => $user->id,
                             'userable_id' => $record->id,
-                            'userable_type' => 'Student',
+                            'userable_type' => Student::class,
                         ]);
 
                         Notification::make()->title('User berhasil dibuat')->success()->send();
@@ -77,7 +77,8 @@ class StudentResource extends Resource
 
                     }
 
-                })->icon('heroicon-m-user-circle'),
+                })->icon('heroicon-m-user-circle')
+                ->hidden(fn (Student $record) => $record->hasUserable()),// Action akan tersembunyi jika guru memiliki Userable
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

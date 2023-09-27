@@ -54,6 +54,7 @@ class Student extends Model
 
     public function userable()
     {
+        // return $this->belongsTo(Userable::class,'id', 'userable_id');
         return $this->morphOne(Userable::class, 'userable');
     }
 
@@ -74,5 +75,11 @@ class Student extends Model
         ]);
 
         return self::find($id);
+    }
+
+    public function hasUserable()
+    {
+        // Lakukan pengecekan apakah siswa memiliki Userable
+        return $this->userable !== null;
     }
 }

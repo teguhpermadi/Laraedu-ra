@@ -54,7 +54,9 @@ class Teacher extends Model
 
     public function userable()
     {
-        return $this->belongsTo(Userable::class,'id', 'userable_id');
+        // return $this->belongsTo(Userable::class,'id', 'userable_id');
+        return $this->morphOne(Userable::class,'userable');
+
     }
 
     public static function setUserable($id)
@@ -74,5 +76,11 @@ class Teacher extends Model
         ]);
 
         return self::find($id);
+    }
+
+    public function hasUserable()
+    {
+        // Lakukan pengecekan apakah guru memiliki Userable
+        return $this->userable !== null;
     }
 }

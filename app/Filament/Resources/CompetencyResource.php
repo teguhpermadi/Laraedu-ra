@@ -6,6 +6,7 @@ use App\Filament\Resources\CompetencyResource\Pages;
 use App\Filament\Resources\CompetencyResource\RelationManagers;
 use App\Models\Competency;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CompetencyResource extends Resource
 {
+    public $activeTab;
+
     protected static ?string $model = Competency::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -24,7 +27,7 @@ class CompetencyResource extends Resource
     {
         return $form
             ->schema([
-                //
+                // TextInput::make('tes')->default(),
             ]);
     }
 
