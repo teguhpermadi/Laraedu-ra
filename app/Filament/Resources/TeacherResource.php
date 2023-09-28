@@ -72,6 +72,8 @@ class TeacherResource extends Resource
                             'userable_type' => Teacher::class,
                         ]);
 
+                        $user->assignRole('Teacher');
+
                         Notification::make()->title('User berhasil dibuat')->success()->send();
                     } else {
                         Notification::make()->title('User sudah dibuat')->warning()->send();

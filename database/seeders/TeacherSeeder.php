@@ -13,6 +13,9 @@ class TeacherSeeder extends Seeder
      */
     public function run(): void
     {
-        Teacher::factory(5)->hasDataTeacher(1)->create();
+        // teacher with userable
+        Teacher::factory(5)->hasDataTeacher()->userable()->create();
+        // teacher without userable
+        Teacher::factory(5)->hasDataTeacher()->create();
     }
 }
