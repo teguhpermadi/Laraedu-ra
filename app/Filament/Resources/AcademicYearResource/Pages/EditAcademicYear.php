@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\Admin\AcademicYearResource\Pages;
+namespace App\Filament\Resources\AcademicYearResource\Pages;
 
-use App\Filament\Resources\Admin\AcademicYearResource;
+use App\Filament\Resources\AcademicYearResource;
 use App\Models\AcademicYear;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;

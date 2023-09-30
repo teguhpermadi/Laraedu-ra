@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources\Admin;
+namespace App\Filament\Resources;
 
-use App\Filament\Resources\Admin\AcademicYearResource\Pages;
-use App\Filament\Resources\Admin\AcademicYearResource\RelationManagers;
+use App\Filament\Resources\AcademicYearResource\Pages;
+use App\Filament\Resources\AcademicYearResource\RelationManagers;
 use App\Models\AcademicYear;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -58,7 +58,7 @@ class AcademicYearResource extends Resource
                 Action::make('aktifkan')
                     ->action(function(AcademicYear $record){
                         AcademicYear::setActive($record->id);
-                    }),
+                    })->visible(auth()->user()->hasPermissionTo('activated AcademicYear')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
