@@ -45,7 +45,7 @@ class TeacherResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')->searchable(),
                 TextColumn::make('gender'),
                 IconColumn::make('active')->boolean(),
             ])
@@ -72,7 +72,7 @@ class TeacherResource extends Resource
                             'userable_type' => Teacher::class,
                         ]);
 
-                        $user->assignRole('Teacher');
+                        $user->assignRole('teacher');
 
                         Notification::make()->title('User berhasil dibuat')->success()->send();
                     } else {
@@ -81,7 +81,8 @@ class TeacherResource extends Resource
                     }
 
                 })->icon('heroicon-m-user-circle')
-                ->hidden(fn (Teacher $record) => $record->hasUserable()),// Action akan tersembunyi jika guru memiliki Userable
+                ->hidden(fn (Teacher $record) => $record->hasUserable())
+                ->visible(auth()->user()->hasPermissionTo('userable Teacher')),// Action akan tersembunyi jika guru memiliki Userable
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

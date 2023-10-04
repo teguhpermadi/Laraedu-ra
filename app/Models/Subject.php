@@ -19,11 +19,6 @@ class Subject extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function competencies()
-    {
-        return $this->hasMany(Competency::class, 'teacher_subject_id');
-    }
-
     public function grade()
     {
         return $this->belongsTo(Grade::class);
@@ -34,6 +29,15 @@ class Subject extends Model
         $userable_type = auth()->user()->userable->userable_type;
         $userable_id = auth()->user()->userable->userable_id;
         $subjects_id = TeacherSubject::where('teacher_id', $userable_id)->orderBy('subject_id')->pluck('subject_id')->unique();
+        $query->whereIn('id', $subjects_id);
+    }
+    
+    public function scopeStudent(Builder $query): void
+    {
+        $userable_type = auth()->user()->userable->userable_type;
+        $userable_id = auth()->user()->userable->userable_id;
+        $grade_id = StudentGrade::where('student_id', $userable_id)->orderBy('grade_id')->pluck('grade_id')->unique();
+        $subjects_id = TeacherSubject::where('grade_id', $grade_id)->orderBy('subject_id')->pluck('subject_id')->unique();
         $query->whereIn('id', $subjects_id);
     }
 

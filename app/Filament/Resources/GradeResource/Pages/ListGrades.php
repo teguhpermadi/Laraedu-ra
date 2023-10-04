@@ -18,20 +18,20 @@ class ListGrades extends ListRecords
         ];
     }
 
-    public function getTabs(): array
-    {
-        if(auth()->user()->userable){
-            return [
-                'all_grade' => Tab::make('All Grades'),
-                'my_grade' => Tab::make('My Grade')
-                    ->modifyQueryUsing(function($query){
-                        return $query->teacher();
-                }),
-            ];
-        } else {
-            return [
-                'all_grade' => Tab::make('All Grades'),
-            ];
-        }
-    }
+    // public function getTabs(): array
+    // {
+    //     if(auth()->user()->userable){
+    //         return [
+    //             'all_grade' => Tab::make('All Grades'),
+    //             'my_grade' => Tab::make('My Grade')
+    //                 ->modifyQueryUsing(function($query){
+    //                     return $query->teacher();
+    //             }),
+    //         ];
+    //     } else {
+    //         return [
+    //             'all_grade' => Tab::make('All Grades'),
+    //         ];
+    //     }
+    // }
 }

@@ -31,8 +31,6 @@ class Competency extends Model
     
     public function scopeActive(Builder $query): void
     {
-        $query->whereHas('teacherSubject', function($q){
-            $q->where('academic_year_id', AcademicYear::active()->first()->id);
-        });
+        $query->whereHas('teacherSubject');
     }
 }

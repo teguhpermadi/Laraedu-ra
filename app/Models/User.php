@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
@@ -51,5 +52,18 @@ class User extends Authenticatable
     public function userable()
     {
         return $this->hasOne(Userable::class);
+    }
+
+    public function scopeTeacher(Builder $query)
+    {
+        $teacher = Userable::where('userable_type', 'App\Models\Teacher')->pluck('user_id');
+        return $query->whereIn('id', $teacher);
+    }
+
+    public function scopeStudent(Builder $query)
+    {
+        $student = Userable::where('userable_type', 'App\Models\Student')->pluck('user_id');
+        return $query->whereIn('id', $student);
+
     }
 }

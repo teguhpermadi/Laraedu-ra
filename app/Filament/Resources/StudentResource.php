@@ -44,7 +44,7 @@ class StudentResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')->searchable(),
                 TextColumn::make('gender'),
                 IconColumn::make('active')->boolean(),
             ])
@@ -64,6 +64,8 @@ class StudentResource extends Resource
                                     'email' => Str::slug($record->name).'@student.com',
                                     'password' => Hash::make('password'),
                                 ]);
+                        
+                        $user->assignRole('student');
 
                         Userable::create([
                             'user_id' => $user->id,
@@ -78,7 +80,8 @@ class StudentResource extends Resource
                     }
 
                 })->icon('heroicon-m-user-circle')
-                ->hidden(fn (Student $record) => $record->hasUserable()),// Action akan tersembunyi jika guru memiliki Userable
+                ->hidden(fn (Student $record) => $record->hasUserable())
+                ->visible(auth()->user()-hasPermissionTo('userable Student')), // Action akan tersembunyi jika guru memiliki Userable
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

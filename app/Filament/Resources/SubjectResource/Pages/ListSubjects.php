@@ -18,20 +18,20 @@ class ListSubjects extends ListRecords
         ];
     }
 
-    public function getTabs(): array
-    {
-        if(auth()->user()->userable){
-            return [
-                'all_subject' => Tab::make('All Subjects'),
-                'my_subject' => Tab::make('My Subject')
-                    ->modifyQueryUsing(function($query){
-                        return $query->teacher();
-                }),
-            ];
-        } else {
-            return [
-                'all_subject' => Tab::make('All Subjects'),
-            ];
-        }
-    }
+    // public function getTabs(): array
+    // {
+    //     if(auth()->user()->userable){
+    //         return [
+    //             'all_subject' => Tab::make('All Subjects'),
+    //             'my_subject' => Tab::make('My Subject')
+    //                 ->modifyQueryUsing(function($query){
+    //                     return $query->teacher();
+    //             }),
+    //         ];
+    //     } else {
+    //         return [
+    //             'all_subject' => Tab::make('All Subjects'),
+    //         ];
+    //     }
+    // }
 }

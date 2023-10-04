@@ -56,7 +56,14 @@ class SubjectResource extends Resource
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
-            ]);
+            ])
+            ->modifyQueryUsing(function(Builder $query){
+                if(auth()->user()->hasRole('teacher')){
+                    $query->teacher();
+                } else if(auth()->user()->hasRole('student')){
+                    $query->student();
+                }
+            });
     }
     
     public static function getRelations(): array

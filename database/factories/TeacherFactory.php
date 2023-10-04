@@ -6,7 +6,8 @@ use App\Models\Teacher;
 use App\Models\User;
 use App\Models\Userable;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Teacher>
  */
@@ -34,6 +35,8 @@ class TeacherFactory extends Factory
         return $this->afterCreating(function (Teacher $teacher) {
             $user = User::factory()->state([
                 'name' => $teacher->name,
+                'email' => Str::slug($teacher->name).'@teacher.com',
+                'password' => Hash::make('password'),
             ])->create();
             $user->assignRole('Teacher');
             $userable = Userable::create([

@@ -22,20 +22,20 @@ class Teacher extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function academics()
-    {
-        return $this->belongsToMany(AcademicYear::class, 'teacher_subject');
-    }
+    // public function academics()
+    // {
+    //     return $this->belongsToMany(AcademicYear::class, 'teacher_subject');
+    // }
 
-    public function grades()
-    {
-        return $this->belongsToMany(Grade::class, 'teacher_subject');
-    }
+    // public function grades()
+    // {
+    //     return $this->belongsToMany(Grade::class, 'teacher_subject');
+    // }
     
-    public function subjects()
-    {
-        return $this->belongsToMany(Subject::class, 'teacher_subject');
-    }
+    // public function subjects()
+    // {
+    //     return $this->belongsToMany(Subject::class, 'teacher_subject');
+    // }
 
     public function dataTeacher()
     {
@@ -44,7 +44,7 @@ class Teacher extends Model
 
     public function teacherSubject()
     {
-        return $this->belongsTo(TeacherSubject::class, 'id','teacher_id');
+        return $this->hasMany(TeacherSubject::class);
     }
 
     public function scopeActive(Builder $query)

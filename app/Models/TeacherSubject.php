@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Scopes\AcademicYearScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class TeacherSubject extends Model
 {
@@ -53,5 +54,34 @@ class TeacherSubject extends Model
     public function competencies()
     {
         return $this->hasMany(Competency::class, 'teacher_subject_id');
+    }
+
+    public function scopeMyGrade(Builder $query, $teacher_id = null):void
+    {
+        if(is_null($teacher_id)){
+            $teacher_id = auth()->user()->userable->userable_id;
+        }
+
+        $query->where('teacher_id', $teacher_id)->with('grade');
+    }
+
+    public function scopeMySubject(Builder $query, $teacher_id = null):void 
+    {
+        if(is_null($teacher_id)){
+            $teacher_id = auth()->user()->userable->userable_id;
+        }
+
+        $query->where('teacher_id', $teacher_id)->with('subject');
+    }
+
+    public function scopeMySubjectByGrade(Builder $query, $grade_id, $teacher_id = null):void
+    {
+        if(is_null($teacher_id)){
+            $teacher_id = auth()->user()->userable->userable_id;
+        }
+
+        $query->where('teacher_id', $teacher_id)
+            ->where('grade_id', $grade_id)
+            ->with('subject');
     }
 }

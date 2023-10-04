@@ -24,21 +24,27 @@ class ListCompetencies extends ListRecords
     {
         if(auth()->user()->userable){
             $data = [];
-            $teacher = Teacher::with('subjects')->find(4);
-            $subjects = $teacher->subjects;
+            $teacherSubject = Teacher::with('teacherSubject.subject', 'teacherSubject.competencies')->find(auth()->user()->userable->userable_id);
+            
+            // Inisialisasi array untuk menyimpan ID kompetensi untuk setiap subjek
+            $competencyIds = [];
 
-            foreach ($subjects as $subject) {
+            foreach ($teacherSubject->teacherSubject as $teacherSub) {
+                // Akses subjek (subject) dari setiap teacherSubject
+                $subject = $teacherSub->subject;
+
+                // Ambil ID subjek dan ID kompetensi yang terkait dengan subjek
+                $subjectId = $subject->id;
+                $competencies = $teacherSub->competencies->pluck('id');
+
+                // Tambahkan ID kompetensi ke dalam array berdasarkan ID subjek
+                $competencyIds = $competencies;
+                
                 $data[$subject->id] = Tab::make($subject->code)
-                                        ->modifyQueryUsing(function($query) use ($subject) {
-                                            $data = TeacherSubject::where([
-                                                'teacher_id' => auth()->user()->userable->userable_id,
-                                                'subject_id' => $subject->id,
-                                            ])->pluck('id');
-
-                                            return $query->whereIn('teacher_subject_id', $data);
-                                        });
+                                                ->modifyQueryUsing(function($query) use ($competencyIds){
+                                                    $query->whereIn('id', $competencyIds);
+                                                });
             }
-
             return $data;
         } else {
             return [

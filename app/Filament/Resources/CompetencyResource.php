@@ -5,7 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CompetencyResource\Pages;
 use App\Filament\Resources\CompetencyResource\RelationManagers;
 use App\Models\Competency;
+use App\Models\TeacherSubject;
 use Filament\Forms;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -27,7 +33,41 @@ class CompetencyResource extends Resource
     {
         return $form
             ->schema([
-                // TextInput::make('tes')->default(),
+                Fieldset::make('identity')->label('Identity')
+                    ->schema([
+                        Select::make('grade_id')->options(function(callable $get, callable $set){
+                            $data = TeacherSubject::myGrade()->get()->pluck('grade.name', 'grade.id');
+                            return $data;
+        
+                        })->afterStateUpdated(function ($state, callable $get, callable $set){
+                            $set('subject_id', null);
+                            $set('teacher_subject_id', null);
+
+                        })
+                        ->reactive()
+                        ->required(),
+                        Select::make('subject_id')->options(function(callable $get, callable $set){
+                            if($get('grade_id')){
+                                $data = TeacherSubject::mySubjectByGrade($get('grade_id'))->get()->pluck('subject.code', 'subject.id');
+                                
+                                return $data;
+                            }
+                            return [];
+        
+                        })->afterStateUpdated(function ($state, callable $get, callable $set){
+                            $data = TeacherSubject::where('grade_id', $get('grade_id'))
+                                ->where('teacher_id', auth()->user()->userable->userable_id)
+                                ->where('subject_id', $get('subject_id'))->first();
+                            $set('teacher_subject_id', $data->id);
+                        })
+                        ->reactive()
+                        ->required(),
+                        TextInput::make('passing_grade')->numeric(),
+                ])
+                ->columns(3),
+                
+                Hidden::make('teacher_subject_id')->required(),
+                Textarea::make('description')->required()->columnSpanFull(),
             ]);
     }
 

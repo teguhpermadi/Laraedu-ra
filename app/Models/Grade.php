@@ -36,4 +36,12 @@ class Grade extends Model
         $grade_id = TeacherSubject::where('teacher_id', $userable_id)->orderBy('grade_id')->pluck('grade_id')->unique();
         $query->whereIn('id', $grade_id);
     }
+    
+    public function scopeStudent(Builder $query): void
+    {
+        $userable_type = auth()->user()->userable->userable_type;
+        $userable_id = auth()->user()->userable->userable_id;
+        $grade_id = StudentGrade::where('student_id', $userable_id)->orderBy('grade_id')->pluck('grade_id')->unique();
+        $query->whereIn('id', $grade_id);
+    }
 }
