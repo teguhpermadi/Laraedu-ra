@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->foreignId('subject_id')->references('id')->on('subjects')->onDelete('cascade');
-            $table->string('passing_grade');
+            $table->string('passing_grade')->nullable();
             // $table->timestamps();
 
             // Tambahkan indeks unik pada kombinasi kolom yang diperlukan

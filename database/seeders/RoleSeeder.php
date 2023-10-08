@@ -76,6 +76,13 @@ class RoleSeeder extends Seeder
             'delete User',
             // 'restore User',
             // 'force-delete User',
+            'view-any TeacherSubject',
+            'view TeacherSubject',
+            'create TeacherSubject',
+            'update TeacherSubject',
+            'delete TeacherSubject',
+            // 'restore TeacherSubject',
+            // 'force-delete TeacherSubject',
         ]);
 
         $teacher->syncPermissions([
@@ -100,6 +107,13 @@ class RoleSeeder extends Seeder
             'delete Competency',
             // 'restore Competency',
             // 'force-delete Competency',
+            'view-any StudentCompetency',
+            'view StudentCompetency',
+            'create StudentCompetency',
+            'update StudentCompetency',
+            'delete StudentCompetency',
+            // 'restore StudentCompetency',
+            // 'force-delete StudentCompetency',
         ]);
 
         $student->syncPermissions([
