@@ -29,6 +29,16 @@ class Grade extends Model
         return $this->hasMany(StudentGrade::class)->orderBy('academic_year_id', 'asc');
     }
 
+    public function studentCompetency()
+    {
+        return $this->hasManyThrough(
+            StudentCompetency::class,
+            StudentGrade::class,
+            'grade_id',
+            'student_grade_id'
+        );
+    }
+
     public function scopeTeacher(Builder $query): void
     {
         $userable_type = auth()->user()->userable->userable_type;

@@ -13,7 +13,7 @@ class StudentCompetencySeeder extends Seeder
      */
     public function run(): void
     {
-        StudentCompetency::factory(50)->make()->each(function($query){
+        StudentCompetency::factory(200)->make()->each(function($query){
             StudentCompetency::insertOrIgnore($query->toArray());
         });
     }

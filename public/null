@@ -1,178 +1,208 @@
-TeacherSubject::where('teacher_id',1)->get()
-TeacherSubject::where('teacher_id',1)->with('userable.user')->get()
-TeacherSubject::where('teacher_id',1)->with('userable')->get()
-TeacherSubject::where('teacher_id',1)->with('teacher.userable.user')->get()
-use \Spatie\Permission\Models\Role;
+$teacherSubject = TeacherSubject::with([
+'grade.studentGrade.student', 'grade.studentGrade.studentCompetency' => function($query){
+	$query->where('competency_id',4);
+}])
+->find(22);
 
-Role::all()
-use \Spatie\Permission\Models\Role;
+$students = $teacherSubject->grade->studentGrade;
 
-Role::find(2)
-use \Spatie\Permission\Models\Role;
+User::find(2)
+$teacherSubject = TeacherSubject::with([
+'grade.studentGrade.student', 'grade.studentGrade.studentCompetency' => function($query){
+	$query->where('competency_id',4);
+}])
+->find(22);
 
-Role::find(2)->givePermissionTo('view-any StudentCompetency',
-            'view StudentCompetency',
-            'create StudentCompetency',
-            'update StudentCompetency',
-            'delete StudentCompetency',)
-use \Spatie\Permission\Models\Role;
+$students = $teacherSubject->grade->studentGrade;
 
-Role::find(2)->givePermissionTo(['view-any StudentCompetency',
-            'view StudentCompetency',
-            'create StudentCompetency',
-            'update StudentCompetency',
-            'delete StudentCompetency'])
-use \Spatie\Permission\Models\Role;
+$teacherSubject = TeacherSubject::with([
+'grade.studentGrade.student', 'grade.studentGrade.studentCompetency' => function($query){
+	$query->where('competency_id',4);
+}])
+->find(22);
 
-Role::find(2)->givePermissionTo(['view-any StudentCompetency',
-            'view StudentCompetency',
-            'create StudentCompetency',
-            'update StudentCompetency',
-            'delete StudentCompetency'])
-use \Spatie\Permission\Models\Role;
+$students = $teacherSubject->grade->studentGrade;
 
-Role::find(2)->givePermissionTo(['view-any StudentCompetency',
-            'view StudentCompetency',
-            'create StudentCompetency',
-            'update StudentCompetency',
-            'delete StudentCompetency'])
-use \Spatie\Permission\Models\Role;
+$resultArray = [];
 
-Role::find(2)->givePermissionTo(['view-any StudentCompetency',
-            'view StudentCompetency',
-            'create StudentCompetency',
-            'update StudentCompetency',
-            'delete StudentCompetency'])
-use \Spatie\Permission\Models\Role;
+                        foreach ($students as $studentGrade) {
+                            $score = 0; 
+                        
+                            if ($studentGrade->studentCompetency && $studentGrade->studentCompetency->score) {
+                                $score = $studentGrade->studentCompetency->score;
+                            }
+                        
+                            $resultArray[] = [
+                                'competency_id' => $get('competency_id'),
+                                'student_id' => $studentGrade->student_id,
+                                'score' => $score
+                            ];
+                        }
+$teacherSubject = TeacherSubject::with([
+'grade.studentGrade.student', 'grade.studentGrade.studentCompetency' => function($query){
+	$query->where('competency_id',4);
+}])
+->find(22);
 
-Role::find(2)->givePermissionTo(['view-any StudentCompetency',
-            'view StudentCompetency',
-            'create StudentCompetency',
-            'update StudentCompetency',
-            'delete StudentCompetency'])
-use \Spatie\Permission\Models\Role;
+$students = $teacherSubject->grade->studentGrade;
 
-Role::find(2)->givePermissionTo(['view-any StudentCompetency',
-            'view StudentCompetency',
-            'create StudentCompetency',
-            'update StudentCompetency',
-            'delete StudentCompetency'])
-use \Spatie\Permission\Models\Role;
+$resultArray = [];
 
-Role::find(2)->syncPermissions(['view-any StudentCompetency',
-            'view StudentCompetency',
-            'create StudentCompetency',
-            'update StudentCompetency',
-            'delete StudentCompetency'])
-use \Spatie\Permission\Models\Role;
+                        foreach ($students as $studentGrade) {
+                            $score = 0; 
+                        
+                            if ($studentGrade->studentCompetency && $studentGrade->studentCompetency->score) {
+                                $score = $studentGrade->studentCompetency->score;
+                            }
+                        
+                            $resultArray[] = [
+                                'competency_id' => 4,
+                                'student_id' => $studentGrade->student_id,
+                                'score' => $score
+                            ];
+                        }
+$teacherSubject = TeacherSubject::with([
+'grade.studentGrade.student', 'grade.studentGrade.studentCompetency' => function($query){
+	$query->where('competency_id',4);
+}])
+->find(22);
 
-Role::find(2)->revokePermissionTo(['view-any StudentCompetency',
-            'view StudentCompetency',
-            'create StudentCompetency',
-            'update StudentCompetency',
-            'delete StudentCompetency'])
-use \Spatie\Permission\Models\Role;
+$students = $teacherSubject->grade->studentGrade;
 
-Role::find(2)->syncPermissions('view-any AcademicYear',
-            'view AcademicYear',
-            'create AcademicYear',
-            'update AcademicYear',
-            'delete AcademicYear',
-            'activated AcademicYear',
-            
-            
-            'view-any Teacher',
-            'view Teacher',
-            'create Teacher',
-            'update Teacher',
-            'delete Teacher',
-            'userable Teacher',
-            
-            
-            'view-any Student',
-            'view Student',
-            'create Student',
-            'update Student',
-            'delete Student',
-            'userable Student',
-            
-            
-            'view-any Subject',
-            'view Subject',
-            'create Subject',
-            'update Subject',
-            'delete Subject',
-            
-            
-            'view-any Grade',
-            'view Grade',
-            'create Grade',
-            'update Grade',
-            'delete Grade',
-            
-            
-            'view-any User',
-            'view User',
-            'create User',
-            'update User',
-            'delete User',
-            
-            
-            'view-any TeacherSubject',
-            'view TeacherSubject',
-            'create TeacherSubject',
-            'update TeacherSubject',
-            'delete TeacherSubject',
-            
-            
-							  )
-AcademicYear::active()->id
-AcademicYear::active()
-AcademicYear::active()->get()->id
-AcademicYear::active()->get()
-AcademicYear::active()->first()
-AcademicYear::active()->first()->id
-TeacherSubject::find(1)
+$resultArray = [];
 
+                        foreach ($students as $studentGrade) {
+                            $score = 0; 
+                        
+                            if ($studentGrade->studentCompetency && $studentGrade->studentCompetency->score) {
+                                $score = $studentGrade->studentCompetency->score;
+                            }
+                        
+                            $resultArray[] = [
+                                'competency_id' => 4,
+                                'student_id' => $studentGrade->student_id,
+                                'score' => $score
+                            ];
+                        }
+$resultArray
+$teacherSubject = TeacherSubject::with([
+'grade.studentGrade.student', 'grade.studentGrade.studentCompetency' => function($query){
+	$query->where('competency_id',4);
+}])
+->find(22);
 
-TeacherSubject::create([
-'academic_year_id' => 1,
-  'grade_id' => 4,
-  'subject_id'=>1
-  'passing_grade'=>1
-])
+$students = $teacherSubject->grade->studentGrade;
 
+$resultArray = [];
 
-TeacherSubject::create([
-'academic_year_id' => 1,
-  'grade_id' => 4,
-  'subject_id'=>1,
-  'passing_grade'=>1,
-]);
+                        foreach ($students as $studentGrade) {
+                            $score = 0; 
+                        
+                            if ($studentGrade->studentCompetency && $studentGrade->studentCompetency->score) {
+                                $score = $studentGrade->studentCompetency->score;
+                            }
+                        
+                            $resultArray[] = [
+                                'competency_id' => 4,
+                                'student_id' => $studentGrade->student_id,
+                                'score' => $score
+                            ];
+                        }
+$resultArray->toArray()
+$teacherSubject = TeacherSubject::with([
+'grade.studentGrade.student', 'grade.studentGrade.studentCompetency' => function($query){
+	$query->where('competency_id',4);
+}])
+->find(22);
 
+$students = $teacherSubject->grade->studentGrade;
 
-TeacherSubject::create([
-'academic_year_id' => 1,
-  'teacher_id'=>1
-  'grade_id' => 4,
-  'subject_id'=>1,
-  'passing_grade'=>1,
-]);
+$resultArray = [];
 
+                        foreach ($students as $studentGrade) {
+                            $score = 0; 
+                        
+                            if ($studentGrade->studentCompetency && $studentGrade->studentCompetency->score) {
+                                $score = $studentGrade->studentCompetency->score;
+                            }
+                        
+                            $resultArray[] = [
+                                'competency_id' => 4,
+                                'student_id' => $studentGrade->student_id,
+                                'score' => $score
+                            ];
+                        }
+$resultArray->toJson()
+$teacherSubject = TeacherSubject::with([
+'grade.studentGrade.student', 'grade.studentGrade.studentCompetency' => function($query){
+	$query->where('competency_id',4);
+}])
+->find(22);
 
-TeacherSubject::create([
-'academic_year_id' => 1,
-  'teacher_id'=>1
-  'grade_id' => 4,
-  'subject_id'=>1,
-  'passing_grade'=>1,
-]);
+$students = $teacherSubject->grade->studentGrade;
 
+$resultArray = [];
 
-TeacherSubject::create([
-'academic_year_id' => 1,
-  'teacher_id'=>1,
-  'grade_id' => 4,
-  'subject_id'=>1,
-  'passing_grade'=>1,
-]);
+                        foreach ($students as $studentGrade) {
+                            $score = 0; 
+                        
+                            if ($studentGrade->studentCompetency && $studentGrade->studentCompetency->score) {
+                                $score = $studentGrade->studentCompetency->score;
+                            }
+                        
+                            $resultArray[] = [
+                                'competency_id' => 4,
+                                'student_id' => $studentGrade->student_id,
+                                'score' => $score
+                            ];
+                        }
+$resultArray->toArray()
+$teacherSubject = TeacherSubject::with([
+'grade.studentGrade.student', 'grade.studentGrade.studentCompetency' => function($query){
+	$query->where('competency_id',4);
+}])
+->find(22);
+
+$students = $teacherSubject->grade->studentGrade;
+
+$resultArray = [];
+
+                        foreach ($students as $studentGrade) {
+                            $score = 0; 
+                        
+                            if ($studentGrade->studentCompetency && $studentGrade->studentCompetency->score) {
+                                $score = $studentGrade->studentCompetency->score;
+                            }
+                        
+                            $resultArray[] = [
+                                'competency_id' => 4,
+                                'student_id' => $studentGrade->student_id,
+                                'score' => $score
+                            ];
+                        }
+$resultArray;
+$teacherSubject = TeacherSubject::with([
+'grade.studentGrade.student', 'grade.studentGrade.studentCompetency' => function($query){
+	$query->where('competency_id',4);
+}])
+->find(22);
+
+$students = $teacherSubject->grade->studentGrade;
+
+$resultArray = [];
+
+                        foreach ($students as $studentGrade) {
+                            $score = 0; 
+                        
+                            if ($studentGrade->studentCompetency && $studentGrade->studentCompetency->score) {
+                                $score = $studentGrade->studentCompetency->score;
+                            }
+                        
+                            $resultArray[] = [
+                                'competency_id' => 4,
+                                'student_id' => $studentGrade->student_id,
+                                'score' => $score
+                            ];
+                        }
+
+$jsonResult = json_encode($resultArray);

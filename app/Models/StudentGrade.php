@@ -42,4 +42,9 @@ class StudentGrade extends Model
     {
         return $this->belongsTo(Student::class);
     }
+
+    public function studentCompetency()
+    {
+        return $this->hasOne(StudentCompetency::class,'student_id','student_id');
+    }
 }

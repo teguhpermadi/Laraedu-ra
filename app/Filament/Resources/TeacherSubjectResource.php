@@ -16,6 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
@@ -61,7 +62,7 @@ class TeacherSubjectResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('teacher.name')->searchable(),
+                TextColumn::make('teacher.name')->searchable()->visible(auth()->user()->hasRole('admin')),
                 TextColumn::make('subject.name')->searchable(),
                 TextColumn::make('grade.name')->searchable(),
             ])
@@ -71,12 +72,19 @@ class TeacherSubjectResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Action::make('Evaluation')->url(function(TeacherSubject $record){
+                    return route('filament.admin.resources.student-competencies.evaluation', $record);
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->modifyQueryUsing(function(Builder $query){
+                if(auth()->user()->hasRole('teacher')){
+                    $query->mySubject();
+                }
+            });
     }
     
     public static function getRelations(): array

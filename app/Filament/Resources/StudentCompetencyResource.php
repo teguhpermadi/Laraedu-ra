@@ -76,6 +76,7 @@ class StudentCompetencyResource extends Resource
     {
         return [
             'index' => Pages\ListStudentCompetencies::route('/'),
+            'evaluation' => Pages\Evaluation::route('/evaluation/{teacher_subject_id}'),
             'create' => Pages\CreateStudentCompetency::route('/create'),
             'view' => Pages\ViewStudentCompetency::route('/{record}'),
             'edit' => Pages\EditStudentCompetency::route('/{record}/edit'),
