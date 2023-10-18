@@ -12,6 +12,7 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Closure;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -25,9 +26,8 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
 
-class Evaluation extends Page implements HasTable, HasForms
+class Evaluation extends Page implements HasForms
 {
-    use InteractsWithTable;
     use InteractsWithForms;
 
     protected static string $resource = StudentCompetencyResource::class;
@@ -41,51 +41,9 @@ class Evaluation extends Page implements HasTable, HasForms
     
     public ?array $data = [];
 
-    public function mount($teacher_subject_id)
+    public function mount()
     {
-        $this->teacher_subject_id = $teacher_subject_id;
         $this->form->fill();
-    }
-
-    protected function getTableQuery(): Builder 
-    {
-        return Competency::query()->where('teacher_subject_id', $this->teacher_subject_id);
-    } 
-
-    protected function getTableColumns(): array 
-    {
-        return [
-            TextColumn::make('description')->wrap(),
-            TextColumn::make('passing_grade'),
-        ];
-    }
-
-    protected function getTableActions(): array
-    {
-        return [
-            Action::make('check')
-            ->action(function(Model $record){
-                $this->competencyClick($record->id);
-            }),
-        ];
-    }
-
-    protected function isTablePaginationEnabled(): bool 
-    {
-        return false;
-    } 
-
-    public function competencyClick($competencyId)
-    {
-        $teacherSubject = TeacherSubject::with([
-                            'grade.studentGrade.student',
-                            'grade.studentGrade.studentCompetency' => function($query) use ($competencyId){
-                                $query->where('competency_id', $competencyId);
-                            }])
-                            ->find($this->teacher_subject_id);
-
-        $this->competencyId = $competencyId;
-        $this->students = $teacherSubject->grade->studentGrade;
     }
 
     public function form(Form $form): Form
@@ -106,7 +64,7 @@ class Evaluation extends Page implements HasTable, HasForms
                                 $set('scores', null);
                             })
                             ->reactive(),
-                        Select::make('competency_id')
+                        Radio::make('competency_id')
                             ->options(function(callable $get){
                                 $comptencies = Competency::where('teacher_subject_id', $get('teacher_subject_id'))->pluck('description', 'id');
                                 return $comptencies;
@@ -140,7 +98,7 @@ class Evaluation extends Page implements HasTable, HasForms
                             ->reactive()
                             ->required(),
                     ]),
-                Section::make('tes')->schema([
+                Section::make('student list')->schema([
                     TableRepeater::make('scores')
                         ->schema([
                             Hidden::make('competency_id'),
@@ -153,7 +111,7 @@ class Evaluation extends Page implements HasTable, HasForms
                         ])
                         ->columnSpan('full')
                         ->defaultItems(0)
-                        ->reorderable(false)
+                        // ->reorderable(false)
                         ->deletable(false)
                         ->addable(false),
                 ]),
