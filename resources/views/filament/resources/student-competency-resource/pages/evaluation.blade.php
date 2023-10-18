@@ -2,7 +2,7 @@
 
 <div class="flex">
 
-  <div class="w-1/2 p-4">
+  {{-- <div class="w-1/2 p-4">
     <x-filament::section>
         <x-slot name="heading">
             Competencies List
@@ -10,21 +10,15 @@
 
         {{ $this->table }}
     </x-filament::section>
-  </div>
+  </div> --}}
 
-  <div class="w-1/2 p-4">
-    <x-filament::section>
-        <x-slot name="heading">
-            Students List
-        </x-slot>
-    
-        <form wire:submit="submit">
-            {{$this->form}}
-            <x-filament::button class="mt-3" type="submit">
-                Save
-            </x-filament::button>
-        </form>
-    </x-filament::section>
+  <div class="p-4">
+    <form wire:submit="submit">
+        {{$this->form}}
+        <x-filament::button class="mt-3" type="submit" wire:loading.class="opacity-50">
+            Save
+        </x-filament::button>
+    </form>
   </div>
 </div>
 </x-filament-panels::page>
