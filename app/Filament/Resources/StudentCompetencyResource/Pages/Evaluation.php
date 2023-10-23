@@ -51,11 +51,11 @@ class Evaluation extends Page implements HasForms
         return $form
             ->schema([
                 Section::make('identity')
-                    ->columns([
-                        'sm' => 3,
-                        'xl' => 6,
-                        '2xl' => 8,
-                    ])
+                    // ->columns([
+                    //     'sm' => 3,
+                    //     'xl' => 6,
+                    //     '2xl' => 8,
+                    // ])
                     ->schema([
                         Select::make('teacher_subject_id')
                             ->options(TeacherSubject::mySubject()->get()->pluck('subject.name', 'id'))
@@ -63,8 +63,10 @@ class Evaluation extends Page implements HasForms
                                 $set('competency_id', null);
                                 $set('scores', null);
                             })
+                            
                             ->reactive(),
                         Radio::make('competency_id')
+                            
                             ->options(function(callable $get){
                                 $comptencies = Competency::where('teacher_subject_id', $get('teacher_subject_id'))->pluck('description', 'id');
                                 return $comptencies;

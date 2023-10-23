@@ -18,11 +18,15 @@ class CompetencyFactory extends Factory
     public function definition(): array
     {
         $teacher_subject = TeacherSubject::pluck('id');
-
+        $random_id = fake()->randomElement(TeacherSubject::pluck('id'));
+        $random = TeacherSubject::find($random_id);
+        $sequenceNumber = fake()->unique()->numberBetween(1, 999);
+        $code = $random->id . $random->academic_year_id . $random->grade_id . $random->teacher_id . $random->subject_id . $sequenceNumber;
         return [
             'teacher_subject_id' => fake()->randomElement($teacher_subject),
             'passing_grade' => fake()->randomElement([70,75,80]),
-            'description' => fake()->realTextBetween(50,100),
+            'code' => $code,
+            'description' => fake()->sentence(),
         ];
     }
 }

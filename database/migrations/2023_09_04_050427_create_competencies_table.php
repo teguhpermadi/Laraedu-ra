@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('teacher_subject_id')->references('id')->on('teacher_subject')->onDelete('cascade');
             $table->string('passing_grade');
+            $table->string('code')->unique()->nullable();
             $table->string('description');
             $table->timestamps();
             $table->softDeletes('deleted_at');

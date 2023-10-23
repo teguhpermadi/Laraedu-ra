@@ -86,15 +86,15 @@ class RoleSeeder extends Seeder
         ]);
 
         $teacher->syncPermissions([
-            'view-any Subject',
-            'view Subject',
+            // 'view-any Subject',
+            // 'view Subject',
             // 'create Subject',
             // 'update Subject',
             // 'delete Subject',
             // 'restore Subject',
             // 'force-delete Subject',
-            'view-any Grade',
-            'view Grade',
+            // 'view-any Grade',
+            // 'view Grade',
             // 'create Grade',
             // 'update Grade',
             // 'delete Grade',
