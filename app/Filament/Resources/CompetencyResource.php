@@ -75,14 +75,14 @@ class CompetencyResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('teacherSubject.subject.code'),
-                TextColumn::make('teacherSubject.grade.grade'),
-                TextColumn::make('teacherSubject.grade.name'),
+                // TextColumn::make('teacherSubject.subject.code'),
+                // TextColumn::make('teacherSubject.grade.grade'),
+                // TextColumn::make('teacherSubject.grade.name'),
                 TextColumn::make('description')->wrap(),
                 TextColumn::make('passing_grade'),
             ])
             ->groups([
-                'teacherSubject.grade.name',
+                // 'teacherSubject.grade.name',
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

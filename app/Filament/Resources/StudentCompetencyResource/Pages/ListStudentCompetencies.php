@@ -24,14 +24,27 @@ class ListStudentCompetencies extends ListRecords
 
     public function getTabs(): array
     {
-        $subjects = TeacherSubject::with('competencies')->mySubject()->get();
+        $subjects = TeacherSubject::with('competencies', 'grade')->mySubject();
         $tabs = [];
-        foreach ($subjects as $subject) {
-            $tabs[$subject->subject->name] = Tab::make()
-                ->modifyQueryUsing(function(Builder $query) use ($subject){
-                    $competencyId = $subject->competencies->pluck('id');
-                    $query->whereIn('competency_id',$competencyId)->orderBy('student_id');
-                });
+        if($subjects->count() != 0){
+            foreach ($subjects->get() as $subject) {
+                $tabs[$subject->id] = Tab::make($subject->subject->code.'-'.$subject->grade->name)
+                    ->modifyQueryUsing(function(Builder $query) use ($subject){
+                        $competencyId = $subject->competencies->pluck('id');
+                        $studentId = $subject->grade->studentGrade->pluck('student_id');
+                        $query->whereIn('competency_id',$competencyId)
+                            ->whereIn('student_id', $studentId)
+                            ->orderBy('student_id');
+                    });
+            }
+        } else {
+            $tabs = [
+                '-' => Tab::make()
+                    ->icon('heroicon-m-x-mark')
+                    ->modifyQueryUsing(function(Builder $query){
+                        $query->where('student_id', 0);
+                    })
+            ];
         }
         return $tabs;
     }

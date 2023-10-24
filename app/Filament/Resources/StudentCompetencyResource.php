@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\StudentCompetencyResource\Pages;
 use App\Filament\Resources\StudentCompetencyResource\RelationManagers;
 use App\Models\StudentCompetency;
+use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -35,8 +36,8 @@ class StudentCompetencyResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('student.name')->searchable(),
-                TextColumn::make('competency.teacherSubject.subject.code'),
-                TextColumn::make('competency.teacherSubject.grade.name'),
+                // TextColumn::make('competency.teacherSubject.subject.code'),
+                // TextColumn::make('competency.teacherSubject.grade.name'),
                 TextColumn::make('competency.description')->wrap(),
                 TextColumn::make('score'),
                 TextColumn::make('result')
@@ -47,15 +48,11 @@ class StudentCompetencyResource extends Resource
                     }),
             ])
             ->filters([
-                SelectFilter::make('competency_id')
-                ->options([
-                        '4' => '4',
-                        '15' => '15',
-                    ])
+                
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\ViewAction::make(),
+                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -67,7 +64,10 @@ class StudentCompetencyResource extends Resource
             ])
             ->modifyQueryUsing(function(Builder $query){
                 $query->result();
-            });
+            })
+            ->emptyStateHeading('You dont have subject')
+            ->emptyStateDescription('Please contact your admin')
+            ->emptyStateActions([]);
     }
     
     public static function getRelations(): array

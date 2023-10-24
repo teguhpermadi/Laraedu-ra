@@ -24,7 +24,7 @@ class ListCompetencies extends ListRecords
     {
         if(auth()->user()->userable){
             $data = [];
-            $teacherSubject = Teacher::with('teacherSubject.subject', 'teacherSubject.competencies')->find(auth()->user()->userable->userable_id);
+            $teacherSubject = Teacher::with('teacherSubject.subject', 'teacherSubject.grade', 'teacherSubject.competencies')->find(auth()->user()->userable->userable_id);
             
             // Inisialisasi array untuk menyimpan ID kompetensi untuk setiap subjek
             $competencyIds = [];
@@ -32,6 +32,7 @@ class ListCompetencies extends ListRecords
             foreach ($teacherSubject->teacherSubject as $teacherSub) {
                 // Akses subjek (subject) dari setiap teacherSubject
                 $subject = $teacherSub->subject;
+                $grade = $teacherSub->grade;
 
                 // Ambil ID subjek dan ID kompetensi yang terkait dengan subjek
                 $subjectId = $subject->id;
@@ -40,10 +41,10 @@ class ListCompetencies extends ListRecords
                 // Tambahkan ID kompetensi ke dalam array berdasarkan ID subjek
                 $competencyIds = $competencies;
                 
-                $data[$subject->id] = Tab::make($subject->code)
-                                                ->modifyQueryUsing(function($query) use ($competencyIds){
-                                                    $query->whereIn('id', $competencyIds);
-                                                });
+                $data[$subject->id] = Tab::make($subject->code.'-'.$grade->name)
+                    ->modifyQueryUsing(function($query) use ($competencyIds){
+                        $query->whereIn('id', $competencyIds);
+                    });
             }
             return $data;
         } else {

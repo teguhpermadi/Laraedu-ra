@@ -1,12 +1,11 @@
-User::find(2)
-User::find(2);
-Competency::all()
+TeacherSubject::with('competencies', 'grade.studentGrade')->mySubject()->get()
+User::find(4)
+User::find(3)
+User::find(3)->userable
 
-Competency::all()
+Teacher::with('teacherSubject.subject', 'teacherSubject.competencies')->find(2)
 
-Competency::all()
-User::find(2);
-
-
-
-StudentCompetency::all()
+Teacher::with('teacherSubject.subject','teacherSubject.grade', 'teacherSubject.competencies')->find(2)
+TeacherSubject::with('competencies')->get()
+TeacherSubject::with('competencies')->where('teacher_id',2)->get()
+TeacherSubject::with('competencies')->find(30)

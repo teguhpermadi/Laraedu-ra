@@ -58,7 +58,7 @@ class Evaluation extends Page implements HasForms
                     // ])
                     ->schema([
                         Select::make('teacher_subject_id')
-                            ->options(TeacherSubject::mySubject()->get()->pluck('subject.name', 'id'))
+                            ->options(TeacherSubject::mySubject()->get()->pluck('subject.code', 'id'))
                             ->afterStateUpdated(function(callable $get, callable $set){
                                 $set('competency_id', null);
                                 $set('scores', null);
