@@ -18,6 +18,8 @@ return new class extends Migration
             $table->boolean('active');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
+
+            $table->unique(['year', 'semester']);
         });
     }
 

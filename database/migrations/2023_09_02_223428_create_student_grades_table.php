@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('student_grade', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('academic_year_id')->references('id')->on('academic_years')->onDelete('cascade');
-            $table->foreignId('grade_id')->references('id')->on('grades')->onDelete('cascade');
-            $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreignId('academic_year_id')->onDelete('cascade');
+            $table->foreignId('grade_id')->onDelete('cascade');
+            $table->foreignId('student_id')->onDelete('cascade');
+
             // $table->timestamps();
             
             // Tambahkan indeks unik pada kombinasi ketiga kolom tersebut

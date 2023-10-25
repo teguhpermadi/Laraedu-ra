@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('grade');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
+
+            $table->unique(['name', 'grade']);
         });
     }
 

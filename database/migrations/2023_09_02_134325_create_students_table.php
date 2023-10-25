@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->string('nisn')->nullable();
+            $table->string('nis')->nullable();
             $table->string('name');
             $table->enum('gender', ['male', 'female']);
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
+
+            $table->unique(['nisn','nis']);
         });
     }
 

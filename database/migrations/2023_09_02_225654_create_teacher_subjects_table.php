@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('teacher_subject', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('academic_year_id')->references('id')->on('academic_years')->onDelete('cascade');
-            $table->foreignId('grade_id')->references('id')->on('grades')->onDelete('cascade');
-            $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
-            $table->foreignId('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreignId('academic_year_id')->onDelete('cascade');
+            $table->foreignId('grade_id')->onDelete('cascade');
+            $table->foreignId('teacher_id')->onDelete('cascade');
+            $table->foreignId('subject_id')->onDelete('cascade');
             $table->string('passing_grade')->nullable();
             // $table->timestamps();
 

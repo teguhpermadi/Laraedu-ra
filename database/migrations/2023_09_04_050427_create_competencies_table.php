@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('competencies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teacher_subject_id')->references('id')->on('teacher_subject')->onDelete('cascade');
+            $table->foreignId('teacher_subject_id')->onDelete('cascade');
             $table->string('passing_grade');
             $table->string('code')->unique()->nullable();
             $table->string('description');
