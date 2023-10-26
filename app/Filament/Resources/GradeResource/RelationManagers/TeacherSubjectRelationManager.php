@@ -29,8 +29,6 @@ class TeacherSubjectRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('academic.year'),
-                Tables\Columns\TextColumn::make('academic.semester'),
                 Tables\Columns\TextColumn::make('teacher.name'),
                 Tables\Columns\TextColumn::make('subject.code'),
             ])

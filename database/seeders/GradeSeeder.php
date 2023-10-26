@@ -13,6 +13,8 @@ class GradeSeeder extends Seeder
      */
     public function run(): void
     {
-        Grade::factory(5)->create();
+        Grade::factory(5)->make()->each(function($query){
+            Grade::insertOrIgnore($query->toArray());
+        });
     }
 }

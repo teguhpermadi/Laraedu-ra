@@ -1,32 +1,14 @@
-Student::all()
-Student::all()
-Student::all()
-Student::get()
-Student::find(1)
-Student::all()
-Student::all()
-Student::all()
-Student::all()
-Student::all()
-Student::all()
-Student::all()
-Student::all()
-Student::count()
-Student::count()
-Student::orderBy('created_at', 'desc')->get()
-Student::deleteAll()
-Student::truncate();
-Student::truncate();
-Student::all()
-Student::all()
-Student::all()
-Student::truncate()
-Student::all()
-Student::truncate()
-Student::all()
-Student::truncate()
-Student::all()
-Student::all()
-Student::all()
-Student::count()
-Student::truncate()
+TeacherSubject::mySubject()->get()
+TeacherSubject::mySubject()->with('grade')->get()
+TeacherSubject::mySubject()->with('grade')->get()->map(function ($item) {
+    return [
+        'id' => $item->id,
+        'name' => $item->grade->name . ' - ' . $item->subject->name,
+    ];
+})->pluck('name', 'id');
+TeacherSubject::mySubject()->with('grade')->get()->map(function ($item) {
+    return [
+        'id' => $item->id,
+        'name' => $item->subject->name . ' - ' . $item->grade->name,
+    ];
+})->pluck('name', 'id');

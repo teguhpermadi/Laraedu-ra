@@ -62,7 +62,9 @@ class CompetencyResource extends Resource
                         })
                         ->reactive()
                         ->required(),
-                        TextInput::make('passing_grade')->numeric(),
+                        TextInput::make('passing_grade')
+                            ->numeric()
+                            ->required(),
                 ])
                 ->columns(3),
                 

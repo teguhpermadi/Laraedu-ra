@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teacher_subject', function (Blueprint $table) {
+        Schema::create('teacher_subjects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('academic_year_id')->onDelete('cascade');
-            $table->foreignId('grade_id')->onDelete('cascade');
-            $table->foreignId('teacher_id')->onDelete('cascade');
-            $table->foreignId('subject_id')->onDelete('cascade');
+            $table->foreignId('academic_year_id')->constrained()->onDelete('cascade');
+            $table->foreignId('grade_id')->constrained()->onDelete('cascade');
+            $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
             $table->string('passing_grade')->nullable();
             // $table->timestamps();
 

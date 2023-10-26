@@ -21,15 +21,15 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
-            TeacherSeeder::class,
-            StudentSeeder::class,
-            AcademicYearSeeder::class,
-            GradeSeeder::class,
-            SubjectSeeder::class,
-            StudentGradeSeeder::class,
-            TeacherSubjectSeeder::class,
-            CompetencySeeder::class,
-            StudentCompetencySeeder::class,
+            // TeacherSeeder::class,
+            // StudentSeeder::class,
+            // AcademicYearSeeder::class,
+            // GradeSeeder::class,
+            // SubjectSeeder::class,
+            // StudentGradeSeeder::class,
+            // TeacherSubjectSeeder::class,
+            // CompetencySeeder::class,
+            // StudentCompetencySeeder::class,
         ]);
     }
 }

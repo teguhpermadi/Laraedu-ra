@@ -80,9 +80,10 @@ class TeacherResource extends Resource
 
                     }
 
-                })->icon('heroicon-m-user-circle')
-                ->hidden(fn (Teacher $record) => $record->hasUserable())
-                ->visible(auth()->user()->hasPermissionTo('userable Teacher')),// Action akan tersembunyi jika guru memiliki Userable
+                })
+                    ->icon('heroicon-m-user-circle')
+                    ->hidden(fn (Teacher $record) => $record->hasUserable())
+                    ->visible(auth()->user()->hasPermissionTo('userable Teacher')),// Action akan tersembunyi jika guru memiliki Userable
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

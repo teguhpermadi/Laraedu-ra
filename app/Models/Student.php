@@ -15,12 +15,45 @@ class Student extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'nisn',
+        'nis',
         'name',
         'gender',
-        'active'
+        'active',
     ];
 
     protected $dates = ['deleted_at'];
+
+    protected $casts = [
+        'nisn' => 'string',
+        'nis' => 'string',
+    ];
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->where('active', 1);
+        });
+    }
+
+    public function getGenderAttribute($value)
+    {
+        // $this->attributes['gender'] = ($value === 'male') ? 'Laki-laki' : 'Perempuan';
+        switch ($value) {
+            case 'male':
+                return 'Laki-laki';
+                break;
+            
+            default:
+                return 'Perempuan';
+                break;
+        }
+    }
+    
+    public function setGenderAttribute($value)
+    {
+        $this->attributes['gender'] = ($value === 'laki-laki') ? 'male' : 'female';
+    }
 
     // public function grades()
     // {

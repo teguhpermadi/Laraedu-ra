@@ -1,7 +1,9 @@
 <?php
 
+use App\Imports\StudentImport;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +25,6 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::get('tes', function(){
-    $subjects = Teacher::with('subjects')->find(auth()->user()->userable->userable_id);
-    dd($subjects->toArray());
-    // $subjects = Teacher::with('subjects')->find(1);
-    // return $subjects;
+    Excel::import(new StudentImport, storage_path('/app/public/uploads/siswa.xlsx'));
+    return '1';
 });

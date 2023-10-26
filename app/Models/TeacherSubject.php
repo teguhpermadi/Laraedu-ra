@@ -13,7 +13,7 @@ class TeacherSubject extends Model
 
     public $timestamps = false;
 
-    protected $table = 'teacher_subject';
+    // protected $table = 'teacher_subject';
 
     protected $fillable = [
         'academic_year_id',
