@@ -84,4 +84,9 @@ class TeacherSubject extends Model
             ->where('grade_id', $grade_id)
             ->with('subject');
     }
+
+    public function studentCompetency()
+    {
+        return $this->hasMany(StudentCompetency::class, 'teacher_subject_id', 'id');
+    }
 }

@@ -130,6 +130,7 @@ class Evaluation extends Page implements HasForms
 
     public function submit()
     {
+        $teacher_subject_id = $this->form->getState()['teacher_subject_id'];
         $scores = $this->form->getState()['scores'];
 
         // Fungsi callback untuk menghapus "student_name" dari setiap elemen
@@ -146,7 +147,7 @@ class Evaluation extends Page implements HasForms
         
             // Gunakan updateOrInsert untuk memperbarui atau menyisipkan data
             StudentCompetency::updateOrInsert(
-                ['student_id' => $studentId, 'competency_id' => $competencyId],
+                ['student_id' => $studentId, 'competency_id' => $competencyId, 'teacher_subject_id' => $teacher_subject_id],
                 ['score' => $scoreValue]
             );
 

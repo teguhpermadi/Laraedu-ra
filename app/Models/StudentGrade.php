@@ -47,4 +47,9 @@ class StudentGrade extends Model
     {
         return $this->hasOne(StudentCompetency::class,'student_id','student_id');
     }
+
+    public function teacherSubject()
+    {
+        return $this->hasMany(TeacherSubject::class, 'grade_id', 'grade_id');
+    }
 }

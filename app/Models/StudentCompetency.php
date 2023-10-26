@@ -14,6 +14,7 @@ class StudentCompetency extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'teacher_subject_id',
         'student_id',
         'competency_id',
         'score',
@@ -38,7 +39,7 @@ class StudentCompetency extends Model
                                                 WHEN score = passing_grade THEN "Cukup menguasai"
                                                 ELSE "Belum menguasai" END, 
                                     " dalam aspek ", 
-                                    competencies.description) as result_description')
+                                    competencies.description) as result_description'),
                         );
         
     }
