@@ -1,19 +1,7 @@
-Teacher::whereHas('teacherGrade')->get()
-Teacher::whereDoesntHave('teacherGrade')->get()
-Teacher::whereDoesntHave('teacherGrade')->pluck('name', 'id')
-Teacher::whereDoesntHave(['teacherGrade' => function($q){
-$q->where('id',1);
-}])->pluck('name', 'id')
-Teacher::whereDoesntHave(['teacherGrade' => function($q){
-$q->where('academic_year_id',1);
-}])->pluck('name', 'id')
-Teacher::whereDoesntHave(['teacherGrade' => function($q){
-$q->where('academic_year_id',1);
-}])->get()
-Teacher::whereDoesntHave(['teacherGrade' => function($q){
-$q->where('academic_year_id',2);
-}])->get()
-Teacher::whereDoesntHave(['teacherGrade' => function($q){
-$q->where('academic_year_id',1);
-}])->get()
-Teacher::whereDoesntHave('teacherGrade')->get()
+Student::all()
+Student::all()
+Student::all()
+Student::all()
+Student::all()
+Student::all()
+Student::all()

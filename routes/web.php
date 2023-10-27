@@ -1,6 +1,7 @@
 <?php
 
 use App\Exports\CompetencyExport;
+use App\Imports\CompetencyImport;
 use App\Imports\StudentImport;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -27,8 +28,20 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::get('tes', function(){
-    Excel::import(new StudentImport, storage_path('/app/public/uploads/siswa.xlsx'));
-    return '1';
+    // Excel::import(new StudentImport, storage_path('/app/public/uploads/siswa.xlsx'));
+    // return '1';
+    $competencies = Excel::toCollection(new CompetencyImport, storage_path('/app/public/uploads/kompetensi.xlsx'));
+    
+    $data = [];
+    
+    foreach ($competencies[0] as $competency) {
+        $data[] = [
+            'description' => $competency[0],
+            'passing_grade' => $competency[1],
+        ];
+    }
+    array_shift($data);
+    dd($data);
 });
 
 Route::get('word', function(){
@@ -55,12 +68,12 @@ Route::get('result', function(){
     $student = Student::with(
         'studentGrade.grade',
         'studentGrade.teacherSubject.subject',
-        )->find(1);
+        )->find(6);
 
     $scores = Student::with([
         'studentGrade.teacherSubject.studentCompetency' => function($q){
-        $q->where('student_id',1)->result();
-        }])->find(1);
+        $q->where('student_id',6)->result();
+        }])->find(6);
     
     $subjects = $scores->studentGrade->teacherSubject;
 

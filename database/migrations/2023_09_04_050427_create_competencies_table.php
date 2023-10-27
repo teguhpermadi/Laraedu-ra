@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('competencies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('teacher_subject_id')->constrained()->onDelete('cascade');
-            $table->string('passing_grade');
             $table->string('code')->unique()->nullable();
             $table->string('description');
+            $table->string('passing_grade')->default(0);
             $table->timestamps();
             $table->softDeletes('deleted_at');
         });

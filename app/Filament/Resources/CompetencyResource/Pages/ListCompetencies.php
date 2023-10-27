@@ -3,12 +3,20 @@
 namespace App\Filament\Resources\CompetencyResource\Pages;
 
 use App\Filament\Resources\CompetencyResource;
+use App\Imports\CompetencyImport;
+use App\Models\Competency;
 use App\Models\Teacher;
 use App\Models\TeacherSubject;
 use Filament\Actions;
+use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Pages\ListRecords\Tab;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ListCompetencies extends ListRecords
 {
@@ -18,6 +26,71 @@ class ListCompetencies extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            Action::make('upload')
+                ->form([
+                    Select::make('grade_id')->options(function(callable $get, callable $set){
+                        $data = TeacherSubject::myGrade()->get()->pluck('grade.name', 'grade.id');
+                        return $data;
+    
+                    })->afterStateUpdated(function ($state, callable $get, callable $set){
+                        $set('subject_id', null);
+                        $set('teacher_subject_id', null);
+
+                    })
+                    ->reactive()
+                    ->required(),
+                    Select::make('subject_id')->options(function(callable $get, callable $set){
+                        if($get('grade_id')){
+                            $data = TeacherSubject::mySubjectByGrade($get('grade_id'))->get()->pluck('subject.code', 'subject.id');
+                            
+                            return $data;
+                        }
+                        return [];
+    
+                    })->afterStateUpdated(function ($state, callable $get, callable $set){
+                        $data = TeacherSubject::where('grade_id', $get('grade_id'))
+                            ->where('teacher_id', auth()->user()->userable->userable_id)
+                            ->where('subject_id', $get('subject_id'))->first();
+                        $set('teacher_subject_id', $data->id);
+                    })
+                    ->reactive()
+                    ->required(),
+                    Hidden::make('teacher_subject_id'),
+                    FileUpload::make('file')
+                    ->directory('uploads')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/x-excel'])
+                        ->getUploadedFileNameForStorageUsing(
+                            function (TemporaryUploadedFile $file){
+                                return 'kompetensi.'. $file->getClientOriginalExtension();
+                            }
+                        )
+                    ->required()
+                ])
+            ->action(function(array $data){
+                $teacher_subject_id = $data['teacher_subject_id'];
+                $competencies = Excel::toCollection(new CompetencyImport, storage_path('/app/public/uploads/kompetensi.xlsx'));
+    
+                $import = [];
+                
+                foreach ($competencies[0] as $competency) {
+                    $import[] = [
+                        'teacher_subject_id' => $teacher_subject_id,
+                        'description' => $competency[0],
+                        'passing_grade' => $competency[1],
+                    ];
+                }
+                array_shift($import);
+                
+                Competency::insert($import);
+
+            })
+            ->extraModalFooterActions([
+                Action::make('Download Template Excel')
+                    ->color('success')
+                    ->action(function () {
+                        return response()->download(storage_path('/app/public/downloads/template kompetensi.xlsx'));
+                    }),
+            ]),
         ];
     }
 
@@ -68,9 +141,9 @@ class ListCompetencies extends ListRecords
             $tabs = [
                 '-' => Tab::make()
                     ->icon('heroicon-m-x-mark')
-                    ->modifyQueryUsing(function(Builder $query){
-                        $query->where('student_id', 0);
-                    })
+                    // ->modifyQueryUsing(function(Builder $query){
+                    //     $query->where('student_id', 0);
+                    // })
             ];
         }
         return $tabs;

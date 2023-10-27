@@ -34,6 +34,10 @@ class Student extends Model
         static::addGlobalScope('active', function (Builder $builder) {
             $builder->where('active', 1);
         });
+        
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('nisn', 'asc')->orderBy('nis', 'asc')->orderBy('id', 'asc');
+        });
     }
 
     public function getGenderAttribute($value)

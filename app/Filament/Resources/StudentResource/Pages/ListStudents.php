@@ -29,6 +29,7 @@ class ListStudents extends ListRecords
                                 return 'siswa.'. $file->getClientOriginalExtension();
                             }
                         )
+                        ->required()
                 ])
                 ->action(function(array $data){
                     // dd($data->);
