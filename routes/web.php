@@ -48,7 +48,7 @@ Route::get('word', function(){
     $file = storage_path('/app/public/templates/surat_pernyataan.rtf');
 		
     $array = array(
-        '[NOMOR_SURAT]' => '015/BT/SK/V/2017',
+        'NOMOR_SURAT' => '015/BT/SK/V/2017',
         '[PERUSAHAAN]' => 'CV. Borneo Teknomedia',
         '[NAMA]' => 'Teguh Permadi',
         '[NIP]' => '6472065508XXXX',
@@ -60,20 +60,20 @@ Route::get('word', function(){
     );
 
     $nama_file = 'surat-keterangan-kerja.doc';
-    
+
     return WordTemplate::export($file, $array, $nama_file);
 });
 
-Route::get('result', function(){
+Route::get('result/{id}', function($id){
     $student = Student::with(
         'studentGrade.grade',
         'studentGrade.teacherSubject.subject',
-        )->find(6);
+        )->find($id);
 
     $scores = Student::with([
-        'studentGrade.teacherSubject.studentCompetency' => function($q){
-        $q->where('student_id',6)->result();
-        }])->find(6);
+        'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
+        $q->where('student_id',$id)->result();
+        }])->find($id);
     
     $subjects = $scores->studentGrade->teacherSubject;
 
@@ -105,18 +105,20 @@ Route::get('result', function(){
         }
 
         $result = [
-            'teacher_subject_id' => $subject->id,
-            'subject' => $subject->subject->name,
-            'code' => $subject->subject->code,
-            'score' => $subject->studentCompetency->avg('score'),
-            'combined_result_description' => $combinedResultDescription,
+            $subject->subject->code => [
+                'teacher_subject_id' => $subject->id,
+                'subject' => $subject->subject->name,
+                'code' => $subject->subject->code,
+                'score' => $subject->studentCompetency->avg('score'),
+                'combined_result_description' => $combinedResultDescription,
+            ],
         ];
 
         $student->studentGrade->teacherSubject->push($result);
     }
-
-    return $student;
-}); 
+    
+    dd($student) ;
+})->name('result'); 
 
 Route::get('export', function(){
     // Excel::download(new CompetencyExport, 'competency.xlsx', \Maatwebsite\Excel\Excel::XLSX);

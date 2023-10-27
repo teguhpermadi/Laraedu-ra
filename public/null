@@ -1,7 +1,1 @@
-Student::all()
-Student::all()
-Student::all()
-Student::all()
-Student::all()
-Student::all()
-Student::all()
+User::find(2)

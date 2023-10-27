@@ -119,4 +119,17 @@ class Student extends Model
         // Lakukan pengecekan apakah siswa memiliki Userable
         return $this->userable !== null;
     }
+
+    public function scopeMyStudentGrade(Builder $query, $teacher_id = null)
+    {
+        if(is_null($teacher_id)){
+            $teacher_id = auth()->user()->userable->userable_id;
+        }
+
+        $grade = TeacherGrade::where('teacher_id', $teacher_id)->with('grade.StudentGrade')->first();
+  
+        $myStudents = $grade->grade->studentGrade->pluck('student_id');
+
+        $query->whereIn('id', $myStudents);
+    }
 }
