@@ -47,6 +47,11 @@ class Teacher extends Model
         return $this->hasMany(TeacherSubject::class);
     }
 
+    public function teacherGrade()
+    {
+        return $this->hasMany(TeacherGrade::class);
+    }
+
     public function scopeActive(Builder $query)
     {
         $query->where('active', 1);

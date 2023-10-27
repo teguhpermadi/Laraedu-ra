@@ -90,6 +90,13 @@ class RoleSeeder extends Seeder
             'delete StudentGrade',
             // 'restore StudentGrade',
             // 'force-delete StudentGrade',
+            'view-any TeacherGrade',
+            'view TeacherGrade',
+            'create TeacherGrade',
+            'update TeacherGrade',
+            'delete TeacherGrade',
+            // 'restore TeacherGrade',
+            // 'force-delete TeacherGrade',
         ]);
 
         $teacher->syncPermissions([

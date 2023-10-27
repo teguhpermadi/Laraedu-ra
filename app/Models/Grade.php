@@ -24,6 +24,11 @@ class Grade extends Model
         return $this->hasMany(TeacherSubject::class)->orderBy('academic_year_id', 'asc');
     }
 
+    public function teacherGrade()
+    {
+        return $this->hasMany(TeacherGrade::class);
+    }
+
     public function studentGrade()
     {
         return $this->hasMany(StudentGrade::class)->orderBy('academic_year_id', 'asc');
