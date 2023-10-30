@@ -1,12 +1,21 @@
 <?php
 
+use App\Events\CalculateReport;
 use App\Exports\CompetencyExport;
+use App\Http\Controllers\Report;
+use App\Http\Controllers\StudentCompetencyExcel;
 use App\Imports\CompetencyImport;
 use App\Imports\StudentImport;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\Settings;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,26 +54,10 @@ Route::get('tes', function(){
 });
 
 Route::get('word', function(){
-    $file = storage_path('/app/public/templates/surat_pernyataan.rtf');
-		
-    $array = array(
-        'NOMOR_SURAT' => '015/BT/SK/V/2017',
-        '[PERUSAHAAN]' => 'CV. Borneo Teknomedia',
-        '[NAMA]' => 'Teguh Permadi',
-        '[NIP]' => '6472065508XXXX',
-        '[ALAMAT]' => 'Jl. Manunggal Gg. 8 Loa Bakung, Samarinda',
-        '[PERMOHONAN]' => 'Permohonan pengurusan pembuatan NPWP',
-        '[KOTA]' => 'Samarinda',
-        '[DIRECTOR]' => 'Noviyanto Rahmadi',
-        '[TANGGAL]' => date('d F Y'),
-    );
-
-    $nama_file = 'surat-keterangan-kerja.doc';
-
-    return WordTemplate::export($file, $array, $nama_file);
+    
 });
 
-Route::get('result/{id}', function($id){
+Route::get('result_old/{id}', function($id){
     $student = Student::with(
         'studentGrade.grade',
         'studentGrade.teacherSubject.subject',
@@ -118,10 +111,22 @@ Route::get('result/{id}', function($id){
     }
     
     dd($student) ;
-})->name('result'); 
+})->name('result_old'); 
 
 Route::get('export', function(){
     // Excel::download(new CompetencyExport, 'competency.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     return Excel::download(new CompetencyExport, 'competency.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     // return '1';
+});
+
+// Route::get('result/{id}', function($id){
+//     event(new CalculateReport($id));
+// })->name('result');
+
+Route::controller(Report::class)->group(function(){
+    Route::get('report/{id}', 'calculateReport')->name('report');
+});
+
+Route::controller(StudentCompetencyExcel::class)->group(function(){
+    Route::get('getdata/{teacher_subject_id}', 'getData')->name('studentCompetencyExcel.getData');
 });

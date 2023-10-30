@@ -29,7 +29,7 @@ class AcademicYearResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('year')->rules('numeric')->required(),
+                TextInput::make('year')->required(),
                 Select::make('semester')->options([
                     'ganjil' => 'Ganjil', 
                     'genap' => 'Genap',

@@ -89,4 +89,9 @@ class TeacherSubject extends Model
     {
         return $this->hasMany(StudentCompetency::class, 'teacher_subject_id', 'id');
     }
+
+    public function studentGrade()
+    {
+        return $this->hasMany(StudentGrade::class, 'grade_id', 'grade_id');
+    }
 }

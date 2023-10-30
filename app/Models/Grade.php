@@ -15,6 +15,7 @@ class Grade extends Model
     protected $fillable = [
         'name',
         'grade',
+        'fase',
     ];
 
     protected $dates = ['deleted_at'];

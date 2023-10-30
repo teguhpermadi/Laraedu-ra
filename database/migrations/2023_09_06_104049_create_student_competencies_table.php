@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('student_competencies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('teacher_subject_id')->constrained()->onDelete('cascade');
-            $table->foreignId('competency_id')->constrained()->onDelete('cascade');
+            $table->enum('category', ['tengah semester', 'akhir semester', 'ulangan'])->default('ulangan');
+            $table->foreignId('competency_id')->constrained()->nullable()->onDelete('cascade');
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->integer('score')->default(0);
             // $table->timestamps();

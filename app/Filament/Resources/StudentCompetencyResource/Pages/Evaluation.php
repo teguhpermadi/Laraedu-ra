@@ -72,6 +72,11 @@ class Evaluation extends Page implements HasForms
                             })
                             
                             ->reactive(),
+                        Select::make('category')->options([
+                            'tengah semester' => 'Tengah Semester',
+                            'akhir semester' => 'Akhir Semester',
+                            'ulangan' => 'Ulangan',
+                        ])->required(),
                         Radio::make('competency_id')
                             
                             ->options(function(callable $get){
@@ -104,8 +109,7 @@ class Evaluation extends Page implements HasForms
 
                                 $this->data['scores'] = $resultArray;
                             })
-                            ->reactive()
-                            ->required(),
+                            ->reactive(),
                     ]),
                 Section::make('student list')->schema([
                     TableRepeater::make('scores')
@@ -113,6 +117,13 @@ class Evaluation extends Page implements HasForms
                             Hidden::make('competency_id'),
                             Hidden::make('student_id'),
                             TextInput::make('student_name')->readOnly(true),
+                            // Select::make('score')
+                            //     ->options([
+                            //         '1' => 'BB',
+                            //         '2' => 'MB',
+                            //         '3' => 'BSH',
+                            //         '4' => 'BSB',
+                            //     ])
                             TextInput::make('score')
                                 ->numeric()
                                 ->minValue(0)

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\StudentCompetencyResource\Pages;
 use App\Filament\Resources\StudentCompetencyResource;
 use App\Models\TeacherSubject;
 use Filament\Actions\Action;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Components\Tab;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,7 +19,23 @@ class ListStudentCompetencies extends ListRecords
         return [
             // Actions\CreateAction::make(),
             Action::make('evaluation')
-                ->url(route('filament.admin.resources.student-competencies.evaluation'))
+                ->url(route('filament.admin.resources.student-competencies.evaluation')),
+            Action::make('download')
+                ->form([
+                    Select::make('teacher_subject_id')
+                        ->options(
+                            TeacherSubject::mySubject()->with('grade')->get()->map(function ($item) {
+                                return [
+                                    'id' => $item->id,
+                                    'name' => $item->subject->name . ' - ' . $item->grade->name,
+                                ];
+                            })->pluck('name', 'id')
+                        )
+                        ->required()
+                ])->action(function($data){
+                    // dd($data['teacher_subject_id']);
+                    return to_route('studentCompetencyExcel.getData', ['teacher_subject_id' => $data['teacher_subject_id']]);                    
+                }),
         ];
     }
 

@@ -18,6 +18,7 @@ class StudentCompetency extends Model
         'student_id',
         'competency_id',
         'score',
+        'category',
     ];
 
     public function student()

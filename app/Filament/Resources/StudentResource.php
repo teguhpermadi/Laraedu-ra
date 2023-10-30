@@ -35,6 +35,8 @@ class StudentResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required(),
+                TextInput::make('city_born')->required(),
+                TextInput::make('date_bord')->required(),
                 Select::make('gender')->options(['male'=>'Male', 'female'=>'Female'])->required(),
                 Select::make('active')->boolean()->required(),
             ]);

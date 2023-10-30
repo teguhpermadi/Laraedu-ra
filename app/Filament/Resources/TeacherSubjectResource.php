@@ -41,19 +41,23 @@ class TeacherSubjectResource extends Resource
                             ->where('teacher_id', $get('teacher_id'))
                             ->where('subject_id', $get('subject_id'))
                             ->where('grade_id', $get('grade_id'));
-                }),
+                })
+                ->required(),
                 Select::make('subject_id')->options(Subject::pluck('name', 'id'))->unique(modifyRuleUsing:function(Unique $rule, callable $get){
                     return $rule->where('academic_year_id', $get('academic_year_id'))
                             ->where('teacher_id', $get('teacher_id'))
                             ->where('subject_id', $get('subject_id'))
                             ->where('grade_id', $get('grade_id'));
-                }),
+                })
+                ->required(),
                 Select::make('grade_id')->options(Grade::pluck('name', 'id'))->unique(modifyRuleUsing:function(Unique $rule, callable $get){
                     return $rule->where('academic_year_id', $get('academic_year_id'))
                             ->where('teacher_id', $get('teacher_id'))
                             ->where('subject_id', $get('subject_id'))
                             ->where('grade_id', $get('grade_id'));
-                }),
+                })
+                ->multiple()
+                ->required(),
                 TextInput::make('passing_grade')->numeric(),
             ]);
     }

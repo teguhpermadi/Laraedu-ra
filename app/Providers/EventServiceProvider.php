@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\CalculateReport;
+use App\Events\PrintReport;
+use App\Listeners\CalculateScoreListener;
+use App\Listeners\PrintReportListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

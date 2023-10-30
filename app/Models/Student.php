@@ -20,6 +20,8 @@ class Student extends Model
         'name',
         'gender',
         'active',
+        'city_born',
+        'date_born'
     ];
 
     protected $dates = ['deleted_at'];
@@ -36,7 +38,7 @@ class Student extends Model
         });
         
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('nisn', 'asc')->orderBy('nis', 'asc')->orderBy('id', 'asc');
+            $builder->orderBy('id', 'asc');
         });
     }
 

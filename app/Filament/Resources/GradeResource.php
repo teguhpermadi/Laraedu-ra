@@ -28,7 +28,8 @@ class GradeResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required(),
-                TextInput::make('grade')->rules('numeric')->required(),
+                TextInput::make('grade')->required(),
+                TextInput::make('fase')->required(),
             ]);
     }
 
@@ -38,6 +39,7 @@ class GradeResource extends Resource
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('grade'),
+                TextColumn::make('fase'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

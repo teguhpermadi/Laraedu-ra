@@ -100,20 +100,6 @@ class RoleSeeder extends Seeder
         ]);
 
         $teacher->syncPermissions([
-            // 'view-any Subject',
-            // 'view Subject',
-            // 'create Subject',
-            // 'update Subject',
-            // 'delete Subject',
-            // 'restore Subject',
-            // 'force-delete Subject',
-            // 'view-any Grade',
-            // 'view Grade',
-            // 'create Grade',
-            // 'update Grade',
-            // 'delete Grade',
-            // 'restore Grade',
-            // 'force-delete Grade',
             'view-any Competency',
             'view Competency',
             'create Competency',
@@ -128,23 +114,13 @@ class RoleSeeder extends Seeder
             'delete StudentCompetency',
             // 'restore StudentCompetency',
             // 'force-delete StudentCompetency',
+            'view-any Attendance',
+            'view Attendance',
+            'create Attendance',
+            'update Attendance',
+            'delete Attendance',
         ]);
 
-        $student->syncPermissions([
-            'view-any Subject',
-            'view Subject',
-            // 'create Subject',
-            // 'update Subject',
-            // 'delete Subject',
-            // 'restore Subject',
-            // 'force-delete Subject',
-            'view-any Grade',
-            'view Grade',
-            // 'create Grade',
-            // 'update Grade',
-            // 'delete Grade',
-            // 'restore Grade',
-            // 'force-delete Grade',
-        ]);
+        
     }
 }

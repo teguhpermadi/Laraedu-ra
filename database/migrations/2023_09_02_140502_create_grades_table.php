@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('grade');
+            $table->string('fase');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
 

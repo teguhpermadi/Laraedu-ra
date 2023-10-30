@@ -2,14 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\StudentGradeResource\Pages;
-use App\Filament\Resources\StudentGradeResource\RelationManagers;
-use App\Models\AcademicYear;
-use App\Models\Grade;
+use App\Filament\Resources\AttendanceResource\Pages;
+use App\Filament\Resources\AttendanceResource\RelationManagers;
+use App\Models\Attendance;
 use App\Models\Student;
-use App\Models\StudentGrade;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -18,24 +17,22 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class StudentGradeResource extends Resource
+class AttendanceResource extends Resource
 {
-    protected static ?string $model = StudentGrade::class;
+    protected static ?string $model = Attendance::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Select::make('grade_id')
-                    ->options(Grade::pluck('name', 'id'))
+                Select::make('student_id')
+                    ->options(Student::myStudentGrade()->pluck('name', 'id'))
                     ->required(),
-                Select::make('student_ids')
-                    ->multiple()
-                    ->searchable()
-                    ->options(Student::whereDoesntHave('studentGrade')->get()->pluck('name', 'id'))
-                    ->required(),
+                TextInput::make('sick')->default(0),
+                TextInput::make('permission')->default(0),
+                TextInput::make('absent')->default(0),
             ]);
     }
 
@@ -44,7 +41,9 @@ class StudentGradeResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('student.name')->searchable(),
-                TextColumn::make('grade.name')->searchable(),
+                TextColumn::make('sick'),
+                TextColumn::make('permission'),
+                TextColumn::make('absent'),
             ])
             ->filters([
                 //
@@ -70,10 +69,10 @@ class StudentGradeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListStudentGrades::route('/'),
-            'create' => Pages\CreateStudentGrade::route('/create'),
-            'view' => Pages\ViewStudentGrade::route('/{record}'),
-            'edit' => Pages\EditStudentGrade::route('/{record}/edit'),
+            'index' => Pages\ListAttendances::route('/'),
+            'create' => Pages\CreateAttendance::route('/create'),
+            'view' => Pages\ViewAttendance::route('/{record}'),
+            'edit' => Pages\EditAttendance::route('/{record}/edit'),
         ];
     }    
 }

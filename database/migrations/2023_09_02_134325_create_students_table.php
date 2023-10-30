@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('nisn')->nullable();
             $table->string('nis')->nullable();
             $table->string('name');
+            $table->string('city_born')->nullable();
+            $table->string('date_born')->nullable();
             $table->enum('gender', ['male', 'female']);
             $table->boolean('active')->default(true);
             $table->timestamps();
