@@ -1,1 +1,7 @@
 User::all()
+AcademicYear::active()
+AcademicYear::active()->first()
+AcademicYear::find(1)
+AcademicYear::all()
+AcademicYear::find(1)->forceDelete()
+StudentGrade::all()
