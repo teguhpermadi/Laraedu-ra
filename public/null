@@ -1,7 +1,37 @@
 User::all()
-AcademicYear::active()
-AcademicYear::active()->first()
-AcademicYear::find(1)
-AcademicYear::all()
-AcademicYear::find(1)->forceDelete()
-StudentGrade::all()
+auth()->user()->role('teacher')
+auth()->user()->role('teacher')->get()
+auth()->user()->role('admin')
+auth()->user()->hasRole('admin')
+auth()->user()->hasRole('teacher')
+TeacherGrade::all()
+User::whereHas(['userable' => function($q){
+  $q->where('teacher_id', 5);
+}])->get()
+User::whereHas('userable',function($q){
+  $q->where('teacher_id', 5);
+})->get()
+User::whereHas('userable',function($q){
+  
+})->get()
+User::whereHas('userable',function($q){
+  
+})->get()
+User::whereHas('userable',function($q){
+  $q->where('teacher_id', 2);
+})->get()
+Userable::where('teacher_id',2)->get()
+Userable::all()
+Userable::where('user_id',2)->get()
+Userable::where('user_id',2)->first()
+Userable::with('user')->where('user_id',2)->first()
+$userable = Userable::with('user')->where('user_id',2)->first();
+
+$userable->user
+$userable = Userable::with('user')->where('user_id',2)->first();
+
+
+$userable = Userable::with('user')->where('user_id',2)->first();
+
+$userable->user->assignRole('teacher grade');
+User::all()

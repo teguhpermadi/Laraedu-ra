@@ -30,9 +30,11 @@ class AttendanceResource extends Resource
                 Select::make('student_id')
                     ->options(Student::myStudentGrade()->pluck('name', 'id'))
                     ->required(),
-                TextInput::make('sick')->default(0),
-                TextInput::make('permission')->default(0),
-                TextInput::make('absent')->default(0),
+                TextInput::make('sick')->numeric()->default(0),
+                TextInput::make('permission')->numeric()->default(0),
+                TextInput::make('absent')->numeric()->default(0),
+                TextInput::make('note'),
+                TextInput::make('achievement'),
             ]);
     }
 
@@ -44,6 +46,8 @@ class AttendanceResource extends Resource
                 TextColumn::make('sick'),
                 TextColumn::make('permission'),
                 TextColumn::make('absent'),
+                TextColumn::make('note'),
+                TextColumn::make('achievement'),
             ])
             ->filters([
                 //

@@ -18,7 +18,7 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'super admin']);
         $admin = Role::create(['name' => 'admin']);
         $teacher = Role::create(['name' => 'teacher']);
-        $student = Role::create(['name' => 'student']);
+        $teacherGrade = Role::create(['name' => 'teacher grade']);
         
         // academic year
         Permission::create(['name' => 'activated AcademicYear']);
@@ -114,13 +114,14 @@ class RoleSeeder extends Seeder
             'delete StudentCompetency',
             // 'restore StudentCompetency',
             // 'force-delete StudentCompetency',
+        ]);
+
+        $teacherGrade->syncPermissions([
             'view-any Attendance',
             'view Attendance',
             'create Attendance',
             'update Attendance',
             'delete Attendance',
         ]);
-
-        
     }
 }

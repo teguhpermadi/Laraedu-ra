@@ -17,6 +17,8 @@ class Attendance extends Model
         'sick',
         'permission',
         'absent',
+        'note',
+        'achievement',
     ];
 
     protected $hidden = [

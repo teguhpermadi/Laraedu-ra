@@ -20,6 +20,15 @@ class MyGrade extends Page implements HasTable
 
     protected static string $view = 'filament.pages.my-grade';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        if(auth()->user()->hasRole('teacher grade')){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function table(Table $table): Table
     {
         return $table

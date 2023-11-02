@@ -37,7 +37,7 @@ class TeacherResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 Select::make('gender')->options(['male'=>'Male', 'female'=>'Female'])->required(),
-                Select::make('active')->boolean()->required(),
+                Select::make('active')->boolean()->default(true)->required(),
             ]);
     }
 

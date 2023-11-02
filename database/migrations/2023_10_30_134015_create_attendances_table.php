@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('sick')->default(0);
             $table->string('permission')->default();
             $table->string('absent')->default();
+            $table->string('note')->nullable();
+            $table->string('achievement')->nullable();
             $table->timestamps();
 
             $table->unique(['academic_year_id', 'grade_id', 'student_id']);

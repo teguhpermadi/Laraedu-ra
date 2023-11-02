@@ -6,6 +6,8 @@ use App\Events\CalculateReport;
 use App\Events\PrintReport;
 use App\Listeners\CalculateScoreListener;
 use App\Listeners\PrintReportListener;
+use App\Models\Teacher;
+use App\Observers\TeacherObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,7 +31,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Teacher::observe(TeacherObserver::class);
     }
 
     /**
