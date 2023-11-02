@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('competencies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teacher_subject_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('teacher_subject_id')->constrained()->onDelete('cascade');
+            $table->foreignId('teacher_subject_id')->references('id')->on('teacher_subjects')->cascadeOnDelete();
             $table->enum('category', ['pengetahuan', 'keterampilan'])->nullable();
             $table->string('code')->unique()->nullable();
             $table->string('description');

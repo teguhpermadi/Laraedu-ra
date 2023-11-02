@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('data_teachers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
+            $table->foreignId('teacher_id')->references('id')->on('teachers')->cascadeOnDelete();
             $table->date('birthday');
             $table->string('father_name');
             $table->string('mother_name');

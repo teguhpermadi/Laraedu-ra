@@ -72,11 +72,6 @@ class Evaluation extends Page implements HasForms
                             })
                             
                             ->reactive(),
-                        Select::make('category')->options([
-                            'tengah semester' => 'Tengah Semester',
-                            'akhir semester' => 'Akhir Semester',
-                            'ulangan' => 'Ulangan',
-                        ])->required(),
                         Radio::make('competency_id')
                             
                             ->options(function(callable $get){

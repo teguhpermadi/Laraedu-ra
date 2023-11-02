@@ -16,6 +16,11 @@ class DataStudent extends Model
         'mother_name',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+    
     public function student()
     {
         return $this->belongsTo(Student::class);

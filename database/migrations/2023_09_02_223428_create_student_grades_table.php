@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('student_grade', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('academic_year_id')->constrained()->onDelete('cascade');
-            $table->foreignId('grade_id')->constrained()->onDelete('cascade');
-            $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('academic_year_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('grade_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            $table->foreignId('academic_year_id')->references('id')->on('academic_years')->cascadeOnDelete();
+            $table->foreignId('grade_id')->references('id')->on('grades')->cascadeOnDelete();
+            $table->foreignId('student_id')->references('id')->on('students')->cascadeOnDelete();
 
             // $table->timestamps();
             

@@ -13,7 +13,7 @@ class AttendancePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('{{ viewAnyPermission }}');
+        return $user->can('view-any Attendance');
     }
 
     /**
@@ -21,7 +21,7 @@ class AttendancePolicy
      */
     public function view(User $user, Attendance $attendance): bool
     {
-        return $user->can('{{ viewPermission }}');
+        return $user->can('view Attendance');
     }
 
     /**
@@ -29,7 +29,7 @@ class AttendancePolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('{{ createPermission }}');
+        return $user->can('create Attendance');
     }
 
     /**
@@ -37,7 +37,7 @@ class AttendancePolicy
      */
     public function update(User $user, Attendance $attendance): bool
     {
-        return $user->can('{{ updatePermission }}');
+        return $user->can('update Attendance');
     }
 
     /**
@@ -45,7 +45,7 @@ class AttendancePolicy
      */
     public function delete(User $user, Attendance $attendance): bool
     {
-        return $user->can('{{ deletePermission }}');
+        return $user->can('delete Attendance');
     }
 
     /**
@@ -53,7 +53,7 @@ class AttendancePolicy
      */
     public function restore(User $user, Attendance $attendance): bool
     {
-        return $user->can('{{ restorePermission }}');
+        return $user->can('restore Attendance');
     }
 
     /**
@@ -61,6 +61,6 @@ class AttendancePolicy
      */
     public function forceDelete(User $user, Attendance $attendance): bool
     {
-        return $user->can('{{ forceDeletePermission }}');
+        return $user->can('force-delete Attendance');
     }
 }

@@ -21,6 +21,11 @@ class StudentCompetency extends Model
         'category',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+    
     public function student()
     {
         return $this->belongsTo(Student::class);

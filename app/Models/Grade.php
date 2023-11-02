@@ -18,6 +18,12 @@ class Grade extends Model
         'fase',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+    
     protected $dates = ['deleted_at'];
 
     public function teacherSubject()

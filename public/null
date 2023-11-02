@@ -1,1 +1,4 @@
+$curriculum = TeacherSubject::with('gradeCurriculum')->find(1);
+$curriculum = TeacherSubject::with('competencies')->find(1);
+$curriculum = TeacherSubject::with('competencies.studentCompetency')->find(1);
 User::all()

@@ -20,6 +20,13 @@ class Competency extends Model
         'description',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+
+    ];
+    
     public function teacherSubject()
     {
         return $this->belongsTo(TeacherSubject::class,'teacher_subject_id');

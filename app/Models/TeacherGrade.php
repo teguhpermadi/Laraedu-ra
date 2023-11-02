@@ -17,6 +17,11 @@ class TeacherGrade extends Model
         'grade_id',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+    
      /**
      * The "booted" method of the model.
      */

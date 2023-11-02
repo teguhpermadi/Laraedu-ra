@@ -16,6 +16,11 @@ class DataTeacher extends Model
         'mother_name',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+    
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);

@@ -23,6 +23,11 @@ class TeacherSubject extends Model
         'passing_grade',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+    
      /**
      * The "booted" method of the model.
      */

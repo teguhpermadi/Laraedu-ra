@@ -31,6 +31,12 @@ class Student extends Model
         'nis' => 'string',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+    
     protected static function booted(): void
     {
         static::addGlobalScope('active', function (Builder $builder) {

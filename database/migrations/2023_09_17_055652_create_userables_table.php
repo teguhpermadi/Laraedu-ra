@@ -14,7 +14,8 @@ return new class extends Migration
     {
         Schema::create('userables', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('userable_id')->nullable();
             $table->string('userable_type')->nullable();
             $table->timestamps();

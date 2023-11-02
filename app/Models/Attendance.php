@@ -19,6 +19,11 @@ class Attendance extends Model
         'absent',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+    
     protected static function booted(): void
     {
         static::addGlobalScope(new AcademicYearScope);

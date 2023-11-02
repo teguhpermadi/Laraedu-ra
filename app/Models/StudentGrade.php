@@ -20,6 +20,11 @@ class StudentGrade extends Model
         'student_id',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
      /**
      * The "booted" method of the model.
      */
