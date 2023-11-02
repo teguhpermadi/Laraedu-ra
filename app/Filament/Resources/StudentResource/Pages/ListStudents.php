@@ -39,7 +39,7 @@ class ListStudents extends ListRecords
                     Action::make('Download Template Excel')
                         ->color('success')
                         ->action(function () {
-                            return response()->download(storage_path('/app/public/downloads/template siswa.xlsx'));
+                            return response()->download(storage_path('/app/public/templates/siswa.xlsx'));
                         }),
                 ])
         ];

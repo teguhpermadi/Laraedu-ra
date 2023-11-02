@@ -28,6 +28,25 @@ class Teacher extends Model
     
     protected $dates = ['deleted_at'];
 
+    public function getGenderAttribute($value)
+    {
+        // $this->attributes['gender'] = ($value === 'male') ? 'Laki-laki' : 'Perempuan';
+        switch ($value) {
+            case 'male':
+                return 'Laki-laki';
+                break;
+            
+            default:
+                return 'Perempuan';
+                break;
+        }
+    }
+
+    public function setGenderAttribute($value)
+    {
+        $this->attributes['gender'] = ($value === 'laki-laki') ? 'male' : 'female';
+    }
+
     // public function academics()
     // {
     //     return $this->belongsToMany(AcademicYear::class, 'teacher_subject');

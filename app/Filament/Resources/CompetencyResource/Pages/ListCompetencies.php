@@ -88,7 +88,7 @@ class ListCompetencies extends ListRecords
                 Action::make('Download Template Excel')
                     ->color('success')
                     ->action(function () {
-                        return response()->download(storage_path('/app/public/downloads/template kompetensi.xlsx'));
+                        return response()->download(storage_path('/app/public/templates/kompetensi.xlsx'));
                     }),
             ]),
         ];

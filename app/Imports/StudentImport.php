@@ -14,6 +14,7 @@ use Maatwebsite\Excel\Concerns\WithProgressBar;
 class StudentImport implements ToModel, WithHeadingRow, WithUpserts, WithUpsertColumns, WithProgressBar
 {
     use Importable;
+    
     /**
     * @param array $row
     *

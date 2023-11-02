@@ -6,6 +6,7 @@ use App\Http\Controllers\Report;
 use App\Http\Controllers\StudentCompetencyExcel;
 use App\Imports\CompetencyImport;
 use App\Imports\StudentImport;
+use App\Imports\TeacherImport;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
@@ -51,10 +52,6 @@ Route::get('tes', function(){
     }
     array_shift($data);
     dd($data);
-});
-
-Route::get('word', function(){
-    
 });
 
 Route::get('result_old/{id}', function($id){
@@ -129,4 +126,8 @@ Route::controller(Report::class)->group(function(){
 
 Route::controller(StudentCompetencyExcel::class)->group(function(){
     Route::get('getdata/{teacher_subject_id}', 'getData')->name('studentCompetencyExcel.getData');
+});
+
+Route::get('import', function(){
+    Excel::import(new TeacherImport, storage_path('/app/public/uploads/guru.xlsx') );
 });
