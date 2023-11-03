@@ -10,6 +10,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,6 +37,7 @@ class SubjectResource extends Resource
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('code'),
+                TextColumn::make('order'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -63,7 +65,9 @@ class SubjectResource extends Resource
                 } else if(auth()->user()->hasRole('student')){
                     $query->student();
                 }
-            });
+            })
+            ->reorderable('order')
+            ->defaultSort('order', 'asc');;
     }
     
     public static function getRelations(): array
