@@ -20,7 +20,6 @@ class TeacherSubject extends Model
         'grade_id',
         'teacher_id',
         'subject_id',
-        'passing_grade',
     ];
 
     protected $hidden = [

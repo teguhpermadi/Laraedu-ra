@@ -2,6 +2,7 @@
 
 use App\Events\CalculateReport;
 use App\Exports\CompetencyExport;
+use App\Http\Controllers\ExportExcel;
 use App\Http\Controllers\Report;
 use App\Http\Controllers\StudentCompetencyExcel;
 use App\Imports\CompetencyImport;
@@ -110,11 +111,11 @@ Route::get('result_old/{id}', function($id){
     dd($student) ;
 })->name('result_old'); 
 
-Route::get('export', function(){
-    // Excel::download(new CompetencyExport, 'competency.xlsx', \Maatwebsite\Excel\Excel::XLSX);
-    return Excel::download(new CompetencyExport, 'competency.xlsx', \Maatwebsite\Excel\Excel::XLSX);
-    // return '1';
-});
+// Route::get('export', function(){
+//     // Excel::download(new CompetencyExport, 'competency.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+//     return Excel::download(new CompetencyExport, 'competency.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+//     // return '1';
+// });
 
 // Route::get('result/{id}', function($id){
 //     event(new CalculateReport($id));
@@ -130,4 +131,10 @@ Route::controller(StudentCompetencyExcel::class)->group(function(){
 
 Route::get('import', function(){
     Excel::import(new TeacherImport, storage_path('/app/public/uploads/guru.xlsx') );
+});
+
+Route::controller(ExportExcel::class)->group(function(){
+    Route::get('export/student-grade', 'studentGrade')->name('export.studentGrade');
+    Route::get('export/teacher-subject', 'teacherSubject')->name('export.teacherSubject');
+    Route::get('export/teacher-grade', 'teacherGrade')->name('export.teacherGrade');
 });

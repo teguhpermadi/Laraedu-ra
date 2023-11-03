@@ -58,7 +58,6 @@ class TeacherSubjectResource extends Resource
                 })
                 ->multiple()
                 ->required(),
-                TextInput::make('passing_grade')->numeric(),
             ]);
     }
 
@@ -66,7 +65,7 @@ class TeacherSubjectResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('teacher.name')->searchable()->visible(auth()->user()->hasRole('admin')),
+                TextColumn::make('teacher.name')->searchable(),
                 TextColumn::make('subject.name')->searchable(),
                 TextColumn::make('grade.name')->searchable(),
             ])
@@ -84,11 +83,7 @@ class TeacherSubjectResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])->modifyQueryUsing(function(Builder $query){
-                if(auth()->user()->hasRole('teacher')){
-                    $query->mySubject();
-                }
-            });
+            ]);
     }
     
     public static function getRelations(): array
