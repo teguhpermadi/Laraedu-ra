@@ -18,7 +18,6 @@ class StudentCompetency extends Model
         'student_id',
         'competency_id',
         'score',
-        'category',
     ];
 
     protected $hidden = [
@@ -47,6 +46,5 @@ class StudentCompetency extends Model
                                     " dalam aspek ", 
                                     competencies.description) as result_description'),
                         );
-        
     }
 }

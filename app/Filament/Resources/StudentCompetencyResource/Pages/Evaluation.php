@@ -59,7 +59,7 @@ class Evaluation extends Page implements HasForms
                     ->schema([
                         Select::make('teacher_subject_id')
                             ->options(
-                                TeacherSubject::mySubject()->with('grade')->get()->map(function ($item) {
+                                TeacherSubject::mySubject()->with('grade')->orderBy('subject_id')->get()->map(function ($item) {
                                     return [
                                         'id' => $item->id,
                                         'name' => $item->subject->name . ' - ' . $item->grade->name,
@@ -73,7 +73,6 @@ class Evaluation extends Page implements HasForms
                             
                             ->reactive(),
                         Radio::make('competency_id')
-                            
                             ->options(function(callable $get){
                                 $comptencies = Competency::where('teacher_subject_id', $get('teacher_subject_id'))->pluck('description', 'id');
                                 return $comptencies;
@@ -111,7 +110,8 @@ class Evaluation extends Page implements HasForms
                         ->schema([
                             Hidden::make('competency_id'),
                             Hidden::make('student_id'),
-                            TextInput::make('student_name')->readOnly(true),
+                            TextInput::make('student_name')
+                                ->readOnly(true),
                             // Select::make('score')
                             //     ->options([
                             //         '1' => 'BB',

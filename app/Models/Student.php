@@ -140,4 +140,14 @@ class Student extends Model
 
         $query->whereIn('id', $myStudents);
     }
+
+    public function examEvaluation()
+    {
+        return $this->hasOne(Exam::class, 'student_id', 'id');
+    }
+
+    public function exam()
+    {
+        return $this->hasMany(Exam::class, 'student_id', 'id');
+    }
 }

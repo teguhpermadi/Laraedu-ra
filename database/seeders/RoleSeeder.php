@@ -114,6 +114,13 @@ class RoleSeeder extends Seeder
             'delete StudentCompetency',
             // 'restore StudentCompetency',
             // 'force-delete StudentCompetency',
+            'view-any Exam',
+            'view Exam',
+            'create Exam',
+            'update Exam',
+            'delete Exam',
+            // 'restore Exam',
+            // 'force-delete Exam',
         ]);
 
         $teacherGrade->syncPermissions([

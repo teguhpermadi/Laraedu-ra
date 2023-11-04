@@ -78,20 +78,25 @@ class TeacherSubject extends Model
         $query->where('teacher_id', $teacher_id)->with('subject');
     }
 
-    public function scopeMySubjectByGrade(Builder $query, $grade_id, $teacher_id = null):void
-    {
-        if(is_null($teacher_id)){
-            $teacher_id = auth()->user()->userable->userable_id;
-        }
+    // public function scopeMySubjectByGrade(Builder $query, $grade_id, $teacher_id = null):void
+    // {
+    //     if(is_null($teacher_id)){
+    //         $teacher_id = auth()->user()->userable->userable_id;
+    //     }
 
-        $query->where('teacher_id', $teacher_id)
-            ->where('grade_id', $grade_id)
-            ->with('subject');
-    }
+    //     $query->where('teacher_id', $teacher_id)
+    //         ->where('grade_id', $grade_id)
+    //         ->with('subject');
+    // }
 
     public function studentCompetency()
     {
         return $this->hasMany(StudentCompetency::class, 'teacher_subject_id', 'id');
+    }
+
+    public function exam()
+    {
+        return $this->hasMany(Exam::class, 'teacher_subject_id', 'id');
     }
 
     public function studentGrade()
