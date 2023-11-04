@@ -10,6 +10,7 @@ use App\Models\Teacher;
 use App\Models\TeacherGrade;
 use App\Models\TeacherSubject;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -78,13 +79,10 @@ class ExportExcel extends Controller
         }
         
         $writer = new Xlsx($spreadsheet);
-        // $writer->save('student grade.xlsx');
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="studentGrade.xls"');
-        header('Cache-Control: max-age=0');
-
-        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
-        $writer->save('php://output');
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
+        $filename = "studentGrade.xlsx"; // <<< HERE
+        $writer->save(base_path($filename));
+        return response()->download(base_path('studentGrade.xlsx')); // <<< HERE
     }
 
     public function teacherSubject()
@@ -166,13 +164,10 @@ class ExportExcel extends Controller
         }
 
         $writer = new Xlsx($spreadsheet);
-        // $writer->save('student grade.xlsx');
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="teacherSubject.xls"');
-        header('Cache-Control: max-age=0');
-
-        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
-        $writer->save('php://output');
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
+        $filename = "teacherSubject.xlsx"; // <<< HERE
+        $writer->save(base_path($filename));
+        return response()->download(base_path('teacherSubject.xlsx')); // <<< HERE
     }
 
     public function teacherGrade()
@@ -235,14 +230,9 @@ class ExportExcel extends Controller
 
         // Membuat file Excel
         $writer = new Xlsx($spreadsheet);
-
-        // Set header untuk mengunduh file
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="teacherGrade.xls"');
-        header('Cache-Control: max-age=0');
-
-        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
-        $writer->save('php://output');
-
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
+        $filename = "teacherGrade.xlsx"; // <<< HERE
+        $writer->save(base_path($filename));
+        return response()->download(base_path('teacherGrade.xlsx')); // <<< HERE
     }
 }

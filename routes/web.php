@@ -6,7 +6,10 @@ use App\Http\Controllers\ExportExcel;
 use App\Http\Controllers\Report;
 use App\Http\Controllers\StudentCompetencyExcel;
 use App\Imports\CompetencyImport;
+use App\Imports\StudentGradeImport;
 use App\Imports\StudentImport;
+use App\Imports\TeacherGradeImport;
+use App\Imports\TeacherGradeSheetImport;
 use App\Imports\TeacherImport;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -130,7 +133,8 @@ Route::controller(StudentCompetencyExcel::class)->group(function(){
 });
 
 Route::get('import', function(){
-    Excel::import(new TeacherImport, storage_path('/app/public/uploads/guru.xlsx') );
+    // Excel::import(new StudentGradeImport, storage_path('/app/public/uploads/studentGrade.xlsx') );
+    Excel::import(new TeacherGradeSheetImport, storage_path('/app/public/uploads/teacherGrade.xlsx'));
 });
 
 Route::controller(ExportExcel::class)->group(function(){

@@ -1,1 +1,6 @@
-Student::all()
+StudentGrade::truncate()
+StudentGrade::all()
+StudentGrade::truncate()
+TeacherGrade::truncate()
+TeacherGrade::truncate()
+TeacherGrade::all()

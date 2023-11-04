@@ -3,11 +3,13 @@
 namespace App\Filament\Resources\TeacherSubjectResource\Pages;
 
 use App\Filament\Resources\TeacherSubjectResource;
+use App\Imports\TeacherSubjectImport;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Pages\ListRecords;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ListTeacherSubjects extends ListRecords
 {
@@ -30,7 +32,7 @@ class ListTeacherSubjects extends ListRecords
                 ->required()    
             ])
             ->action(function($data){
-                // Excel::import(new TeacherImport, storage_path('/app/public/'.$data['file']) );
+                Excel::import(new TeacherSubjectImport, storage_path('/app/public/'.$data['file']) );
             })
             ->extraModalFooterActions([
                 Action::make('Download Template Excel')
