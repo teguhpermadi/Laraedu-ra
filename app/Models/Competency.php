@@ -15,9 +15,9 @@ class Competency extends Model
 
     protected $fillable = [
         'teacher_subject_id',
-        'passing_grade',
         'code',
         'description',
+        'passing_grade',
     ];
 
     protected $hidden = [

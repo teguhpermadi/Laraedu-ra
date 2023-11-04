@@ -59,38 +59,39 @@ class ListCompetencies extends ListRecords
                     FileUpload::make('file')
                     ->directory('uploads')
                         ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/x-excel'])
-                        ->getUploadedFileNameForStorageUsing(
-                            function (TemporaryUploadedFile $file){
-                                return 'kompetensi.'. $file->getClientOriginalExtension();
-                            }
-                        )
-                    ->required()
+                        // ->getUploadedFileNameForStorageUsing(
+                        //     function (TemporaryUploadedFile $file){
+                        //         return 'kompetensi.'. $file->getClientOriginalExtension();
+                        //     }
+                        // )
+                    // ->required()
                 ])
-            ->action(function(array $data){
-                $teacher_subject_id = $data['teacher_subject_id'];
-                $competencies = Excel::toCollection(new CompetencyImport, storage_path('/app/public/uploads/kompetensi.xlsx'));
-    
-                $import = [];
-                
-                foreach ($competencies[0] as $competency) {
-                    $import[] = [
-                        'teacher_subject_id' => $teacher_subject_id,
-                        'description' => $competency[0],
-                        'passing_grade' => $competency[1],
-                    ];
-                }
-                array_shift($import);
-                
-                Competency::insert($import);
-
-            })
-            ->extraModalFooterActions([
-                Action::make('Download Template Excel')
-                    ->color('success')
-                    ->action(function () {
-                        return response()->download(storage_path('/app/public/templates/kompetensi.xlsx'));
-                    }),
-            ]),
+                ->action(function(array $data){
+                    $teacher_subject_id = $data['teacher_subject_id'];
+                    $competencies = Excel::toCollection(new CompetencyImport, storage_path('/app/public/uploads/kompetensi.xlsx'));
+        
+                    $import = [];
+                    
+                    foreach ($competencies->toArray()[0] as $competency) {
+                        $import[] = [
+                            'teacher_subject_id' => $teacher_subject_id,
+                            'code' => $competency['code'],
+                            'description' => $competency['description'],
+                            'passing_grade' => $competency['passing_grade'],
+                        ];
+                    }
+                    
+                    // dd($import);
+                    Competency::insert($import);
+                })
+                ->extraModalFooterActions([
+                    Action::make('Download Template Excel')
+                        ->color('success')
+                        ->action(function ($data) {
+                            return response()->download(storage_path('/app/public/templates/kompetensi.xlsx'));
+                            // dd($data);
+                        }),
+                ]),
         ];
     }
 

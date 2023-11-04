@@ -134,7 +134,20 @@ Route::controller(StudentCompetencyExcel::class)->group(function(){
 
 Route::get('import', function(){
     // Excel::import(new StudentGradeImport, storage_path('/app/public/uploads/studentGrade.xlsx') );
-    Excel::import(new TeacherGradeSheetImport, storage_path('/app/public/uploads/teacherGrade.xlsx'));
+    $competencies = Excel::toCollection(new CompetencyImport, storage_path('/app/public/uploads/kompetensi.xlsx'));
+    $import = [];
+                
+    foreach ($competencies->toArray()[0] as $competency) {
+        $import[] = [
+            'teacher_subject_id' => 63,
+            'code' => $competency['code'],
+            'description' => $competency['description'],
+            'passing_grade' => $competency['passing_grade'],
+        ];
+    }
+
+    // array_shift($import);
+    dd($import);
 });
 
 Route::controller(ExportExcel::class)->group(function(){
