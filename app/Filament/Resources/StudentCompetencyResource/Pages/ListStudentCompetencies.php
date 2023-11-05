@@ -35,7 +35,7 @@ class ListStudentCompetencies extends ListRecords
                         ->required()
                 ])->action(function($data){
                     // dd($data['teacher_subject_id']);
-                    return to_route('studentCompetencyExcel.getData', ['teacher_subject_id' => $data['teacher_subject_id']]);                    
+                    return to_route('export.studentCompetency', ['teacher_subject_id' => $data['teacher_subject_id']]);                    
                 }),
         ];
     }

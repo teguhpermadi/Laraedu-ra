@@ -235,4 +235,85 @@ class ExportExcel extends Controller
         $writer->save(base_path($filename));
         return response()->download(base_path('teacherGrade.xlsx')); // <<< HERE
     }
+
+    public function studentCompetency($teacher_subject_id)
+    {
+        $teacherSubject = TeacherSubject::with([
+                            'academic',
+                            'teacher',
+                            'grade',
+                            'subject',
+                            'competencies.studentCompetency.student', 
+                            'exam',
+                        ])->find($teacher_subject_id);
+        
+        $academic = $teacherSubject->academic;
+        $teacher = $teacherSubject->teacher;
+        $grade = $teacherSubject->grade;
+        $subject = $teacherSubject->subject;
+        $competencies = $teacherSubject->competencies;
+
+        // Inisialisasi spreadsheet
+        $spreadsheet = new Spreadsheet();
+
+        // Membuat lembar pertama
+        $sheet1 = $spreadsheet->getActiveSheet();
+        $sheet1->setTitle('Sheet1');
+
+        // identitas
+        $identitas = [
+            ['Identitas pelajaran'],
+            [null],
+            ['Nama Guru', null, null, null, null, ':', $teacher->name],
+            ['Mata Pelajaran', null, null, null, null, ':', $subject->name],
+            ['Kelas', null, null, null, null, ':', $grade->name],
+            ['Tahun Akademik', null, null, null, null, ':', $academic->year],
+            ['Semester', null, null, null, null, ':', $academic->semester],
+        ];
+        $sheet1->fromArray($identitas);
+
+        $rowStart = 10;
+        $data = [];
+        foreach ($competencies as $competency) {
+            $data[] = [
+                'deskripsi kompetensi', null, null, null, null, ':', $competency->description
+            ];
+            $data[] = [null];
+            $data[] = [
+                'nis','nama siswa','teacher_subject_id','student_id','competency_id','score'
+            ];
+
+            foreach ($competency->studentCompetency as $studentCompetency) {
+                $data[] = [
+                    $studentCompetency->student->nis,
+                    $studentCompetency->student->name,
+                    $studentCompetency->teacher_subject_id,
+                    $studentCompetency->student_id,
+                    $studentCompetency->competency_id,
+                    $studentCompetency->score,
+                ];
+            }
+
+            $data[] = [null];
+            $data[] = [null];
+
+        }
+        
+        $sheet1->fromArray($data,null,'A'.$rowStart,true);
+
+        // setting width
+        $sheet1->getColumnDimension('B')->setWidth(30);
+
+        // hide coloumn C D E
+        $sheet1->getColumnDimension('C')->setVisible(false);
+        $sheet1->getColumnDimension('D')->setVisible(false);
+        $sheet1->getColumnDimension('E')->setVisible(false);
+
+        // Membuat file Excel
+        $writer = new Xlsx($spreadsheet);
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
+        $filename = "studentCompetency.xlsx"; // <<< HERE
+        $writer->save(base_path($filename));
+        return response()->download(base_path('studentCompetency.xlsx')); // <<< HERE
+    }
 }

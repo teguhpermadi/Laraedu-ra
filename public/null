@@ -1,178 +1,204 @@
-TeacherSubject::all()
-TeacherSubject::with('grade')->find(1)
-TeacherSubject::with('studentGrade')->find(1)
-TeacherSubject::with('studentGrade.student')->find(1)
-TeacherSubject::with('studentGrade.student')->find(1)
-$teacherSubject = TeacherSubject::with('studentGrade.student')->find(1);
-$teacherSubject = TeacherSubject::with('studentGrade.student')->find(1);
-$teacherSubject = TeacherSubject::with('studentGrade.student')->find(1);
-$teacherSubject = TeacherSubject::with('studentGrade.student')->find(1);
-$teacherSubject = TeacherSubject::with('studentGrade.student')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with('studentGrade.student')->find(1);
-$teacherSubject->studentGrade->student;
-$teacherSubject = TeacherSubject::with('studentGrade.student')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with('studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with('studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with('studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with('studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with('studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with('studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with('studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade->exam;
-$teacherSubject = TeacherSubject::with([
-                            'studentGrade.student',
-                            'studentGrade.student.exam' => function($query) use ($get){
-                                $query->where('category', $get('category'));
-                                $query->first();
-                            },
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-                            'studentGrade.student',
-                            'studentGrade.student.exam' => function($query) use ($get){
-                                $query->where('category','middle');
-                                $query->first();
-                            },
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-                                $query->where('category','middle');
-                                $query->first();
-                            },
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-                                $query->where('category','middle');
-                                
-                            },
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-                                $query->where('category','middle');
-                                
-                            },
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-                                
-                                
-                            },
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-                                $query->where('category','middle');
-                                
-                            },
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-                                $query->where('category','middle');
-                                
-                            },
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-	$query->where('category','middle');
-    $query->first();
-},
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-	$query->where('category','middle');
-    $query->first();
-},
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-	$query->where('category','middle');
-    $query->first();
-},
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-	$query->where('category','middle');
-    $query->first();
-},
-])->find(1);
-$teacherSubject->studentGrade->student;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-	$query->where('category','middle');
-    $query->first();
-},
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-	$query->where('category','middle');
-    $query->first();
-},
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-	$query->where('category','middle');
-},
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.examEvaluation' => function($query){
-	$query->where('category','middle');
-},
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
-'studentGrade.student',
-'studentGrade.student.exam' => function($query){
-	$query->where('category','middle');
-},
-])->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with([
+$teacherSubject = TeacherSubject::with(
+'studentGrade')->find(63);
+$teacherSubject;
+$teacherSubject = TeacherSubject::with(
+'studentGrade', 'competencies')->find(63);
+$teacherSubject;
+$teacherSubject = TeacherSubject::with(
+'studentGrade.student', 'competencies')->find(63);
+$teacherSubject;
+$teacherSubject = TeacherSubject::with(
+'studentGrade.student', 'competencies')->find(63);
+$teacherSubject->studentGrade->pluck('student.name');
+$teacherSubject = TeacherSubject::with(
+'studentGrade.student', 'competencies')->find(63);
+$teacherSubject->studentGrade->pluck('student.name', 'student.id');
+$teacherSubject = TeacherSubject::with(
+'studentGrade.student', 'competencies.studentCompetency')->find(63);
 
-'studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
+$teacherSubject = TeacherSubject::with(
+'studentGrade.student', 'competencies')->find(63);
+
+$teacherSubject = TeacherSubject::with(
+'studentGrade', 'competencies')->find(63);
+
+$teacherSubject = TeacherSubject::with(
+'studentGrade', 'competencies.studentCompetency')->find(63);
+
+$teacherSubject = TeacherSubject::with(
+'studentGrade', 'competencies.studentCompetency', 'exam')->find(63);
+
+$teacherSubject = TeacherSubject::with(
+'studentGrade', 'competencies.studentCompetency', 'exam')->find(63);
+
+$teacherSubject = TeacherSubject::with(
+'studentGrade', 'competencies.studentCompetency', 'exam')->find(63);
+
+$teacherSubject = TeacherSubject::with(
+'studentGrade', 'competencies.studentCompetency', 'exam')->find(63);
+
+$teacherSubject = TeacherSubject::with(
+'studentGrade.student', 'competencies.studentCompetency', 'exam')->find(63);
+
+$students = $teacherSubject->studentGrade;
+
+$students->student;
+$teacherSubject = TeacherSubject::with(
+'studentGrade.student', 'competencies.studentCompetency', 'exam')->find(63);
+
+$students = $teacherSubject->studentGrade;
+
+$students;
+$teacherSubject = TeacherSubject::with(
+'studentGrade.student', 'competencies.studentCompetency', 'exam')->find(63);
+
+$students = $teacherSubject->studentGrade;
+
+$students->pluck('student');
+$teacherSubject = TeacherSubject::with(
+'studentGrade.student', 'competencies.studentCompetency', 'exam')->find(63);
+
+$students = $teacherSubject->studentGrade;
+
+$students->pluck('student');
+$teacherSubject = TeacherSubject::with(
+'studentGrade.student', 'competencies.studentCompetency', 'exam')->find(63);
+
+
+
+
+$teacherSubject = TeacherSubject::with(
+  'teacher',
+                        'grade',
+'studentGrade.student', 'competencies.studentCompetency', 'exam')->find(63);
+
+
+
+
+$teacherSubject = TeacherSubject::with(
+  'teacher','grade', 'subject',
+'studentGrade.student', 'competencies.studentCompetency', 'exam')->find(63);
+
+
+
+
+$teacherSubject = TeacherSubject::with(
+  'teacher','grade', 'subject',
+'studentGrade.student', 'competencies', 'exam')->find(63);
+
+
+
+
+$teacherSubject = TeacherSubject::with(
+  'teacher','grade', 'subject',
+'studentGrade.student', 'competencies', 'exam')->find(63);
+
+
+
+
+$teacher = $teacherSubject->teacher;
+$teacherSubject = TeacherSubject::with(
+  'teacher','grade', 'subject',
+'studentGrade.student', 'competencies', 'exam')->find(63);
+
+
+
+
+$teacher = $teacherSubject->teacher;
+$teacher->name
+$teacherSubject = TeacherSubject::with(
+  'teacher','grade', 'subject',
+'studentGrade.student', 'competencies', 'exam')->find(63);
+
+
+
+
+$teacher = $teacherSubject->teacher
+$teacherSubject = TeacherSubject::with(
+  'academicYear',
+  'teacher','grade', 'subject',
+'studentGrade.student', 'competencies', 'exam')->find(63);
+
+
+
+
+
+$teacherSubject = TeacherSubject::with(
+  'academic',
+  'teacher','grade', 'subject',
+'studentGrade.student', 'competencies', 'exam')->find(63);
+
+
+
+
+
+$teacherSubject = TeacherSubject::with('competencies')->find(63);
+
+
+
+
+
+$teacherSubject = TeacherSubject::with('studentCompetency')->find(63);
+
+
+
+
+
+$teacherSubject = TeacherSubject::with('competencies.studentCompetency')->find(63);
+
+
+
+
+
+$teacherSubject = TeacherSubject::with('competencies.studentCompetency')->find(63);
+
+Student::find(86);
+
+
+
+
+
+$teacherSubject = TeacherSubject::with('competencies.studentCompetency')->find(63);
+
+
+
+
+
+
+
+$teacherSubject = TeacherSubject::with('competencies.studentCompetency')->find(63);
+
+
+
+
+
+
+
+Competency::all()
+Competency::withTrash()
+Competency::withTrashed()
+Competency::withTrashed()->get()
+Competency::all()
+Competency::withTrashed()->get()->forceDelete()
+Competency::truncate()
+Competency::query()->forceDelete();
+Competency::withTrashed()->get()
+StudentCompetency::all)
+StudentCompetency::all()
+StudentCompetency::all()
+Competency()
+Competency::all()
+Competency::with('studentCompetency')->get()
+Competency::withTrased()->get()
+Competency::withTrased()
+Competency::query()->forceDelete();
+StudentCompetency::all()
+TeacherSubject::with('competencies.studentCompetency')->find(63)
 $teacherSubject = TeacherSubject::with([
-'studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with(
-'studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with(
-'studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
-$teacherSubject = TeacherSubject::with(
-'studentGrade.student.exam')->find(1);
-$teacherSubject->studentGrade;
+                            'competencies.studentCompetency', 
+
+                        ])->find($teacher_subject_id);
+$teacherSubject = TeacherSubject::with([
+                            'competencies.studentCompetency', 
+
+                        ])->find(63);

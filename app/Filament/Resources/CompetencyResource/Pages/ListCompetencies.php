@@ -73,16 +73,17 @@ class ListCompetencies extends ListRecords
                     $import = [];
                     
                     foreach ($competencies->toArray()[0] as $competency) {
-                        $import[] = [
+                        $import = [
                             'teacher_subject_id' => $teacher_subject_id,
                             'code' => $competency['code'],
                             'description' => $competency['description'],
                             'passing_grade' => $competency['passing_grade'],
                         ];
+                        
+                        Competency::create($import);
                     }
                     
                     // dd($import);
-                    Competency::insert($import);
                 })
                 ->extraModalFooterActions([
                     Action::make('Download Template Excel')
