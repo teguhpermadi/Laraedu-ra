@@ -3,13 +3,18 @@
 namespace App\Filament\Resources\StudentCompetencyResource\Pages;
 
 use App\Filament\Resources\StudentCompetencyResource;
+use App\Imports\StudentCompetencyImport;
+use App\Models\StudentCompetency;
 use App\Models\TeacherSubject;
 use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Components\Tab;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ListStudentCompetencies extends ListRecords
 {
@@ -33,10 +38,38 @@ class ListStudentCompetencies extends ListRecords
                             })->pluck('name', 'id')
                         )
                         ->required()
-                ])->action(function($data){
+                ])
+                ->action(function($data){
                     // dd($data['teacher_subject_id']);
-                    return to_route('export.studentCompetency', ['teacher_subject_id' => $data['teacher_subject_id']]);                    
+                    return to_route('export.studentCompetencySheet', ['teacher_subject_id' => $data['teacher_subject_id']]);                    
                 }),
+            Action::make('upload')
+                ->form([
+                    FileUpload::make('file')
+                        ->directory('uploads')
+                        ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/x-excel'])
+                        ->getUploadedFileNameForStorageUsing(
+                            function (TemporaryUploadedFile $file){
+                                return 'siswa.'. $file->getClientOriginalExtension();
+                            }
+                        )
+                        ->required()
+                ])
+                ->action(function(array $data){
+                    $studentCompetencies = Excel::toArray(new StudentCompetencyImport, storage_path('/app/public/'.$data['file']));
+                    
+                    $data = [];
+                    foreach ($studentCompetencies as $row) {
+                        foreach ($row as $value) {
+                            StudentCompetency::where([
+                                'teacher_subject_id' => $value['teacher_subject_id'],
+                                'student_id' => $value['student_id'],
+                                'competency_id' => $value['competency_id'],
+                            ])
+                            ->update(['score' => $value['score']]);
+                        }
+                    }
+                })
         ];
     }
 

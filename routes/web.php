@@ -6,12 +6,16 @@ use App\Http\Controllers\ExportExcel;
 use App\Http\Controllers\Report;
 use App\Http\Controllers\StudentCompetencyExcel;
 use App\Imports\CompetencyImport;
+use App\Imports\ExcelUtils;
+use App\Imports\StudentCompetencyImport;
+use App\Imports\StudentCompetencySheetImport;
 use App\Imports\StudentGradeImport;
 use App\Imports\StudentImport;
 use App\Imports\TeacherGradeImport;
 use App\Imports\TeacherGradeSheetImport;
 use App\Imports\TeacherImport;
 use App\Models\Student;
+use App\Models\StudentCompetency;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
@@ -133,21 +137,20 @@ Route::controller(StudentCompetencyExcel::class)->group(function(){
 });
 
 Route::get('import', function(){
-    // Excel::import(new StudentGradeImport, storage_path('/app/public/uploads/studentGrade.xlsx') );
-    $competencies = Excel::toCollection(new CompetencyImport, storage_path('/app/public/uploads/kompetensi.xlsx'));
-    $import = [];
-                
-    foreach ($competencies->toArray()[0] as $competency) {
-        $import[] = [
-            'teacher_subject_id' => 63,
-            'code' => $competency['code'],
-            'description' => $competency['description'],
-            'passing_grade' => $competency['passing_grade'],
-        ];
+    $studentCompetencies = Excel::toArray(new StudentCompetencyImport, storage_path('/app/public/uploads/studentCompetencySheet.xlsx'));
+    
+    $data = [];
+    foreach ($studentCompetencies as $row) {
+        foreach ($row as $value) {
+            StudentCompetency::where([
+                'teacher_subject_id' => $value['teacher_subject_id'],
+                'student_id' => $value['student_id'],
+                'competency_id' => $value['competency_id'],
+            ])
+            ->update(['score' => $value['score']]);
+        }
     }
 
-    // array_shift($import);
-    dd($import);
 });
 
 Route::controller(ExportExcel::class)->group(function(){
@@ -155,4 +158,5 @@ Route::controller(ExportExcel::class)->group(function(){
     Route::get('export/teacher-subject', 'teacherSubject')->name('export.teacherSubject');
     Route::get('export/teacher-grade', 'teacherGrade')->name('export.teacherGrade');
     Route::get('export/student-competency/{teacher_subject_id}', 'studentCompetency')->name('export.studentCompetency');
+    Route::get('export/student-competency-sheet/{teacher_subject_id}', 'studentCompetencySheet')->name('export.studentCompetencySheet');
 });
