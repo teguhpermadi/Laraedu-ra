@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\AcademicYear;
+use App\Models\Teacher;
 use App\Models\TeacherGrade;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -20,11 +21,18 @@ class TeacherGradeSheetImport implements ToModel, WithHeadingRow, WithUpserts, W
     {
         $academic = AcademicYear::active()->first()->id;
 
+        // give roles Teacher Grade
+        $teacher_id = $row['teacher_id'];
+        $teacher = Teacher::find($teacher_id);
+        
+        $user = $teacher->userable->user->assignRole('teacher grade');
+        
         return new TeacherGrade([
             'academic_year_id' => $academic,
             'teacher_id' => $row['teacher_id'],
             'grade_id' => $row['grade_id'],
         ]);
+
     }
     
 
