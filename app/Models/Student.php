@@ -151,4 +151,9 @@ class Student extends Model
     {
         return $this->hasMany(Exam::class, 'student_id', 'id');
     }
+
+    public function attendance()
+    {
+        return $this->hasOne(Attendance::class, 'student_id', 'id');
+    }
 }

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreignId('grade_id')->references('id')->on('grades')->cascadeOnDelete();
             $table->foreignId('student_id')->references('id')->on('students')->cascadeOnDelete();
             $table->string('sick')->default(0);
-            $table->string('permission')->default();
-            $table->string('absent')->default();
+            $table->string('permission')->default(0);
+            $table->string('absent')->default(0);
             $table->string('note')->nullable();
             $table->string('achievement')->nullable();
             $table->timestamps();

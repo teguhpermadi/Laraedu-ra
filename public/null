@@ -60,3 +60,47 @@ $teacher->userable->user
 $teacher = Teacher::find(2);
 
 $teacher->userable->user
+$grade = Grade::with('studentGrade')->find(6);
+$grade = Grade::with('studentGrade.student')->find(6);
+$grade = Grade::with('studentGrade.student')->find(6);
+$students = $grade->studentGrade;
+$grade = Grade::with('studentGrade.student')->find(6);
+$students = $grade->studentGrade->pluck('student');
+$grade = Grade::with('studentGrade.student.attendance')->find(6);
+$students = $grade->studentGrade->pluck('student');
+$grade = Grade::with('studentGrade.student.grade')->find(6);
+$students = $grade->studentGrade->pluck('student');
+$grade = Grade::with('studentGrade.student.studentGrade')->find(6);
+$students = $grade->studentGrade->pluck('student');
+
+
+
+$grade_id = Student::find($get('student_id'))->studentGrade->grade_id;
+
+
+
+$grade_id = Student::find($get(86))->studentGrade->grade_id;
+
+
+
+$grade_id = Student::find(86)->studentGrade->grade_id;
+
+
+
+$grade_id = Student::find(86)->studentGrade;
+
+
+
+$grade_id = Student::find(86)->studentGrade->grade_id;
+$grade = Grade::with('studentGrade.student.studentGrade')->find(6);
+$students = $grade->studentGrade->pluck('student');
+
+
+$grade = Grade::with('studentGrade.student.attendance')->find(6);
+$students = $grade->studentGrade->pluck('student');
+
+
+$grade = Grade::with('studentGrade.student.grade','studentGrade.student.attendance')->find(6);
+$students = $grade->studentGrade->pluck('student');
+
+

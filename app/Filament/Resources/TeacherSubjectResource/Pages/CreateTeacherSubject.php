@@ -22,7 +22,7 @@ class CreateTeacherSubject extends CreateRecord
                 'teacher_id' => $data['teacher_id'],
                 'subject_id' => $data['subject_id'],
                 'grade_id' => $grade_id,
-                'passing_grade' => $data['passing_grade'],
+                // 'passing_grade' => $data['passing_grade'],
             ];
             
             static::getModel()::updateOrCreate($teacherSubject);

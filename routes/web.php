@@ -5,6 +5,7 @@ use App\Exports\CompetencyExport;
 use App\Http\Controllers\ExportExcel;
 use App\Http\Controllers\Report;
 use App\Http\Controllers\StudentCompetencyExcel;
+use App\Imports\AttendanceImport;
 use App\Imports\CompetencyImport;
 use App\Imports\ExcelUtils;
 use App\Imports\StudentCompetencyImport;
@@ -137,20 +138,8 @@ Route::controller(StudentCompetencyExcel::class)->group(function(){
 });
 
 Route::get('import', function(){
-    $studentCompetencies = Excel::toArray(new StudentCompetencyImport, storage_path('/app/public/uploads/studentCompetencySheet.xlsx'));
-    
-    $data = [];
-    foreach ($studentCompetencies as $row) {
-        foreach ($row as $value) {
-            StudentCompetency::where([
-                'teacher_subject_id' => $value['teacher_subject_id'],
-                'student_id' => $value['student_id'],
-                'competency_id' => $value['competency_id'],
-            ])
-            ->update(['score' => $value['score']]);
-        }
-    }
-
+    $excel = Excel::import(new AttendanceImport, storage_path('/app/public/uploads/lcrOTzC0hWR4CKkfWWPBJlOp2eiSH3-metaYXR0ZW5kYW5jZS1BLTIueGxzeA==-.xlsx'));
+    dd($excel);
 });
 
 Route::controller(ExportExcel::class)->group(function(){
@@ -159,4 +148,5 @@ Route::controller(ExportExcel::class)->group(function(){
     Route::get('export/teacher-grade', 'teacherGrade')->name('export.teacherGrade');
     Route::get('export/student-competency/{teacher_subject_id}', 'studentCompetency')->name('export.studentCompetency');
     Route::get('export/student-competency-sheet/{teacher_subject_id}', 'studentCompetencySheet')->name('export.studentCompetencySheet');
+    Route::get('export/attendance/{grade_id}', 'attendance')->name('export.attendance');
 });

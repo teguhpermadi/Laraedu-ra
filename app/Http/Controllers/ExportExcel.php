@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcademicYear;
 use App\Models\Grade;
 use App\Models\Student;
 use App\Models\StudentGrade;
@@ -390,7 +391,7 @@ class ExportExcel extends Controller
 
         // hapus sheet worksheet
         $sheetIndex = $spreadsheet->getIndex(
-            $spreadsheet->getSheetByName('Worksheet')
+            $spreadsheet->getSheetByName('Worksheet 1')
         );
         $spreadsheet->removeSheetByIndex($sheetIndex);
 
@@ -400,5 +401,84 @@ class ExportExcel extends Controller
         $filename = "studentCompetencySheet.xlsx"; // <<< HERE
         $writer->save(base_path($filename));
         return response()->download(base_path('studentCompetencySheet.xlsx')); // <<< HERE
+    }
+
+    public function attendance($grade_id)
+    {
+        $academic = AcademicYear::active()->first()->id;
+        $grade = Grade::with('studentGrade')->find($grade_id);
+        $students = $grade->studentGrade->pluck('student');
+        
+        // Inisialisasi spreadsheet
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('Sheet1');
+        $sheet->setCellValue('A1', 'DAFTAR HADIR');
+
+        $data = [];
+
+        $data[] = [
+            'nis',
+            'nama siswa',
+            'academic_year_id',
+            'grade_id',
+            'student_id',
+            'sakit',
+            'izin',
+            'tanpa_keterangan',
+            'catatan',
+            'penghargaan',
+        ];
+
+        foreach ($students as $student) {
+            $sick = 0;
+            $permission = 0;
+            $absent = 0;
+            $note = "";
+            $achievement = "";
+
+            if($student->attendance){
+                $sick = $student->attendance->sick;
+                $permission = $student->attendance->permission;
+                $absent = $student->attendance->absent;
+                $note = $student->attendance->note;
+                $achievement = $student->attendance->achievement;
+            } else {
+                $sick = 0;
+                $permission = 0;
+                $absent = 0;
+                $note = '-';
+                $achievement = '-';
+            }
+
+            $data[] = [
+                $student->nis,
+                $student->name,
+                $academic,
+                $grade_id,
+                $student->id,
+                $sick,
+                $permission,
+                $absent,
+                $note,
+                $achievement,
+            ];
+        }
+
+        $sheet->fromArray($data, null, 'A3', true);
+
+        $sheet->getColumnDimension('B')->setWidth(30);
+    
+        // hide coloumn C D E
+        $sheet->getColumnDimension('C')->setVisible(false);
+        $sheet->getColumnDimension('D')->setVisible(false);
+        $sheet->getColumnDimension('E')->setVisible(false);
+
+        // Membuat file Excel
+        $writer = new Xlsx($spreadsheet);
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
+        $filename = "attendance-".$grade->name.".xlsx"; // <<< HERE
+        $writer->save(base_path($filename));
+        return response()->download(base_path($filename)); // <<< HERE
     }
 }

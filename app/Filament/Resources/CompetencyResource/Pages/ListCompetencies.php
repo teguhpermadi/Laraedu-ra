@@ -68,16 +68,16 @@ class ListCompetencies extends ListRecords
                 ])
                 ->action(function(array $data){
                     $teacher_subject_id = $data['teacher_subject_id'];
-                    $competencies = Excel::toCollection(new CompetencyImport, storage_path('/app/public/uploads/kompetensi.xlsx'));
+                    $competencies = Excel::toCollection(new CompetencyImport, storage_path('/app/public/'.$data['file']));
         
                     $import = [];
                     
                     foreach ($competencies->toArray()[0] as $competency) {
                         $import = [
                             'teacher_subject_id' => $teacher_subject_id,
-                            'code' => $competency['code'],
-                            'description' => $competency['description'],
-                            'passing_grade' => $competency['passing_grade'],
+                            'code' => $competency['kode'],
+                            'description' => $competency['deskripsi'],
+                            'passing_grade' => $competency['kkm'],
                         ];
                         
                         Competency::create($import);

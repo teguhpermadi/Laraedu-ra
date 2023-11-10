@@ -4,9 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AttendanceResource\Pages;
 use App\Filament\Resources\AttendanceResource\RelationManagers;
+use App\Models\AcademicYear;
 use App\Models\Attendance;
 use App\Models\Student;
 use Filament\Forms;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -27,9 +29,16 @@ class AttendanceResource extends Resource
     {
         return $form
             ->schema([
+                Hidden::make('academic_year_id')->default(AcademicYear::active()->first()->id),
+                Hidden::make('grade_id'),
                 Select::make('student_id')
+                    ->reactive()
+                    ->required()
                     ->options(Student::myStudentGrade()->pluck('name', 'id'))
-                    ->required(),
+                    ->afterStateUpdated(function(callable $set, callable $get){
+                        $grade_id = Student::find($get('student_id'))->studentGrade->grade_id;
+                        $set('grade_id', $grade_id);
+                    }),
                 TextInput::make('sick')->numeric()->default(0),
                 TextInput::make('permission')->numeric()->default(0),
                 TextInput::make('absent')->numeric()->default(0),
