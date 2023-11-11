@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class StudentExtracurricular extends Model
 {
@@ -33,5 +34,13 @@ class StudentExtracurricular extends Model
     public function extracurricular()
     {
         return $this->belongsTo(Extracurricular::class);
+    }
+
+    public function scopeMyExtracurricular(Builder $query)
+    {
+        $teacher_id = auth()->user()->userable->userable_id;
+        $extra = Extracurricular::where('teacher_id', $teacher_id)->first();
+
+        $query->where('extracurricular_id', $extra->id);
     }
 }
