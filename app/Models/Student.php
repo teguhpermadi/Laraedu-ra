@@ -21,7 +21,8 @@ class Student extends Model
         'gender',
         'active',
         'city_born',
-        'date_born'
+        'date_born',
+        'nick_name',
     ];
 
     protected $dates = ['deleted_at'];

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\AcademicYear;
+use App\Models\Attendance;
+use App\Models\Exam;
 use App\Models\Student;
 use App\Models\StudentGrade;
+use App\Models\TeacherGrade;
 use Illuminate\Http\Request;
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\Element\Table;
@@ -16,10 +19,14 @@ class Report extends Controller
         $data = [];
 
         $academic = AcademicYear::active()->first();
+
         
         $student = Student::find($id);
-
+        
         $grade = StudentGrade::with('grade')->where('student_id', $id)->first();
+        $teacherGrade = TeacherGrade::with('teacher')->where('grade_id', $grade->grade_id)->first();
+
+        $attendance = Attendance::where('student_id', $id)->first();
 
         $scores = Student::with([
             'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
@@ -29,6 +36,9 @@ class Report extends Controller
         $subjects = $scores->studentGrade->teacherSubject;
     
         foreach ($subjects as $subject) {
+
+            $exam = Exam::find($subject->id);
+            dd($subject->toArray());
 
             // buat dulu deskripsinya
             $lulusDescriptions = [];
@@ -59,7 +69,7 @@ class Report extends Controller
                 // 'teacher_subject_id' => $subject->id,
                 'subject' => $subject->subject->name,
                 'code' => $subject->subject->code,
-                'score' => round($subject->studentCompetency->avg('score')),
+                'score' => round($subject->studentCompetency->avg('score'),1),
                 'combined_result_description' => $combinedResultDescription,
             ];
 
@@ -67,14 +77,16 @@ class Report extends Controller
 
         $data = [
             'academic' => $academic->toArray(),
+            'teacher' => $teacherGrade->teacher,
             'student' => $student->toArray(),
             'grade' => $grade->grade->toArray(),
+            'attendance' => $attendance,
             'result' => $result,
         ];
 
         return $data;
 
-        $data = $this->word($data);
+        // $data = $this->word($data);
     }
 
     public function word($data)

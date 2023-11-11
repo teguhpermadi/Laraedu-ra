@@ -40,6 +40,7 @@ class StudentCompetency extends Model
         return $query->join('competencies', 'competencies.id', '=', 'student_competencies.competency_id')
                     ->select('student_competencies.*', 
                             DB::raw('CASE WHEN score >= passing_grade THEN "LULUS" ELSE "TIDAK LULUS" END as result'),
+                            DB::raw('competencies.description'),
                             DB::raw('CONCAT(CASE WHEN score > passing_grade THEN "Sudah menguasai" 
                                                 WHEN score = passing_grade THEN "Cukup menguasai"
                                                 ELSE "Belum menguasai" END, 
