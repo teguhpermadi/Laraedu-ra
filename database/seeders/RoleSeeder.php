@@ -97,6 +97,13 @@ class RoleSeeder extends Seeder
             'delete TeacherGrade',
             // 'restore TeacherGrade',
             // 'force-delete TeacherGrade',
+            'view-any Extracurricular',
+            'view Extracurricular',
+            'create Extracurricular',
+            'update Extracurricular',
+            'delete Extracurricular',
+            // 'restore Extracurricular',
+            // 'force-delete Extracurricular',
         ]);
 
         $teacher->syncPermissions([
