@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('academic_year_id')->references('id')->on('academic_years')->cascadeOnDelete();
             $table->foreignId('extracurricular_id')->references('id')->on('extracurriculars')->cascadeOnDelete();
             $table->foreignId('student_id')->references('id')->on('students')->cascadeOnDelete();
+            $table->string('score')->default(0);
             $table->timestamps();
 
             $table->unique(['academic_year_id', 'student_id', 'extracurricular_id'], 'student_extracurricular_unique');

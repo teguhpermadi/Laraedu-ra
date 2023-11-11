@@ -14,6 +14,7 @@ class StudentExtracurricular extends Model
         'academic_year_id',
         'student_id',
         'extracurricular_id',
+        'score',
     ];
 
     protected $hidden = [
