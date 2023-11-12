@@ -56,8 +56,8 @@ class AttendanceResource extends Resource
                 TextInputColumn::make('sick')->rules(['numeric']),
                 TextInputColumn::make('permission')->rules(['numeric']),
                 TextInputColumn::make('absent')->rules(['numeric']),
-                TextInputColumn::make('note'),
-                TextColumn::make('achievement'),
+                // TextInputColumn::make('note'),
+                // TextColumn::make('achievement'),
             ])
             ->filters([
                 //
