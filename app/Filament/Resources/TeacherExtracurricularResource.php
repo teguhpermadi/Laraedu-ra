@@ -17,6 +17,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TeacherExtracurricularResource extends Resource
@@ -51,7 +52,15 @@ class TeacherExtracurricularResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                ->before(function (TeacherExtracurricular $post) {
+                    $teacher = Teacher::find($post->teacher_id)
+                    ->userable
+                    ->user;
+
+                    $teacher->revokePermissionTo('assesment_student::extracurricular');
+                    $teacher->revokePermissionTo('view_any_student::extracurricular');
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

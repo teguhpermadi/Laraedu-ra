@@ -148,4 +148,9 @@ class StudentExtracurricularPolicy
         return $user->can('reorder_student::extracurricular');
     }
 
+    public function assesment(User $user, StudentExtracurricular $studentExtracurricular)
+    {
+        return $user->can('assesment_student::extracurricular');
+    }
+
 }

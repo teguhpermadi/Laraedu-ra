@@ -58,7 +58,7 @@ class AcademicYearResource extends Resource
                 Action::make('aktifkan')
                     ->action(function(AcademicYear $record){
                         AcademicYear::setActive($record->id);
-                    })->visible(auth()->user()->hasPermissionTo('activated AcademicYear')),
+                    })->visible(auth()->user()->hasPermissionTo('activated_academic::year')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

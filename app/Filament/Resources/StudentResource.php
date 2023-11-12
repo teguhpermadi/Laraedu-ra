@@ -47,6 +47,7 @@ class StudentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->searchable(),
+                TextColumn::make('nick_name')->searchable(),
                 TextColumn::make('gender'),
                 IconColumn::make('active')->boolean(),
             ])

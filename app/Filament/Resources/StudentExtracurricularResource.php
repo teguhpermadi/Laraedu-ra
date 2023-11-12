@@ -8,15 +8,19 @@ use App\Models\AcademicYear;
 use App\Models\Extracurricular;
 use App\Models\Student;
 use App\Models\StudentExtracurricular;
+use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\BulkAction;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class StudentExtracurricularResource extends Resource
@@ -36,6 +40,7 @@ class StudentExtracurricularResource extends Resource
                     ->options(Student::pluck('name', 'id'))
                     ->multiple()
                     ->required(),
+                
             ]);
     }
 
@@ -45,6 +50,12 @@ class StudentExtracurricularResource extends Resource
             ->columns([
                 TextColumn::make('student.name')->searchable(),
                 TextColumn::make('extracurricular.name'),
+                SelectColumn::make('score')
+                ->options([
+                    'A' => 'Amat baik',
+                    'B' => 'Baik',
+                    'C' => 'Cukup'
+                ])->visible(auth()->user()->hasPermissionTo('assesment_student::extracurricular'))
             ])
             ->filters([
                 //
@@ -56,6 +67,19 @@ class StudentExtracurricularResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    BulkAction::make('scoring')
+                    ->form([
+                        Select::make('score')
+                        ->options([
+                            'A' => 'Amat baik',
+                            'B' => 'Baik',
+                            'C' => 'Cukup'
+                        ])
+                    ])
+                    ->action(function (Collection $records, $data) {
+                        $records->each->update($data);
+                    })
+                    ->visible(auth()->user()->hasPermissionTo('assesment_student::extracurricular'))
                 ]),
             ]);
     }

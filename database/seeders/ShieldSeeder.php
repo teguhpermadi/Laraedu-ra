@@ -33,6 +33,7 @@ class ShieldSeeder extends Seeder
                 "delete_any_academic::year",
                 "force_delete_academic::year",
                 "force_delete_any_academic::year",
+                "activated_academic::year",
                 "view_extracurricular",
                 "view_any_extracurricular",
                 "create_extracurricular",

@@ -148,4 +148,9 @@ class AcademicYearPolicy
         return $user->can('reorder_academic::year');
     }
 
+    public function activated(User $user)
+    {
+        return $user->can('activated_academic::year');
+    }
+
 }

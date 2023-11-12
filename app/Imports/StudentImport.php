@@ -26,6 +26,7 @@ class StudentImport implements ToModel, WithHeadingRow, WithUpserts, WithUpsertC
             'nisn' => $row['nisn'],
             'nis' => $row['nis'],
             'name' => $row['nama_lengkap'],
+            'nick_name' => $row['nama_panggilan'],
             'gender' => Str::lower($row['jenis_kelamin']),
             'city_born' => $row['tempat_lahir'],
             'date_born' => $row['tanggal_lahir'],
