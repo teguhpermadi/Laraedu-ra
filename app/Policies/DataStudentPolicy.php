@@ -13,7 +13,7 @@ class DataStudentPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view-any DataStudent');
+        return $user->can('{{ viewAnyPermission }}');
     }
 
     /**
@@ -21,7 +21,7 @@ class DataStudentPolicy
      */
     public function view(User $user, DataStudent $datastudent): bool
     {
-        return $user->can('view DataStudent');
+        return $user->can('{{ viewPermission }}');
     }
 
     /**
@@ -29,7 +29,7 @@ class DataStudentPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create DataStudent');
+        return $user->can('{{ createPermission }}');
     }
 
     /**
@@ -37,7 +37,7 @@ class DataStudentPolicy
      */
     public function update(User $user, DataStudent $datastudent): bool
     {
-        return $user->can('update DataStudent');
+        return $user->can('{{ updatePermission }}');
     }
 
     /**
@@ -45,7 +45,7 @@ class DataStudentPolicy
      */
     public function delete(User $user, DataStudent $datastudent): bool
     {
-        return $user->can('delete DataStudent');
+        return $user->can('{{ deletePermission }}');
     }
 
     /**
@@ -53,7 +53,7 @@ class DataStudentPolicy
      */
     public function restore(User $user, DataStudent $datastudent): bool
     {
-        return $user->can('restore DataStudent');
+        return $user->can('{{ restorePermission }}');
     }
 
     /**
@@ -61,6 +61,6 @@ class DataStudentPolicy
      */
     public function forceDelete(User $user, DataStudent $datastudent): bool
     {
-        return $user->can('force-delete DataStudent');
+        return $user->can('{{ forceDeletePermission }}');
     }
 }

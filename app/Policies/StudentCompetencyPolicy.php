@@ -2,65 +2,150 @@
 
 namespace App\Policies;
 
-use Illuminate\Auth\Access\Response;
-use App\Models\StudentCompetency;
 use App\Models\User;
+use App\Models\StudentCompetency;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class StudentCompetencyPolicy
 {
+    use HandlesAuthorization;
+
     /**
      * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view-any StudentCompetency');
+        return $user->can('view_any_student::competency');
     }
 
     /**
      * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\StudentCompetency  $studentCompetency
+     * @return bool
      */
-    public function view(User $user, StudentCompetency $studentcompetency): bool
+    public function view(User $user, StudentCompetency $studentCompetency): bool
     {
-        return $user->can('view StudentCompetency');
+        return $user->can('view_student::competency');
     }
 
     /**
      * Determine whether the user can create models.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
      */
     public function create(User $user): bool
     {
-        return $user->can('create StudentCompetency');
+        return $user->can('create_student::competency');
     }
 
     /**
      * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\StudentCompetency  $studentCompetency
+     * @return bool
      */
-    public function update(User $user, StudentCompetency $studentcompetency): bool
+    public function update(User $user, StudentCompetency $studentCompetency): bool
     {
-        return $user->can('update StudentCompetency');
+        return $user->can('update_student::competency');
     }
 
     /**
      * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\StudentCompetency  $studentCompetency
+     * @return bool
      */
-    public function delete(User $user, StudentCompetency $studentcompetency): bool
+    public function delete(User $user, StudentCompetency $studentCompetency): bool
     {
-        return $user->can('delete StudentCompetency');
+        return $user->can('delete_student::competency');
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can bulk delete.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
      */
-    public function restore(User $user, StudentCompetency $studentcompetency): bool
+    public function deleteAny(User $user): bool
     {
-        return $user->can('restore StudentCompetency');
+        return $user->can('delete_any_student::competency');
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\StudentCompetency  $studentCompetency
+     * @return bool
      */
-    public function forceDelete(User $user, StudentCompetency $studentcompetency): bool
+    public function forceDelete(User $user, StudentCompetency $studentCompetency): bool
     {
-        return $user->can('force-delete StudentCompetency');
+        return $user->can('force_delete_student::competency');
     }
+
+    /**
+     * Determine whether the user can permanently bulk delete.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force_delete_any_student::competency');
+    }
+
+    /**
+     * Determine whether the user can restore.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\StudentCompetency  $studentCompetency
+     * @return bool
+     */
+    public function restore(User $user, StudentCompetency $studentCompetency): bool
+    {
+        return $user->can('restore_student::competency');
+    }
+
+    /**
+     * Determine whether the user can bulk restore.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function restoreAny(User $user): bool
+    {
+        return $user->can('restore_any_student::competency');
+    }
+
+    /**
+     * Determine whether the user can replicate.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\StudentCompetency  $studentCompetency
+     * @return bool
+     */
+    public function replicate(User $user, StudentCompetency $studentCompetency): bool
+    {
+        return $user->can('replicate_student::competency');
+    }
+
+    /**
+     * Determine whether the user can reorder.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function reorder(User $user): bool
+    {
+        return $user->can('reorder_student::competency');
+    }
+
 }

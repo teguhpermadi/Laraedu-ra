@@ -13,7 +13,7 @@ class UserablePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view-any Userable');
+        return $user->can('{{ viewAnyPermission }}');
     }
 
     /**
@@ -21,7 +21,7 @@ class UserablePolicy
      */
     public function view(User $user, Userable $userable): bool
     {
-        return $user->can('view Userable');
+        return $user->can('{{ viewPermission }}');
     }
 
     /**
@@ -29,7 +29,7 @@ class UserablePolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create Userable');
+        return $user->can('{{ createPermission }}');
     }
 
     /**
@@ -37,7 +37,7 @@ class UserablePolicy
      */
     public function update(User $user, Userable $userable): bool
     {
-        return $user->can('update Userable');
+        return $user->can('{{ updatePermission }}');
     }
 
     /**
@@ -45,7 +45,7 @@ class UserablePolicy
      */
     public function delete(User $user, Userable $userable): bool
     {
-        return $user->can('delete Userable');
+        return $user->can('{{ deletePermission }}');
     }
 
     /**
@@ -53,7 +53,7 @@ class UserablePolicy
      */
     public function restore(User $user, Userable $userable): bool
     {
-        return $user->can('restore Userable');
+        return $user->can('{{ restorePermission }}');
     }
 
     /**
@@ -61,6 +61,6 @@ class UserablePolicy
      */
     public function forceDelete(User $user, Userable $userable): bool
     {
-        return $user->can('force-delete Userable');
+        return $user->can('{{ forceDeletePermission }}');
     }
 }

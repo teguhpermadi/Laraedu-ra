@@ -11,23 +11,25 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 
 class MyGrade extends Page implements HasTable
 {
+    use HasPageShield;
     use InteractsWithTable;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'filament.pages.my-grade';
 
-    public static function shouldRegisterNavigation(): bool
-    {
-        if(auth()->user()->hasRole('teacher grade')){
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public static function shouldRegisterNavigation(): bool
+    // {
+    //     if(auth()->user()->hasRole('teacher grade')){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     public function table(Table $table): Table
     {

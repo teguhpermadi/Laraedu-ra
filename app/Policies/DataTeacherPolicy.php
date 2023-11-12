@@ -13,7 +13,7 @@ class DataTeacherPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view-any DataTeacher');
+        return $user->can('{{ viewAnyPermission }}');
     }
 
     /**
@@ -21,7 +21,7 @@ class DataTeacherPolicy
      */
     public function view(User $user, DataTeacher $datateacher): bool
     {
-        return $user->can('view DataTeacher');
+        return $user->can('{{ viewPermission }}');
     }
 
     /**
@@ -29,7 +29,7 @@ class DataTeacherPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create DataTeacher');
+        return $user->can('{{ createPermission }}');
     }
 
     /**
@@ -37,7 +37,7 @@ class DataTeacherPolicy
      */
     public function update(User $user, DataTeacher $datateacher): bool
     {
-        return $user->can('update DataTeacher');
+        return $user->can('{{ updatePermission }}');
     }
 
     /**
@@ -45,7 +45,7 @@ class DataTeacherPolicy
      */
     public function delete(User $user, DataTeacher $datateacher): bool
     {
-        return $user->can('delete DataTeacher');
+        return $user->can('{{ deletePermission }}');
     }
 
     /**
@@ -53,7 +53,7 @@ class DataTeacherPolicy
      */
     public function restore(User $user, DataTeacher $datateacher): bool
     {
-        return $user->can('restore DataTeacher');
+        return $user->can('{{ restorePermission }}');
     }
 
     /**
@@ -61,6 +61,6 @@ class DataTeacherPolicy
      */
     public function forceDelete(User $user, DataTeacher $datateacher): bool
     {
-        return $user->can('force-delete DataTeacher');
+        return $user->can('{{ forceDeletePermission }}');
     }
 }

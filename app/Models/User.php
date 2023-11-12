@@ -5,6 +5,8 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Althinect\FilamentSpatieRolesPermissions\Concerns\HasSuperAdmin;
+use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,11 +14,11 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Builder;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use HasSuperAdmin;
     use HasRoles;
+    use HasPanelShield;
 
     /**
      * The attributes that are mass assignable.

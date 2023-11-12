@@ -53,37 +53,37 @@ class TeacherResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-                Action::make('Userable')->action(function (Teacher $record){
-                    $userable = Userable::where([
-                        'userable_id' => $record->id,
-                        'userable_type' => 'Teacher'
-                    ])->count();
+                // Action::make('Userable')->action(function (Teacher $record){
+                //     $userable = Userable::where([
+                //         'userable_id' => $record->id,
+                //         'userable_type' => 'Teacher'
+                //     ])->count();
 
-                    if($userable == 0){
-                        $user = User::create([
-                                    'name' => $record->name,
-                                    'email' => Str::slug($record->name).'@teacher.com',
-                                    'password' => Hash::make('password'),
-                                ]);
+                //     if($userable == 0){
+                //         $user = User::create([
+                //                     'name' => $record->name,
+                //                     'email' => Str::slug($record->name).'@teacher.com',
+                //                     'password' => Hash::make('password'),
+                //                 ]);
 
-                        Userable::create([
-                            'user_id' => $user->id,
-                            'userable_id' => $record->id,
-                            'userable_type' => Teacher::class,
-                        ]);
+                //         Userable::create([
+                //             'user_id' => $user->id,
+                //             'userable_id' => $record->id,
+                //             'userable_type' => Teacher::class,
+                //         ]);
 
-                        $user->assignRole('teacher');
+                //         $user->assignRole('teacher');
 
-                        Notification::make()->title('User berhasil dibuat')->success()->send();
-                    } else {
-                        Notification::make()->title('User sudah dibuat')->warning()->send();
+                //         Notification::make()->title('User berhasil dibuat')->success()->send();
+                //     } else {
+                //         Notification::make()->title('User sudah dibuat')->warning()->send();
 
-                    }
+                //     }
 
-                })
-                    ->icon('heroicon-m-user-circle')
-                    ->hidden(fn (Teacher $record) => $record->hasUserable())
-                    ->visible(auth()->user()->hasPermissionTo('userable Teacher')),// Action akan tersembunyi jika guru memiliki Userable
+                // })
+                //     ->icon('heroicon-m-user-circle')
+                //     ->hidden(fn (Teacher $record) => $record->hasUserable())
+                //     ->visible(auth()->user()->hasPermissionTo('userable Teacher')),// Action akan tersembunyi jika guru memiliki Userable
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

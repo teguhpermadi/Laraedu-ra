@@ -54,37 +54,37 @@ class StudentResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-                Action::make('Userable')->action(function (Student $record){
-                    $userable = Userable::where([
-                        'userable_id' => $record->id,
-                        'userable_type' => 'Student'
-                    ])->count();
+                // Action::make('Userable')->action(function (Student $record){
+                //     $userable = Userable::where([
+                //         'userable_id' => $record->id,
+                //         'userable_type' => 'Student'
+                //     ])->count();
 
-                    if($userable == 0){
-                        $user = User::create([
-                                    'name' => $record->name,
-                                    'email' => Str::slug($record->name).'@student.com',
-                                    'password' => Hash::make('password'),
-                                ]);
+                //     if($userable == 0){
+                //         $user = User::create([
+                //                     'name' => $record->name,
+                //                     'email' => Str::slug($record->name).'@student.com',
+                //                     'password' => Hash::make('password'),
+                //                 ]);
                         
-                        $user->assignRole('student');
+                //         $user->assignRole('student');
 
-                        Userable::create([
-                            'user_id' => $user->id,
-                            'userable_id' => $record->id,
-                            'userable_type' => Student::class,
-                        ]);
+                //         Userable::create([
+                //             'user_id' => $user->id,
+                //             'userable_id' => $record->id,
+                //             'userable_type' => Student::class,
+                //         ]);
 
-                        Notification::make()->title('User berhasil dibuat')->success()->send();
-                    } else {
-                        Notification::make()->title('User sudah dibuat')->warning()->send();
+                //         Notification::make()->title('User berhasil dibuat')->success()->send();
+                //     } else {
+                //         Notification::make()->title('User sudah dibuat')->warning()->send();
 
-                    }
+                //     }
 
-                })
-                    ->icon('heroicon-m-user-circle')
-                    ->hidden(fn (Student $record) => $record->hasUserable())
-                    ->visible(auth()->user()->hasPermissionTo('userable Student')), // Action akan tersembunyi jika guru memiliki Userable
+                // })
+                //     ->icon('heroicon-m-user-circle')
+                //     ->hidden(fn (Student $record) => $record->hasUserable())
+                //     ->visible(auth()->user()->hasPermissionTo('userable Student')), // Action akan tersembunyi jika guru memiliki Userable
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

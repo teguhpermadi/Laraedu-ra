@@ -2,65 +2,150 @@
 
 namespace App\Policies;
 
-use Illuminate\Auth\Access\Response;
-use App\Models\TeacherExtracurricular;
 use App\Models\User;
+use App\Models\TeacherExtracurricular;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TeacherExtracurricularPolicy
 {
+    use HandlesAuthorization;
+
     /**
      * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view-any TeacherExtracurricular');
+        return $user->can('view_any_teacher::extracurricular');
     }
 
     /**
      * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\TeacherExtracurricular  $teacherExtracurricular
+     * @return bool
      */
-    public function view(User $user, TeacherExtracurricular $teacherextracurricular): bool
+    public function view(User $user, TeacherExtracurricular $teacherExtracurricular): bool
     {
-        return $user->can('view TeacherExtracurricular');
+        return $user->can('view_teacher::extracurricular');
     }
 
     /**
      * Determine whether the user can create models.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
      */
     public function create(User $user): bool
     {
-        return $user->can('create TeacherExtracurricular');
+        return $user->can('create_teacher::extracurricular');
     }
 
     /**
      * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\TeacherExtracurricular  $teacherExtracurricular
+     * @return bool
      */
-    public function update(User $user, TeacherExtracurricular $teacherextracurricular): bool
+    public function update(User $user, TeacherExtracurricular $teacherExtracurricular): bool
     {
-        return $user->can('update TeacherExtracurricular');
+        return $user->can('update_teacher::extracurricular');
     }
 
     /**
      * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\TeacherExtracurricular  $teacherExtracurricular
+     * @return bool
      */
-    public function delete(User $user, TeacherExtracurricular $teacherextracurricular): bool
+    public function delete(User $user, TeacherExtracurricular $teacherExtracurricular): bool
     {
-        return $user->can('delete TeacherExtracurricular');
+        return $user->can('delete_teacher::extracurricular');
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can bulk delete.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
      */
-    public function restore(User $user, TeacherExtracurricular $teacherextracurricular): bool
+    public function deleteAny(User $user): bool
     {
-        return $user->can('restore TeacherExtracurricular');
+        return $user->can('delete_any_teacher::extracurricular');
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\TeacherExtracurricular  $teacherExtracurricular
+     * @return bool
      */
-    public function forceDelete(User $user, TeacherExtracurricular $teacherextracurricular): bool
+    public function forceDelete(User $user, TeacherExtracurricular $teacherExtracurricular): bool
     {
-        return $user->can('force-delete TeacherExtracurricular');
+        return $user->can('force_delete_teacher::extracurricular');
     }
+
+    /**
+     * Determine whether the user can permanently bulk delete.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force_delete_any_teacher::extracurricular');
+    }
+
+    /**
+     * Determine whether the user can restore.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\TeacherExtracurricular  $teacherExtracurricular
+     * @return bool
+     */
+    public function restore(User $user, TeacherExtracurricular $teacherExtracurricular): bool
+    {
+        return $user->can('restore_teacher::extracurricular');
+    }
+
+    /**
+     * Determine whether the user can bulk restore.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function restoreAny(User $user): bool
+    {
+        return $user->can('restore_any_teacher::extracurricular');
+    }
+
+    /**
+     * Determine whether the user can replicate.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\TeacherExtracurricular  $teacherExtracurricular
+     * @return bool
+     */
+    public function replicate(User $user, TeacherExtracurricular $teacherExtracurricular): bool
+    {
+        return $user->can('replicate_teacher::extracurricular');
+    }
+
+    /**
+     * Determine whether the user can reorder.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function reorder(User $user): bool
+    {
+        return $user->can('reorder_teacher::extracurricular');
+    }
+
 }

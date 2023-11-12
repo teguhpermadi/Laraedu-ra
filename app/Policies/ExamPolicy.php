@@ -2,65 +2,150 @@
 
 namespace App\Policies;
 
-use Illuminate\Auth\Access\Response;
-use App\Models\Exam;
 use App\Models\User;
+use App\Models\Exam;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ExamPolicy
 {
+    use HandlesAuthorization;
+
     /**
      * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view-any Exam');
+        return $user->can('view_any_exam');
     }
 
     /**
      * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Exam  $exam
+     * @return bool
      */
     public function view(User $user, Exam $exam): bool
     {
-        return $user->can('view Exam');
+        return $user->can('view_exam');
     }
 
     /**
      * Determine whether the user can create models.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
      */
     public function create(User $user): bool
     {
-        return $user->can('create Exam');
+        return $user->can('create_exam');
     }
 
     /**
      * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Exam  $exam
+     * @return bool
      */
     public function update(User $user, Exam $exam): bool
     {
-        return $user->can('update Exam');
+        return $user->can('update_exam');
     }
 
     /**
      * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Exam  $exam
+     * @return bool
      */
     public function delete(User $user, Exam $exam): bool
     {
-        return $user->can('delete Exam');
+        return $user->can('delete_exam');
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can bulk delete.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
      */
-    public function restore(User $user, Exam $exam): bool
+    public function deleteAny(User $user): bool
     {
-        return $user->can('restore Exam');
+        return $user->can('delete_any_exam');
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Exam  $exam
+     * @return bool
      */
     public function forceDelete(User $user, Exam $exam): bool
     {
-        return $user->can('force-delete Exam');
+        return $user->can('force_delete_exam');
     }
+
+    /**
+     * Determine whether the user can permanently bulk delete.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force_delete_any_exam');
+    }
+
+    /**
+     * Determine whether the user can restore.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Exam  $exam
+     * @return bool
+     */
+    public function restore(User $user, Exam $exam): bool
+    {
+        return $user->can('restore_exam');
+    }
+
+    /**
+     * Determine whether the user can bulk restore.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function restoreAny(User $user): bool
+    {
+        return $user->can('restore_any_exam');
+    }
+
+    /**
+     * Determine whether the user can replicate.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Exam  $exam
+     * @return bool
+     */
+    public function replicate(User $user, Exam $exam): bool
+    {
+        return $user->can('replicate_exam');
+    }
+
+    /**
+     * Determine whether the user can reorder.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function reorder(User $user): bool
+    {
+        return $user->can('reorder_exam');
+    }
+
 }
