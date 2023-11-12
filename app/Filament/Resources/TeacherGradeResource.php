@@ -56,6 +56,14 @@ class TeacherGradeResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                ->before(function (TeacherGrade $post) {
+                    $teacher = Teacher::find($post->teacher_id)
+                    ->userable
+                    ->user;
+
+                    $teacher->removeRole('teacher_grade');
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

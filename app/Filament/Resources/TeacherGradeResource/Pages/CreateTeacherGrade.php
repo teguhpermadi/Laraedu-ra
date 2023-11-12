@@ -3,20 +3,26 @@
 namespace App\Filament\Resources\TeacherGradeResource\Pages;
 
 use App\Filament\Resources\TeacherGradeResource;
+use App\Models\Teacher;
 use App\Models\Userable;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Database\Eloquent\Model;
 
 class CreateTeacherGrade extends CreateRecord
 {
     protected static string $resource = TeacherGradeResource::class;
 
-    protected function afterCreate(): void
+    protected function handleRecordCreation(array $data): Model
     {
-        // Runs after the form fields are saved to the database.
-        $teacher_id = $this->getRecord()->teacher_id;
-        $userable = Userable::with('user')->where('user_id', $teacher_id)->first();
+        $teacher = Teacher::find($data['teacher_id'])->userable->user;
+        $teacher->assignRole('teacher_grade');
 
-        $userable->user->assignRole('teacher grade');
+        return static::getModel()::create($data);
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
     }
 }
