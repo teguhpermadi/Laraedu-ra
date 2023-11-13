@@ -5,12 +5,14 @@ use App\Models\AcademicYear;
 use App\Models\Attendance;
 use App\Models\Exam;
 use App\Models\Student;
+use App\Models\StudentExtracurricular;
 use App\Models\StudentGrade;
 use App\Models\TeacherGrade;
 use Illuminate\Http\Request;
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\Element\Table;
 use PhpOffice\PhpWord\SimpleType\TblWidth;
+use Illuminate\Support\Str;
 
 class Report extends Controller
 {
@@ -20,7 +22,6 @@ class Report extends Controller
 
         $academic = AcademicYear::active()->first();
 
-        
         $student = Student::find($id);
         
         $grade = StudentGrade::with('grade')->where('student_id', $id)->first();
@@ -28,18 +29,17 @@ class Report extends Controller
 
         $attendance = Attendance::where('student_id', $id)->first();
 
+        $extracurricular = StudentExtracurricular::where('student_id', $id)->first();
+
         $scores = Student::with([
             'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
-            $q->where('student_id',$id)->result();
+                $q->where('student_id',$id)->result();
             }])->find($id);
         
         $subjects = $scores->studentGrade->teacherSubject;
         
         $result = [];
         foreach ($subjects as $subject) {
-
-            $exam = Exam::where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
-
             // buat dulu deskripsinya
             $lulusDescriptions = [];
             $tidakLulusDescriptions = [];
@@ -58,23 +58,43 @@ class Report extends Controller
             $tidakLulusDescription = implode(", ", $tidakLulusDescriptions);
             
             if($lulusDescription && $tidakLulusDescription){
-                $combinedResultDescription = $lulusDescription . ' tetapi, ' . $tidakLulusDescription;
+                $combinedResultDescription = 'Alhamdulillah ananda '. Str::of($student->nick_name)->title()  . ' ' .$lulusDescription . ' tetapi, ' . $tidakLulusDescription;
             } elseif($lulusDescription) {
                 $combinedResultDescription = $lulusDescription;
             } else {
                 $combinedResultDescription = $tidakLulusDescription;
             }
+
+            $middle = Exam::where('category', 'middle')->where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
+            $last = Exam::where('category', 'last')->where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
+
+            // Pengecekan jika $middle atau $last null
+            $middleScore = $middle ? $middle->score : null;
+            $lastScore = $last ? $last->score : null;
+
+            $avg_score_student_competencies = $subject->studentCompetency->avg('score');
+
+            $scores = collect([$avg_score_student_competencies, $middleScore, $lastScore]);
+            $average_scores = $scores->avg(); 
+            // dd($average_scores);
     
-            $result[$subject->subject->code] = [
+            $result[$subject->subject->order] = [
                 // 'teacher_subject_id' => $subject->id,
                 'subject' => $subject->subject->name,
                 'code' => $subject->subject->code,
-                'score' => round($subject->studentCompetency->avg('score'),1),
-                'exam' => $exam,
-                'combined_result_description' => $combinedResultDescription,
+                'score_competencies' => round($subject->studentCompetency->avg('score'),1),
+                'middle_score' => $middleScore,
+                'last_score' => $lastScore,
+                'average_score' => round($average_scores,1),
+                'passed_description' => $lulusDescription,
+                'not_pass_description' => $tidakLulusDescription,
+                'combined_description' => $combinedResultDescription,
             ];
 
         }
+
+        $resultCollection = collect($result);
+        $totalAverageScore = $resultCollection->sum('average_score');
 
         $data = [
             'academic' => $academic->toArray(),
@@ -83,11 +103,13 @@ class Report extends Controller
             'grade' => $grade->grade->toArray(),
             'attendance' => $attendance,
             'result' => $result,
+            'total_average_score' => $totalAverageScore,
+            'extracurricular' => $extracurricular->toArray(),
         ];
 
-        return $data;
+        // return $data;
 
-        // $data = $this->word($data);
+        $data = $this->word($data);
     }
 
     public function word($data)
@@ -99,6 +121,16 @@ class Report extends Controller
         $templateProcessor->setValue('nisn',$data['student']['nisn']);
         $templateProcessor->setValue('grade_name',$data['grade']['name']);
         $templateProcessor->setValue('grade_level',$data['grade']['grade']);
+        $templateProcessor->setValue('sick',$data['attendance']['sick']);
+        $templateProcessor->setValue('permission',$data['attendance']['permission']);
+        $templateProcessor->setValue('absent',$data['attendance']['absent']);
+        $templateProcessor->setValue('total_attendance',$data['attendance']['total_attendance']);
+        $templateProcessor->setValue('note',$data['attendance']['note']);
+        $templateProcessor->setValue('achievement',$data['attendance']['achievement']);
+        $templateProcessor->setValue('teacher_name',$data['teacher']['name']);
+        $templateProcessor->setValue('extracurricular_name',$data['extracurricular']['name']);
+        $templateProcessor->setValue('extracurricular_predicate',$data['extracurricular']['score']);
+        $templateProcessor->setValue('extracurricular_description',$data['extracurricular']['description']);
 
         $table = new Table([
             'borderSize' => 6, 
@@ -118,15 +150,21 @@ class Report extends Controller
             $table->addRow();
             $table->addCell()->addText($nomorUrut);
             $table->addCell()->addText($item["subject"]);
-            $table->addCell()->addText($item["score"]);
-            $table->addCell()->addText($item["combined_result_description"]);
+            $table->addCell()->addText($item["average_score"]);
+            $table->addCell()->addText($item["combined_description"]);
             $nomorUrut++;
         }
+
+        // tambahkan jumlah rata-rata score
+        $table->addRow();
+        $table->addCell()->addText($nomorUrut);
+        $table->addCell()->addText('Jumlah Nilai');
+        $table->addCell()->addText($data['total_average_score']);
+        $table->addCell()->addText('membaca total rata-rata skor');
 
         $templateProcessor->setComplexBlock('table', $table);
         
         $pathToSave = 'raport '.$data['student']['name'].'.docx';
-        
         $templateProcessor->saveAs($pathToSave);
     }
 }

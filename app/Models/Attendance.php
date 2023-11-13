@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Scopes\AcademicYearScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class Attendance extends Model
 {
@@ -29,6 +31,9 @@ class Attendance extends Model
     protected static function booted(): void
     {
         static::addGlobalScope(new AcademicYearScope);
+        static::addGlobalScope('totalAttendance', function (Builder $builder) {
+            $builder->select(['*', DB::raw('sick + permission + absent as total_attendance')]);
+        });
     }
 
     public function grade()

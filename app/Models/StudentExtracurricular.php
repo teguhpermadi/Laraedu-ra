@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\AcademicYearScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class StudentExtracurricular extends Model
 {
@@ -21,6 +23,22 @@ class StudentExtracurricular extends Model
         'created_at',
         'updated_at',
     ];
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new AcademicYearScope);
+        static::addGlobalScope('description', function (Builder $builder) {
+            $builder
+            ->join('extracurriculars', 'extracurriculars.id', '=', 'student_extracurriculars.extracurricular_id')
+            ->select(['*', 
+                        DB::raw('CONCAT(CASE WHEN score = "A" THEN "Amat Baik" 
+                                WHEN score = "B" THEN "Baik"
+                                ELSE "Cukup baik" END, 
+                                " dalam ekstrakurikuler ", 
+                                extracurriculars.name) as description'),
+            ]);
+        });
+    }
 
     public function academic()
     {

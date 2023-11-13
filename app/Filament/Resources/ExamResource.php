@@ -12,6 +12,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\BadgeColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,7 +33,7 @@ class ExamResource extends Resource
     {
         return $form
             ->schema([
-                // 
+
             ]);
     }
 
@@ -39,7 +41,9 @@ class ExamResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('student.name'),
+                BadgeColumn::make('category'),
+                TextColumn::make('score'),
             ])
             ->filters([
                 //

@@ -64,7 +64,6 @@ class AdminPanelProvider extends PanelProvider
                 'Settings',
                 'Admin',
                 'Teacher',
-                'Teacher Grade',
             ]);
             // ->plugin(FilamentSpatieRolesPermissionsPlugin::make());
     }

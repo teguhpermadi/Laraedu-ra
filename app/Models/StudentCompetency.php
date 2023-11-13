@@ -41,9 +41,9 @@ class StudentCompetency extends Model
                     ->select('student_competencies.*', 
                             DB::raw('CASE WHEN score >= passing_grade THEN "LULUS" ELSE "TIDAK LULUS" END as result'),
                             DB::raw('competencies.description'),
-                            DB::raw('CONCAT(CASE WHEN score > passing_grade THEN "Sudah menguasai" 
-                                                WHEN score = passing_grade THEN "Cukup menguasai"
-                                                ELSE "Belum menguasai" END, 
+                            DB::raw('CONCAT(CASE WHEN score > passing_grade THEN "sudah menguasai" 
+                                                WHEN score = passing_grade THEN "cukup menguasai"
+                                                ELSE "belum menguasai" END, 
                                     " dalam aspek ", 
                                     competencies.description) as result_description'),
                         );
