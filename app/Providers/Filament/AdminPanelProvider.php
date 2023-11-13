@@ -58,6 +58,13 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
+            ])
+            ->navigationGroups([
+                'Database',
+                'Settings',
+                'Admin',
+                'Teacher',
+                'Teacher Grade',
             ]);
             // ->plugin(FilamentSpatieRolesPermissionsPlugin::make());
     }

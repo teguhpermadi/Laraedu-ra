@@ -21,6 +21,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AcademicYearResource extends Resource
 {
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $navigationGroup = 'Database';
+
     protected static ?string $model = AcademicYear::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

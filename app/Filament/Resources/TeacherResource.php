@@ -27,6 +27,10 @@ use Illuminate\Support\Str;
 
 class TeacherResource extends Resource
 {
+    protected static ?int $navigationSort = 3;
+
+    protected static ?string $navigationGroup = 'Database';
+
     protected static ?string $model = Teacher::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

@@ -19,6 +19,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class GradeResource extends Resource
 {
+    protected static ?int $navigationSort = 4;
+
+    protected static ?string $navigationGroup = 'Database';
+
     protected static ?string $model = Grade::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

@@ -34,11 +34,11 @@ class Report extends Controller
             }])->find($id);
         
         $subjects = $scores->studentGrade->teacherSubject;
-    
+        
+        $result = [];
         foreach ($subjects as $subject) {
 
-            $exam = Exam::find($subject->id);
-            dd($subject->toArray());
+            $exam = Exam::where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
 
             // buat dulu deskripsinya
             $lulusDescriptions = [];
@@ -70,6 +70,7 @@ class Report extends Controller
                 'subject' => $subject->subject->name,
                 'code' => $subject->subject->code,
                 'score' => round($subject->studentCompetency->avg('score'),1),
+                'exam' => $exam,
                 'combined_result_description' => $combinedResultDescription,
             ];
 
