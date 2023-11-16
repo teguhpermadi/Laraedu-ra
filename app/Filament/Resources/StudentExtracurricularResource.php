@@ -59,7 +59,8 @@ class StudentExtracurricularResource extends Resource
                     'A' => 'Amat baik',
                     'B' => 'Baik',
                     'C' => 'Cukup'
-                ])->visible(auth()->user()->hasPermissionTo('assesment_student::extracurricular'))
+                ])
+                ->visible(auth()->user()->hasPermissionTo('assesment_student::extracurricular')),
             ])
             ->filters([
                 //

@@ -27,17 +27,6 @@ class StudentExtracurricular extends Model
     protected static function booted(): void
     {
         static::addGlobalScope(new AcademicYearScope);
-        static::addGlobalScope('description', function (Builder $builder) {
-            $builder
-            ->join('extracurriculars', 'extracurriculars.id', '=', 'student_extracurriculars.extracurricular_id')
-            ->select(['*', 
-                        DB::raw('CONCAT(CASE WHEN score = "A" THEN "Amat Baik" 
-                                WHEN score = "B" THEN "Baik"
-                                ELSE "Cukup baik" END, 
-                                " dalam ekstrakurikuler ", 
-                                extracurriculars.name) as description'),
-            ]);
-        });
     }
 
     public function academic()
@@ -61,5 +50,19 @@ class StudentExtracurricular extends Model
         $extra = Extracurricular::where('teacher_id', $teacher_id)->first();
 
         $query->where('extracurricular_id', $extra->id);
+    }
+
+    public function scopeDescription(Builder $builder)
+    {
+        $builder
+        ->join('extracurriculars', 'extracurriculars.id', '=', 'student_extracurriculars.extracurricular_id')
+        ->select(['student_extracurriculars.*','extracurriculars.name', 
+                    DB::raw('CONCAT(CASE WHEN score = "A" THEN "Amat Baik" 
+                            WHEN score = "B" THEN "Baik"
+                            ELSE "Cukup baik" END, 
+                            " dalam ekstrakurikuler ", 
+                            extracurriculars.name) as 
+                            description'),
+        ]);
     }
 }

@@ -29,7 +29,7 @@ class Report extends Controller
 
         $attendance = Attendance::where('student_id', $id)->first();
 
-        $extracurricular = StudentExtracurricular::where('student_id', $id)->first();
+        $extracurriculars = StudentExtracurricular::where('student_id', $id)->description()->get();
 
         $scores = Student::with([
             'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
@@ -78,8 +78,10 @@ class Report extends Controller
             $average_scores = $scores->avg(); 
             // dd($average_scores);
     
-            $result[$subject->subject->order] = [
+            $result[] = [
+            // $result[$subject->subject->order] = [
                 // 'teacher_subject_id' => $subject->id,
+                'order' => $subject->subject->order,
                 'subject' => $subject->subject->name,
                 'code' => $subject->subject->code,
                 'score_competencies' => round($subject->studentCompetency->avg('score'),1),
@@ -93,8 +95,24 @@ class Report extends Controller
 
         }
 
+        $resultOrder = collect($result)->sortBy('order')->values()->all();
+
         $resultCollection = collect($result);
         $totalAverageScore = $resultCollection->sum('average_score');
+        $counting_total = readNumber($totalAverageScore);
+
+        $extra = [];
+        $numExtra = 1;
+        foreach ($extracurriculars as $extracurricular) {
+            $extra [] = [
+                'orderEx' => $numExtra,
+                'name' => $extracurricular->name,
+                'score' => $extracurricular->score,
+                'description' => $extracurricular->description,
+            ];
+
+            $numExtra++;
+        }
 
         $data = [
             'academic' => $academic->toArray(),
@@ -102,14 +120,15 @@ class Report extends Controller
             'student' => $student->toArray(),
             'grade' => $grade->grade->toArray(),
             'attendance' => $attendance,
-            'result' => $result,
+            'result' => $resultOrder,
             'total_average_score' => $totalAverageScore,
-            'extracurricular' => $extracurricular->toArray(),
+            'counting_total' => $counting_total,
+            'extracurriculars' => $extra,
         ];
 
-        // return $data;
-
         $data = $this->word($data);
+        return $data;
+
     }
 
     public function word($data)
@@ -128,10 +147,20 @@ class Report extends Controller
         $templateProcessor->setValue('note',$data['attendance']['note']);
         $templateProcessor->setValue('achievement',$data['attendance']['achievement']);
         $templateProcessor->setValue('teacher_name',$data['teacher']['name']);
-        $templateProcessor->setValue('extracurricular_name',$data['extracurricular']['name']);
-        $templateProcessor->setValue('extracurricular_predicate',$data['extracurricular']['score']);
-        $templateProcessor->setValue('extracurricular_description',$data['extracurricular']['description']);
+        $templateProcessor->setValue('total_average_score',$data['total_average_score']);
+        $templateProcessor->setValue('counting_total',$data['counting_total']);
 
+        // tabel nilai mata pelajaran
+        $templateProcessor->cloneRowAndSetValues('order', $data['result']);
+
+        // tabel ekstra
+        $templateProcessor->cloneRowAndSetValues('orderEx', $data['extracurriculars']);
+
+
+        /*
+        // menambahkan tabel
+
+        
         $table = new Table([
             'borderSize' => 6, 
             'borderColor' => 'black', 
@@ -160,9 +189,35 @@ class Report extends Controller
         $table->addCell()->addText($nomorUrut);
         $table->addCell()->addText('Jumlah Nilai');
         $table->addCell()->addText($data['total_average_score']);
-        $table->addCell()->addText('membaca total rata-rata skor');
+        $table->addCell()->addText($data['counting_total']);
 
         $templateProcessor->setComplexBlock('table', $table);
+        */
+
+        $tableExtra = new Table([
+            'borderSize' => 6, 
+            'borderColor' => 'black', 
+            'unit' => TblWidth::AUTO,
+        ]);
+
+        $tableExtra->addRow();
+        $tableExtra->addCell()->addText('No');
+        $tableExtra->addCell()->addText('Ekstrakurikuler');
+        $tableExtra->addCell()->addText('Predikat');
+        $tableExtra->addCell()->addText('Deskripsi');
+
+        // iterasi extracurricular
+        $nomorExtra = 1;
+        foreach ($data['extracurriculars'] as $key => $value) {
+            $tableExtra->addRow();
+            $tableExtra->addCell()->addText($nomorExtra);
+            $tableExtra->addCell()->addText($value["name"]);
+            $tableExtra->addCell()->addText($value["score"]);
+            $tableExtra->addCell()->addText($value["description"]);
+            $nomorExtra++;
+        }
+
+        $templateProcessor->setComplexBlock('tableExtra', $tableExtra);
         
         $pathToSave = 'raport '.$data['student']['name'].'.docx';
         $templateProcessor->saveAs($pathToSave);

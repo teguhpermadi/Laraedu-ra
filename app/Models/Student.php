@@ -157,4 +157,9 @@ class Student extends Model
     {
         return $this->hasOne(Attendance::class, 'student_id', 'id');
     }
+
+    public function extracurricular()
+    {
+        return $this->hasMany(StudentExtracurricular::class);
+    }
 }

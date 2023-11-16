@@ -16,4 +16,6 @@ class ListStudentExtracurriculars extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    
 }
