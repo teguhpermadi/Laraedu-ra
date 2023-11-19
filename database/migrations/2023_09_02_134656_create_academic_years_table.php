@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('year');
             $table->enum('semester', ['ganjil', 'genap']);
             $table->boolean('active');
+            $table->foreignId('teacher_id')->nullable()->constrained('teachers')->cascadeOnUpdate()->nullOnDelete();
+            $table->date('date_report')->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
 

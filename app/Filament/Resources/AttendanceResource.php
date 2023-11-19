@@ -74,7 +74,10 @@ class AttendanceResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->modifyQueryUsing(function(Builder $query){
+                $query->myGrade();
+            });
     }
     
     public static function getRelations(): array

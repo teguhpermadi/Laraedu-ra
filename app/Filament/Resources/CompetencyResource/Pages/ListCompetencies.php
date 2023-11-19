@@ -137,7 +137,12 @@ class ListCompetencies extends ListRecords
                     ->modifyQueryUsing(function(Builder $query) use ($subject){
                         $competencyId = $subject->competencies->pluck('id');
                         $query->whereIn('id',$competencyId);
-                    });
+                    })
+                    ->badge(function() use ($subject){
+                        $competencyId = $subject->competencies->pluck('id');
+                        return Competency::whereIn('id',$competencyId)->count();
+                    })
+                    ->badgeColor('success');
             }
         } else {
             $tabs = [

@@ -25,7 +25,7 @@ class TeacherGradeSheetImport implements ToModel, WithHeadingRow, WithUpserts, W
         $teacher_id = $row['teacher_id'];
         $teacher = Teacher::find($teacher_id);
         
-        $user = $teacher->userable->user->assignRole('teacher grade');
+        $user = $teacher->userable->user->assignRole('teacher_grade');
         
         return new TeacherGrade([
             'academic_year_id' => $academic,

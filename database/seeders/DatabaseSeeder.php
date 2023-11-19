@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             ShieldSeeder::class,
             // RoleSeeder::class,
             UserSeeder::class,
+            SchoolSeeder::class,
             // TeacherSeeder::class,
             // StudentSeeder::class,
             // AcademicYearSeeder::class,

@@ -144,6 +144,7 @@ Route::get('import', function(){
 
 Route::controller(ExportExcel::class)->group(function(){
     Route::get('export/student-grade', 'studentGrade')->name('export.studentGrade');
+    Route::get('export/student-extracurricular', 'studentExtracurricular')->name('export.studentExtracurricular');
     Route::get('export/teacher-subject', 'teacherSubject')->name('export.teacherSubject');
     Route::get('export/teacher-grade', 'teacherGrade')->name('export.teacherGrade');
     Route::get('export/student-competency/{teacher_subject_id}', 'studentCompetency')->name('export.studentCompetency');

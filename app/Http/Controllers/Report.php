@@ -221,5 +221,7 @@ class Report extends Controller
         
         $pathToSave = 'raport '.$data['student']['name'].'.docx';
         $templateProcessor->saveAs($pathToSave);
+        return response()->download($pathToSave); // <<< HERE
+
     }
 }

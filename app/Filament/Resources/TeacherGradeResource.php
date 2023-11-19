@@ -29,6 +29,11 @@ class TeacherGradeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return TeacherGrade::count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form

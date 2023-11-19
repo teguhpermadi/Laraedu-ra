@@ -10,8 +10,10 @@ use App\Models\Competency;
 use App\Models\StudentCompetency;
 use App\Models\StudentGrade;
 use App\Models\Teacher;
+use App\Models\TeacherGrade;
 use App\Observers\CompetencyObserver;
 use App\Observers\StudentGradeObserver;
+use App\Observers\TeacherGradeObserver;
 use App\Observers\TeacherObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -39,6 +41,7 @@ class EventServiceProvider extends ServiceProvider
         Teacher::observe(TeacherObserver::class);
         Competency::observe(CompetencyObserver::class);
         StudentGrade::observe(StudentGradeObserver::class);
+        TeacherGrade::observe(TeacherGradeObserver::class);
     }
 
     /**

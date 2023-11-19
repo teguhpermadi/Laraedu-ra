@@ -16,6 +16,8 @@ class AcademicYear extends Model
         'year',
         'semester',
         'active',
+        'teacher_id',
+        'date_report',
     ];
 
     protected $hidden = [
@@ -40,5 +42,10 @@ class AcademicYear extends Model
         self::where('id', $yearId)->update(['active' => true]);
 
         return self::where('active', true)->first();
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
     }
 }

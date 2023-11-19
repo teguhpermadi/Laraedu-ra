@@ -18,6 +18,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Filament\Tables\Actions\Action;
 
 class SchoolResource extends Resource
 {
@@ -69,7 +70,14 @@ class SchoolResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->emptyStateActions([
+                Action::make('create')
+                    ->label('Create school')
+                    ->url(route('filament.admin.resources.schools.create'))
+                    ->icon('heroicon-m-plus')
+                    ->button(),
+            ]);;
     }
     
     public static function getRelations(): array
@@ -83,7 +91,7 @@ class SchoolResource extends Resource
     {
         return [
             'index' => Pages\ListSchools::route('/'),
-            // 'create' => Pages\CreateSchool::route('/create'),
+            'create' => Pages\CreateSchool::route('/create'),
             'view' => Pages\ViewSchool::route('/{record}'),
             'edit' => Pages\EditSchool::route('/{record}/edit'),
         ];

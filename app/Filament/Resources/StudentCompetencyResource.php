@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\StudentCompetencyResource\Pages;
 use App\Filament\Resources\StudentCompetencyResource\RelationManagers;
 use App\Models\StudentCompetency;
+use Closure;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -52,7 +53,9 @@ class StudentCompetencyResource extends Resource
                     }),
             ])
             ->filters([
-                
+                // SelectFilter::make('competency')
+                //     ->attribute('competency_id')
+                //     ->relationship('competency', 'description')
             ])
             ->actions([
                 // Tables\Actions\ViewAction::make(),
@@ -71,7 +74,8 @@ class StudentCompetencyResource extends Resource
             })
             ->emptyStateHeading('You dont have subject')
             ->emptyStateDescription('Please contact your admin')
-            ->emptyStateActions([]);
+            ->emptyStateActions([])
+            ->paginated(false);
     }
     
     public static function getRelations(): array

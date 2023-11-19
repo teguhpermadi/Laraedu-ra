@@ -11,7 +11,7 @@ class TeacherGradeObserver
      */
     public function created(TeacherGrade $teacherGrade): void
     {
-        $teacherGrade->teacher->userable->user->assignRole('teacher grade');
+        $teacherGrade->teacher->userable->user->assignRole('teacher_grade');
     }
 
     /**

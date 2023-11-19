@@ -33,9 +33,9 @@ class ListStudentCompetencies extends ListRecords
                             TeacherSubject::mySubject()->with('grade')->get()->map(function ($item) {
                                 return [
                                     'id' => $item->id,
-                                    'name' => $item->subject->name . ' - ' . $item->grade->name,
+                                    'code' => $item->subject->code . ' - ' . $item->grade->name,
                                 ];
-                            })->pluck('name', 'id')
+                            })->pluck('code', 'id')
                         )
                         ->required()
                 ])

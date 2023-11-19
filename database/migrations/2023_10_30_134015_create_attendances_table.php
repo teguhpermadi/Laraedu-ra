@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Attendance;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -26,7 +27,7 @@ return new class extends Migration
             $table->string('achievement')->nullable();
             $table->timestamps();
 
-            $table->unique(['academic_year_id', 'grade_id', 'student_id']);
+            $table->unique(['academic_year_id', 'grade_id', 'student_id'], 'attendance_unique');
         });
     }
 

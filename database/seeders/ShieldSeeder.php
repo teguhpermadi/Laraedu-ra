@@ -174,6 +174,7 @@ class ShieldSeeder extends Seeder
                 "force_delete_any_user",
                 "view_any_school",
                 "view_school",
+                "create_school",
                 "update_school"
               ]
             },
@@ -244,7 +245,12 @@ class ShieldSeeder extends Seeder
             }
           ]
         ';
-        $directPermissions = '[]';
+        $directPermissions = '[
+            {
+                "name": "assesment_student::extracurricular",
+                "guard_name": "web"
+            }
+        ]';
 
         static::makeRolesWithPermissions($rolesWithPermissions);
         static::makeDirectPermissions($directPermissions);

@@ -50,4 +50,11 @@ class Attendance extends Model
     {
         return $this->belongsTo(AcademicYear::class);
     }
+
+    public function scopeMyGrade(Builder $query)
+    {
+        $grade = TeacherGrade::myGrade()->first();
+        $students = $grade->grade->studentGrade->pluck('student_id');
+        $query->whereIn('student_id', $students);
+    }
 }

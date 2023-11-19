@@ -4,12 +4,16 @@ namespace App\Filament\Resources\StudentGradeResource\Pages;
 
 use App\Filament\Resources\StudentGradeResource;
 use App\Imports\StudentGradeImport;
+use App\Models\Grade;
+use App\Models\StudentGrade;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Pages\ListRecords;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Maatwebsite\Excel\Facades\Excel;
+use Filament\Resources\Components\Tab;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListStudentGrades extends ListRecords
 {
@@ -40,5 +44,22 @@ class ListStudentGrades extends ListRecords
                     ->url(route('export.studentGrade')),
             ])
         ];
+    }
+
+
+    public function getTabs(): array
+    {
+        $grades = Grade::all();
+        $data = [];
+        foreach ($grades as $grade) {
+            $data[$grade->id] = Tab::make($grade->name)
+                                    ->modifyQueryUsing(function (Builder $query) use ($grade){
+                                        $query->where('grade_id', $grade->id);
+                                    })
+                                    ->badge(StudentGrade::where('grade_id', $grade->id)->count())
+                                    ->badgeColor('success');
+        }
+
+        return $data;
     }
 }

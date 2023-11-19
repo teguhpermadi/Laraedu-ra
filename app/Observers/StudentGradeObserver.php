@@ -13,7 +13,7 @@ class StudentGradeObserver
     public function created(StudentGrade $studentGrade): void
     {
         // buat attendance
-        Attendance::insert([
+        Attendance::updateOrCreate([
             'academic_year_id' => $studentGrade['academic_year_id'],
             'grade_id' => $studentGrade['grade_id'],
             'student_id' => $studentGrade['student_id'],

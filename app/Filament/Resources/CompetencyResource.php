@@ -84,6 +84,7 @@ class CompetencyResource extends Resource
                 // TextColumn::make('teacherSubject.subject.code'),
                 // TextColumn::make('teacherSubject.grade.grade'),
                 // TextColumn::make('teacherSubject.grade.name'),
+                TextColumn::make('code'),
                 TextColumn::make('description')->wrap(),
                 TextColumn::make('passing_grade'),
             ])
