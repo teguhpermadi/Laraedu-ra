@@ -11,9 +11,13 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Columns\Summarizers\Average;
+use Filament\Tables\Columns\Summarizers\Range;
+use Filament\Tables\Columns\Summarizers\Sum;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -51,6 +55,10 @@ class StudentCompetencyResource extends Resource
                         'TIDAK LULUS' => 'warning',
                         'LULUS' => 'success',
                     }),
+                TextColumn::make('score')
+                    ->summarize(Average::make())
+                    ->summarize(Sum::make())
+                    ->summarize(Range::make())
             ])
             ->filters([
                 // SelectFilter::make('competency')
@@ -75,7 +83,12 @@ class StudentCompetencyResource extends Resource
             ->emptyStateHeading('You dont have subject')
             ->emptyStateDescription('Please contact your admin')
             ->emptyStateActions([])
-            ->paginated(false);
+            ->paginated(false)
+            ->groups([
+                Group::make('student.name')
+                    ->label('Student name'),
+            ])
+            ->groupsOnly();
     }
     
     public static function getRelations(): array

@@ -73,9 +73,30 @@ class Report extends Controller
             $lastScore = $last ? $last->score : null;
 
             $avg_score_student_competencies = $subject->studentCompetency->avg('score');
+            $dataScores = $subject->studentCompetency;
 
-            $scores = collect([$avg_score_student_competencies, $middleScore, $lastScore]);
-            $average_scores = $scores->avg(); 
+            /* 
+            HITUNG NILAI RATA-RATA KOMPETENSI, TENGAH SEMESTER DAN AKHIR SEMESTER
+            */
+
+            if($avg_score_student_competencies && $middleScore && $lastScore){
+                // jika ada nilai kompetensi, tengah semester, akhir semester
+                $scores = collect([$avg_score_student_competencies, $middleScore, $lastScore]);
+                $average_scores = $scores->avg(); 
+            } else if($avg_score_student_competencies && $middleScore)  {
+                // jika ada nilai kompetensi dan tengah semester
+                $scores = collect([$avg_score_student_competencies, $middleScore]);
+                $average_scores = $scores->avg(); 
+            } else if($avg_score_student_competencies && $lastScore) {
+                // jika ada nilai kompetensi dan akhir semester
+                $scores = collect([$avg_score_student_competencies, $lastScore]);
+                $average_scores = $scores->avg(); 
+            } else {
+                // jika ada nilai kompetensi
+                $scores = collect([$avg_score_student_competencies]);
+                $average_scores = $scores->avg(); 
+            }
+
             // dd($average_scores);
     
             $result[] = [
@@ -84,13 +105,14 @@ class Report extends Controller
                 'order' => $subject->subject->order,
                 'subject' => $subject->subject->name,
                 'code' => $subject->subject->code,
-                'score_competencies' => round($subject->studentCompetency->avg('score'),1),
+                'score_competencies' => $avg_score_student_competencies,
                 'middle_score' => $middleScore,
                 'last_score' => $lastScore,
                 'average_score' => round($average_scores,1),
                 'passed_description' => $lulusDescription,
                 'not_pass_description' => $tidakLulusDescription,
                 'combined_description' => $combinedResultDescription,
+                'data_score' => $dataScores,
             ];
 
         }
@@ -126,7 +148,7 @@ class Report extends Controller
             'extracurriculars' => $extra,
         ];
 
-        $data = $this->word($data);
+        // $data = $this->word($data);
         return $data;
 
     }

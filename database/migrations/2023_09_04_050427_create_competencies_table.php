@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('description');
             $table->string('passing_grade')->default(0);
             $table->timestamps();
-            $table->softDeletes('deleted_at');
         });
     }
 
