@@ -21,7 +21,7 @@ class Student extends Model
         'gender',
         'active',
         'city_born',
-        'date_born',
+        'birthday',
         'nick_name',
     ];
 
@@ -50,24 +50,24 @@ class Student extends Model
         });
     }
 
-    public function getGenderAttribute($value)
-    {
-        // $this->attributes['gender'] = ($value === 'male') ? 'Laki-laki' : 'Perempuan';
-        switch ($value) {
-            case 'male':
-                return 'Laki-laki';
-                break;
+    // public function getGenderAttribute($value)
+    // {
+    //     // $this->attributes['gender'] = ($value === 'male') ? 'Laki-laki' : 'Perempuan';
+    //     switch ($value) {
+    //         case 'male':
+    //             return 'Laki-laki';
+    //             break;
             
-            default:
-                return 'Perempuan';
-                break;
-        }
-    }
+    //         default:
+    //             return 'Perempuan';
+    //             break;
+    //     }
+    // }
     
-    public function setGenderAttribute($value)
-    {
-        $this->attributes['gender'] = ($value === 'laki-laki') ? 'male' : 'female';
-    }
+    // public function setGenderAttribute($value)
+    // {
+    //     $this->attributes['gender'] = ($value === 'laki-laki') ? 'male' : 'female';
+    // }
 
     // public function grades()
     // {

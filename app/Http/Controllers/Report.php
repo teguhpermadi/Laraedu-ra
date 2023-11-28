@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 use App\Models\AcademicYear;
 use App\Models\Attendance;
 use App\Models\Exam;
+use App\Models\School;
 use App\Models\Student;
 use App\Models\StudentExtracurricular;
 use App\Models\StudentGrade;
 use App\Models\TeacherGrade;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\Element\Table;
 use PhpOffice\PhpWord\SimpleType\TblWidth;
@@ -19,8 +22,9 @@ class Report extends Controller
     public function calculateReport($id)
     {
         $data = [];
+        $school = School::first();
 
-        $academic = AcademicYear::active()->first();
+        $academic = AcademicYear::with('teacher')->active()->first();
 
         $student = Student::find($id);
         
@@ -136,7 +140,12 @@ class Report extends Controller
             $numExtra++;
         }
 
+        App::setLocale('id');
+
         $data = [
+            'school' => $school,
+            'headmaster' => $academic->teacher->name,
+            'date_report' => Carbon::parse($academic->date_report)->isoFormat('D MMMM Y'),
             'academic' => $academic->toArray(),
             'teacher' => $teacherGrade->teacher,
             'student' => $student->toArray(),
@@ -148,14 +157,18 @@ class Report extends Controller
             'extracurriculars' => $extra,
         ];
 
-        // $data = $this->word($data);
+        $data = $this->word($data);
         return $data;
 
     }
 
     public function word($data)
     {
-        $templateProcessor = new TemplateProcessor('template.docx');
+        $templateProcessor = new TemplateProcessor( storage_path('/app/public/templates/report.docx'));
+        $templateProcessor->setValue('school_name',$data['school']['name']);
+        $templateProcessor->setValue('school_address',$data['school']['address']);
+        $templateProcessor->setValue('headmaster',$data['headmaster']);
+        $templateProcessor->setValue('date_report',$data['date_report']);
         $templateProcessor->setValue('year',$data['academic']['year']);
         $templateProcessor->setValue('semester',$data['academic']['semester']);
         $templateProcessor->setValue('student_name',$data['student']['name']);
@@ -241,9 +254,9 @@ class Report extends Controller
 
         $templateProcessor->setComplexBlock('tableExtra', $tableExtra);
         
-        $pathToSave = 'raport '.$data['student']['name'].'.docx';
-        $templateProcessor->saveAs($pathToSave);
-        return response()->download($pathToSave); // <<< HERE
-
+        $filename = '\Rapor '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
+        $file_path = storage_path('\app\public\downloads'.$filename);
+        $templateProcessor->saveAs($file_path);
+        return response()->download($file_path); // <<< HERE
     }
 }

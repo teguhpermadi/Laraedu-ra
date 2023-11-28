@@ -11,9 +11,26 @@ class DataStudent extends Model
 
     protected $fillable = [
         'student_id',
-        'birthday',
+        'religion',
+        'previous_school',
         'father_name',
+        'father_education',
+        'father_occupation',
+        'father_phone',
         'mother_name',
+        'mother_education',
+        'mother_occupation',
+        'mother_phone',
+        'guardian_name',
+        'guardian_education',
+        'guardian_occupation',
+        'guardian_phone',
+        'guardian_address',
+        'guardian_village',
+        'parent_address',
+        'parent_village',
+        'date_received',
+        'grade_received',
     ];
 
     protected $hidden = [

@@ -44,6 +44,7 @@ class SchoolResource extends Resource
                 FileUpload::make('logo')
                 ->directory('uploads')
                 ->image()
+                ->openable()
                 ->getUploadedFileNameForStorageUsing(
                     function (TemporaryUploadedFile $file){
                         return 'logo-school.'. $file->getClientOriginalExtension();

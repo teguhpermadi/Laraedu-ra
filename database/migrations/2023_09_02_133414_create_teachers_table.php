@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->enum('gender', ['male', 'female']);
+            $table->string('name')->unique();
+            $table->enum('gender', ['laki-laki', 'perempuan']);
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);

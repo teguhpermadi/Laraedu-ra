@@ -43,6 +43,7 @@ class MyGrade extends Page implements HasTable
             ])
             ->actions([
                 Action::make('result')
+                    ->button()
                     ->url(fn (Student $record): string => route('report', $record))
                     ->openUrlInNewTab(),
             ])

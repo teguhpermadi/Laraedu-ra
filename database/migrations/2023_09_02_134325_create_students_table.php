@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('nick_name');
             $table->string('city_born')->nullable();
-            $table->string('date_born')->nullable();
-            $table->enum('gender', ['male', 'female']);
+            $table->date('birthday')->nullable();
+            $table->enum('gender', ['laki-laki', 'perempuan']);
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);

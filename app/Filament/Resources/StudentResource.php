@@ -4,11 +4,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\StudentResource\Pages;
 use App\Filament\Resources\StudentResource\RelationManagers;
+use App\Filament\Resources\StudentResource\RelationManagers\DataStudentRelationManager;
 use App\Filament\Resources\StudentResource\RelationManagers\GradesRelationManager;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\Userable;
+use DateTime;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -23,6 +26,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Filament\Infolists;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\Split;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 
 class StudentResource extends Resource
 {
@@ -45,8 +53,8 @@ class StudentResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('city_born')->required(),
-                TextInput::make('date_bord')->required(),
-                Select::make('gender')->options(['male'=>'Male', 'female'=>'Female'])->required(),
+                DatePicker::make('birthday')->required(),
+                Select::make('gender')->options(['laki-laki'=>'Laki-laki', 'perempuan'=>'Perempuan'])->required(),
                 Select::make('active')->boolean()->required(),
             ]);
     }
@@ -116,6 +124,7 @@ class StudentResource extends Resource
     public static function getRelations(): array
     {
         return [
+            DataStudentRelationManager::class,
             GradesRelationManager::class,
         ];
     }
@@ -135,6 +144,82 @@ class StudentResource extends Resource
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
+            ]);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Section::make('Identitas')
+                ->columns([
+                    'sm' => 1,
+                    'md' => 2,
+                    'xl' => 4,
+                    '2xl' => 6,
+                ])
+                ->schema([
+                    TextEntry::make('nisn'),
+                    TextEntry::make('nis'),
+                    TextEntry::make('name'),
+                    TextEntry::make('nick_name'),
+                    TextEntry::make('gender'),
+                    TextEntry::make('city_born'),
+                    TextEntry::make('birthday'),
+                    TextEntry::make('dataStudent.religion')->label('Religion'),
+                ]),
+                Section::make('Data')
+                ->columns([
+                    'sm' => 1,
+                    'md' => 2,
+                    'xl' => 4,
+                    '2xl' => 6,
+                ])
+                ->schema([
+                    TextEntry::make('dataStudent.previous_school')->label('Previous School'),
+                    TextEntry::make('dataStudent.parent_address')->label('Parent Address'),
+                    TextEntry::make('dataStudent.date_received')->label('Date Received'),
+                    TextEntry::make('dataStudent.grade_received')->label('Grade Received'),
+                ]),
+                Section::make('Father')
+                ->columns([
+                    'sm' => 1,
+                    'md' => 2,
+                    'xl' => 4,
+                    '2xl' => 6,
+                ])
+                ->schema([
+                    TextEntry::make('dataStudent.father_name')->label('Father Name'),
+                    TextEntry::make('dataStudent.father_education')->label('Father Education'),
+                    TextEntry::make('dataStudent.father_occupation')->label('Father Occupation'),
+                    TextEntry::make('dataStudent.father_phone')->label('Father Phone'),
+                ]),
+                Section::make('Mother')
+                ->columns([
+                    'sm' => 1,
+                    'md' => 2,
+                    'xl' => 4,
+                    '2xl' => 6,
+                ])
+                ->schema([
+                    TextEntry::make('dataStudent.mother_name')->label('mother Name'),
+                    TextEntry::make('dataStudent.mother_education')->label('mother Education'),
+                    TextEntry::make('dataStudent.mother_occupation')->label('mother Occupation'),
+                    TextEntry::make('dataStudent.mother_phone')->label('mother Phone'),
+                ]),
+                Section::make('Guardian')
+                ->columns([
+                    'sm' => 1,
+                    'md' => 2,
+                    'xl' => 4,
+                    '2xl' => 6,
+                ])
+                ->schema([
+                    TextEntry::make('dataStudent.guardian_name')->label('guardian Name'),
+                    TextEntry::make('dataStudent.guardian_education')->label('guardian Education'),
+                    TextEntry::make('dataStudent.guardian_occupation')->label('guardian Occupation'),
+                    TextEntry::make('dataStudent.guardian_phone')->label('guardian Phone'),
+                ]),
             ]);
     }
 }

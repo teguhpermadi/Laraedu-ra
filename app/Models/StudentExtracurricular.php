@@ -59,7 +59,8 @@ class StudentExtracurricular extends Model
         ->select(['student_extracurriculars.*','extracurriculars.name', 
                     DB::raw('CONCAT(CASE WHEN score = "A" THEN "Amat Baik" 
                             WHEN score = "B" THEN "Baik"
-                            ELSE "Cukup baik" END, 
+                            WHEN score = "C" THEN "Cukup baik"
+                            ELSE "Tidak memiliki nilai " END, 
                             " dalam ekstrakurikuler ", 
                             extracurriculars.name) as 
                             description'),

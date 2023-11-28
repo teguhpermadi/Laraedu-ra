@@ -40,6 +40,7 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->searchable(),
+                TextColumn::make('username'),
                 TextColumn::make('email'),
                 TextColumn::make('userable.userable_type'),
             ])

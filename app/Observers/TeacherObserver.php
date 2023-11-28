@@ -16,20 +16,28 @@ class TeacherObserver
      */
     public function created(Teacher $teacher): void
     {
-        // Log::info('Teacher created: ' . $teacher->name);
-        $user = User::create([
-            'name' => $teacher->name,
-            'email' => Str::slug($teacher->name).'@teacher.com',
-            'password' => Hash::make('password'),
-        ]);
+        // if($teacher->password)
+        // {
+        //     $pass = Hash::make($teacher->password);
+        // } else {
+        //     $pass = Hash::make('password');
+        // }
         
-        Userable::create([
-            'user_id' => $user->id,
-            'userable_id' => $teacher->id,
-            'userable_type' => Teacher::class,
-        ]);
+        // $user = User::create([
+        //     'name' => $teacher->name,
+        //     'username' => $teacher->username,
+        //     'email' => Str::slug($teacher->name).'@teacher.com',
+        //     'password' => $pass,
+        // ]);
+        
+        // Userable::create([
+        //     'user_id' => $user->id,
+        //     'userable_id' => $teacher->id,
+        //     'userable_type' => Teacher::class,
+        // ]);
 
-        $user->assignRole('teacher');
+        // dd($teacher->userable);
+        //->assignRole('teacher');
     }
 
     /**
@@ -46,6 +54,7 @@ class TeacherObserver
     public function deleted(Teacher $teacher): void
     {
         // Log::info('Teacher deleted: ' . $teacher->name);
+        Userable::where('userable_id', $teacher->id)->delete();
     }
 
     /**

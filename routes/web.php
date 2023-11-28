@@ -8,13 +8,20 @@ use App\Http\Controllers\StudentCompetencyExcel;
 use App\Imports\AttendanceImport;
 use App\Imports\CompetencyImport;
 use App\Imports\ExcelUtils;
+use App\Imports\ExtracurricularImport;
+use App\Imports\GradeImport;
 use App\Imports\StudentCompetencyImport;
 use App\Imports\StudentCompetencySheetImport;
+use App\Imports\StudentExtracurricularImport;
 use App\Imports\StudentGradeImport;
 use App\Imports\StudentImport;
+use App\Imports\SubjectImport;
+use App\Imports\TeacherExtracurricularImport;
 use App\Imports\TeacherGradeImport;
 use App\Imports\TeacherGradeSheetImport;
 use App\Imports\TeacherImport;
+use App\Imports\TeacherSubjectImport;
+use App\Models\AcademicYear;
 use App\Models\Student;
 use App\Models\StudentCompetency;
 use App\Models\Teacher;
@@ -138,12 +145,37 @@ Route::controller(StudentCompetencyExcel::class)->group(function(){
 });
 
 Route::get('import', function(){
-    $excel = Excel::import(new AttendanceImport, storage_path('/app/public/uploads/lcrOTzC0hWR4CKkfWWPBJlOp2eiSH3-metaYXR0ZW5kYW5jZS1BLTIueGxzeA==-.xlsx'));
-    dd($excel);
+    Excel::import(new TeacherImport, storage_path('/app/public/uploads/guru.xlsx'));
+    Excel::import(new StudentImport, storage_path('/app/public/uploads/siswa.xlsx'));
+    Excel::import(new SubjectImport, storage_path('/app/public/uploads/mapel.xlsx'));
+    Excel::import(new GradeImport, storage_path('/app/public/uploads/kelas.xlsx'));
+    Excel::import(new ExtracurricularImport, storage_path('/app/public/uploads/ekstrakurikuler.xlsx'));
+    
+    // set Academic Year
+    AcademicYear::firstOrCreate([
+        'year' => '2023/2024',
+    ],
+    [
+        'year' => '2023/2024',
+        'semester' => 'ganjil',
+        'active' => true,
+        'teacher_id' => 9,
+        'date_report' => '2023-12-23',
+    ]);
+    
+    Excel::import(new StudentGradeImport, storage_path('/app/public/uploads/studentGrade.xlsx'));
+    Excel::import(new TeacherSubjectImport, storage_path('/app/public/uploads/teacherSubject.xlsx'));
+    Excel::import(new TeacherGradeImport, storage_path('/app/public/uploads/teacherGrade.xlsx'));
+    Excel::import(new TeacherGradeImport, storage_path('/app/public/uploads/teacherGrade.xlsx'));
+    Excel::import(new TeacherExtracurricularImport, storage_path('/app/public/uploads/teacherExtracurricular.xlsx'));
+    Excel::import(new StudentExtracurricularImport, storage_path('/app/public/uploads/studentExtracurricular.xlsx'));
+
+    return 'success';
 });
 
 Route::controller(ExportExcel::class)->group(function(){
     Route::get('export/student-grade', 'studentGrade')->name('export.studentGrade');
+    Route::get('export/teacher-extracurricular', 'teacherExtracurricular')->name('export.teacherExtracurricular');
     Route::get('export/student-extracurricular', 'studentExtracurricular')->name('export.studentExtracurricular');
     Route::get('export/teacher-subject', 'teacherSubject')->name('export.teacherSubject');
     Route::get('export/teacher-grade', 'teacherGrade')->name('export.teacherGrade');

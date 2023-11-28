@@ -44,8 +44,8 @@ class TeacherResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
-                Select::make('gender')->options(['male'=>'Male', 'female'=>'Female'])->required(),
+                TextInput::make('name')->required()->unique(),
+                Select::make('gender')->options(['laki-laki'=>'Laki-laki', 'perempuan'=>'Perempuan'])->required(),
                 // Select::make('active')->boolean()->default(true)->required(),
             ]);
     }
@@ -56,6 +56,7 @@ class TeacherResource extends Resource
             ->columns([
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('gender'),
+                TextColumn::make('userable.user.username')->label('Username'),
                 IconColumn::make('active')->boolean(),
             ])
             ->filters([

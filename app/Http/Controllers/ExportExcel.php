@@ -10,6 +10,7 @@ use App\Models\StudentExtracurricular;
 use App\Models\StudentGrade;
 use App\Models\Subject;
 use App\Models\Teacher;
+use App\Models\TeacherExtracurricular;
 use App\Models\TeacherGrade;
 use App\Models\TeacherSubject;
 use Illuminate\Http\Request;
@@ -544,5 +545,63 @@ class ExportExcel extends Controller
         $filename = "studentExtracurricular.xlsx"; // <<< HERE
         $writer->save(base_path($filename));
         return response()->download(base_path('studentExtracurricular.xlsx')); // <<< HERE
+    }
+
+    public function teacherExtracurricular()
+    {
+        $spreadsheet = new Spreadsheet();
+        
+        // Membuat lembar pertama
+        $sheet1 = $spreadsheet->getActiveSheet();
+        $sheet1->setTitle('TeacherExtracurricular');
+        $sheet1->setCellValue('A1', 'extracurricular_id');
+        $sheet1->setCellValue('B1', 'teacher_id');
+        $rowStudentExtra = 2;
+
+        $teacherExtras = TeacherExtracurricular::all();
+        foreach ($teacherExtras as $teacherExtra) {
+            $sheet1->setCellValue('A'.$rowStudentExtra, $teacherExtra->extracurricular_id);
+            $sheet1->setCellValue('B'.$rowStudentExtra, $teacherExtra->teacher_id);
+            $rowStudentExtra++;
+        }   
+
+         // Membuat lembar kedua
+         $spreadsheet->createSheet();
+         $sheet2 = $spreadsheet->getSheet(1); // Indeks dimulai dari 0
+         $sheet2->setTitle('Teacher');
+         $sheet2->setCellValue('A1', 'id');
+         $sheet2->setCellValue('B1', 'name');
+         $sheet2->setCellValue('C1', 'gender');
+ 
+         // Input data Teacher
+         $teachers = Teacher::all();
+         $rowTeacher = 2;
+         foreach ($teachers as $teacher) {
+             $sheet2->setCellValue('A'.$rowTeacher, $teacher->id);
+             $sheet2->setCellValue('B'.$rowTeacher, $teacher->name);
+             $sheet2->setCellValue('C'.$rowTeacher, $teacher->gender);
+             $rowTeacher++;
+         }
+        
+        // Membuat lembar ketiga
+        $spreadsheet->createSheet();
+        $sheet3 = $spreadsheet->getSheet(2);
+        $sheet3->setTitle('Extracurricular');
+        $sheet3->setCellValue('A1', 'extracurricular_id');
+        $sheet3->setCellValue('B1', 'extracurricular');
+        $rowExtra = 2;
+
+        $extras = Extracurricular::all();
+        foreach ($extras as $extra) {
+            $sheet3->setCellValue('A'.$rowExtra, $extra->id);
+            $sheet3->setCellValue('B'.$rowExtra, $extra->name);
+            $rowExtra++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
+        $filename = "teacherExtracurricular.xlsx"; // <<< HERE
+        $writer->save(base_path($filename));
+        return response()->download(base_path('teacherExtracurricular.xlsx')); // <<< HERE
     }
 }

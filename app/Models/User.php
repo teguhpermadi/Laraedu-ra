@@ -27,6 +27,7 @@ class User extends Authenticatable implements FilamentUser
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -42,6 +43,17 @@ class User extends Authenticatable implements FilamentUser
         'created_at',
         'updated_at',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Menggunakan event 'creating' untuk menambahkan kode unik ke username sebelum disimpan
+        static::creating(function ($user) {
+            $user->username = $user->generateUniqueUsername($user->username);
+        });
+    }
+
 
     /**
      * The attributes that should be cast.
@@ -68,6 +80,13 @@ class User extends Authenticatable implements FilamentUser
     {
         $student = Userable::where('userable_type', 'App\Models\Student')->pluck('user_id');
         return $query->whereIn('id', $student);
+    }
 
+    protected function generateUniqueUsername($username)
+    {
+        $newUsername = str_replace(' ', '', $username);
+        $uniqueCode = '_' . str_pad(random_int(0, 99), 2, '0', STR_PAD_LEFT);
+        // Generate a unique code with 2 digits using random_int() and str_pad()
+        return $newUsername . $uniqueCode;
     }
 }

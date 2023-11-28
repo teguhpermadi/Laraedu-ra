@@ -11,6 +11,7 @@ use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Pages\ListRecords\Tab;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Auth;
 
 class ListGrades extends ListRecords
 {
@@ -33,7 +34,6 @@ class ListGrades extends ListRecords
                         ->required()
                 ])
                 ->action(function(array $data){
-                    // dd($data->);
                     Excel::import(new GradeImport, storage_path('/app/public/'.$data['file']) );
                 })
                 ->extraModalFooterActions([
