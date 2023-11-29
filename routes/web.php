@@ -142,7 +142,8 @@ Route::controller(Report::class)->group(function(){
 });
 
 Route::controller(Leger::class)->group(function(){
-    Route::get('leger/{id}', 'index')->name('leger');
+    Route::get('leger/subject/{id}', 'subject')->name('leger.subject');
+    Route::get('leger/attendance', 'attendance')->name('leger.attendance');
 });
 
 Route::controller(StudentCompetencyExcel::class)->group(function(){

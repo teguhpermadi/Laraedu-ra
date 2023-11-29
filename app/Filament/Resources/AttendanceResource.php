@@ -14,6 +14,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Table;
@@ -60,24 +62,27 @@ class AttendanceResource extends Resource
                 TextInputColumn::make('sick')->rules(['numeric']),
                 TextInputColumn::make('permission')->rules(['numeric']),
                 TextInputColumn::make('absent')->rules(['numeric']),
-                // TextInputColumn::make('note'),
-                // TextColumn::make('achievement'),
+                TextInputColumn::make('note'),
+                TextInputColumn::make('achievement'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                // ActionGroup::make([
+                //     Tables\Actions\ViewAction::make(),
+                //     Tables\Actions\EditAction::make(),
+                // ]),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
+            // ->bulkActions([
+            //     Tables\Actions\BulkActionGroup::make([
+            //         Tables\Actions\DeleteBulkAction::make(),
+            //     ]),
+            // ])
             ->modifyQueryUsing(function(Builder $query){
                 $query->myGrade();
-            });
+            })
+            ->paginated(false);
     }
     
     public static function getRelations(): array

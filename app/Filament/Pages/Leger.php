@@ -15,6 +15,8 @@ class Leger extends Page implements HasTable
 {
     use HasPageShield;
     use InteractsWithTable;
+
+    protected static ?string $title = 'Leger Subject';
     
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -34,7 +36,7 @@ class Leger extends Page implements HasTable
             ->actions([
                 Action::make('leger')
                     ->button()
-                    ->url(fn (TeacherSubject $record): string => route('leger', $record))
+                    ->url(fn (TeacherSubject $record): string => route('leger.subject', $record))
                     ->openUrlInNewTab(),
             ])
             ->bulkActions([
