@@ -316,9 +316,10 @@ class ExportExcel extends Controller
         // Membuat file Excel
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
-        $filename = "studentCompetency.xlsx"; // <<< HERE
-        $writer->save(base_path($filename));
-        return response()->download(base_path('studentCompetency.xlsx')); // <<< HERE
+        $filename = "\nilai-".$teacherSubject->subject->name.'-'.$teacherSubject->grade->name.".xlsx"; // <<< HERE
+        $file_path = storage_path('\app\public\downloads'.$filename);
+        $writer->save($file_path);
+        return response()->download($file_path); // <<< HERE
     }
 
     public function studentCompetencySheet($teacher_subject_id)
@@ -401,9 +402,11 @@ class ExportExcel extends Controller
         // Membuat file Excel
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
-        $filename = "studentCompetency-".$subject->code.".xlsx"; // <<< HERE
-        $writer->save(base_path($filename));
-        return response()->download(base_path($filename)); // <<< HERE
+        // $filename = "studentCompetency-".$subject->code.".xlsx"; // <<< HERE
+        $filename = "nilai-".$teacherSubject->subject->name.'-'.$teacherSubject->grade->name.".xlsx"; // <<< HERE
+        $file_path = storage_path('\app\public\downloads\/'.$filename);
+        $writer->save($file_path);
+        return response()->download($file_path); // <<< HERE
     }
 
     public function attendance($grade_id)

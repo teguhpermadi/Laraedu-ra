@@ -88,6 +88,7 @@ class StudentCompetencyResource extends Resource
                 Group::make('student.name')
                     ->label('Student name'),
             ])
+            ->defaultGroup('student.name')
             ->groupsOnly();
     }
     

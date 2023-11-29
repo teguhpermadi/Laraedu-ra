@@ -219,7 +219,8 @@ class ShieldSeeder extends Seeder
                 "force_delete_student::competency",
                 "force_delete_any_student::competency",
                 "view_any_school",
-                "view_school"
+                "view_school",
+                "page_Leger"
               ]
             },
             {

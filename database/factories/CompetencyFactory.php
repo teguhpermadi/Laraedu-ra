@@ -17,7 +17,8 @@ class CompetencyFactory extends Factory
      */
     public function definition(): array
     {
-        $teacher_subject = TeacherSubject::pluck('id');
+        // $teacher_subject = TeacherSubject::pluck('id');
+        $teacher_subject = TeacherSubject::where('teacher_id', 1)->get()->pluck('id');
         $random_id = fake()->randomElement(TeacherSubject::pluck('id'));
         $random = TeacherSubject::find($random_id);
         $sequenceNumber = fake()->unique()->numberBetween(1, 999);

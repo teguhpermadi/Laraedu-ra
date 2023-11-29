@@ -3,6 +3,7 @@
 use App\Events\CalculateReport;
 use App\Exports\CompetencyExport;
 use App\Http\Controllers\ExportExcel;
+use App\Http\Controllers\Leger;
 use App\Http\Controllers\Report;
 use App\Http\Controllers\StudentCompetencyExcel;
 use App\Imports\AttendanceImport;
@@ -138,6 +139,10 @@ Route::get('result_old/{id}', function($id){
 
 Route::controller(Report::class)->group(function(){
     Route::get('report/{id}', 'calculateReport')->name('report');
+});
+
+Route::controller(Leger::class)->group(function(){
+    Route::get('leger/{id}', 'index')->name('leger');
 });
 
 Route::controller(StudentCompetencyExcel::class)->group(function(){
