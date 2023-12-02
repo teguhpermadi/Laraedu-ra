@@ -50,24 +50,25 @@ class Report extends Controller
     
             foreach ($subject->studentCompetency as $competency) {
                 if ($competency['result'] === "LULUS") {
-                    $lulusDescriptions[] = $competency['result_description'];
+                    $lulusDescriptions[] = $competency['description'];
+                    // $lulusDescriptions[] = $competency['result_description'];
                 } else {
-                    $tidakLulusDescriptions[] = $competency['result_description'];
+                    $tidakLulusDescriptions[] = $competency['description'];
+                    // $tidakLulusDescriptions[] = $competency['result_description'];
                 }
             }
     
             // Gabungkan result_description untuk "LULUS" dan "TIDAK LULUS"
-            $lulusDescription = implode(", ", $lulusDescriptions);
+            $lulusDescription = implode("; ", $lulusDescriptions);
+            $tidakLulusDescription = implode("; ", $tidakLulusDescriptions);
             
-            $tidakLulusDescription = implode(", ", $tidakLulusDescriptions);
-            
-            if($lulusDescription && $tidakLulusDescription){
-                $combinedResultDescription = 'Alhamdulillah ananda '. Str::of($student->nick_name)->title()  . ' ' .$lulusDescription . ' tetapi, ' . $tidakLulusDescription;
-            } elseif($lulusDescription) {
-                $combinedResultDescription = $lulusDescription;
-            } else {
-                $combinedResultDescription = $tidakLulusDescription;
-            }
+            // if($lulusDescription && $tidakLulusDescription){
+            //     $combinedResultDescription = 'Alhamdulillah ananda '. Str::of($student->name)->title()  . ' ' .$lulusDescription . ' tetapi, ' . $tidakLulusDescription;
+            // } elseif($lulusDescription) {
+            //     $combinedResultDescription = $lulusDescription;
+            // } else {
+            //     $combinedResultDescription = $tidakLulusDescription;
+            // }
 
             $middle = Exam::where('category', 'middle')->where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
             $last = Exam::where('category', 'last')->where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
@@ -113,9 +114,10 @@ class Report extends Controller
                 'middle_score' => $middleScore,
                 'last_score' => $lastScore,
                 'average_score' => round($average_scores,1),
+                'conjunction' => ' tetapi belum menguasi materi: ',
                 'passed_description' => $lulusDescription,
                 'not_pass_description' => $tidakLulusDescription,
-                'combined_description' => $combinedResultDescription,
+                // 'combined_description' => $combinedResultDescription,
                 'data_score' => $dataScores,
             ];
 
@@ -144,9 +146,9 @@ class Report extends Controller
 
         $data = [
             'school' => $school,
+            'academic' => $academic->toArray(),
             'headmaster' => $academic->teacher->name,
             'date_report' => Carbon::parse($academic->date_report)->isoFormat('D MMMM Y'),
-            'academic' => $academic->toArray(),
             'teacher' => $teacherGrade->teacher,
             'student' => $student->toArray(),
             'grade' => $grade->grade->toArray(),
@@ -157,7 +159,7 @@ class Report extends Controller
             'extracurriculars' => $extra,
         ];
 
-        $data = $this->word($data);
+        // $data = $this->word($data);
         return $data;
 
     }
