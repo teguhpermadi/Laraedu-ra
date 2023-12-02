@@ -212,7 +212,7 @@ class Report extends Controller
         $filename = '\Rapor '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
         $file_path = storage_path('\app\public\downloads'.$filename);
         $templateProcessor->saveAs($file_path);
-        return response()->download($file_path); // <<< HERE
+        return response()->download($file_path)->deleteFileAfterSend(true);; // <<< HERE
     }
 
     public function getData($id)
@@ -272,6 +272,27 @@ class Report extends Controller
         $filename = '\Identitas '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
         $file_path = storage_path('\app\public\downloads'.$filename);
         $templateProcessor->saveAs($file_path);
-        return response()->download($file_path); // <<< HERE
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
+    }
+
+    public function getDataCover($id)
+    {
+        $student = Student::find($id);
+        
+        $data = $this->cover($student);
+        return $data;
+    }
+
+    public function cover($data)
+    {
+        $templateProcessor = new TemplateProcessor( storage_path('/app/public/templates/cover.docx'));
+        $templateProcessor->setValue('nama',$data['name']);
+        $templateProcessor->setValue('nisn',$data['nisn']);
+        $templateProcessor->setValue('nis',$data['nis']);
+
+        $filename = '\Cover '.$data['name'] .'.docx';
+        $file_path = storage_path('\app\public\downloads'.$filename);
+        $templateProcessor->saveAs($file_path);
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
 }

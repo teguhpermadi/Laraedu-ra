@@ -87,7 +87,7 @@ class ExportExcel extends Controller
         $filename = "studentGrade.xlsx"; // <<< HERE
         $file_path = storage_path('\app\public\downloads\/'.$filename);
         $writer->save($file_path);
-        return response()->download($file_path); // <<< HERE
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
 
     public function teacherSubject()
@@ -173,7 +173,7 @@ class ExportExcel extends Controller
         $filename = "teacherSubject.xlsx"; // <<< HERE
         $file_path = storage_path('\app\public\downloads\/'.$filename);
         $writer->save($file_path);
-        return response()->download($file_path); // <<< HERE
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
 
     public function teacherGrade()
@@ -240,7 +240,7 @@ class ExportExcel extends Controller
         $filename = "teacherGrade.xlsx"; // <<< HERE
         $file_path = storage_path('\app\public\downloads\/'.$filename);
         $writer->save($file_path);
-        return response()->download($file_path); // <<< HERE
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
 
     public function studentCompetencySheet($teacher_subject_id)
@@ -327,7 +327,7 @@ class ExportExcel extends Controller
         $filename = "nilai-".$teacherSubject->subject->name.'-'.$teacherSubject->grade->name.".xlsx"; // <<< HERE
         $file_path = storage_path('\app\public\downloads\/'.$filename);
         $writer->save($file_path);
-        return response()->download($file_path); // <<< HERE
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
 
     public function attendance($grade_id)
@@ -407,7 +407,7 @@ class ExportExcel extends Controller
         $filename = "kehadiran-".$grade->name.".xlsx"; // <<< HERE
         $file_path = storage_path('\app\public\downloads\/'.$filename);
         $writer->save($file_path);
-        return response()->download($file_path); // <<< HERE
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
 
     public function studentExtracurricular()
@@ -470,7 +470,7 @@ class ExportExcel extends Controller
         $filename = "studentExtracurricular.xlsx"; // <<< HERE
         $file_path = storage_path('\app\public\downloads\/'.$filename);
         $writer->save($file_path);
-        return response()->download($file_path); // <<< HERE
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
 
     public function teacherExtracurricular()
@@ -529,6 +529,6 @@ class ExportExcel extends Controller
         $filename = "teacherExtracurricular.xlsx"; // <<< HERE
         $file_path = storage_path('\app\public\downloads\/'.$filename);
         $writer->save($file_path);
-        return response()->download($file_path); // <<< HERE
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
 }

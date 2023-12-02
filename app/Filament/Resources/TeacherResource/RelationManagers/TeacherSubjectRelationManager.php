@@ -10,8 +10,11 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TeacherSubjectRelationManager extends RelationManager
@@ -25,9 +28,9 @@ class TeacherSubjectRelationManager extends RelationManager
                 // Forms\Components\TextInput::make('name')
                 //     ->required()
                 //     ->maxLength(255),
-                Select::make('grade_id')->options(Grade::pluck('id', 'name'))->required(),
-                Select::make('subject_id')->options(Subject::pluck('id', 'name'))->required(),
-                TextInput::make('passing_grade')->rules('numeric'),
+                Select::make('grade_id')->options(Grade::pluck('name', 'id'))->required(),
+                Select::make('subject_id')->options(Subject::pluck('name', 'id'))->required(),
+                // TextInput::make('passing_grade')->rules('numeric'),
             ]);
     }
 
@@ -56,6 +59,16 @@ class TeacherSubjectRelationManager extends RelationManager
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    BulkAction::make('Edit mata pelajaran')
+                    ->color('warning')
+                    ->icon('heroicon-m-pencil-square')
+                    ->form([
+                        Select::make('subject_id')->options(Subject::pluck('name', 'id'))->required(),
+                    ])->action(function(Collection $records, $data){
+                        return $records->each->update([
+                            'subject_id' => $data['subject_id'],
+                        ]);
+                    })
                 ]),
             ])
             ->emptyStateActions([

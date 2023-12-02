@@ -84,9 +84,9 @@ class TeacherSubjectResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Action::make('Evaluation')->url(function(TeacherSubject $record){
-                    return route('filament.admin.resources.student-competencies.evaluation', $record);
-                }),
+                // Action::make('Evaluation')->url(function(TeacherSubject $record){
+                //     return route('filament.admin.resources.student-competencies.evaluation', $record);
+                // }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

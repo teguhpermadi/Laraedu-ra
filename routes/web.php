@@ -102,8 +102,9 @@ Route::get('get', function(){
 });
 
 Route::controller(Report::class)->group(function(){
-    Route::get('report/{id}', 'calculateReport')->name('report');
+    Route::get('cover/{id}', 'getDataCover')->name('cover');
     Route::get('cover-student/{id}', 'getData')->name('cover.student');
+    Route::get('report/{id}', 'calculateReport')->name('report');
 });
 
 Route::controller(Leger::class)->group(function(){
