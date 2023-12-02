@@ -15,6 +15,11 @@ return new class extends Migration
             $table->id();
             // $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->foreignId('student_id')->references('id')->on('students')->cascadeOnDelete();
+            $table->string('student_address')->nullable();
+            $table->string('student_province')->nullable();
+            $table->string('student_city')->nullable();
+            $table->string('student_district')->nullable();
+            $table->string('student_village')->nullable();
             $table->string('religion')->nullable();
             $table->string('previous_school')->nullable();
             $table->date('date_received')->nullable();
@@ -32,8 +37,11 @@ return new class extends Migration
             $table->string('guardian_occupation')->nullable();
             $table->string('guardian_phone')->nullable();
             $table->string('guardian_address')->nullable();
-            $table->string('guardian_village')->nullable();
+            // $table->string('guardian_village')->nullable();
             $table->string('parent_address')->nullable();
+            $table->string('parent_province')->nullable();
+            $table->string('parent_city')->nullable();
+            $table->string('parent_district')->nullable();
             $table->string('parent_village')->nullable();
             $table->timestamps();
 

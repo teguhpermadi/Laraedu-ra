@@ -34,6 +34,7 @@ use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Settings;
 use PhpOffice\PhpWord\TemplateProcessor;
+use Spatie\Valuestore\Valuestore;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,91 +55,55 @@ Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));
 })->name('login');
 
-Route::get('tes', function(){
-    // Excel::import(new StudentImport, storage_path('/app/public/uploads/siswa.xlsx'));
-    // return '1';
-    $competencies = Excel::toCollection(new CompetencyImport, storage_path('/app/public/uploads/kompetensi.xlsx'));
-    
-    $data = [];
-    
-    foreach ($competencies[0] as $competency) {
-        $data[] = [
-            'description' => $competency[0],
-            'passing_grade' => $competency[1],
-        ];
-    }
-    array_shift($data);
-    dd($data);
+Route::get('put', function(){
+    $valueStore = Valuestore::make(storage_path('app/settings.json'));
+    $valueStore->put('conjuction_a', 'sudah sangat menguasai dalam materi:');
+    $valueStore->put('conjuction_b', 'sudah menguasai dalam materi:');
+    $valueStore->put('conjuction_c', 'cukup menguasai materi:');
+    $valueStore->put('conjuction_d', 'kurang menguasi materi:');
+
+    // $valueStore->put('predicate', [
+    //     [
+    //         'predicate' => 'A',
+    //         'desc' => 'Amat baik',
+    //         'upper_limit' => '100',
+    //         'lower_limit' => '90',
+    //     ],
+    //     [
+    //         'predicate' => 'B',
+    //         'desc' => 'Baik',
+    //         'upper_limit' => '90',
+    //         'lower_limit' => '80',
+    //     ],
+    //     [
+    //         'predicate' => 'C',
+    //         'desc' => 'Cukup',
+    //         'upper_limit' => '80',
+    //         'lower_limit' => '70',
+    //     ],
+    //     [
+    //         'predicate' => 'D',
+    //         'desc' => 'Sedang',
+    //         'upper_limit' => '70',
+    //         'lower_limit' => '60',
+    //     ],
+    //     [
+    //         'predicate' => 'E',
+    //         'desc' => 'Kurang',
+    //         'upper_limit' => '60',
+    //         'lower_limit' => '0',
+    //     ],
+    // ]);
 });
 
-Route::get('result_old/{id}', function($id){
-    $student = Student::with(
-        'studentGrade.grade',
-        'studentGrade.teacherSubject.subject',
-        )->find($id);
-
-    $scores = Student::with([
-        'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
-        $q->where('student_id',$id)->result();
-        }])->find($id);
-    
-    $subjects = $scores->studentGrade->teacherSubject;
-
-    foreach ($subjects as $subject) {
-        //$resultDescriptions = [];
-        $lulusDescriptions = [];
-        $tidakLulusDescriptions = [];
-
-        foreach ($subject->studentCompetency as $competency) {
-            //$resultDescriptions[] = $competency['result_description'];
-            if ($competency['result'] === "LULUS") {
-                $lulusDescriptions[] = $competency['result_description'];
-            } else {
-                $tidakLulusDescriptions[] = $competency['result_description'];
-            }
-        }
-
-        // Gabungkan result_description untuk "LULUS" dan "TIDAK LULUS"
-        $lulusDescription = implode(", ", $lulusDescriptions);
-        
-        $tidakLulusDescription = implode(", ", $tidakLulusDescriptions);
-        
-        if($lulusDescription && $tidakLulusDescription){
-            $combinedResultDescription = $lulusDescription . ' tetapi, ' . $tidakLulusDescription;
-        } elseif($lulusDescription) {
-            $combinedResultDescription = $lulusDescription;
-        } else {
-            $combinedResultDescription = $tidakLulusDescription;
-        }
-
-        $result = [
-            $subject->subject->code => [
-                'teacher_subject_id' => $subject->id,
-                'subject' => $subject->subject->name,
-                'code' => $subject->subject->code,
-                'score' => $subject->studentCompetency->avg('score'),
-                'combined_result_description' => $combinedResultDescription,
-            ],
-        ];
-
-        $student->studentGrade->teacherSubject->push($result);
-    }
-    
-    dd($student) ;
-})->name('result_old'); 
-
-// Route::get('export', function(){
-//     // Excel::download(new CompetencyExport, 'competency.xlsx', \Maatwebsite\Excel\Excel::XLSX);
-//     return Excel::download(new CompetencyExport, 'competency.xlsx', \Maatwebsite\Excel\Excel::XLSX);
-//     // return '1';
-// });
-
-// Route::get('result/{id}', function($id){
-//     event(new CalculateReport($id));
-// })->name('result');
+Route::get('get', function(){
+    $valueStore = Valuestore::make(storage_path('app/settings.json'));
+    dd($valueStore->get('predicate'));
+});
 
 Route::controller(Report::class)->group(function(){
     Route::get('report/{id}', 'calculateReport')->name('report');
+    Route::get('cover-student/{id}', 'getData')->name('cover.student');
 });
 
 Route::controller(Leger::class)->group(function(){
@@ -146,9 +111,9 @@ Route::controller(Leger::class)->group(function(){
     Route::get('leger/attendance', 'attendance')->name('leger.attendance');
 });
 
-Route::controller(StudentCompetencyExcel::class)->group(function(){
-    Route::get('getdata/{teacher_subject_id}', 'getData')->name('studentCompetencyExcel.getData');
-});
+// Route::controller(StudentCompetencyExcel::class)->group(function(){
+//     Route::get('getdata/{teacher_subject_id}', 'getData')->name('studentCompetencyExcel.getData');
+// });
 
 Route::get('import', function(){
     Excel::import(new TeacherImport, storage_path('/app/public/uploads/guru.xlsx'));
@@ -169,12 +134,12 @@ Route::get('import', function(){
         'date_report' => '2023-12-23',
     ]);
     
-    Excel::import(new StudentGradeImport, storage_path('/app/public/uploads/studentGrade.xlsx'));
-    Excel::import(new TeacherSubjectImport, storage_path('/app/public/uploads/teacherSubject.xlsx'));
-    Excel::import(new TeacherGradeImport, storage_path('/app/public/uploads/teacherGrade.xlsx'));
-    Excel::import(new TeacherGradeImport, storage_path('/app/public/uploads/teacherGrade.xlsx'));
-    Excel::import(new TeacherExtracurricularImport, storage_path('/app/public/uploads/teacherExtracurricular.xlsx'));
-    Excel::import(new StudentExtracurricularImport, storage_path('/app/public/uploads/studentExtracurricular.xlsx'));
+    // Excel::import(new StudentGradeImport, storage_path('/app/public/uploads/studentGrade.xlsx'));
+    // Excel::import(new TeacherSubjectImport, storage_path('/app/public/uploads/teacherSubject.xlsx'));
+    // Excel::import(new TeacherGradeImport, storage_path('/app/public/uploads/teacherGrade.xlsx'));
+    // Excel::import(new TeacherGradeImport, storage_path('/app/public/uploads/teacherGrade.xlsx'));
+    // Excel::import(new TeacherExtracurricularImport, storage_path('/app/public/uploads/teacherExtracurricular.xlsx'));
+    // Excel::import(new StudentExtracurricularImport, storage_path('/app/public/uploads/studentExtracurricular.xlsx'));
 
     return 'success';
 });

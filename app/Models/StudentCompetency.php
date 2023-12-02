@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Spatie\Valuestore\Valuestore;
 
 class StudentCompetency extends Model
 {
@@ -37,29 +38,38 @@ class StudentCompetency extends Model
 
     public function scopeResult(Builder $query)
     {
-        return $query->join('competencies', 'competencies.id', '=', 'student_competencies.competency_id')
-                    ->select('student_competencies.*', 
-                            DB::raw('CASE WHEN score >= passing_grade THEN "LULUS" ELSE "TIDAK LULUS" END as result'),
-                            DB::raw('competencies.description'),
-                            DB::raw('CASE 
-                                WHEN score >= 90 THEN "Amat Baik"
-                                WHEN score >= 80 THEN "Baik"
-                                WHEN score >= 70 THEN "Cukup"
-                                WHEN score >= 60 THEN "Sedang"
-                                ELSE "Kurang" 
-                            END as predikat'),
-                            DB::raw('CASE 
-                                WHEN score >= 90 THEN "A"
-                                WHEN score >= 80 THEN "B"
-                                WHEN score >= 70 THEN "C"
-                                WHEN score >= 60 THEN "D"
-                                ELSE "Kurang" 
-                            END as predikat_huruf'),
-                            // DB::raw('CONCAT(CASE WHEN score > passing_grade THEN "sudah menguasai" 
-                            //                     WHEN score = passing_grade THEN "cukup menguasai"
-                            //                     ELSE "belum menguasai" END, 
-                            //         " dalam aspek ", 
-                            //         competencies.description) as result_description'),
-                        );
+        $query->join('competencies', 'competencies.id', '=', 'student_competencies.competency_id')
+            ->select('student_competencies.*', 
+                    DB::raw('CASE WHEN score >= passing_grade THEN "LULUS" ELSE "TIDAK LULUS" END as result'),
+                    DB::raw('competencies.description'),
+                    DB::raw('CASE 
+                        WHEN score >= 90 THEN "Amat Baik"
+                        WHEN score >= 80 THEN "Baik"
+                        WHEN score >= 70 THEN "Cukup"
+                        WHEN score >= 60 THEN "Sedang"
+                        ELSE "Kurang" 
+                    END as predicate_desc'),
+                    DB::raw('CASE 
+                        WHEN score >= 90 THEN "A"
+                        WHEN score >= 80 THEN "B"
+                        WHEN score >= 70 THEN "C"
+                        WHEN score >= 60 THEN "D"
+                        ELSE "Kurang" 
+                    END as predicat'),
+                    // DB::raw('CONCAT(CASE 
+                    //                     WHEN score >= 90 THEN "Amat baik"
+                    //                     WHEN score >= 80 THEN "Baik"
+                    //                     WHEN score >= 70 THEN "Cukup"
+                    //                     ELSE "Sedang" END, 
+                    //         " dalam aspek ", 
+                    //         competencies.description) as result_predicate_description'),
+                    DB::raw('CONCAT(CASE WHEN score > passing_grade THEN "sudah menguasai" 
+                                        WHEN score = passing_grade THEN "cukup menguasai"
+                                        ELSE "belum menguasai" END, 
+                            " dalam aspek ", 
+                            competencies.description) as result_description'),
+                );
+
+        return $query;
     }
 }

@@ -16,6 +16,7 @@ use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\Element\Table;
 use PhpOffice\PhpWord\SimpleType\TblWidth;
 use Illuminate\Support\Str;
+use Spatie\Valuestore\Valuestore;
 
 class Report extends Controller
 {
@@ -39,22 +40,40 @@ class Report extends Controller
             'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
                 $q->where('student_id',$id)->result();
             }])->find($id);
-        
+
         $subjects = $scores->studentGrade->teacherSubject;
-        
         $result = [];
         foreach ($subjects as $subject) {
             // buat dulu deskripsinya
+            $combinedResultDescription = '';
             $lulusDescriptions = [];
             $tidakLulusDescriptions = [];
-    
+            $amatBaik = [];
+            $baik = [];
+            $cukup = [];
+            $kurang = [];
+               
             foreach ($subject->studentCompetency as $competency) {
                 if ($competency['result'] === "LULUS") {
                     $lulusDescriptions[] = $competency['description'];
-                    // $lulusDescriptions[] = $competency['result_description'];
                 } else {
                     $tidakLulusDescriptions[] = $competency['description'];
-                    // $tidakLulusDescriptions[] = $competency['result_description'];
+                }
+                
+                switch ($competency['predicate']) {
+                    case 'A':
+                        $amatBaik[] = $competency['description'];
+                        break;
+                    case 'B':
+                        $baik[] = $competency['description'];
+                        break;
+                    case 'C':
+                        $cukup[] = $competency['description'];
+                        break;
+                    
+                    default:
+                        $kurang[] = $competency['description'];
+                        break;
                 }
             }
     
@@ -62,13 +81,11 @@ class Report extends Controller
             $lulusDescription = implode("; ", $lulusDescriptions);
             $tidakLulusDescription = implode("; ", $tidakLulusDescriptions);
             
-            // if($lulusDescription && $tidakLulusDescription){
-            //     $combinedResultDescription = 'Alhamdulillah ananda '. Str::of($student->name)->title()  . ' ' .$lulusDescription . ' tetapi, ' . $tidakLulusDescription;
-            // } elseif($lulusDescription) {
-            //     $combinedResultDescription = $lulusDescription;
-            // } else {
-            //     $combinedResultDescription = $tidakLulusDescription;
-            // }
+            if($lulusDescription){
+                $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah menguasai materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' Serta cukup menguasai materi: '. $tidakLulusDescription : '');    
+            }
+
+            // $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah menguasai materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' cukup menguasai materi: '. $tidakLulusDescription : '');
 
             $middle = Exam::where('category', 'middle')->where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
             $last = Exam::where('category', 'last')->where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
@@ -114,10 +131,9 @@ class Report extends Controller
                 'middle_score' => $middleScore,
                 'last_score' => $lastScore,
                 'average_score' => round($average_scores,1),
-                'conjunction' => ' tetapi belum menguasi materi: ',
                 'passed_description' => $lulusDescription,
                 'not_pass_description' => $tidakLulusDescription,
-                // 'combined_description' => $combinedResultDescription,
+                'combined_description' => $combinedResultDescription,
                 'data_score' => $dataScores,
             ];
 
@@ -159,12 +175,12 @@ class Report extends Controller
             'extracurriculars' => $extra,
         ];
 
-        // $data = $this->word($data);
+        $data = $this->report($data);
         return $data;
 
     }
 
-    public function word($data)
+    public function report($data)
     {
         $templateProcessor = new TemplateProcessor( storage_path('/app/public/templates/report.docx'));
         $templateProcessor->setValue('school_name',$data['school']['name']);
@@ -190,73 +206,70 @@ class Report extends Controller
         // tabel nilai mata pelajaran
         $templateProcessor->cloneRowAndSetValues('order', $data['result']);
 
-        // tabel ekstra
+        // tabel ekstrakurikuler
         $templateProcessor->cloneRowAndSetValues('orderEx', $data['extracurriculars']);
-
-
-        /*
-        // menambahkan tabel
-
-        
-        $table = new Table([
-            'borderSize' => 6, 
-            'borderColor' => 'black', 
-            'unit' => TblWidth::AUTO,
-        ]);
-
-        $table->addRow();
-        $table->addCell()->addText('No');
-        $table->addCell()->addText('Mata Pelajaran');
-        $table->addCell()->addText('Nilai');
-        $table->addCell()->addText('Deskripsi');
-        
-        // Iterasi data dan menambahkannya ke dalam tabel
-        $nomorUrut = 1;
-        foreach ($data['result'] as $key => $item) {
-            $table->addRow();
-            $table->addCell()->addText($nomorUrut);
-            $table->addCell()->addText($item["subject"]);
-            $table->addCell()->addText($item["average_score"]);
-            $table->addCell()->addText($item["combined_description"]);
-            $nomorUrut++;
-        }
-
-        // tambahkan jumlah rata-rata score
-        $table->addRow();
-        $table->addCell()->addText($nomorUrut);
-        $table->addCell()->addText('Jumlah Nilai');
-        $table->addCell()->addText($data['total_average_score']);
-        $table->addCell()->addText($data['counting_total']);
-
-        $templateProcessor->setComplexBlock('table', $table);
-        */
-
-        $tableExtra = new Table([
-            'borderSize' => 6, 
-            'borderColor' => 'black', 
-            'unit' => TblWidth::AUTO,
-        ]);
-
-        $tableExtra->addRow();
-        $tableExtra->addCell()->addText('No');
-        $tableExtra->addCell()->addText('Ekstrakurikuler');
-        $tableExtra->addCell()->addText('Predikat');
-        $tableExtra->addCell()->addText('Deskripsi');
-
-        // iterasi extracurricular
-        $nomorExtra = 1;
-        foreach ($data['extracurriculars'] as $key => $value) {
-            $tableExtra->addRow();
-            $tableExtra->addCell()->addText($nomorExtra);
-            $tableExtra->addCell()->addText($value["name"]);
-            $tableExtra->addCell()->addText($value["score"]);
-            $tableExtra->addCell()->addText($value["description"]);
-            $nomorExtra++;
-        }
-
-        $templateProcessor->setComplexBlock('tableExtra', $tableExtra);
         
         $filename = '\Rapor '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
+        $file_path = storage_path('\app\public\downloads'.$filename);
+        $templateProcessor->saveAs($file_path);
+        return response()->download($file_path); // <<< HERE
+    }
+
+    public function getData($id)
+    {
+        $academic = AcademicYear::with('teacher')->active()->first();
+        $student = Student::with('dataStudent')->find($id);
+        $data = [
+            'student' => $student,
+            'academic' => $academic,
+        ];
+        
+        $data = $this->coverStudent($data);
+        return $data;
+    }
+
+    public function coverStudent($data)
+    {
+        $templateProcessor = new TemplateProcessor( storage_path('/app/public/templates/cover-student.docx'));
+        $templateProcessor->setValue('nama',$data['student']['name']);
+        $templateProcessor->setValue('nisn',$data['student']['nisn']);
+        $templateProcessor->setValue('nis',$data['student']['nis']);
+        $templateProcessor->setValue('tempat_lahir',$data['student']['city_born']);
+        // $templateProcessor->setValue('tanggal_lahir',$data['student']['birthday']);
+        $templateProcessor->setValue('tanggal_lahir', Carbon::createFromFormat('Y-m-d', $data['student']['birthday'])->locale('id')->translatedFormat('d F Y'));
+        $templateProcessor->setValue('jenis_kelamin',$data['student']['gender']);
+        $templateProcessor->setValue('agama',$data['student']['dataStudent']['religion']);
+        $templateProcessor->setValue('pendidikan_sebelumnya',$data['student']['dataStudent']['previous_school']);
+        $templateProcessor->setValue('alamat',$data['student']['dataStudent']['student_address']);
+        $templateProcessor->setValue('kelurahan',$data['student']['dataStudent']['student_village']);
+        $templateProcessor->setValue('kecamatan',$data['student']['dataStudent']['student_district']);
+        $templateProcessor->setValue('kota',$data['student']['dataStudent']['student_city']);
+        $templateProcessor->setValue('provinsi',$data['student']['dataStudent']['student_province']);
+        
+        // ayah
+        $templateProcessor->setValue('nama_ayah',$data['student']['dataStudent']['father_name']);
+        $templateProcessor->setValue('pendidikan_ayah',$data['student']['dataStudent']['father_education']);
+        $templateProcessor->setValue('pekerjaan_ayah',$data['student']['dataStudent']['father_occupation']);
+        // ibu
+        $templateProcessor->setValue('nama_ibu',$data['student']['dataStudent']['father_name']);
+        $templateProcessor->setValue('pendidikan_ibu',$data['student']['dataStudent']['father_education']);
+        $templateProcessor->setValue('pekerjaan_ibu',$data['student']['dataStudent']['father_occupation']);
+        // alamat
+        $templateProcessor->setValue('alamat_orangtua',$data['student']['dataStudent']['parent_address']);
+        $templateProcessor->setValue('kelurahan_orangtua',$data['student']['dataStudent']['parent_village']);
+        $templateProcessor->setValue('kecamatan_orangtua',$data['student']['dataStudent']['parent_district']);
+        $templateProcessor->setValue('kota_orangtua',$data['student']['dataStudent']['parent_city']);
+        $templateProcessor->setValue('provinsi_orangtua',$data['student']['dataStudent']['parent_province']);
+        // wali
+        $templateProcessor->setValue('nama_wali',$data['student']['dataStudent']['guardian_name']);
+        $templateProcessor->setValue('pekerjaan_wali',$data['student']['dataStudent']['guardian_occupation']);
+        $templateProcessor->setValue('alamat_wali',$data['student']['dataStudent']['guardian_address']);
+
+        // tanda tangan
+        $templateProcessor->setValue('date_received', Carbon::createFromFormat('Y-m-d', $data['student']['dataStudent']['date_received'])->locale('id')->translatedFormat('d F Y'));
+        $templateProcessor->setValue('headmaster',$data['academic']['teacher']['name']);
+
+        $filename = '\Identitas '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
         $file_path = storage_path('\app\public\downloads'.$filename);
         $templateProcessor->saveAs($file_path);
         return response()->download($file_path); // <<< HERE

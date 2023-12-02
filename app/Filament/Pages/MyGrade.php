@@ -42,10 +42,15 @@ class MyGrade extends Page implements HasTable
                 // ...
             ])
             ->actions([
-                Action::make('result')
+                Action::make('Cover Indentity')
+                    ->button()
+                    ->url(fn (Student $record): string => route('cover.student', $record))
+                    ->openUrlInNewTab(),
+                Action::make('Report')
                     ->button()
                     ->url(fn (Student $record): string => route('report', $record))
                     ->openUrlInNewTab(),
+                
             ])
             ->bulkActions([
                 // ...
