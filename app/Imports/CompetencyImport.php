@@ -11,24 +11,30 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Concerns\WithUpsertColumns;
+use Maatwebsite\Excel\Concerns\WithUpserts;
 
 class CompetencyImport implements ToCollection, WithHeadingRow
 {
-    use Importable;
-
     public function collection(Collection $rows)
     {
-        $data = [];
-
-        foreach ($rows as $row) 
-        {
-            $data = [
-                'code' => $row['code'],
-                'description' => $row['description'],
-                'passing_grade' => $row['passing_grade'],
-            ];
+        foreach ($rows as $row) {
+            if(!is_null($row['kode']) && !is_null($row['deskripsi']) && !is_null($row['kkm'])){
+                Competency::updateOrCreate([
+                    'code' => $row['kode'],
+                ],[
+                    'teacher_subject_id' => $row['teacher_subject_id'],
+                    'code' => $row['kode'],
+                    'description' => $row['deskripsi'],
+                    'passing_grade' => $row['kkm'],
+                ]);
+            }
         }
-
-        return $data;
     }
+
+    public function headingRow(): int
+    {
+        return 10;
+    }    
 }

@@ -531,4 +531,64 @@ class ExportExcel extends Controller
         $writer->save($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
+
+    public function competency($teacher_subject_id)
+    {
+        $teacher_subject = TeacherSubject::with('academic','teacher','subject','grade','competencies')->find($teacher_subject_id);
+        
+        $academic = $teacher_subject->academic;
+        $teacher = $teacher_subject->teacher;
+        $grade = $teacher_subject->grade;
+        $subject = $teacher_subject->subject;
+        $competencies = $teacher_subject->competencies;
+
+        $spreadsheet = new Spreadsheet();
+        $spreadsheet->createSheet();
+        $sheet = $spreadsheet->getSheet(0); // Indeks dimulai dari 0
+
+         // identitas
+         $identitas = [
+            ['Identitas pelajaran'],
+            [null],
+            ['Nama Guru', null, null, ':', $teacher->name],
+            ['Mata Pelajaran', null, null, ':', $subject->name],
+            ['Kelas', null, null, ':', $grade->name],
+            ['Tahun Akademik', null, null, ':', $academic->year],
+            ['Semester', null, null, ':', $academic->semester],
+        ];
+        $sheet->fromArray($identitas, null, 'B1');
+        
+        // Membuat lembar pertama
+        $sheet1 = $spreadsheet->getActiveSheet();
+        $sheet1->setTitle('Competency');
+        $sheet1->setCellValue('A10', 'teacher_subject_id');
+        $sheet1->setCellValue('B10', 'kode');
+        $sheet1->setCellValue('C10', 'deskripsi');
+        $sheet1->setCellValue('D10', 'kkm');
+        
+        $row = 11;
+        foreach ($competencies as $competency) {
+            $sheet1->setCellValue('A'.$row, $teacher_subject_id);
+            $sheet1->setCellValue('B'.$row, $competency->code);
+            $sheet1->setCellValue('C'.$row, $competency->description);
+            $sheet1->setCellValue('D'.$row, $competency->passing_grade);
+            $row++;
+        }
+
+        // tambahkan baris dengan kolom teacher_subject_id tambahan untuk yang baru
+        for ($i=$row; $i < 50; $i++) { 
+            $sheet1->setCellValue('A'.$row, $teacher_subject_id);
+            $row++;
+        }
+
+        // hide column A
+        $sheet->getColumnDimension('A')->setVisible(false);
+
+        $writer = new Xlsx($spreadsheet);
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
+        $filename = "Kompetensi ". $teacher_subject->subject->name . ' '. $teacher_subject->grade->name.".xlsx"; // <<< HERE
+        $file_path = storage_path('\app\public\downloads\/'.$filename);
+        $writer->save($file_path);
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
+    }
 }

@@ -83,6 +83,8 @@ class Report extends Controller
             
             if($lulusDescription){
                 $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah menguasai materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' Serta cukup menguasai materi: '. $tidakLulusDescription : '');    
+            } else {
+                $combinedResultDescription = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum menguasai materi:' . $tidakLulusDescription;
             }
 
             // $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah menguasai materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' cukup menguasai materi: '. $tidakLulusDescription : '');
