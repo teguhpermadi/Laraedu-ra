@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sub_elements', function (Blueprint $table) {
+        Schema::create('targets', function (Blueprint $table) {
             $table->id();
             $table->string('code_dimention');
             $table->string('code_element');
+            $table->string('code_sub_element');
             $table->string('code');
+            $table->string('phase');
             $table->text('description');
             // $table->timestamps();
         });
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sub_elements');
+        Schema::dropIfExists('targets');
     }
 };
