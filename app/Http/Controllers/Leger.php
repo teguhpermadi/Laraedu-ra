@@ -13,7 +13,7 @@ class Leger extends Controller
 {
     public function subject($id)
     {
-        $data = TeacherSubject::with('academic','teacher', 'grade', 'grade.studentGrade.student', 'subject', 'competencies', 'exam')->find($id);
+        $data = TeacherSubject::with('academic','teacher', 'grade.teacherGrade', 'grade.studentGrade.student', 'subject', 'competencies', 'exam')->find($id);
         // return $teacher_subject;
         return view('leger.subject', ['data' => $data]);
     }

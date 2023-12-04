@@ -10,11 +10,15 @@ class AvgScore extends Component
 {
     public $score, $color;
 
-    public function mount($student_id, $teacher_subject_id)
+    public function mount($student_id, $teacher_subject_id, $column = 'score')
     {
         $data = StudentCompetency::where('student_id', $student_id)->where('teacher_subject_id', $teacher_subject_id)->get();
         
-        $this->score = round($data->avg('score'), 3);
+        if($column == 'score_skill'){
+            $this->score = round($data->avg('score_skill'), 3);
+        } else {
+            $this->score = round($data->avg('score'), 3);
+        }
 
         $this->color = ($this->score < 70) ? 'yellow' : '';
     }

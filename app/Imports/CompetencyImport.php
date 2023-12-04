@@ -21,12 +21,15 @@ class CompetencyImport implements ToCollection, WithHeadingRow
     {
         foreach ($rows as $row) {
             if(!is_null($row['kode']) && !is_null($row['deskripsi']) && !is_null($row['kkm'])){
+
                 Competency::updateOrCreate([
                     'code' => $row['kode'],
                 ],[
                     'teacher_subject_id' => $row['teacher_subject_id'],
                     'code' => $row['kode'],
                     'description' => $row['deskripsi'],
+                    'code_skill' => $row['kode_keterampilan'],
+                    'description_skill' => $row['deskripsi_keterampilan'],
                     'passing_grade' => $row['kkm'],
                 ]);
             }

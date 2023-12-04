@@ -24,25 +24,26 @@ class ListStudentCompetencies extends ListRecords
     {
         return [
             // CreateAction::make(),
-            Action::make('evaluation')
-                ->url(route('filament.admin.resources.student-competencies.evaluation')),
-            Action::make('leger')
-                ->form([
-                    Select::make('teacher_subject_id')
-                        ->options(
-                            TeacherSubject::mySubject()->with('grade')->get()->map(function ($item) {
-                                return [
-                                    'id' => $item->id,
-                                    'code' => $item->subject->code . ' - ' . $item->grade->name,
-                                ];
-                            })->pluck('code', 'id')
-                        )
-                        ->required()
-                ])
-                ->action(function($data){
-                    // dd($data['teacher_subject_id']);
-                    return to_route('leger', ['id' => $data['teacher_subject_id']]);                    
-                }),
+            Action::make('assesment')
+                ->url(route('filament.admin.resources.student-competencies.assesment')),
+            // Action::make('evaluation')
+            //     ->url(route('filament.admin.resources.student-competencies.evaluation')),
+            // Action::make('leger')
+            //     ->form([
+            //         Select::make('teacher_subject_id')
+            //             ->options(
+            //                 TeacherSubject::mySubject()->with('grade')->get()->map(function ($item) {
+            //                     return [
+            //                         'id' => $item->id,
+            //                         'code' => $item->subject->code . ' - ' . $item->grade->name,
+            //                     ];
+            //                 })->pluck('code', 'id')
+            //             )
+            //             ->required()
+            //     ])
+            //     ->action(function($data){
+            //         return to_route('leger', ['id' => $data['teacher_subject_id']]);                    
+            //     }),
             Action::make('download')
                 ->form([
                     Select::make('teacher_subject_id')
@@ -83,7 +84,10 @@ class ListStudentCompetencies extends ListRecords
                                 'student_id' => $value['student_id'],
                                 'competency_id' => $value['competency_id'],
                             ])
-                            ->update(['score' => $value['score']]);
+                            ->update([
+                                'score' => $value['score'],
+                                'score_skill' => $value['score_skill'],
+                            ]);
                         }
                     }
                 })

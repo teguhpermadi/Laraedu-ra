@@ -248,7 +248,7 @@ class ExportExcel extends Controller
         $teacherSubject = TeacherSubject::with([
                     'academic',
                     'teacher',
-                    'grade',
+                    'grade.teacherGrade',
                     'subject',
                     'competencies.studentCompetency.student', 
                     'exam',
@@ -259,6 +259,7 @@ class ExportExcel extends Controller
         $grade = $teacherSubject->grade;
         $subject = $teacherSubject->subject;
         $competencies = $teacherSubject->competencies;
+        $curriculum = $teacherSubject->grade->teacherGrade->curriculum;
 
         // Inisialisasi spreadsheet
         $spreadsheet = new Spreadsheet();
@@ -275,19 +276,20 @@ class ExportExcel extends Controller
             $identitas = [
                 ['Identitas pelajaran'],
                 [null],
-                ['Nama Guru', null, null, null, null, ':', $teacher->name],
-                ['Mata Pelajaran', null, null, null, null, ':', $subject->name],
-                ['Kelas', null, null, null, null, ':', $grade->name],
-                ['Tahun Akademik', null, null, null, null, ':', $academic->year],
-                ['Semester', null, null, null, null, ':', $academic->semester],
-                ['Kompetensi', null, null, null, null, ':', $competency->description],
+                [ null, 'Nama Guru',null, null, null, null,null,':', $teacher->name],
+                [ null, 'Mata Pelajaran', null, null, null, null,null,':', $subject->name],
+                [ null, 'Kelas', null, null, null, null,null,':', $grade->name],
+                [ null, 'Tahun Akademik', null, null, null, null,null,':', $academic->year],
+                [ null, 'Semester', null, null, null, null,null,':', $academic->semester],
+                [ null, 'Kompetensi', null, null, null, null,null,':', $competency->code, $competency->description],
+                [null, null, null, null, null, null, null,null, $competency->code_skill, $competency->description_skill],
             ];
             $sheet->fromArray($identitas);
             
             // kosongkan datanya
             $data = [];
             $data[] = [
-                'nis','nama siswa','teacher_subject_id','student_id','competency_id','score'
+                'nis','nama siswa','teacher_subject_id','student_id','competency_id','score', 'score_skill'
             ];
 
             foreach ($competency->studentCompetency as $studentCompetency) {
@@ -298,10 +300,11 @@ class ExportExcel extends Controller
                     $studentCompetency->student_id,
                     $studentCompetency->competency_id,
                     $studentCompetency->score,
+                    $studentCompetency->score_skill,
                 ];
             }
 
-            $sheet->fromArray($data,null,'A10', true);
+            $sheet->fromArray($data,null,'A13', true);
 
             $countSheet++;
             
@@ -311,6 +314,11 @@ class ExportExcel extends Controller
             $sheet->getColumnDimension('C')->setVisible(false);
             $sheet->getColumnDimension('D')->setVisible(false);
             $sheet->getColumnDimension('E')->setVisible(false);
+            
+            // cek kurikulum
+            if($curriculum == 'merdeka'){
+                $sheet->getColumnDimension('G')->setVisible(false);
+            }
         }
 
 
@@ -534,7 +542,7 @@ class ExportExcel extends Controller
 
     public function competency($teacher_subject_id)
     {
-        $teacher_subject = TeacherSubject::with('academic','teacher','subject','grade','competencies')->find($teacher_subject_id);
+        $teacher_subject = TeacherSubject::with('academic','teacher','subject','grade.teacherGrade','competencies')->find($teacher_subject_id);
         
         $academic = $teacher_subject->academic;
         $teacher = $teacher_subject->teacher;
@@ -550,28 +558,35 @@ class ExportExcel extends Controller
          $identitas = [
             ['Identitas pelajaran'],
             [null],
-            ['Nama Guru', null, null, ':', $teacher->name],
-            ['Mata Pelajaran', null, null, ':', $subject->name],
-            ['Kelas', null, null, ':', $grade->name],
-            ['Tahun Akademik', null, null, ':', $academic->year],
-            ['Semester', null, null, ':', $academic->semester],
+            ['Nama Guru', null, null,null, null,':', $teacher->name],
+            ['Mata Pelajaran', null, null, null,null,':', $subject->name],
+            ['Kelas', null, null,null, null,':', $grade->name],
+            ['Tahun Akademik', null, null, null,null,':', $academic->year],
+            ['Semester', null, null, null,null,':', $academic->semester],
         ];
         $sheet->fromArray($identitas, null, 'B1');
         
         // Membuat lembar pertama
         $sheet1 = $spreadsheet->getActiveSheet();
         $sheet1->setTitle('Competency');
+
+        // cek kurikulum
+        // dd($teacher_subject->grade->teacherGrade->curriculum->toArray());
         $sheet1->setCellValue('A10', 'teacher_subject_id');
         $sheet1->setCellValue('B10', 'kode');
         $sheet1->setCellValue('C10', 'deskripsi');
-        $sheet1->setCellValue('D10', 'kkm');
-        
+        $sheet1->setCellValue('D10', 'kode_keterampilan');
+        $sheet1->setCellValue('E10', 'deskripsi_keterampilan');
+        $sheet1->setCellValue('F10', 'kkm');
+
         $row = 11;
         foreach ($competencies as $competency) {
             $sheet1->setCellValue('A'.$row, $teacher_subject_id);
             $sheet1->setCellValue('B'.$row, $competency->code);
             $sheet1->setCellValue('C'.$row, $competency->description);
-            $sheet1->setCellValue('D'.$row, $competency->passing_grade);
+            $sheet1->setCellValue('D'.$row, $competency->code_skill);
+            $sheet1->setCellValue('E'.$row, $competency->description_skill);
+            $sheet1->setCellValue('F'.$row, $competency->passing_grade);
             $row++;
         }
 
@@ -583,6 +598,12 @@ class ExportExcel extends Controller
 
         // hide column A
         $sheet->getColumnDimension('A')->setVisible(false);
+        // hide kode dan deskripsi keterampilan
+        if($teacher_subject->grade->teacherGrade->curriculum == 'merdeka'){
+            $sheet->getColumnDimension('D')->setVisible(false);
+            $sheet->getColumnDimension('E')->setVisible(false);
+        }
+        
 
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE

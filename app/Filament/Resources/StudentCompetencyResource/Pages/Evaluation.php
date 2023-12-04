@@ -20,6 +20,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
@@ -38,6 +39,7 @@ class Evaluation extends Page implements HasForms
     public $studentId = [];
     public $scores = [];
     public $competencyId, $teacher_subject_id;
+    public $visible = false;
     
     public ?array $data = [];
 
@@ -51,11 +53,6 @@ class Evaluation extends Page implements HasForms
         return $form
             ->schema([
                 Section::make('identity')
-                    // ->columns([
-                    //     'sm' => 3,
-                    //     'xl' => 6,
-                    //     '2xl' => 8,
-                    // ])
                     ->schema([
                         Select::make('teacher_subject_id')
                             ->options(
@@ -69,11 +66,19 @@ class Evaluation extends Page implements HasForms
                             ->afterStateUpdated(function(callable $get, callable $set){
                                 $set('competency_id', null);
                                 $set('scores', null);
+                                
+                                $teacherSubject = TeacherSubject::with('teacherGrade')->find($get('teacher_subject_id'));
+                                if($teacherSubject->teacherGrade->curriculum == '2013'){
+                                    $this->visible = true;
+                                } else {
+                                    $this->visible = false;
+                                }
+
                             })
-                            
+                            ->live()
                             ->reactive(),
                         Radio::make('competency_id')
-                            ->options(function(callable $get){
+                            ->options(function(Get $get){
                                 $comptencies = Competency::where('teacher_subject_id', $get('teacher_subject_id'))->pluck('description', 'id');
                                 return $comptencies;
                             })
@@ -112,23 +117,23 @@ class Evaluation extends Page implements HasForms
                             Hidden::make('student_id'),
                             TextInput::make('student_name')
                                 ->readOnly(true),
-                            // Select::make('score')
-                            //     ->options([
-                            //         '1' => 'BB',
-                            //         '2' => 'MB',
-                            //         '3' => 'BSH',
-                            //         '4' => 'BSB',
-                            //     ])
                             TextInput::make('score')
                                 ->numeric()
                                 ->minValue(0)
                                 ->maxValue(100),
+                            TextInput::make('score_skill')
+                                ->numeric()
+                                ->minValue(0)
+                                ->maxValue(100)
+                                ->visible($this->visible),
                         ])
                         ->columnSpan('full')
                         ->defaultItems(0)
                         // ->reorderable(false)
                         ->deletable(false)
-                        ->addable(false),
+                        ->addable(false)
+                        ->reactive()
+                        ->lazy(),
                 ]),
             ])
             ->statePath('data');

@@ -33,7 +33,7 @@ class Grade extends Model
 
     public function teacherGrade()
     {
-        return $this->hasMany(TeacherGrade::class);
+        return $this->hasOne(TeacherGrade::class);
     }
 
     public function studentGrade()

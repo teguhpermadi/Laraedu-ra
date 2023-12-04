@@ -54,7 +54,6 @@ class MyGrade extends Page implements HasTable
                     ->button()
                     ->url(fn (Student $record): string => route('report', $record)),
                     // ->openUrlInNewTab(),
-                
             ])
             ->bulkActions([
                 // ...

@@ -58,7 +58,7 @@ class StudentCompetencyResource extends Resource
                 TextColumn::make('score')
                     ->summarize(Average::make())
                     ->summarize(Sum::make())
-                    ->summarize(Range::make())
+                    // ->summarize(Range::make())
             ])
             ->filters([
                 // SelectFilter::make('competency')
@@ -103,7 +103,8 @@ class StudentCompetencyResource extends Resource
     {
         return [
             'index' => Pages\ListStudentCompetencies::route('/'),
-            'evaluation' => Pages\Evaluation::route('/evaluation'),
+            'assesment' => Pages\Assesment::route('/assesment'),
+            // 'evaluation' => Pages\Evaluation::route('/evaluation'),
             'create' => Pages\CreateStudentCompetency::route('/create'),
             'view' => Pages\ViewStudentCompetency::route('/{record}'),
             'edit' => Pages\EditStudentCompetency::route('/{record}/edit'),

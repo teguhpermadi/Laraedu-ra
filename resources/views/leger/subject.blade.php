@@ -24,6 +24,9 @@
     .text-sm {
         font-size: 9pt;
     }
+    @media print {
+        .pagebreak { page-break-before: always; } /* page-break-after works, as well */
+    }
     </style>
 <body>
     <h1>Leger {{$data->subject->name}}</h1>
@@ -133,6 +136,96 @@
             @endforeach
         </tbody>
     </table>
+
+    {{-- kompetensi keterampilan --}}
+    <div class="pagebreak"> </div>
+    @if ($data->grade->teacherGrade->curriculum == '2013')
+        <h4>Nilai kompetensi keterampilan</h4>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>NIS</th>
+                    <th>Nama Lengkap</th>
+                    @foreach ($data->competencies as $competency)
+                        <th>{{$competency->code_skill}}</th>
+                    @endforeach
+                    <th>Rata-rata Kompetensi</th>
+                    <th>Nilai Akhir</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $no = 1;
+                @endphp
+                @foreach ($data->grade->studentGrade as $studentGrade)
+                {{-- identitas siswa --}}
+                   <tr>
+                        <td>{{$no++}}</td> 
+                        <td>{{$studentGrade->student->nis}}</td>
+                        <td class="text-sm">{{$studentGrade->student->name}}</td>
+    
+                        {{-- nilai per kompetensi --}}
+                        @foreach ($data->competencies as $competency)
+                            <td class="center">
+                                @livewire('leger.score', [
+                                    'student_id' => $studentGrade->student->id,
+                                    'competency_id' => $competency->id,
+                                    'column' => 'score_skill',
+                                ])
+                            </td>
+                        @endforeach
+    
+                        {{-- nilai rata-rata kompetensi --}}
+                        <td class="center">
+                            @livewire('leger.avg-score', [
+                                    'student_id' => $studentGrade->student->id,
+                                    'teacher_subject_id' => $data->id,
+                                    'column' => 'score_skill',
+                                ])
+                        </td>
+    
+                        <td>
+                            @livewire('leger.na-score', [
+                                    'student_id' => $studentGrade->student->id,
+                                    'teacher_subject_id' => $data->id,
+                                    'column' => 'score_skill'
+                                ])
+                        </td>
+                   </tr> 
+                @endforeach
+            </tbody>
+        </table>
+
+        <h4>Keterangan</h4>
+        <ol>
+            <li>Nilai yang berwarna kuning yang berada dibawah KKM.</li>
+        </ol>
+
+        <h4>Daftar Kompetensi Keterampilan</h4>
+        <table>
+            <thead>
+                <th>No</th>
+                <th>Kode</th>
+                <th>Deskripsi</th>
+                <th>KKM</th>
+            </thead>
+            <tbody>
+                @php
+                    $no = 1;
+                @endphp
+                @foreach ($data->competencies as $competency)
+                    <tr>
+                        <td>{{$no++}}</td>
+                        <td>{{$competency->code_skill}}</td>
+                        <td>{{$competency->description_skill}}</td>
+                        <td>{{$competency->passing_grade}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
 
     <script>
         // Menampilkan dialog cetak saat halaman dimuat

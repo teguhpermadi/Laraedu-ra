@@ -52,12 +52,28 @@ class Report extends Controller
             $baik = [];
             $cukup = [];
             $kurang = [];
-               
+            
+            // skill
+            $combinedResultDescriptionSkill = '';
+            $lulusDescriptionsSkill = [];
+            $tidakLulusDescriptionsSkill = [];
+            $amatBaikSkill = [];
+            $baikSkill = [];
+            $cukupSkill = [];
+            $kurangSkill = [];
+
             foreach ($subject->studentCompetency as $competency) {
                 if ($competency['result'] === "LULUS") {
                     $lulusDescriptions[] = $competency['description'];
                 } else {
                     $tidakLulusDescriptions[] = $competency['description'];
+                }
+
+                // skill
+                if ($competency['result_skill'] === "LULUS") {
+                    $lulusDescriptionsSkill[] = $competency['description_skill'];
+                } else {
+                    $tidakLulusDescriptionsSkill[] = $competency['description_skill'];
                 }
                 
                 switch ($competency['predicate']) {
@@ -75,16 +91,39 @@ class Report extends Controller
                         $kurang[] = $competency['description'];
                         break;
                 }
+
+                // skill
+                switch ($competency['predicate_skill']) {
+                    case 'A':
+                        $amatBaikSkill[] = $competency['description_skill'];
+                        break;
+                    case 'B':
+                        $baikSkill[] = $competency['description_skill'];
+                        break;
+                    case 'C':
+                        $cukupSkill[] = $competency['description_skill'];
+                        break;
+                    
+                    default:
+                        $kurangSkill[] = $competency['description_skill'];
+                        break;
+                }
             }
     
             // Gabungkan result_description untuk "LULUS" dan "TIDAK LULUS"
             $lulusDescription = implode("; ", $lulusDescriptions);
             $tidakLulusDescription = implode("; ", $tidakLulusDescriptions);
+
+            // skill
+            $lulusDescriptionsSkill = implode("; ", $lulusDescriptionsSkill);
+            $tidakLulusDescriptionsSkill = implode("; ", $tidakLulusDescriptionsSkill);
             
             if($lulusDescription){
                 $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah menguasai materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' Serta cukup menguasai materi: '. $tidakLulusDescription : '');    
+                $combinedResultDescriptionSkill = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescriptionsSkill) ? ' telah menguasai materi: ' . $lulusDescriptionsSkill : '') . (($tidakLulusDescriptionsSkill) ? ' Serta cukup menguasai materi: '. $tidakLulusDescriptionsSkill : '');    
             } else {
                 $combinedResultDescription = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum menguasai materi:' . $tidakLulusDescription;
+                $combinedResultDescriptionSkill = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum menguasai materi:' . $tidakLulusDescriptionsSkill;
             }
 
             // $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah menguasai materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' cukup menguasai materi: '. $tidakLulusDescription : '');
@@ -97,29 +136,42 @@ class Report extends Controller
             $lastScore = $last ? $last->score : null;
 
             $avg_score_student_competencies = $subject->studentCompetency->avg('score');
+            $avg_score_student_competencies_skill = $subject->studentCompetency->avg('score_skill');
             $dataScores = $subject->studentCompetency;
 
             /* 
             HITUNG NILAI RATA-RATA KOMPETENSI, TENGAH SEMESTER DAN AKHIR SEMESTER
             */
 
+            $scores = collect([$avg_score_student_competencies, $middleScore, $lastScore]);
+            $scores_skill = collect($avg_score_student_competencies_skill);
+            $average_scores = $scores->avg();
+            $average_scores_skill = $scores_skill->avg();
+
+            /*
             if($avg_score_student_competencies && $middleScore && $lastScore){
                 // jika ada nilai kompetensi, tengah semester, akhir semester
                 $scores = collect([$avg_score_student_competencies, $middleScore, $lastScore]);
-                $average_scores = $scores->avg(); 
-            } else if($avg_score_student_competencies && $middleScore)  {
+                $scores_skill = collect($avg_score_student_competencies_skill);
+                $average_scores = $scores->avg();
+                $average_scores_skill = $scores_skill->avg();
+            } 
+            else if($avg_score_student_competencies && $middleScore)  {
                 // jika ada nilai kompetensi dan tengah semester
                 $scores = collect([$avg_score_student_competencies, $middleScore]);
                 $average_scores = $scores->avg(); 
-            } else if($avg_score_student_competencies && $lastScore) {
+            } 
+            else if($avg_score_student_competencies && $lastScore) {
                 // jika ada nilai kompetensi dan akhir semester
                 $scores = collect([$avg_score_student_competencies, $lastScore]);
                 $average_scores = $scores->avg(); 
-            } else {
+            } 
+            else {
                 // jika ada nilai kompetensi
                 $scores = collect([$avg_score_student_competencies]);
                 $average_scores = $scores->avg(); 
             }
+            */
 
             // dd($average_scores);
     
@@ -127,7 +179,9 @@ class Report extends Controller
             // $result[$subject->subject->order] = [
                 // 'teacher_subject_id' => $subject->id,
                 'order' => $subject->subject->order,
+                'order_skill' => $subject->subject->order,
                 'subject' => $subject->subject->name,
+                'subject_skill' => $subject->subject->name,
                 'code' => $subject->subject->code,
                 'score_competencies' => $avg_score_student_competencies,
                 'middle_score' => $middleScore,
@@ -136,6 +190,12 @@ class Report extends Controller
                 'passed_description' => $lulusDescription,
                 'not_pass_description' => $tidakLulusDescription,
                 'combined_description' => $combinedResultDescription,
+                // skill
+                'score_competencies_skill' => $avg_score_student_competencies_skill,
+                'average_score_skill' => round($average_scores_skill,1),
+                'passed_description_skill' => $lulusDescriptionsSkill,
+                'not_pass_description_skill' => $tidakLulusDescriptionsSkill,
+                'combined_description_skill' => $combinedResultDescriptionSkill,
                 'data_score' => $dataScores,
             ];
 
@@ -145,7 +205,9 @@ class Report extends Controller
 
         $resultCollection = collect($result);
         $totalAverageScore = $resultCollection->sum('average_score');
+        $totalAverageScoreSkill = $resultCollection->sum('average_score_skill');
         $counting_total = readNumber($totalAverageScore);
+        $counting_total_skill = readNumber($totalAverageScoreSkill);
 
         $extra = [];
         $numExtra = 1;
@@ -174,12 +236,22 @@ class Report extends Controller
             'result' => $resultOrder,
             'total_average_score' => $totalAverageScore,
             'counting_total' => $counting_total,
+            'total_average_score_skill' => $totalAverageScoreSkill,
+            'counting_total_skill' => $counting_total_skill,
             'extracurriculars' => $extra,
         ];
 
-        $data = $this->report($data);
+        // $data = $this->report($data);
+        switch ($teacherGrade->curriculum) {
+            case '2013':
+                $data = $this->report2013($data);
+                break;
+            
+            default:
+                $data = $this->report($data);
+                break;
+        }
         return $data;
-
     }
 
     public function report($data)
@@ -296,5 +368,47 @@ class Report extends Controller
         $file_path = storage_path('\app\public\downloads'.$filename);
         $templateProcessor->saveAs($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
+    }
+
+    /**
+     * kurikulum 2013
+     */
+
+    public function report2013($data)
+    {
+        $templateProcessor = new TemplateProcessor( storage_path('/app/public/templates/report2013.docx'));
+        $templateProcessor->setValue('school_name',$data['school']['name']);
+        $templateProcessor->setValue('school_address',$data['school']['address']);
+        $templateProcessor->setValue('headmaster',$data['headmaster']);
+        $templateProcessor->setValue('date_report',$data['date_report']);
+        $templateProcessor->setValue('year',$data['academic']['year']);
+        $templateProcessor->setValue('semester',$data['academic']['semester']);
+        $templateProcessor->setValue('student_name',$data['student']['name']);
+        $templateProcessor->setValue('nisn',$data['student']['nisn']);
+        $templateProcessor->setValue('grade_name',$data['grade']['name']);
+        $templateProcessor->setValue('grade_level',$data['grade']['grade']);
+        $templateProcessor->setValue('sick',$data['attendance']['sick']);
+        $templateProcessor->setValue('permission',$data['attendance']['permission']);
+        $templateProcessor->setValue('absent',$data['attendance']['absent']);
+        $templateProcessor->setValue('total_attendance',$data['attendance']['total_attendance']);
+        $templateProcessor->setValue('note',$data['attendance']['note']);
+        $templateProcessor->setValue('achievement',$data['attendance']['achievement']);
+        $templateProcessor->setValue('teacher_name',$data['teacher']['name']);
+        $templateProcessor->setValue('total_average_score',$data['total_average_score']);
+        $templateProcessor->setValue('counting_total',$data['counting_total']);
+        $templateProcessor->setValue('total_average_score_skill',$data['total_average_score_skill']);
+        $templateProcessor->setValue('counting_total_skill',$data['counting_total_skill']);
+
+        // tabel nilai mata pelajaran
+        $templateProcessor->cloneRowAndSetValues('order', $data['result']);
+        $templateProcessor->cloneRowAndSetValues('order_skill', $data['result']);
+
+        // tabel ekstrakurikuler
+        $templateProcessor->cloneRowAndSetValues('orderEx', $data['extracurriculars']);
+        
+        $filename = '\Rapor '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
+        $file_path = storage_path('\app\public\downloads'.$filename);
+        $templateProcessor->saveAs($file_path);
+        return response()->download($file_path)->deleteFileAfterSend(true);; // <<< HERE
     }
 }
