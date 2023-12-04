@@ -35,13 +35,25 @@ class CompetencyFactory extends Factory
 
     public function teacherSubject($id)
     {
-        $teacher_subject = TeacherSubject::with('subject', 'grade')->find($id);
+        $teacher_subject = TeacherSubject::with('subject', 'grade.teacherGrade')->find($id);
 
-        return $this->state(function (array $attributes) use($id) {
-            return [
+        if($teacher_subject->grade->teacherGrade->curriculum == '2013'){
+            $data = [
+                'teacher_subject_id' => $id,
+                'code_skill' => str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT),
+                'description_skill' => fake()->sentence(),
+            ];
+        } else {
+            $data = [
                 'teacher_subject_id' => $id,
             ];
+        }
+        
+        return $this->state(function (array $attributes) use($data) {
+            return $data;
         });
+
+        // return $data;
     }
 
 

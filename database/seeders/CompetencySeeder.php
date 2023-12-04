@@ -18,7 +18,7 @@ class CompetencySeeder extends Seeder
         $teacher_subjects = TeacherSubject::with('subject', 'grade')->get();
 
         foreach ($teacher_subjects as $teacher_subject) {
-            Competency::factory(2)->teacherSubject($teacher_subject->id)->create();
+            Competency::factory(1)->teacherSubject($teacher_subject->id)->create();
         }
     }
 }
