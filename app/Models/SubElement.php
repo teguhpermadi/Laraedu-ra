@@ -10,9 +10,24 @@ class SubElement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'dimention_code',
-        'element_code',
+        'code_dimention',
+        'code_element',
         'code',
         'description',
     ];
+
+    public function dimention()
+    {
+        return $this->belongsTo(Dimention::class, 'code_dimention', 'code');
+    }
+
+    public function element()
+    {
+        return $this->belongsTo(Element::class, 'code_element', 'code');
+    }
+
+    public function target()
+    {
+        return $this->hasMany(Target::class, 'code_sub_element', 'code');
+    }
 }

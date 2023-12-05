@@ -13,4 +13,19 @@ class Dimention extends Model
         'code',
         'description',
     ];
+
+    public function element()
+    {
+        return $this->hasMany(Element::class, 'code_dimention', 'code');
+    }
+
+    public function subElement()
+    {
+        return $this->hasMany(SubElement::class, 'code_dimention', 'code');
+    }
+
+    public function target()
+    {
+        return $this->hasMany(Target::class, 'code_dimention', 'code');
+    }
 }

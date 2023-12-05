@@ -14,4 +14,19 @@ class Element extends Model
         'code',
         'description',
     ];
+
+    public function dimention()
+    {
+        return $this->belongsTo(Dimention::class, 'code_dimention', 'code');
+    }
+
+    public function subElement()
+    {
+        return $this->hasMany(SubElement::class, 'code_element', 'code');
+    }
+
+    public function target()
+    {
+        return $this->hasMany(Target::class, 'code_element', 'code');
+    }
 }
