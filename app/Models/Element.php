@@ -29,4 +29,14 @@ class Element extends Model
     {
         return $this->hasMany(Target::class, 'code_element', 'code');
     }
+
+    public function value()
+    {
+        return $this->hasMany(Value::class, 'code_element', 'code');
+    }
+
+    public function subValue()
+    {
+        return $this->hasMany(SubValue::class, 'code_element', 'code');
+    }
 }

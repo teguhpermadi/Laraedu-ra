@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('code_element');
             $table->string('code');
             $table->text('description');
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

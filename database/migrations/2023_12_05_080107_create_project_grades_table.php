@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('academic_year_id')->references('id')->on('academic_years')->cascadeOnUpdate();
             $table->foreignId('grade_id')->references('id')->on('grades')->cascadeOnUpdate();
             $table->foreignId('teacher_id')->references('id')->on('teachers')->cascadeOnUpdate();
-            $table->timestamps();
+            // $table->timestamps();
 
             $table->unique(['project_id', 'academic_year_id', 'grade_id'], 'project_grades_unique');
         });

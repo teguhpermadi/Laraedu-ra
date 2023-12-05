@@ -14,4 +14,11 @@ class Value extends Model
         'code',
         'description',
     ];
+
+    public function subValue()
+    {
+        return $this->hasMany(SubValue::class, 'code_element', 'code_element');
+    }
+
+    
 }
