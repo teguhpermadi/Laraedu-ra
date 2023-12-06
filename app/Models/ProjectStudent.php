@@ -10,6 +10,7 @@ class ProjectStudent extends Model
     use HasFactory;
 
     protected $fillable = [
+        'academic_year_id',
         'student_id',
         'project_target_id',
         'scores',

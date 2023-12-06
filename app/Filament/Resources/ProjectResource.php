@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
+use App\Filament\Resources\ProjectResource\RelationManagers\ProjectTargetRelationManager;
 use App\Models\AcademicYear;
 use App\Models\Grade;
 use App\Models\Project;
@@ -63,8 +64,8 @@ class ProjectResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Action::make('Capaian')
-                    ->url(fn (Project $record): string => route('filament.admin.resources.projects.target', $record))
+                // Action::make('Capaian')
+                //     ->url(fn (Project $record): string => route('filament.admin.resources.projects.target', $record))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -76,7 +77,7 @@ class ProjectResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ProjectTargetRelationManager::class,
         ];
     }
     

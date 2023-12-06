@@ -11,9 +11,9 @@ class CreateProject extends CreateRecord
 {
     protected static string $resource = ProjectResource::class;
 
-    protected function handleRecordCreation(array $data): Model
-    {
-        // buat project dan project target
-        return static::getModel()::create($data)->projectTarget()->create();
-    }
+    // protected function handleRecordCreation(array $data): Model
+    // {
+    //     // buat project dan project target
+    //     return static::getModel()::create($data)->projectTarget()->create();
+    // }
 }

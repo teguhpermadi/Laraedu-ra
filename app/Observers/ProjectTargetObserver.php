@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\AcademicYear;
 use App\Models\ProjectStudent;
 use App\Models\ProjectTarget;
 
@@ -18,6 +19,7 @@ class ProjectTargetObserver
 
         foreach ($students as $student) {
             $data[] = [
+                'academic_year_id' => AcademicYear::active()->first()->id,
                 'student_id' => $student->id,
                 'project_target_id' => $projectTarget->id,
             ]; 

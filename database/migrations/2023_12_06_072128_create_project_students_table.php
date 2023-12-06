@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('project_students', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('academic_year_id')->references('id')->on('academic_years')->cascadeOnDelete();
             $table->foreignId('student_id')->references('id')->on('students')->cascadeOnDelete();
             $table->foreignId('project_target_id')->references('id')->on('project_targets')->cascadeOnDelete();
-            $table->json('scores')->nullable();
+            $table->string('scores')->nullable();
             // $table->timestamps();
         });
     }

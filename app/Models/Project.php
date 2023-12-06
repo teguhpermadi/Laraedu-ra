@@ -48,6 +48,4 @@ class Project extends Model
     {
         return $this->hasOne(ProjectTarget::class);
     }
-
-    
 }

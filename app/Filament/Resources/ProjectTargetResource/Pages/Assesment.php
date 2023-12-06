@@ -58,6 +58,10 @@ class Assesment extends Page implements HasForms
                     ->schema([
                         Textarea::make('capaian_description')->disabled(),
                         TextInput::make('student_id'),
+                        Repeater::make('students')
+                        ->schema([
+                            
+                        ]),
                     ])
                     ->reorderableWithDragAndDrop(false)
                     ->deletable(false)

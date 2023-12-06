@@ -11,8 +11,8 @@ class ProjectTarget extends Model
     use \Staudenmeir\EloquentJsonRelations\HasJsonRelationships;
 
     protected $fillable = [
-        'project_grade_id',
-        'target',
+        'project_id',
+        'target_id',
     ];
 
     protected $casts = [
@@ -24,10 +24,10 @@ class ProjectTarget extends Model
         return $this->belongsTo(Project::class);
     }
 
-    // public function target()
-    // {
-    //     return $this->hasMany(Target::class);
-    // }
+    public function target()
+    {
+        return $this->belongsTo(Target::class);
+    }
 
     public function subElement()
     {
