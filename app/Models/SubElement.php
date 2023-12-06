@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class SubElement extends Model
 {
@@ -28,6 +29,6 @@ class SubElement extends Model
 
     public function target()
     {
-        return $this->hasMany(Target::class, 'code_sub_element', 'code');
+        return $this->hasOne(Target::class, 'code_sub_element', 'code');
     }
 }

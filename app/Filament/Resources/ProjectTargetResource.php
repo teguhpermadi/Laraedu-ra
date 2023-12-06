@@ -18,6 +18,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -117,13 +118,15 @@ class ProjectTargetResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('project.name'),
-                TextColumn::make('grade.name'),
+                TextColumn::make('project.grade.name'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('Assesment')
+                    ->url(fn (ProjectTarget $record): string => route('filament.admin.resources.project-targets.assesment', $record))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -145,6 +148,7 @@ class ProjectTargetResource extends Resource
             'index' => Pages\ListProjectTargets::route('/'),
             'create' => Pages\CreateProjectTarget::route('/create'),
             'edit' => Pages\EditProjectTarget::route('/{record}/edit'),
+            'assesment' => Pages\Assesment::route('/{record}/assement'),
         ];
     }    
 }

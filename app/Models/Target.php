@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Target extends Model
 {
@@ -31,5 +32,10 @@ class Target extends Model
     public function subElement()
     {
         return $this->belongsTo(SubElement::class, 'code_sub_element', 'code');
+    }
+
+    public function scopePhase(Builder $query, string $phase = null)
+    {
+        $query->where('phase', $phase);
     }
 }

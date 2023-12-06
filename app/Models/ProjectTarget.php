@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectTarget extends Model
 {
     use HasFactory;
+    use \Staudenmeir\EloquentJsonRelations\HasJsonRelationships;
 
     protected $fillable = [
         'project_grade_id',
@@ -15,7 +16,7 @@ class ProjectTarget extends Model
     ];
 
     protected $casts = [
-        'target' => 'array'
+        'target' => 'json'
     ];
 
     public function project()
@@ -23,8 +24,18 @@ class ProjectTarget extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function target()
+    // public function target()
+    // {
+    //     return $this->hasMany(Target::class);
+    // }
+
+    public function subElement()
     {
-        return $this->hasMany(Target::class);
+        return $this->belongsToJson(SubElement::class, 'target[]->sub_element');
+    }
+    
+    public function subValue()
+    {
+        return $this->belongsToJson(SubValue::class, 'target[]->sub_nilai');
     }
 }
