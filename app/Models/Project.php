@@ -33,4 +33,9 @@ class Project extends Model
     {
          return $this->belongsTo(Grade::class);
     }
+
+    public function projectTarget()
+    {
+        return $this->hasMany(ProjectTarget::class);
+    }
 }

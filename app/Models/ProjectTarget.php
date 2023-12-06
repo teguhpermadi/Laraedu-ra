@@ -11,6 +11,7 @@ class ProjectTarget extends Model
 
     protected $fillable = [
         'project_id',
+        'phase',
         'dimention_id',
         'element_id',
         'sub_element_id',
@@ -18,6 +19,13 @@ class ProjectTarget extends Model
         'sub_value_id',
         'target_id',
     ];  
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     public function project()
     {

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('project_targets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->references('id')->on('projects')->cascadeOnDelete();
+            $table->string('phase');
             $table->foreignId('dimention_id')->references('id')->on('dimentions')->cascadeOnDelete();
             $table->foreignId('element_id')->references('id')->on('elements')->cascadeOnDelete();
             $table->foreignId('sub_element_id')->references('id')->on('sub_elements')->cascadeOnDelete();
