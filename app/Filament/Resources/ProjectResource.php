@@ -64,7 +64,7 @@ class ProjectResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Action::make('Capaian')
-                ->url(fn (Project $record): string => route('filament.admin.resources.project-targets.edit', $record))
+                    ->url(fn (Project $record): string => route('filament.admin.resources.projects.target', $record))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

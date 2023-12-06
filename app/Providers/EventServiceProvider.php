@@ -7,11 +7,13 @@ use App\Events\PrintReport;
 use App\Listeners\CalculateScoreListener;
 use App\Listeners\PrintReportListener;
 use App\Models\Competency;
+use App\Models\ProjectTarget;
 use App\Models\StudentCompetency;
 use App\Models\StudentGrade;
 use App\Models\Teacher;
 use App\Models\TeacherGrade;
 use App\Observers\CompetencyObserver;
+use App\Observers\ProjectTargetObserver;
 use App\Observers\StudentGradeObserver;
 use App\Observers\TeacherGradeObserver;
 use App\Observers\TeacherObserver;
@@ -42,6 +44,7 @@ class EventServiceProvider extends ServiceProvider
         Competency::observe(CompetencyObserver::class);
         StudentGrade::observe(StudentGradeObserver::class);
         TeacherGrade::observe(TeacherGradeObserver::class);
+        ProjectTarget::observe(ProjectTargetObserver::class);
     }
 
     /**
