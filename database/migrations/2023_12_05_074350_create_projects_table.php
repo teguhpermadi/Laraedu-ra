@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->foreignId('project_theme_id')->references('id')->on('project_themes')->cascadeOnUpdate();
+            $table->foreignId('academic_year_id')->references('id')->on('academic_years')->cascadeOnUpdate();
+            $table->foreignId('grade_id')->references('id')->on('grades')->cascadeOnUpdate();
+            $table->foreignId('teacher_id')->references('id')->on('teachers')->cascadeOnUpdate();
             $table->timestamps();
         });
     }

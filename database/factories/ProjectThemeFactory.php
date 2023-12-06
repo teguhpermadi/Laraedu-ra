@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProjectGrade>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProjectTheme>
  */
-class ProjectGradeFactory extends Factory
+class ProjectThemeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,7 @@ class ProjectGradeFactory extends Factory
     public function definition(): array
     {
         return [
-            'project_id',
-            'academic_year_id',
-            'grade_id',
-            'teacher_id',
+            //
         ];
     }
 }

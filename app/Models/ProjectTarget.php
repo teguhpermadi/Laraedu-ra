@@ -11,12 +11,16 @@ class ProjectTarget extends Model
 
     protected $fillable = [
         'project_grade_id',
-        'target_id',
+        'target',
     ];
 
-    public function projectGrade()
+    protected $casts = [
+        'target' => 'array'
+    ];
+
+    public function project()
     {
-        return $this->belongsTo(ProjectGrade::class, 'project_grade_id');
+        return $this->belongsTo(Project::class);
     }
 
     public function target()

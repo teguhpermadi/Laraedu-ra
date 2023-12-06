@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('project_targets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_grade_id')->references('id')->on('project_grades')->cascadeOnUpdate();
+            $table->foreignId('project_id')->references('id')->on('projects')->cascadeOnUpdate();
             // $table->foreignId('target_id')->references('id')->on('targets')->cascadeOnUpdate();
-            $table->json('target_id')->nullable();
-            $table->json('value_id')->nullable();
-            $table->json('sub_value_id')->nullable();
-            // $table->timestamps();
+            $table->json('target')->nullable();
+            $table->timestamps();
         });
     }
 
