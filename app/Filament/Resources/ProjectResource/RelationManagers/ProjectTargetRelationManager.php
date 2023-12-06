@@ -142,9 +142,11 @@ class ProjectTargetRelationManager extends RelationManager
                     // ]),
                 ])
                 ->columnSpanFull(),
-                Hidden::make('target_id')->afterStateHydrated(function($state, callable $set){
-                    $descTarget = Target::find($state)->description;
-                    $set('target', $descTarget);
+                Hidden::make('target_id')->afterStateHydrated(function($state, callable $set, callable $get){
+                    if($get('target_id')){
+                        $descTarget = Target::find($state)->description;
+                        $set('target', $descTarget);
+                    }
                 }),
                 Textarea::make('target')->disabled()->columnSpanFull(),
             ]);

@@ -44,6 +44,7 @@ class EventServiceProvider extends ServiceProvider
         Competency::observe(CompetencyObserver::class);
         StudentGrade::observe(StudentGradeObserver::class);
         TeacherGrade::observe(TeacherGradeObserver::class);
+        ProjectTarget::observe(ProjectTargetObserver::class);
     }
 
     /**
