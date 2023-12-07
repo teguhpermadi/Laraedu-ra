@@ -5,6 +5,7 @@ use App\Exports\CompetencyExport;
 use App\Http\Controllers\ExportExcel;
 use App\Http\Controllers\Leger;
 use App\Http\Controllers\Report;
+use App\Http\Controllers\ReportProject;
 use App\Http\Controllers\StudentCompetencyExcel;
 use App\Imports\AttendanceImport;
 use App\Imports\CompetencyImport;
@@ -110,6 +111,10 @@ Route::controller(Report::class)->group(function(){
 Route::controller(Leger::class)->group(function(){
     Route::get('leger/subject/{id}', 'subject')->name('leger.subject');
     Route::get('leger/attendance', 'attendance')->name('leger.attendance');
+});
+
+Route::controller(ReportProject::class)->group(function(){
+    Route::get('report/project/{id}', 'calculateReport')->name('report.project');
 });
 
 // Route::controller(StudentCompetencyExcel::class)->group(function(){

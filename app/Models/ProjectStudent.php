@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Scopes\AcademicYearScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProjectStudent extends Model
 {
@@ -38,4 +39,6 @@ class ProjectStudent extends Model
     {
         return $this->belongsTo(ProjectTarget::class);
     }
+
+    
 }
