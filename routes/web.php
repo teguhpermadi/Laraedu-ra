@@ -113,9 +113,9 @@ Route::controller(Leger::class)->group(function(){
     Route::get('leger/attendance', 'attendance')->name('leger.attendance');
 });
 
-Route::controller(ReportProject::class)->group(function(){
-    Route::get('report/project/{id}', 'calculateReport')->name('report.project');
-});
+// Route::controller(ReportProject::class)->group(function(){
+//     Route::get('report/project/{id}', 'calculateReport')->name('report.project');
+// });
 
 // Route::controller(StudentCompetencyExcel::class)->group(function(){
 //     Route::get('getdata/{teacher_subject_id}', 'getData')->name('studentCompetencyExcel.getData');
