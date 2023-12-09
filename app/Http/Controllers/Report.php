@@ -257,7 +257,7 @@ class Report extends Controller
         $templateProcessor->setValue('nisn',$data['student']['nisn']);
         $templateProcessor->setValue('nis',$data['student']['nis']);
         $templateProcessor->setValue('grade_name',$data['grade']['name']);
-        $templateProcessor->setValue('grade_level',$data['grade']['grade']);
+        $templateProcessor->setValue('grade_level',$data['grade']['fase']);
         $templateProcessor->setValue('sick',$data['attendance']['sick']);
         $templateProcessor->setValue('permission',$data['attendance']['permission']);
         $templateProcessor->setValue('absent',$data['attendance']['absent']);
