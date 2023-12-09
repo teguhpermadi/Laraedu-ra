@@ -67,7 +67,12 @@ class CompetencyResource extends Resource
                                 $data = TeacherSubject::where('grade_id', $get('grade_id'))
                                     ->where('teacher_id', auth()->user()->userable->userable_id)
                                     ->where('subject_id', $get('subject_id'))->first();
-                                $set('teacher_subject_id', $data->id);
+                                if($data){
+                                    $set('teacher_subject_id', $data->id);
+                                } else {
+                                    $set('teacher_subject_id', null);
+
+                                }
                             })
                             ->reactive()
                             ->required(),
@@ -86,29 +91,37 @@ class CompetencyResource extends Resource
                 TextInput::make('code_skill')
                     ->required()
                     ->visible(function(callable $get){
-                        $teacherSubject = TeacherSubject::with('teacherGrade')->find($get('teacher_subject_id'));
-                        switch ($teacherSubject->teacherGrade->curriculum) {
-                            case '2013':
-                                return true;
-                                break;
-                            
-                            default:
-                                return false;
-                                break;
+                        if($get('teacher_subject_id')){
+                            $teacherSubject = TeacherSubject::with('teacherGrade')->find($get('teacher_subject_id'));
+                            switch ($teacherSubject->teacherGrade->curriculum) {
+                                case '2013':
+                                    return true;
+                                    break;
+                                
+                                default:
+                                    return false;
+                                    break;
+                            }
+                        } else {
+                            return false;
                         }
                     }),
                 Textarea::make('description_skill')
                     ->required()
                     ->visible(function(callable $get){
-                        $teacherSubject = TeacherSubject::with('teacherGrade')->find($get('teacher_subject_id'));
-                        switch ($teacherSubject->teacherGrade->curriculum) {
-                            case '2013':
-                                return true;
-                                break;
-                            
-                            default:
-                                return false;
-                                break;
+                        if($get('teacher_subject_id')){
+                            $teacherSubject = TeacherSubject::with('teacherGrade')->find($get('teacher_subject_id'));
+                            switch ($teacherSubject->teacherGrade->curriculum) {
+                                case '2013':
+                                    return true;
+                                    break;
+                                
+                                default:
+                                    return false;
+                                    break;
+                            }
+                        } else {
+                            return false;
                         }
                     }),
 

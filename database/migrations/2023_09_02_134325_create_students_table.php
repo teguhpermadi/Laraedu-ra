@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('nisn')->nullable();
-            $table->string('nis')->nullable();
+            $table->bigInteger('nisn')->nullable();
+            $table->bigInteger('nis')->nullable();
             $table->string('name');
             $table->string('nick_name');
             $table->string('city_born')->nullable();

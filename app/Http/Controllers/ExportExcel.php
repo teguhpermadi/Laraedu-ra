@@ -85,7 +85,7 @@ class ExportExcel extends Controller
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
         $filename = "studentGrade.xlsx"; // <<< HERE
-        $file_path = storage_path('\app\public\downloads\/'.$filename);
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $writer->save($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
@@ -171,7 +171,7 @@ class ExportExcel extends Controller
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
         $filename = "teacherSubject.xlsx"; // <<< HERE
-        $file_path = storage_path('\app\public\downloads\/'.$filename);
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $writer->save($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
@@ -238,7 +238,7 @@ class ExportExcel extends Controller
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
         $filename = "teacherGrade.xlsx"; // <<< HERE
-        $file_path = storage_path('\app\public\downloads\/'.$filename);
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $writer->save($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
@@ -333,7 +333,7 @@ class ExportExcel extends Controller
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
         // $filename = "studentCompetency-".$subject->code.".xlsx"; // <<< HERE
         $filename = "nilai-".$teacherSubject->subject->name.'-'.$teacherSubject->grade->name.".xlsx"; // <<< HERE
-        $file_path = storage_path('\app\public\downloads\/'.$filename);
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $writer->save($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
@@ -413,7 +413,7 @@ class ExportExcel extends Controller
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
         $filename = "kehadiran-".$grade->name.".xlsx"; // <<< HERE
-        $file_path = storage_path('\app\public\downloads\/'.$filename);
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $writer->save($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
@@ -476,7 +476,7 @@ class ExportExcel extends Controller
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
         $filename = "studentExtracurricular.xlsx"; // <<< HERE
-        $file_path = storage_path('\app\public\downloads\/'.$filename);
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $writer->save($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
@@ -535,7 +535,7 @@ class ExportExcel extends Controller
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
         $filename = "teacherExtracurricular.xlsx"; // <<< HERE
-        $file_path = storage_path('\app\public\downloads\/'.$filename);
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $writer->save($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
@@ -555,16 +555,26 @@ class ExportExcel extends Controller
         $sheet = $spreadsheet->getSheet(0); // Indeks dimulai dari 0
 
          // identitas
-         $identitas = [
+         $judulIdentitas = [
             ['Identitas pelajaran'],
             [null],
-            ['Nama Guru', null, null,null, null,':', $teacher->name],
-            ['Mata Pelajaran', null, null, null,null,':', $subject->name],
-            ['Kelas', null, null,null, null,':', $grade->name],
-            ['Tahun Akademik', null, null, null,null,':', $academic->year],
-            ['Semester', null, null, null,null,':', $academic->semester],
+            ['Tahun Akademik'],
+            ['Semester'],
+            ['Nama Guru'],
+            ['Mata Pelajaran'],
+            ['Kelas'],
         ];
-        $sheet->fromArray($identitas, null, 'B1');
+        $sheet->fromArray($judulIdentitas, null, 'B1');
+
+        $identitas = [
+            [':', $academic->year],
+            [':', $academic->semester],
+            [':', $teacher->name],
+            [':', $subject->name],
+            [':', $grade->name],
+        ];
+
+        $sheet->fromArray($identitas, null, 'H3');
         
         // Membuat lembar pertama
         $sheet1 = $spreadsheet->getActiveSheet();
@@ -578,15 +588,17 @@ class ExportExcel extends Controller
         $sheet1->setCellValue('D10', 'kode_keterampilan');
         $sheet1->setCellValue('E10', 'deskripsi_keterampilan');
         $sheet1->setCellValue('F10', 'kkm');
+        $sheet1->setCellValue('G10', 'id');
 
         $row = 11;
         foreach ($competencies as $competency) {
             $sheet1->setCellValue('A'.$row, $teacher_subject_id);
-            $sheet1->setCellValue('B'.$row, $competency->code);
+            $sheet1->setCellValueExplicit('B'.$row, $competency->code, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $sheet1->setCellValue('C'.$row, $competency->description);
-            $sheet1->setCellValue('D'.$row, $competency->code_skill);
+            $sheet1->setCellValueExplicit('D'.$row, $competency->code_skill, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $sheet1->setCellValue('E'.$row, $competency->description_skill);
             $sheet1->setCellValue('F'.$row, $competency->passing_grade);
+            $sheet1->setCellValue('G'.$row, $competency->id);
             $row++;
         }
 
@@ -598,6 +610,7 @@ class ExportExcel extends Controller
 
         // hide column A
         $sheet->getColumnDimension('A')->setVisible(false);
+        $sheet->getColumnDimension('G')->setVisible(false);
         // hide kode dan deskripsi keterampilan
         if($teacher_subject->grade->teacherGrade->curriculum == 'merdeka'){
             $sheet->getColumnDimension('D')->setVisible(false);
@@ -607,8 +620,8 @@ class ExportExcel extends Controller
 
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
-        $filename = "Kompetensi ". $teacher_subject->subject->name . ' '. $teacher_subject->grade->name.".xlsx"; // <<< HERE
-        $file_path = storage_path('\app\public\downloads\/'.$filename);
+        $filename = "Kompetensi ". $teacher_subject->subject->code . ' '. $teacher_subject->grade->name.".xlsx"; // <<< HERE
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $writer->save($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }

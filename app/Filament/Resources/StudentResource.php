@@ -51,6 +51,8 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
+                TextInput::make('nisn')->required(),
+                TextInput::make('nis')->required(),
                 TextInput::make('name')->required(),
                 TextInput::make('city_born')->required(),
                 DatePicker::make('birthday')->required(),

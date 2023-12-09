@@ -16,7 +16,7 @@ return new class extends Migration
             // $table->foreignId('teacher_subject_id')->constrained()->onDelete('cascade');
             $table->foreignId('teacher_subject_id')->references('id')->on('teacher_subjects')->cascadeOnDelete();
             $table->enum('category', ['pengetahuan', 'keterampilan'])->nullable();
-            $table->string('code')->unique()->nullable();
+            $table->string('code')->nullable();
             $table->string('description');
             $table->string('passing_grade')->default(0);
             $table->timestamps();

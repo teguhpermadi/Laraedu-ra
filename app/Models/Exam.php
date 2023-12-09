@@ -14,8 +14,9 @@ class Exam extends Model
     protected $fillable = [
         'teacher_subject_id',
         'student_id',
-        'category',
-        'score',
+        // 'category',
+        'score_middle',
+        'score_last',
     ]; 
 
     protected $hidden = [

@@ -19,17 +19,24 @@ class NaScore extends Component
         } else {
             $avg_score_competency = round($score_competency->avg('score'), 1);
         }
-
-        $middle = Exam::where('student_id', $student_id)->where('teacher_subject_id', $teacher_subject_id)->where('category', 'middle')->first();
-        $last = Exam::where('student_id', $student_id)->where('teacher_subject_id', $teacher_subject_id)->where('category', 'last')->first();
+        
+        $exam = Exam::where('student_id', $student_id)->where('teacher_subject_id', $teacher_subject_id)->first();
+        $middle = $exam->score_middle;
+        $last = $exam->score_last;
 
          // Pengecekan jika $middle atau $last null
-        $middleScore = $middle ? $middle->score : null;
-        $lastScore = $last ? $last->score : null;
+        $middleScore = $middle ? $middle : null;
+        $lastScore = $last ? $last : null;
 
-        $data = collect([$avg_score_competency, $middleScore, $lastScore]);
+        if($column == 'score'){
+            // jika nilai pengetahuan maka gabungkan nilai competency + middle + score
+            $data = collect([$avg_score_competency, $middleScore, $lastScore]);
+        } else {
+            // jika nilai keterampilan maka hanya nilai competency
+            $data = collect([$avg_score_competency]);
+        }
         
-        $this->score = $data->avg();
+        $this->score = round($data->avg(),2);
         $this->color = ($this->score < 70) ? 'yellow' : '';
     }
 

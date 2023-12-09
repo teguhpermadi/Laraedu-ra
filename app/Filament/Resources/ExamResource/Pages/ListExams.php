@@ -19,33 +19,33 @@ class ListExams extends ListRecords
         return [
             // Actions\CreateAction::make(),
             Action::make('Exam Evaluation')
-            ->url(route('filament.admin.resources.exams.evaluation')),
+                ->url(route('filament.admin.resources.exams.evaluation')),
         ];
     }
 
-    // public function getTabs(): array
-    // {
-    //     $subjects = TeacherSubject::with('exam', 'grade')->mySubject();
-    //     $tabs = [];
-    //     if($subjects->count() != 0){
-    //         foreach ($subjects->get() as $subject) {
-    //             $tabs[$subject->id] = Tab::make($subject->subject->code.'-'.$subject->grade->name)
-    //                 ->modifyQueryUsing(function(Builder $query) use ($subject){
-    //                     $studentId = $subject->grade->studentGrade->pluck('student_id');
-    //                     $query->whereIn('student_id', $studentId)
-    //                         ->where('category', 'middle')
-    //                         ->orderBy('student_id');
-    //                 });
-    //         }
-    //     } else {
-    //         $tabs = [
-    //             '-' => Tab::make()
-    //                 ->icon('heroicon-m-x-mark')
-    //                 ->modifyQueryUsing(function(Builder $query){
-    //                     $query->where('student_id', 0);
-    //                 })
-    //         ];
-    //     }
-    //     return $tabs;
-    // }
+    public function getTabs(): array
+    {
+        $subjects = TeacherSubject::mySubject();
+        $tabs = [];
+        if($subjects->count() != 0){
+            foreach ($subjects->get() as $subject) {
+                $tabs[$subject->id] = Tab::make($subject->subject->code.'-'.$subject->grade->name)
+                    ->modifyQueryUsing(function(Builder $query) use ($subject){
+                        $studentId = $subject->grade->studentGrade->pluck('student_id');
+                        $query->whereIn('student_id', $studentId)
+                            ->where('teacher_subject_id', $subject->id)
+                            ->orderBy('student_id');
+                    });
+            }
+        } else {
+            $tabs = [
+                '-' => Tab::make()
+                    ->icon('heroicon-m-x-mark')
+                    ->modifyQueryUsing(function(Builder $query){
+                        $query->where('student_id', -1);
+                    })
+            ];
+        }
+        return $tabs;
+    }
 }

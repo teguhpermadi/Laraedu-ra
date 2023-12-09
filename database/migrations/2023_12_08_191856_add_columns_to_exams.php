@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exams', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('teacher_subject_id')->references('id')->on('teacher_subjects')->cascadeOnDelete();
-            // $table->enum('category', ['middle', 'last']);
-            $table->foreignId('student_id')->references('id')->on('students')->cascadeOnDelete();
+        Schema::table('exams', function (Blueprint $table) {
+            $table->dropColumn('category', 'score');
             $table->integer('score_middle')->default(0);
             $table->integer('score_last')->default(0);
-            // $table->timestamps();
         });
     }
 
@@ -27,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exams');
+        Schema::table('exams', function (Blueprint $table) {
+            //
+        });
     }
 };

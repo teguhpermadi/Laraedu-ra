@@ -12,9 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('competencies', function (Blueprint $table) {
-            $table->dropColumn('category');
-            $table->string('code_skill')->nullable()->after('description');
-            $table->string('description_skill')->nullable()->after('code_skill');
+            $table->dropUnique('competencies_code_skill_unique');
         });
     }
 
@@ -24,8 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('competencies', function (Blueprint $table) {
-            $table->enum('category', ['pengetahuan', 'keterampilan'])->nullable();
-            $table->dropColumn(['code_skill', 'description_skill']);
+            //
         });
     }
 };

@@ -23,7 +23,11 @@ class Competency extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
 
+    protected $cast = [
+        'code' => 'string',
+        'code_skill' => 'string',
     ];
     
     public function teacherSubject()

@@ -128,12 +128,13 @@ class Report extends Controller
 
             // $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah menguasai materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' cukup menguasai materi: '. $tidakLulusDescription : '');
 
-            $middle = Exam::where('category', 'middle')->where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
-            $last = Exam::where('category', 'last')->where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
+            $exam = Exam::where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
+            $middle = $exam->score_middle;
+            $last = $exam->score_last;
 
             // Pengecekan jika $middle atau $last null
-            $middleScore = $middle ? $middle->score : null;
-            $lastScore = $last ? $last->score : null;
+            $middleScore = $middle ? $middle : null;
+            $lastScore = $last ? $last : null;
 
             $avg_score_student_competencies = $subject->studentCompetency->avg('score');
             $avg_score_student_competencies_skill = $subject->studentCompetency->avg('score_skill');

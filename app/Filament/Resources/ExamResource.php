@@ -42,8 +42,9 @@ class ExamResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('student.name'),
-                BadgeColumn::make('category'),
-                TextColumn::make('score'),
+                // BadgeColumn::make('category'),
+                TextColumn::make('score_middle'),
+                TextColumn::make('score_last'),
             ])
             ->filters([
                 //
@@ -56,7 +57,8 @@ class ExamResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->paginated(false);
     }
     
     public static function getRelations(): array
@@ -71,7 +73,7 @@ class ExamResource extends Resource
         return [
             'index' => Pages\ListExams::route('/'),
             'create' => Pages\CreateExam::route('/create'),
-            'evaluation' => Pages\ExamEvaluation::route('evaluation'),
+            'evaluation' => Pages\Evaluation::route('evaluation'),
             'view' => Pages\ViewExam::route('/{record}'),
             'edit' => Pages\EditExam::route('/{record}/edit'),
         ];

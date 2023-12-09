@@ -25,8 +25,19 @@ class StudentImport implements ToCollection, WithHeadingRow, WithUpserts
     */
     public function collection(Collection $rows)
     {
+        // $data = [];
         foreach ($rows as $row) 
         {
+            // $data = [
+            //     'nisn' => $row['nisn'],
+            //     'nis' => $row['nis'],
+            //     'name' => $row['nama_lengkap'],
+            //     'nick_name' => $row['nama_panggilan'],
+            //     'gender' => Str::lower($row['jenis_kelamin']),
+            //     'city_born' => $row['tempat_lahir'],
+            //     'birthday' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_lahir'], 'Asia/Jakarta'),
+            // ];
+
             $student = Student::updateOrCreate([
                 'nisn' => $row['nisn'],
             ],[
@@ -75,6 +86,8 @@ class StudentImport implements ToCollection, WithHeadingRow, WithUpserts
                 'parent_village'=> $row['kelurahan_orangtua'],
             ]);
         }
+
+        // dd($data);
     }
 
     public function uniqueBy()

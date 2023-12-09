@@ -13,11 +13,17 @@ class ExamScore extends Component
     {
         $data = Exam::where('student_id', $student_id)
             ->where('teacher_subject_id', $teacher_subject_id)
-            ->where('category', $caterogy)
             ->first();
         
-        $this->score = ($data) ? $data->score : null;
-        $this->color = ($this->color < 70) ? 'yellow' : '';
+        if($caterogy == 'middle'){
+            // score middle
+            $this->score = ($data) ? $data->score_middle : null;
+        } else {
+            $this->score = ($data) ? $data->score_last : null;
+        }
+        
+        $this->color = ($this->score < 70) ? 'yellow' : '';
+
     }
 
     public function render()
