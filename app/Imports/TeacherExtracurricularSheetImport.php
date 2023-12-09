@@ -27,10 +27,11 @@ class TeacherExtracurricularSheetImport implements ToCollection, WithHeadingRow
             ]);
 
             $teacher = Teacher::find($row['teacher_id']);
-            $teacher->userable->user->givePermissionTo(
-                'assesment_student::extracurricular',
-                'view_any_student::extracurricular',
-            );
+            $teacher->userable->user->assignRole('teacher_extracurricular');
+            // $teacher->userable->user->givePermissionTo(
+            //     'assesment_student::extracurricular',
+            //     'view_any_student::extracurricular',
+            // );
         }
     }
 }

@@ -92,7 +92,7 @@ class StudentExtracurricularResource extends Resource
                     ->visible(auth()->user()->hasPermissionTo('assesment_student::extracurricular'))
                 ]),
             ])
-            ->paginated(false);
+            ;
     }
     
     public static function getRelations(): array

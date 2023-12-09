@@ -51,13 +51,14 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nisn')->required(),
-                TextInput::make('nis')->required(),
+                TextInput::make('nisn')->numeric()->length(10)->required(),
+                TextInput::make('nis')->numeric()->required(),
                 TextInput::make('name')->required(),
+                TextInput::make('nick_name'),
                 TextInput::make('city_born')->required(),
                 DatePicker::make('birthday')->required(),
                 Select::make('gender')->options(['laki-laki'=>'Laki-laki', 'perempuan'=>'Perempuan'])->required(),
-                Select::make('active')->boolean()->required(),
+                // Select::make('active')->boolean()->required(),
             ]);
     }
 

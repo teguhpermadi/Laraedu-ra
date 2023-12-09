@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('academic_year_id')->references('id')->on('academic_years')->cascadeOnDelete();
             $table->foreignId('grade_id')->references('id')->on('grades')->cascadeOnDelete();
             $table->foreignId('teacher_id')->references('id')->on('teachers')->cascadeOnDelete();
+            $table->enum('curriculum', ['merdeka', '2013'])->default('merdeka');
+
             $table->timestamps();
 
             $table->unique(['academic_year_id', 'teacher_id', 'grade_id']);

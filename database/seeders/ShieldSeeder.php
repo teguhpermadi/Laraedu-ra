@@ -237,20 +237,51 @@ class ShieldSeeder extends Seeder
                 "delete_any_attendance",
                 "force_delete_attendance",
                 "force_delete_any_attendance",
+                "view_attitude",
+                "view_any_attitude",
+                "create_attitude",
+                "update_attitude",
+                "restore_attitude",
+                "restore_any_attitude",
+                "replicate_attitude",
+                "reorder_attitude",
+                "delete_attitude",
+                "delete_any_attitude",
+                "force_delete_attitude",
+                "force_delete_any_attitude",
                 "page_MyGrade"
               ]
+            },
+            {
+                "name": "teacher_extracurricular",
+                "guard_name": "web",
+                "permissions": [
+                    "view_student::extracurricular",
+                    "view_any_student::extracurricular",
+                    "create_student::extracurricular",
+                    "update_student::extracurricular",
+                    "restore_student::extracurricular",
+                    "restore_any_student::extracurricular",
+                    "replicate_student::extracurricular",
+                    "reorder_student::extracurricular",
+                    "delete_student::extracurricular",
+                    "delete_any_student::extracurricular",
+                    "force_delete_student::extracurricular",
+                    "force_delete_any_student::extracurricular",
+                    "assesment_student::extracurricular"
+                ]
             }
           ]
         ';
-        $directPermissions = '[
-            {
-                "name": "assesment_student::extracurricular",
-                "guard_name": "web"
-            }
-        ]';
+        // $directPermissions = '[
+        //     {
+        //         "name": "assesment_student::extracurricular",
+        //         "guard_name": "web"
+        //     }
+        // ]';
 
         static::makeRolesWithPermissions($rolesWithPermissions);
-        static::makeDirectPermissions($directPermissions);
+        // static::makeDirectPermissions($directPermissions);
 
         $this->command->info('Shield Seeding Completed.');
     }

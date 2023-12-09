@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('competency_id')->references('id')->on('competencies')->cascadeOnDelete();
             $table->foreignId('student_id')->references('id')->on('students')->cascadeOnDelete();
             $table->integer('score')->default(0);
+            $table->integer('score_skill')->default(0);
             // $table->timestamps();
 
             $table->unique(['student_id', 'competency_id']);

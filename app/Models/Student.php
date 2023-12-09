@@ -30,10 +30,10 @@ class Student extends Model
     protected $casts = [
         'nisn' => 'string',
         'nis' => 'string',
+        'active' => 'boolean',
     ];
 
     protected $hidden = [
-        'active',
         'created_at',
         'updated_at',
         'deleted_at',

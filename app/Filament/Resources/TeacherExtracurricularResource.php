@@ -62,14 +62,14 @@ class TeacherExtracurricularResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                ->before(function (TeacherExtracurricular $post) {
-                    $teacher = Teacher::find($post->teacher_id)
-                    ->userable
-                    ->user;
+                // ->before(function (TeacherExtracurricular $post) {
+                //     $teacher = Teacher::find($post->teacher_id)
+                //     ->userable
+                //     ->user;
 
-                    $teacher->revokePermissionTo('assesment_student::extracurricular');
-                    $teacher->revokePermissionTo('view_any_student::extracurricular');
-                }),
+                //     $teacher->revokePermissionTo('assesment_student::extracurricular');
+                //     $teacher->revokePermissionTo('view_any_student::extracurricular');
+                // }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -11,11 +11,13 @@ use App\Models\ProjectTarget;
 use App\Models\StudentCompetency;
 use App\Models\StudentGrade;
 use App\Models\Teacher;
+use App\Models\TeacherExtracurricular;
 use App\Models\TeacherGrade;
 use App\Models\TeacherSubject;
 use App\Observers\CompetencyObserver;
 use App\Observers\ProjectTargetObserver;
 use App\Observers\StudentGradeObserver;
+use App\Observers\TeacherExtracurricularObserver;
 use App\Observers\TeacherGradeObserver;
 use App\Observers\TeacherObserver;
 use App\Observers\TeacherSubjectObserver;
@@ -47,6 +49,7 @@ class EventServiceProvider extends ServiceProvider
         StudentGrade::observe(StudentGradeObserver::class);
         TeacherGrade::observe(TeacherGradeObserver::class);
         TeacherSubject::observe(TeacherSubjectObserver::class);
+        TeacherExtracurricular::observe(TeacherExtracurricularObserver::class);
         ProjectTarget::observe(ProjectTargetObserver::class);
     }
 
