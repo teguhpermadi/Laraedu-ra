@@ -256,19 +256,7 @@ class ShieldSeeder extends Seeder
                 "name": "teacher_extracurricular",
                 "guard_name": "web",
                 "permissions": [
-                    "view_student::extracurricular",
-                    "view_any_student::extracurricular",
-                    "create_student::extracurricular",
-                    "update_student::extracurricular",
-                    "restore_student::extracurricular",
-                    "restore_any_student::extracurricular",
-                    "replicate_student::extracurricular",
-                    "reorder_student::extracurricular",
-                    "delete_student::extracurricular",
-                    "delete_any_student::extracurricular",
-                    "force_delete_student::extracurricular",
-                    "force_delete_any_student::extracurricular",
-                    "assesment_student::extracurricular"
+                    "page_AssesmentExtracurricular"
                 ]
             }
           ]
