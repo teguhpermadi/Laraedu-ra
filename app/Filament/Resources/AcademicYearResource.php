@@ -49,8 +49,10 @@ class AcademicYearResource extends Resource
                 Select::make('active')->default(0)->boolean()->required(),
                 Select::make('teacher_id')
                 ->label('Head Master')
+                ->required()
                 ->options(Teacher::pluck('name', 'id')),
                 DatePicker::make('date_report')
+                ->required()
                 ->label('date of report')
             ]);
     }

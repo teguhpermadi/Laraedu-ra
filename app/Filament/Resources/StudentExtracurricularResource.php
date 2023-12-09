@@ -59,13 +59,14 @@ class StudentExtracurricularResource extends Resource
             ->columns([
                 TextColumn::make('student.name')->searchable(),
                 TextColumn::make('extracurricular.name'),
-                SelectColumn::make('score')
-                ->options([
-                    'A' => 'Amat baik',
-                    'B' => 'Baik',
-                    'C' => 'Cukup'
-                ])
-                ->visible(auth()->user()->hasPermissionTo('assesment_student::extracurricular')),
+                TextColumn::make('score'),
+                // SelectColumn::make('score')
+                // ->options([
+                //     'A' => 'Amat baik',
+                //     'B' => 'Baik',
+                //     'C' => 'Cukup'
+                // ])
+                // ->visible(auth()->user()->hasPermissionTo('assesment_student::extracurricular')),
             ])
             ->filters([
                 //
@@ -77,19 +78,19 @@ class StudentExtracurricularResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                    BulkAction::make('scoring')
-                    ->form([
-                        Select::make('score')
-                        ->options([
-                            'A' => 'Amat baik',
-                            'B' => 'Baik',
-                            'C' => 'Cukup'
-                        ])
-                    ])
-                    ->action(function (Collection $records, $data) {
-                        $records->each->update($data);
-                    })
-                    ->visible(auth()->user()->hasPermissionTo('assesment_student::extracurricular'))
+                    // BulkAction::make('scoring')
+                    // ->form([
+                    //     Select::make('score')
+                    //     ->options([
+                    //         'A' => 'Amat baik',
+                    //         'B' => 'Baik',
+                    //         'C' => 'Cukup'
+                    //     ])
+                    // ])
+                    // ->action(function (Collection $records, $data) {
+                    //     $records->each->update($data);
+                    // })
+                    // ->visible(auth()->user()->hasPermissionTo('assesment_student::extracurricular'))
                 ]),
             ])
             ;

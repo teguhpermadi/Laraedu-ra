@@ -13,8 +13,9 @@ class TeacherExtracurricularObserver
      */
     public function created(TeacherExtracurricular $teacherExtracurricular): void
     {
-        $user = $teacherExtracurricular->teacher_id->userable->user;
-        $user->assignRole('teacher_extracurricular');
+        // $user = $teacherExtracurricular->teacher_id->userable->user;
+        // $user->assignRole('teacher_extracurricular');
+        Teacher::find($teacherExtracurricular->teacher_id)->userable->user->assignRole('teacher_extracurricular');
     }
 
     /**
@@ -25,14 +26,14 @@ class TeacherExtracurricularObserver
      */
     public function updating(TeacherExtracurricular $teacherExtracurricular)
     {
-      if($teacherExtracurricular->isDirty('teacher_id')){
-        // teacher_id has changed
-        $new_teacher_id = $teacherExtracurricular->teacher_id; 
-        Teacher::find($new_teacher_id)->userable->user->assignRole('teacher_extracurricular');
+    //   if($teacherExtracurricular->isDirty('teacher_id')){
+    //     // teacher_id has changed
+    //     $new_teacher_id = $teacherExtracurricular->teacher_id; 
+    //     Teacher::find($new_teacher_id)->userable->user->assignRole('teacher_extracurricular');
         
-        // $old_teacher_id = $teacherExtracurricular->getOriginal('teacher_id');
-        // Teacher::find($old_teacher_id)->userable->user->removeRole('teacher_extracurricular');
-      }
+    //     $old_teacher_id = $teacherExtracurricular->getOriginal('teacher_id');
+    //     Teacher::find($old_teacher_id)->userable->user->removeRole('teacher_extracurricular');
+    //   }
     }
 
     /**
@@ -49,8 +50,9 @@ class TeacherExtracurricularObserver
     public function deleted(TeacherExtracurricular $teacherExtracurricular): void
     {
         // delete role dari teacher lama
-        $userOld = $teacherExtracurricular->teacher_id->userable->user;
-        $userOld->removeRole('teacher_extracurricular');
+        $teacher = $teacherExtracurricular->teacher_id;
+        $user = Teacher::find($teacher)->userable->user;
+        $user->removeRole('teacher_extracurricular');
     }
 
     /**
