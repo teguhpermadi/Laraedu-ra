@@ -18,6 +18,10 @@ class MyGrade extends Page implements HasTable
     use HasPageShield;
     use InteractsWithTable;
 
+    protected static ?string $navigationLabel = 'Report';
+
+    protected static ?string $navigationGroup = 'Teacher Grade';
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'filament.pages.my-grade';

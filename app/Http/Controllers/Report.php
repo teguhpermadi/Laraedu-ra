@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\AcademicYear;
 use App\Models\Attendance;
+use App\Models\Attitude;
 use App\Models\Exam;
 use App\Models\School;
 use App\Models\Student;
@@ -33,6 +34,8 @@ class Report extends Controller
         $teacherGrade = TeacherGrade::with('teacher')->where('grade_id', $grade->grade_id)->first();
 
         $attendance = Attendance::where('student_id', $id)->first();
+        
+        $attitude = Attitude::where('student_id', $id)->first();
 
         $extracurriculars = StudentExtracurricular::where('student_id', $id)->description()->get();
 
@@ -48,20 +51,20 @@ class Report extends Controller
             $combinedResultDescription = '';
             $lulusDescriptions = [];
             $tidakLulusDescriptions = [];
-            $amatBaik = [];
-            $baik = [];
-            $cukup = [];
-            $kurang = [];
             
             // skill
             $combinedResultDescriptionSkill = '';
             $lulusDescriptionsSkill = [];
             $tidakLulusDescriptionsSkill = [];
-            $amatBaikSkill = [];
-            $baikSkill = [];
-            $cukupSkill = [];
-            $kurangSkill = [];
+            
+            
+            // predikat
+            $average_scores_predicate = '';
+            $average_scores_skill_predicate = '';
+            $valueStore = Valuestore::make(storage_path('app/settings.json'));
+            $predicates = $valueStore->get('predicate');
 
+            
             foreach ($subject->studentCompetency as $competency) {
                 if ($competency['result'] === "LULUS") {
                     $lulusDescriptions[] = $competency['description'];
@@ -76,38 +79,6 @@ class Report extends Controller
                     $tidakLulusDescriptionsSkill[] = $competency['description_skill'];
                 }
                 
-                switch ($competency['predicate']) {
-                    case 'A':
-                        $amatBaik[] = $competency['description'];
-                        break;
-                    case 'B':
-                        $baik[] = $competency['description'];
-                        break;
-                    case 'C':
-                        $cukup[] = $competency['description'];
-                        break;
-                    
-                    default:
-                        $kurang[] = $competency['description'];
-                        break;
-                }
-
-                // skill
-                switch ($competency['predicate_skill']) {
-                    case 'A':
-                        $amatBaikSkill[] = $competency['description_skill'];
-                        break;
-                    case 'B':
-                        $baikSkill[] = $competency['description_skill'];
-                        break;
-                    case 'C':
-                        $cukupSkill[] = $competency['description_skill'];
-                        break;
-                    
-                    default:
-                        $kurangSkill[] = $competency['description_skill'];
-                        break;
-                }
             }
     
             // Gabungkan result_description untuk "LULUS" dan "TIDAK LULUS"
@@ -119,11 +90,11 @@ class Report extends Controller
             $tidakLulusDescriptionsSkill = implode("; ", $tidakLulusDescriptionsSkill);
             
             if($lulusDescription){
-                $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah menguasai materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' Serta cukup menguasai materi: '. $tidakLulusDescription : '');    
-                $combinedResultDescriptionSkill = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescriptionsSkill) ? ' telah menguasai materi: ' . $lulusDescriptionsSkill : '') . (($tidakLulusDescriptionsSkill) ? ' Serta cukup menguasai materi: '. $tidakLulusDescriptionsSkill : '');    
+                $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah MENGUASAI materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' Serta CUKUP MENGUASAI materi: '. $tidakLulusDescription : '');    
+                $combinedResultDescriptionSkill = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescriptionsSkill) ? ' telah MENGUASAI materi: ' . $lulusDescriptionsSkill : '') . (($tidakLulusDescriptionsSkill) ? ' Serta CUKUP MENGUASAI materi: '. $tidakLulusDescriptionsSkill : '');    
             } else {
-                $combinedResultDescription = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum menguasai materi:' . $tidakLulusDescription;
-                $combinedResultDescriptionSkill = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum menguasai materi:' . $tidakLulusDescriptionsSkill;
+                $combinedResultDescription = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum MENGUASAI materi:' . $tidakLulusDescription;
+                $combinedResultDescriptionSkill = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum MENGUASAI materi:' . $tidakLulusDescriptionsSkill;
             }
 
             // $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah menguasai materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' cukup menguasai materi: '. $tidakLulusDescription : '');
@@ -174,13 +145,28 @@ class Report extends Controller
             }
             */
 
+            /**
+             * predikat
+             */
+            
+            foreach ($predicates as $predicate) {
+                // nilai pengetahuan
+                if ($average_scores <= $predicate['upper_limit'] && $average_scores > $predicate['lower_limit']) {
+                    $average_scores_predicate = $predicate['predicate'];
+                }
+                // nilai keterampilan
+                if ($average_scores_skill <= $predicate['upper_limit'] && $average_scores_skill > $predicate['lower_limit']) {
+                    $average_scores_skill_predicate = $predicate['predicate'];
+                }
+            }
+
             // dd($average_scores);
     
             $result[] = [
             // $result[$subject->subject->order] = [
                 // 'teacher_subject_id' => $subject->id,
                 'order' => $subject->subject->order,
-                'order_skill' => $subject->subject->order,
+                'orderDes' => $subject->subject->order,
                 'subject' => $subject->subject->name,
                 'subject_skill' => $subject->subject->name,
                 'code' => $subject->subject->code,
@@ -188,16 +174,18 @@ class Report extends Controller
                 'middle_score' => $middleScore,
                 'last_score' => $lastScore,
                 'average_score' => round($average_scores,1),
+                'average_scores_predicate' => $average_scores_predicate,
                 'passed_description' => $lulusDescription,
                 'not_pass_description' => $tidakLulusDescription,
                 'combined_description' => $combinedResultDescription,
                 // skill
                 'score_competencies_skill' => $avg_score_student_competencies_skill,
                 'average_score_skill' => round($average_scores_skill,1),
+                'average_scores_skill_predicate' => $average_scores_skill_predicate,
                 'passed_description_skill' => $lulusDescriptionsSkill,
                 'not_pass_description_skill' => $tidakLulusDescriptionsSkill,
                 'combined_description_skill' => $combinedResultDescriptionSkill,
-                'data_score' => $dataScores,
+                // 'data_score' => $dataScores,
             ];
 
         }
@@ -234,6 +222,7 @@ class Report extends Controller
             'student' => $student->toArray(),
             'grade' => $grade->grade->toArray(),
             'attendance' => $attendance,
+            'attitude' => $attitude,
             'result' => $resultOrder,
             'total_average_score' => $totalAverageScore,
             'counting_total' => $counting_total,
@@ -266,6 +255,7 @@ class Report extends Controller
         $templateProcessor->setValue('semester',$data['academic']['semester']);
         $templateProcessor->setValue('student_name',$data['student']['name']);
         $templateProcessor->setValue('nisn',$data['student']['nisn']);
+        $templateProcessor->setValue('nis',$data['student']['nis']);
         $templateProcessor->setValue('grade_name',$data['grade']['name']);
         $templateProcessor->setValue('grade_level',$data['grade']['grade']);
         $templateProcessor->setValue('sick',$data['attendance']['sick']);
@@ -274,6 +264,8 @@ class Report extends Controller
         $templateProcessor->setValue('total_attendance',$data['attendance']['total_attendance']);
         $templateProcessor->setValue('note',$data['attendance']['note']);
         $templateProcessor->setValue('achievement',$data['attendance']['achievement']);
+        $templateProcessor->setValue('attitude_religius',$data['attitude']['attitude_religius']);
+        $templateProcessor->setValue('attitude_social',$data['attitude']['attitude_social']);
         $templateProcessor->setValue('teacher_name',$data['teacher']['name']);
         $templateProcessor->setValue('total_average_score',$data['total_average_score']);
         $templateProcessor->setValue('counting_total',$data['counting_total']);
@@ -386,6 +378,7 @@ class Report extends Controller
         $templateProcessor->setValue('semester',$data['academic']['semester']);
         $templateProcessor->setValue('student_name',$data['student']['name']);
         $templateProcessor->setValue('nisn',$data['student']['nisn']);
+        $templateProcessor->setValue('nis',$data['student']['nis']);
         $templateProcessor->setValue('grade_name',$data['grade']['name']);
         $templateProcessor->setValue('grade_level',$data['grade']['grade']);
         $templateProcessor->setValue('sick',$data['attendance']['sick']);
@@ -394,6 +387,8 @@ class Report extends Controller
         $templateProcessor->setValue('total_attendance',$data['attendance']['total_attendance']);
         $templateProcessor->setValue('note',$data['attendance']['note']);
         $templateProcessor->setValue('achievement',$data['attendance']['achievement']);
+        $templateProcessor->setValue('attitude_religius',$data['attitude']['attitude_religius']);
+        $templateProcessor->setValue('attitude_social',$data['attitude']['attitude_social']);
         $templateProcessor->setValue('teacher_name',$data['teacher']['name']);
         $templateProcessor->setValue('total_average_score',$data['total_average_score']);
         $templateProcessor->setValue('counting_total',$data['counting_total']);
@@ -402,7 +397,7 @@ class Report extends Controller
 
         // tabel nilai mata pelajaran
         $templateProcessor->cloneRowAndSetValues('order', $data['result']);
-        $templateProcessor->cloneRowAndSetValues('order_skill', $data['result']);
+        $templateProcessor->cloneRowAndSetValues('orderDes', $data['result']);
 
         // tabel ekstrakurikuler
         $templateProcessor->cloneRowAndSetValues('orderEx', $data['extracurriculars']);

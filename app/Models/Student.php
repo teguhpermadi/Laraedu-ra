@@ -162,4 +162,9 @@ class Student extends Model
     {
         return $this->hasMany(StudentExtracurricular::class);
     }
+
+    public function attitude()
+    {
+        return $this->hasOne(Attitude::class);
+    }
 }

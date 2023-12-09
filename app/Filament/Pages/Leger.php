@@ -18,6 +18,8 @@ class Leger extends Page implements HasTable
 
     protected static ?string $title = 'Leger Subject';
     
+    protected static ?string $navigationGroup = 'Teacher';
+    
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'filament.pages.leger';

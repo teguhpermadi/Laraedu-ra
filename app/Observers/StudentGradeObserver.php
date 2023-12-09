@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Attendance;
+use App\Models\Attitude;
 use App\Models\StudentGrade;
 
 class StudentGradeObserver
@@ -22,6 +23,13 @@ class StudentGradeObserver
             'absent'=> 0,
             'note' => '-',
             'achievement' => '-'
+        ]);
+
+        // buat attitude
+        Attitude::updateOrCreate([
+            'academic_year_id' => $studentGrade['academic_year_id'],
+            'grade_id' => $studentGrade['grade_id'],
+            'student_id' => $studentGrade['student_id'],
         ]);
     }
 

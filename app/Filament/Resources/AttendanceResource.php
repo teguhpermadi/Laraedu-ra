@@ -26,7 +26,7 @@ class AttendanceResource extends Resource
 {
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $navigationGroup = 'Settings';
+    protected static ?string $navigationGroup = 'Teacher Grade';
 
     protected static ?string $model = Attendance::class;
 
