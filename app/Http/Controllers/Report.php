@@ -318,9 +318,9 @@ class Report extends Controller
         $templateProcessor->setValue('pendidikan_ayah',$data['student']['dataStudent']['father_education']);
         $templateProcessor->setValue('pekerjaan_ayah',$data['student']['dataStudent']['father_occupation']);
         // ibu
-        $templateProcessor->setValue('nama_ibu',$data['student']['dataStudent']['father_name']);
-        $templateProcessor->setValue('pendidikan_ibu',$data['student']['dataStudent']['father_education']);
-        $templateProcessor->setValue('pekerjaan_ibu',$data['student']['dataStudent']['father_occupation']);
+        $templateProcessor->setValue('nama_ibu',$data['student']['dataStudent']['mother_name']);
+        $templateProcessor->setValue('pendidikan_ibu',$data['student']['dataStudent']['mother_education']);
+        $templateProcessor->setValue('pekerjaan_ibu',$data['student']['dataStudent']['mother_occupation']);
         // alamat
         $templateProcessor->setValue('alamat_orangtua',$data['student']['dataStudent']['parent_address']);
         $templateProcessor->setValue('kelurahan_orangtua',$data['student']['dataStudent']['parent_village']);
