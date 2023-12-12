@@ -22,10 +22,12 @@ class TeacherObserver
         // } else {
         //     $pass = Hash::make('password');
         // }
+
+        // $namaLengkap = explode(' ', $teacher->name);
         
         // $user = User::create([
         //     'name' => $teacher->name,
-        //     'username' => $teacher->username,
+        //     'username' => $namaLengkap[0],
         //     'email' => Str::slug($teacher->name).'@teacher.com',
         //     'password' => $pass,
         // ]);
@@ -36,8 +38,8 @@ class TeacherObserver
         //     'userable_type' => Teacher::class,
         // ]);
 
-        // dd($teacher->userable);
-        //->assignRole('teacher');
+        // // dd($teacher->userable);
+        // $user->assignRole('teacher');
     }
 
     /**
@@ -46,6 +48,10 @@ class TeacherObserver
     public function updated(Teacher $teacher): void
     {
         // Log::info('Teacher updated: ' . $teacher->name);
+        $userable = Userable::where('userable_id', $teacher->id)->first();
+        $userable->user->update([
+            'name' => $teacher->name,
+        ]);
     }
 
     /**
