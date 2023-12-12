@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AcademicYear;
+use App\Models\Exam;
 use App\Models\Extracurricular;
 use App\Models\Grade;
 use App\Models\Student;
@@ -621,6 +622,78 @@ class ExportExcel extends Controller
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
         $filename = "Kompetensi ". $teacher_subject->subject->code . ' '. $teacher_subject->grade->name.".xlsx"; // <<< HERE
+        $file_path = storage_path('/app/public/downloads/'.$filename);
+        $writer->save($file_path);
+        return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
+    }
+
+    public function exam($teacher_subject_id)
+    {
+        $teacher_subject = TeacherSubject::with('academic','teacher','subject','grade.teacherGrade','competencies')->find($teacher_subject_id);
+        $data = Exam::with('student')->where('teacher_subject_id', $teacher_subject_id)->get();
+
+        $academic = $teacher_subject->academic;
+        $teacher = $teacher_subject->teacher;
+        $grade = $teacher_subject->grade;
+        $subject = $teacher_subject->subject;
+
+        $spreadsheet = new Spreadsheet();
+        $spreadsheet->createSheet();
+        $sheet = $spreadsheet->getSheet(0); // Indeks dimulai dari 0
+
+         // identitas
+         $judulIdentitas = [
+            ['Identitas pelajaran'],
+            [null],
+            ['Tahun Akademik'],
+            ['Semester'],
+            ['Nama Guru'],
+            ['Mata Pelajaran'],
+            ['Kelas'],
+        ];
+        $sheet->fromArray($judulIdentitas, null, 'C1');
+
+        $identitas = [
+            [':', $academic->year],
+            [':', $academic->semester],
+            [':', $teacher->name],
+            [':', $subject->name],
+            [':', $grade->name],
+        ];
+
+        $sheet->fromArray($identitas, null, 'E3');
+        
+        // Membuat lembar pertama
+        $sheet1 = $spreadsheet->getActiveSheet();
+        $sheet1->setTitle('Exam');
+
+        $sheet1->setCellValue('A10', 'teacher_subject_id');
+        $sheet1->setCellValue('B10', 'student_id');
+        $sheet1->setCellValue('C10', 'nama');
+        $sheet1->setCellValue('D10', 'score_middle');
+        $sheet1->setCellValue('E10', 'score_last');
+
+        // input data
+        $students = [];
+        foreach ($data as $item) {
+            $students[] = [
+                $item->teacher_subject_id,
+                $item->student_id,
+                $item->student->name,
+                $item->score_middle,
+                $item->score_last,
+            ]; 
+        }
+
+        $sheet->fromArray($students, null, 'A11', true);
+
+        // hide column
+        $sheet->getColumnDimension('A')->setVisible(false);
+        $sheet->getColumnDimension('B')->setVisible(false);
+
+        $writer = new Xlsx($spreadsheet);
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
+        $filename = "Exam ". $teacher_subject->subject->code . ' '. $teacher_subject->grade->name.".xlsx"; // <<< HERE
         $file_path = storage_path('/app/public/downloads/'.$filename);
         $writer->save($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE

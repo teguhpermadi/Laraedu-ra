@@ -65,7 +65,7 @@ class TeacherSubjectResource extends Resource
                             ->where('subject_id', $get('subject_id'))
                             ->where('grade_id', $get('grade_id'));
                 })
-                ->multiple()
+                // ->multiple()
                 ->required(),
             ]);
     }
