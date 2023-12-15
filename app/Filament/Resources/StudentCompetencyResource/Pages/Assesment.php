@@ -16,6 +16,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Pages\Page;
 use Filament\Tables\Actions\BulkAction;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -97,8 +98,23 @@ class Assesment extends Page implements HasForms, HasTable
             ->query(StudentCompetency::query())
             ->columns([
                 TextColumn::make('student.name'),
-                TextInputColumn::make('score'),
-                TextInputColumn::make('score_skill')
+                // TextInputColumn::make('score'),
+                // TextInputColumn::make('score_skill')
+                //     ->visible($this->visible),
+                SelectColumn::make('score')
+                    ->options([
+                        '4' => 'Berkembang Sangat Baik',
+                        '3' => 'Berkembang Sesuai Harapan',
+                        '2' => 'Mulai Berkembang',
+                        '1' => 'Belum Berkembang',
+                    ]),
+                SelectColumn::make('score_skill')
+                    ->options([
+                        '4' => 'Berkembang Sangat Baik',
+                        '3' => 'Berkembang Sesuai Harapan',
+                        '2' => 'Mulai Berkembang',
+                        '1' => 'Belum Berkembang',
+                    ])
                     ->visible($this->visible),
             ])
             ->filters([
@@ -110,18 +126,32 @@ class Assesment extends Page implements HasForms, HasTable
             ->bulkActions([
                 BulkAction::make('Scoring')
                 ->form([
-                    TextInput::make('score')
-                        ->numeric()
-                        ->minValue(0)
-                        ->maxValue(100)
-                        ->required(),
-                    TextInput::make('score_skill')
-                        ->numeric()
-                        ->minValue(0)
-                        ->maxValue(100)
-                        ->required()
-                        ->visible($this->visible)
-                    
+                    // TextInput::make('score')
+                    //     ->numeric()
+                    //     ->minValue(0)
+                    //     ->maxValue(100)
+                    //     ->required(),
+                    // TextInput::make('score_skill')
+                    //     ->numeric()
+                    //     ->minValue(0)
+                    //     ->maxValue(100)
+                    //     ->required()
+                    //     ->visible($this->visible)
+                    Select::make('score')
+                        ->options([
+                            '4' => 'Berkembang Sangat Baik',
+                            '3' => 'Berkembang Sesuai Harapan',
+                            '2' => 'Mulai Berkembang',
+                            '1' => 'Belum Berkembang',
+                        ]),
+                    Select::make('score_skill')
+                        ->options([
+                            '4' => 'Berkembang Sangat Baik',
+                            '3' => 'Berkembang Sesuai Harapan',
+                            '2' => 'Mulai Berkembang',
+                            '1' => 'Belum Berkembang',
+                        ])
+                        ->visible($this->visible),
                 ])
                 ->action(function (Collection $records, $data) {
                     if($this->visible){
