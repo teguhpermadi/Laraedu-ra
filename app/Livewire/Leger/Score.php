@@ -16,12 +16,28 @@ class Score extends Component
         $competency = Competency::find($competency_id);
 
         if($column == 'score_skill'){
-            $this->score = $data->score_skill;
+            $score = $data->score_skill;
         } else {
-            $this->score = $data->score;
+            $score = $data->score;
+        }
+
+        switch ($score) {
+            case '4':
+                $this->score = 'BSB';
+                break;
+            case '3':
+                $this->score = 'BSH';
+                break;
+            case '2':
+                $this->score = 'MB';
+                break;
+            
+            default:
+                $this->score = 'BB';
+                break;
         }
         
-        $this->color = ($this->score < $competency->passing_grade) ? 'yellow' : '';
+        $this->color = ($score < $competency->passing_grade) ? 'yellow' : '';
     }
 
     public function render()

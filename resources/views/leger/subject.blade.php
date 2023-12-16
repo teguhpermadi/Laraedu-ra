@@ -47,9 +47,9 @@
                     <th>{{$competency->code}}</th>
                 @endforeach
                 <th>Rata-rata Kompetensi</th>
-                <th>Tengah Semester</th>
+                {{-- <th>Tengah Semester</th>
                 <th>Akhir Semester</th>
-                <th>Nilai Akhir</th>
+                <th>Nilai Akhir</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -82,28 +82,28 @@
                     </td>
 
                     {{-- nilai tengah semester --}}
-                    <td class="center">
+                    {{-- <td class="center">
                         @livewire('leger.exam-score', [
                                 'student_id' => $studentGrade->student->id,
                                 'teacher_subject_id' => $data->id,
                                 'caterogy' => 'middle',
                             ])
-                    </td>
+                    </td> --}}
 
                     {{-- nilai akhir semester --}}
-                    <td class="center">
+                    {{-- <td class="center">
                         @livewire('leger.exam-score', [
                                 'student_id' => $studentGrade->student->id,
                                 'teacher_subject_id' => $data->id,
                                 'caterogy' => 'last',
                             ])
-                    </td>
-                    <td>
+                    </td> --}}
+                    {{-- <td>
                         @livewire('leger.na-score', [
                                 'student_id' => $studentGrade->student->id,
                                 'teacher_subject_id' => $data->id,
                             ])
-                    </td>
+                    </td> --}}
                </tr> 
             @endforeach
         </tbody>

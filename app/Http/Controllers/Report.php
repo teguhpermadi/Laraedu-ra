@@ -51,11 +51,14 @@ class Report extends Controller
             $combinedResultDescription = '';
             $lulusDescriptions = [];
             $tidakLulusDescriptions = [];
+            $sangatBaik = [];
+            $baik = [];
+            $tingkatkan = [];
             
             // skill
-            $combinedResultDescriptionSkill = '';
-            $lulusDescriptionsSkill = [];
-            $tidakLulusDescriptionsSkill = [];
+            // $combinedResultDescriptionSkill = '';
+            // $lulusDescriptionsSkill = [];
+            // $tidakLulusDescriptionsSkill = [];
             
             
             // predikat
@@ -66,38 +69,55 @@ class Report extends Controller
 
             
             foreach ($subject->studentCompetency as $competency) {
-                if ($competency['result'] === "LULUS") {
-                    $lulusDescriptions[] = $competency['description'];
-                } else {
-                    $tidakLulusDescriptions[] = $competency['description'];
+                switch ($competency['predicate']) {
+                    case 'A':
+                        $sangatBaik[] = $competency['description'];
+                        break;
+                    case 'B':
+                        $baik[] = $competency['description'];
+                        break;
+                    
+                    default:
+                        $tingkatkan[] = $competency['description'];
+                        break;
                 }
 
+                // if ($competency['result'] === "LULUS") {
+                //     $lulusDescriptions[] = $competency['description'];
+                // } else {
+                //     $tidakLulusDescriptions[] = $competency['description'];
+                // }
+
                 // skill
-                if ($competency['result_skill'] === "LULUS") {
-                    $lulusDescriptionsSkill[] = $competency['description_skill'];
-                } else {
-                    $tidakLulusDescriptionsSkill[] = $competency['description_skill'];
-                }
+                // if ($competency['result_skill'] === "LULUS") {
+                //     $lulusDescriptionsSkill[] = $competency['description_skill'];
+                // } else {
+                //     $tidakLulusDescriptionsSkill[] = $competency['description_skill'];
+                // }
                 
             }
     
             // Gabungkan result_description untuk "LULUS" dan "TIDAK LULUS"
-            $lulusDescription = implode("; ", $lulusDescriptions);
-            $tidakLulusDescription = implode("; ", $tidakLulusDescriptions);
+            // $lulusDescription = implode("; ", $lulusDescriptions);
+            // $tidakLulusDescription = implode("; ", $tidakLulusDescriptions);
+
+            $sangatBaikDescription = implode('; ', $sangatBaik);
+            $baikDescription = implode('; ', $baik);
+            $tingkatkanDescription = implode('; ', $tingkatkan);
 
             // skill
-            $lulusDescriptionsSkill = implode("; ", $lulusDescriptionsSkill);
-            $tidakLulusDescriptionsSkill = implode("; ", $tidakLulusDescriptionsSkill);
+            // $lulusDescriptionsSkill = implode("; ", $lulusDescriptionsSkill);
+            // $tidakLulusDescriptionsSkill = implode("; ", $tidakLulusDescriptionsSkill);
             
-            if($lulusDescription){
-                $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah MENGUASAI materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' Serta CUKUP MENGUASAI materi: '. $tidakLulusDescription : '');    
-                $combinedResultDescriptionSkill = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescriptionsSkill) ? ' telah MENGUASAI materi: ' . $lulusDescriptionsSkill : '') . (($tidakLulusDescriptionsSkill) ? ' Serta CUKUP MENGUASAI materi: '. $tidakLulusDescriptionsSkill : '');    
-            } else {
-                $combinedResultDescription = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum MENGUASAI materi:' . $tidakLulusDescription;
-                $combinedResultDescriptionSkill = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum MENGUASAI materi:' . $tidakLulusDescriptionsSkill;
-            }
+            // if($lulusDescription){
+            //     $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah MENGUASAI materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' Serta CUKUP MENGUASAI materi: '. $tidakLulusDescription : '');    
+            //     $combinedResultDescriptionSkill = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescriptionsSkill) ? ' telah MENGUASAI materi: ' . $lulusDescriptionsSkill : '') . (($tidakLulusDescriptionsSkill) ? ' Serta CUKUP MENGUASAI materi: '. $tidakLulusDescriptionsSkill : '');    
+            // } else {
+            //     $combinedResultDescription = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum MENGUASAI materi:' . $tidakLulusDescription;
+            //     $combinedResultDescriptionSkill = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum MENGUASAI materi:' . $tidakLulusDescriptionsSkill;
+            // }
 
-            // $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah menguasai materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' cukup menguasai materi: '. $tidakLulusDescription : '');
+            $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($sangatBaik) ? ' sangat baik dalam hal: ' . $sangatBaikDescription : '') . (($baik) ? ' serta sudah menunjukkan dalam hal: ' . $baikDescription : '') . (($tingkatkan) ? ' tetapi perlu ditingkatkan dalam hal: ' . $tingkatkanDescription : '');
 
             $exam = Exam::where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
             $middle = $exam->score_middle;
@@ -149,15 +169,28 @@ class Report extends Controller
              * predikat
              */
             
-            foreach ($predicates as $predicate) {
-                // nilai pengetahuan
-                if ($average_scores <= $predicate['upper_limit'] && $average_scores > $predicate['lower_limit']) {
-                    $average_scores_predicate = $predicate['predicate'];
-                }
-                // nilai keterampilan
-                if ($average_scores_skill <= $predicate['upper_limit'] && $average_scores_skill > $predicate['lower_limit']) {
-                    $average_scores_skill_predicate = $predicate['predicate'];
-                }
+            // foreach ($predicates as $predicate) {
+            //     // nilai pengetahuan
+            //     if ($average_scores <= $predicate['upper_limit'] && $average_scores > $predicate['lower_limit']) {
+            //         $average_scores_predicate = $predicate['predicate'];
+            //     }
+            //     // nilai keterampilan
+            //     if ($average_scores_skill <= $predicate['upper_limit'] && $average_scores_skill > $predicate['lower_limit']) {
+            //         $average_scores_skill_predicate = $predicate['predicate'];
+            //     }
+            // }
+
+            if($average_scores <= 4){
+                $average_scores_predicate = 'Berkembang Sangat Baik';
+            } 
+            elseif ($average_scores <= 3) {
+                $average_scores_predicate = 'Berkembang Sesuai Harapan';
+            } 
+            elseif ($average_scores <= 2) {
+                $average_scores_predicate = 'Mulai Berkembang';
+            }
+            else {
+                $average_scores_predicate = 'Belum Berkembang';
             }
 
             // dd($average_scores);
@@ -175,17 +208,17 @@ class Report extends Controller
                 'last_score' => $lastScore,
                 'average_score' => round($average_scores,1),
                 'average_scores_predicate' => $average_scores_predicate,
-                'passed_description' => $lulusDescription,
-                'not_pass_description' => $tidakLulusDescription,
+                // 'passed_description' => $lulusDescription,
+                // 'not_pass_description' => $tidakLulusDescription,
                 'combined_description' => $combinedResultDescription,
                 // skill
                 'score_competencies_skill' => $avg_score_student_competencies_skill,
                 'average_score_skill' => round($average_scores_skill,1),
-                'average_scores_skill_predicate' => $average_scores_skill_predicate,
-                'passed_description_skill' => $lulusDescriptionsSkill,
-                'not_pass_description_skill' => $tidakLulusDescriptionsSkill,
-                'combined_description_skill' => $combinedResultDescriptionSkill,
-                // 'data_score' => $dataScores,
+                // 'average_scores_skill_predicate' => $average_scores_skill_predicate,
+                // 'passed_description_skill' => $lulusDescriptionsSkill,
+                // 'not_pass_description_skill' => $tidakLulusDescriptionsSkill,
+                // 'combined_description_skill' => $combinedResultDescriptionSkill,
+                'data_score' => $dataScores,
             ];
 
         }
@@ -232,21 +265,21 @@ class Report extends Controller
         ];
 
         // $data = $this->report($data);
-        switch ($teacherGrade->curriculum) {
-            case '2013':
-                $data = $this->report2013($data);
-                break;
+        // switch ($teacherGrade->curriculum) {
+        //     case '2013':
+        //         $data = $this->report2013($data);
+        //         break;
             
-            default:
-                $data = $this->report($data);
-                break;
-        }
+        //     default:
+        //         $data = $this->report($data);
+        //         break;
+        // }
         return $data;
     }
 
     public function report($data)
     {
-        $templateProcessor = new TemplateProcessor( storage_path('/app/public/templates/report.docx'));
+        $templateProcessor = new TemplateProcessor( storage_path('/app/public/templates/reportra.docx'));
         $templateProcessor->setValue('school_name',$data['school']['name']);
         $templateProcessor->setValue('school_address',$data['school']['address']);
         $templateProcessor->setValue('headmaster',$data['headmaster']);
@@ -276,8 +309,8 @@ class Report extends Controller
         // tabel ekstrakurikuler
         $templateProcessor->cloneRowAndSetValues('orderEx', $data['extracurriculars']);
         
-        $filename = '\Rapor '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
-        $file_path = storage_path('\app\public\downloads'.$filename);
+        $filename = 'Rapor '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $templateProcessor->saveAs($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true);; // <<< HERE
     }
@@ -336,8 +369,8 @@ class Report extends Controller
         $templateProcessor->setValue('date_received', Carbon::createFromFormat('Y-m-d', $data['student']['dataStudent']['date_received'])->locale('id')->translatedFormat('d F Y'));
         $templateProcessor->setValue('headmaster',$data['academic']['teacher']['name']);
 
-        $filename = '\Identitas '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
-        $file_path = storage_path('\app\public\downloads'.$filename);
+        $filename = 'Identitas '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $templateProcessor->saveAs($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
@@ -357,8 +390,8 @@ class Report extends Controller
         $templateProcessor->setValue('nisn',$data['nisn']);
         $templateProcessor->setValue('nis',$data['nis']);
 
-        $filename = '\Cover '.$data['name'] .'.docx';
-        $file_path = storage_path('\app\public\downloads'.$filename);
+        $filename = 'Cover '.$data['name'] .'.docx';
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $templateProcessor->saveAs($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true); // <<< HERE
     }
@@ -402,8 +435,8 @@ class Report extends Controller
         // tabel ekstrakurikuler
         $templateProcessor->cloneRowAndSetValues('orderEx', $data['extracurriculars']);
         
-        $filename = '\Rapor '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
-        $file_path = storage_path('\app\public\downloads'.$filename);
+        $filename = 'Rapor '.$data['student']['name'].' - '. $data['academic']['semester'] .'.docx';
+        $file_path = storage_path('/app/public/downloads/'.$filename);
         $templateProcessor->saveAs($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true);; // <<< HERE
     }

@@ -46,31 +46,27 @@ class StudentCompetency extends Model
                     DB::raw('competencies.description'),
                     DB::raw('competencies.description_skill'),
                     DB::raw('CASE 
-                        WHEN score >= 90 THEN "Amat Baik"
-                        WHEN score >= 80 THEN "Baik"
-                        WHEN score >= 70 THEN "Cukup"
-                        WHEN score >= 60 THEN "Sedang"
+                        WHEN score = 4 THEN "Amat Baik"
+                        WHEN score = 3 THEN "Baik"
+                        WHEN score = 2 THEN "Cukup"
                         ELSE "Kurang" 
                     END as predicate_desc'),
                     DB::raw('CASE 
-                        WHEN score_skill >= 90 THEN "Amat Baik"
-                        WHEN score_skill >= 80 THEN "Baik"
-                        WHEN score_skill >= 70 THEN "Cukup"
-                        WHEN score_skill >= 60 THEN "Sedang"
+                        WHEN score_skill = 4 THEN "Amat Baik"
+                        WHEN score_skill = 3 THEN "Baik"
+                        WHEN score_skill = 2 THEN "Cukup"
                         ELSE "Kurang" 
                     END as predicate_desc_skill'),
                     DB::raw('CASE 
-                        WHEN score >= 90 THEN "A"
-                        WHEN score >= 80 THEN "B"
-                        WHEN score >= 70 THEN "C"
-                        WHEN score >= 60 THEN "D"
+                        WHEN score = 4 THEN "A"
+                        WHEN score = 3 THEN "B"
+                        WHEN score = 2 THEN "C"
                         ELSE "Kurang" 
                     END as predicate'),
                     DB::raw('CASE 
-                        WHEN score_skill >= 90 THEN "A"
-                        WHEN score_skill >= 80 THEN "B"
-                        WHEN score_skill >= 70 THEN "C"
-                        WHEN score_skill >= 60 THEN "D"
+                        WHEN score_skill = 4 THEN "A"
+                        WHEN score_skill = 3 THEN "B"
+                        WHEN score_skill = 2 THEN "C"
                         ELSE "Kurang" 
                     END as predicate_skill'),
                     // DB::raw('CONCAT(CASE 
