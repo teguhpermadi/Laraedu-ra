@@ -37,7 +37,7 @@ class Score extends Component
                 break;
         }
         
-        $this->color = ($score < $competency->passing_grade) ? 'yellow' : '';
+        $this->color = ($this->score < $competency->passing_grade) ? 'yellow' : '';
     }
 
     public function render()

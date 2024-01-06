@@ -31,6 +31,7 @@ use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\Split;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
+use Filament\Tables\Columns\TextInputColumn;
 
 class StudentResource extends Resource
 {
@@ -70,6 +71,8 @@ class StudentResource extends Resource
                 TextColumn::make('nick_name')->searchable(),
                 TextColumn::make('gender'),
                 IconColumn::make('active')->boolean(),
+                TextInputColumn::make('dataStudent.height')->label('tinggi badan'),
+                TextInputColumn::make('dataStudent.weight')->label('berat badan'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -170,6 +173,8 @@ class StudentResource extends Resource
                     TextEntry::make('city_born'),
                     TextEntry::make('birthday'),
                     TextEntry::make('dataStudent.religion')->label('Religion'),
+                    TextEntry::make('height'),
+                    TextEntry::make('weight'),
                 ]),
                 Section::make('Data')
                 ->columns([

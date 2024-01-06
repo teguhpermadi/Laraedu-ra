@@ -39,6 +39,8 @@ class DataStudent extends Model
         'parent_village',
         'date_received',
         'grade_received',
+        'height',
+        'weight',
     ];
 
     protected $hidden = [

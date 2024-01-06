@@ -84,6 +84,8 @@ class StudentImport implements ToCollection, WithHeadingRow, WithUpserts
                 'parent_city'=> $row['kota_orangtua'],
                 'parent_district'=> $row['kecamatan_orangtua'],
                 'parent_village'=> $row['kelurahan_orangtua'],
+                'height' => $row['tinggi_badan'],
+                'weight' => $row['berat_badan'],
             ]);
         }
 

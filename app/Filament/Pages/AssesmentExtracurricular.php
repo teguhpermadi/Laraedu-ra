@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\StudentExtracurricular;
 use App\Models\TeacherExtracurricular;
+use App\Models\TeacherGrade;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -104,6 +105,10 @@ class AssesmentExtracurricular extends Page implements HasForms, HasTable
                     }),
             ])
             ->modifyQueryUsing(function (Builder $query){
+                $teacher_id = auth()->user()->userable->userable_id;
+                $data = TeacherGrade::where('teacher_id', $teacher_id)->myGrade()->first();
+                $students = $data->grade->StudentGrade->pluck('student_id');
+                $query->whereIn('student_id', $students);
                 $query->where('extracurricular_id', $this->extracurricular_id);
             });
     }

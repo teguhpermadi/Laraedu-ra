@@ -48,7 +48,8 @@ class DataStudentRelationManager extends RelationManager
                 TextInput::make('guardian_village'),
                 TextInput::make('parent_address'),
                 TextInput::make('parent_village'),
-                
+                TextInput::make('height')->numeric()->inputMode('decimal')->suffix('cm'),
+                TextInput::make('weight')->numeric()->inputMode('decimal')->suffix('Kg'),
             ]);
     }
 

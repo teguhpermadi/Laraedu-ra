@@ -4,16 +4,39 @@ namespace App\Filament\Resources\StudentResource\Pages;
 
 use App\Filament\Resources\StudentResource;
 use App\Imports\StudentImport;
+use App\Models\TeacherGrade;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Pages\ListRecords;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Maatwebsite\Excel\Facades\Excel;
+use Filament\Resources\Components\Tab;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListStudents extends ListRecords
 {
     protected static string $resource = StudentResource::class;
+
+    public function getTabs(): array
+    {
+        return [
+            'all' => Tab::make(),
+            'my student' => Tab::make()
+                ->modifyQueryUsing(function (Builder $query){
+                    $user = auth()->user();
+                    if($user->userable){
+                        $teacher_id = $user->userable->userable_id;
+                        $data = TeacherGrade::where('teacher_id', $teacher_id)->myGrade()->first();
+                        $students = $data->grade->StudentGrade->pluck('student_id');
+                        $query->whereIn('id', $students);
+                    } else {
+                        return $query->where('id', -1);
+                    }
+                    
+                }),
+        ];
+    }
 
     protected function getHeaderActions(): array
     {

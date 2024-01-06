@@ -28,7 +28,7 @@ class Report extends Controller
 
         $academic = AcademicYear::with('teacher')->active()->first();
 
-        $student = Student::find($id);
+        $student = Student::with('dataStudent')->find($id);
         
         $grade = StudentGrade::with('grade')->where('student_id', $id)->first();
         $teacherGrade = TeacherGrade::with('teacher')->where('grade_id', $grade->grade_id)->first();
@@ -45,35 +45,24 @@ class Report extends Controller
             }])->find($id);
 
         $subjects = $scores->studentGrade->teacherSubject;
+        
         $result = [];
+
         foreach ($subjects as $subject) {
             // buat dulu deskripsinya
-            $combinedResultDescription = '';
-            $lulusDescriptions = [];
-            $tidakLulusDescriptions = [];
+            $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->nick_name)->title() . ' telah menunjukkan perkembangan yang baik di semester ini. ';
             $sangatBaik = [];
             $baik = [];
             $tingkatkan = [];
-            
-            // skill
-            // $combinedResultDescriptionSkill = '';
-            // $lulusDescriptionsSkill = [];
-            // $tidakLulusDescriptionsSkill = [];
-            
-            
-            // predikat
-            $average_scores_predicate = '';
-            $average_scores_skill_predicate = '';
-            $valueStore = Valuestore::make(storage_path('app/settings.json'));
-            $predicates = $valueStore->get('predicate');
+            $dataScore = [];
+            $predicate = '';
 
-            
             foreach ($subject->studentCompetency as $competency) {
-                switch ($competency['predicate']) {
-                    case 'A':
+                switch ($competency['score']) {
+                    case '4':
                         $sangatBaik[] = $competency['description'];
                         break;
-                    case 'B':
+                    case '3':
                         $baik[] = $competency['description'];
                         break;
                     
@@ -82,154 +71,53 @@ class Report extends Controller
                         break;
                 }
 
-                // if ($competency['result'] === "LULUS") {
-                //     $lulusDescriptions[] = $competency['description'];
-                // } else {
-                //     $tidakLulusDescriptions[] = $competency['description'];
-                // }
-
-                // skill
-                // if ($competency['result_skill'] === "LULUS") {
-                //     $lulusDescriptionsSkill[] = $competency['description_skill'];
-                // } else {
-                //     $tidakLulusDescriptionsSkill[] = $competency['description_skill'];
-                // }
-                
+                $dataScore[] = $competency['predicate_desc'];
             }
-    
-            // Gabungkan result_description untuk "LULUS" dan "TIDAK LULUS"
-            // $lulusDescription = implode("; ", $lulusDescriptions);
-            // $tidakLulusDescription = implode("; ", $tidakLulusDescriptions);
 
             $sangatBaikDescription = implode('; ', $sangatBaik);
             $baikDescription = implode('; ', $baik);
             $tingkatkanDescription = implode('; ', $tingkatkan);
 
-            // skill
-            // $lulusDescriptionsSkill = implode("; ", $lulusDescriptionsSkill);
-            // $tidakLulusDescriptionsSkill = implode("; ", $tidakLulusDescriptionsSkill);
+            if($sangatBaikDescription){
+                $combinedResultDescription .= 'Ananda sudaH SANGAT BERKEMBANG dalam:' . $sangatBaikDescription;
+                if($baikDescription){
+                    $combinedResultDescription .= '</w:t><w:p/><w:t></w:t><w:p/><w:t> Ananda juga ';
+                }
+                // if($tingkatkan){
+                //     $combinedResultDescription .= '</w:t><w:p/><w:t></w:t><w:p/><w:t> Diharapkan pada semester selanjutnya ananda dapat mempertahankan kemampuannya dan lebih meningkatkan diri dalam: ';
+                // }
+            } 
             
-            // if($lulusDescription){
-            //     $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescription) ? ' telah MENGUASAI materi: ' . $lulusDescription : '') . (($tidakLulusDescription) ? ' Serta CUKUP MENGUASAI materi: '. $tidakLulusDescription : '');    
-            //     $combinedResultDescriptionSkill = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($lulusDescriptionsSkill) ? ' telah MENGUASAI materi: ' . $lulusDescriptionsSkill : '') . (($tidakLulusDescriptionsSkill) ? ' Serta CUKUP MENGUASAI materi: '. $tidakLulusDescriptionsSkill : '');    
-            // } else {
-            //     $combinedResultDescription = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum MENGUASAI materi:' . $tidakLulusDescription;
-            //     $combinedResultDescriptionSkill = 'Mohon maaf ananda ' . Str::of($student->name)->title() . ' belum MENGUASAI materi:' . $tidakLulusDescriptionsSkill;
-            // }
-
-            $combinedResultDescription = 'Alhamdulillah ananda ' . Str::of($student->name)->title() . (($sangatBaik) ? ' sangat baik dalam hal: ' . $sangatBaikDescription : '') . (($baik) ? ' serta sudah menunjukkan dalam hal: ' . $baikDescription : '') . (($tingkatkan) ? ' tetapi perlu ditingkatkan dalam hal: ' . $tingkatkanDescription : '');
-
-            $exam = Exam::where('teacher_subject_id',$subject->id)->where('student_id', $id)->first();
-            $middle = $exam->score_middle;
-            $last = $exam->score_last;
-
-            // Pengecekan jika $middle atau $last null
-            $middleScore = $middle ? $middle : null;
-            $lastScore = $last ? $last : null;
-
-            $avg_score_student_competencies = $subject->studentCompetency->avg('score');
-            $avg_score_student_competencies_skill = $subject->studentCompetency->avg('score_skill');
-            $dataScores = $subject->studentCompetency;
-
-            /* 
-            HITUNG NILAI RATA-RATA KOMPETENSI, TENGAH SEMESTER DAN AKHIR SEMESTER
-            */
-
-            $scores = collect([$avg_score_student_competencies, $middleScore, $lastScore]);
-            $scores_skill = collect($avg_score_student_competencies_skill);
-            $average_scores = $scores->avg();
-            $average_scores_skill = $scores_skill->avg();
-
-            /*
-            if($avg_score_student_competencies && $middleScore && $lastScore){
-                // jika ada nilai kompetensi, tengah semester, akhir semester
-                $scores = collect([$avg_score_student_competencies, $middleScore, $lastScore]);
-                $scores_skill = collect($avg_score_student_competencies_skill);
-                $average_scores = $scores->avg();
-                $average_scores_skill = $scores_skill->avg();
+            if ($baikDescription) {
+                $combinedResultDescription .= 'Ananda sudah BERKEMBANG SESUAI HARAPAN dalam: '. $baikDescription . '. ';
+                // if($tingkatkanDescription){
+                //     $combinedResultDescription .= '</w:t><w:p/><w:t></w:t><w:p/><w:t> Diharapkan pada semester selanjutnya ananda dapat mempertahankan kemampuannya dan lebih meningkatkan diri dalam: ';
+                // }
             } 
-            else if($avg_score_student_competencies && $middleScore)  {
-                // jika ada nilai kompetensi dan tengah semester
-                $scores = collect([$avg_score_student_competencies, $middleScore]);
-                $average_scores = $scores->avg(); 
-            } 
-            else if($avg_score_student_competencies && $lastScore) {
-                // jika ada nilai kompetensi dan akhir semester
-                $scores = collect([$avg_score_student_competencies, $lastScore]);
-                $average_scores = $scores->avg(); 
-            } 
-            else {
-                // jika ada nilai kompetensi
-                $scores = collect([$avg_score_student_competencies]);
-                $average_scores = $scores->avg(); 
-            }
-            */
 
-            /**
-             * predikat
-             */
-            
-            // foreach ($predicates as $predicate) {
-            //     // nilai pengetahuan
-            //     if ($average_scores <= $predicate['upper_limit'] && $average_scores > $predicate['lower_limit']) {
-            //         $average_scores_predicate = $predicate['predicate'];
-            //     }
-            //     // nilai keterampilan
-            //     if ($average_scores_skill <= $predicate['upper_limit'] && $average_scores_skill > $predicate['lower_limit']) {
-            //         $average_scores_skill_predicate = $predicate['predicate'];
-            //     }
-            // }
-
-            if($average_scores <= 4){
-                $average_scores_predicate = 'Berkembang Sangat Baik';
-            } 
-            elseif ($average_scores <= 3) {
-                $average_scores_predicate = 'Berkembang Sesuai Harapan';
-            } 
-            elseif ($average_scores <= 2) {
-                $average_scores_predicate = 'Mulai Berkembang';
-            }
-            else {
-                $average_scores_predicate = 'Belum Berkembang';
+            if($tingkatkanDescription) {
+                $combinedResultDescription .= '</w:t><w:p/><w:t></w:t><w:p/><w:t> Diharapkan pada semester selanjutnya ananda dapat mempertahankan kemampuannya dan lebih meningkatkan diri dalam: ' . $tingkatkanDescription ;
             }
 
-            // dd($average_scores);
-    
+            // cek deskripsi
             $result[] = [
-            // $result[$subject->subject->order] = [
-                // 'teacher_subject_id' => $subject->id,
                 'order' => $subject->subject->order,
-                'orderDes' => $subject->subject->order,
                 'subject' => $subject->subject->name,
-                'subject_skill' => $subject->subject->name,
                 'code' => $subject->subject->code,
-                'score_competencies' => $avg_score_student_competencies,
-                'middle_score' => $middleScore,
-                'last_score' => $lastScore,
-                'average_score' => round($average_scores,1),
-                'average_scores_predicate' => $average_scores_predicate,
-                // 'passed_description' => $lulusDescription,
-                // 'not_pass_description' => $tidakLulusDescription,
+                'predicate' => $this->getMode($dataScore)[0],
                 'combined_description' => $combinedResultDescription,
-                // skill
-                'score_competencies_skill' => $avg_score_student_competencies_skill,
-                'average_score_skill' => round($average_scores_skill,1),
-                // 'average_scores_skill_predicate' => $average_scores_skill_predicate,
-                // 'passed_description_skill' => $lulusDescriptionsSkill,
-                // 'not_pass_description_skill' => $tidakLulusDescriptionsSkill,
-                // 'combined_description_skill' => $combinedResultDescriptionSkill,
-                'data_score' => $dataScores,
             ];
 
         }
+        
 
         $resultOrder = collect($result)->sortBy('order')->values()->all();
 
         $resultCollection = collect($result);
         $totalAverageScore = $resultCollection->sum('average_score');
-        $totalAverageScoreSkill = $resultCollection->sum('average_score_skill');
+        // $totalAverageScoreSkill = $resultCollection->sum('average_score_skill');
         $counting_total = readNumber($totalAverageScore);
-        $counting_total_skill = readNumber($totalAverageScoreSkill);
+        // $counting_total_skill = readNumber($totalAverageScoreSkill);
 
         $extra = [];
         $numExtra = 1;
@@ -259,8 +147,6 @@ class Report extends Controller
             'result' => $resultOrder,
             'total_average_score' => $totalAverageScore,
             'counting_total' => $counting_total,
-            'total_average_score_skill' => $totalAverageScoreSkill,
-            'counting_total_skill' => $counting_total_skill,
             'extracurriculars' => $extra,
         ];
 
@@ -274,6 +160,7 @@ class Report extends Controller
         //         $data = $this->report($data);
         //         break;
         // }
+        $data = $this->report($data);
         return $data;
     }
 
@@ -302,9 +189,14 @@ class Report extends Controller
         $templateProcessor->setValue('teacher_name',$data['teacher']['name']);
         $templateProcessor->setValue('total_average_score',$data['total_average_score']);
         $templateProcessor->setValue('counting_total',$data['counting_total']);
+        $templateProcessor->setValue('height',$data['student']['data_student']['height']);
+        $templateProcessor->setValue('weight',$data['student']['data_student']['weight']);
+        $templateProcessor->setValue('anm',$data['result'][0]['combined_description']);
+        $templateProcessor->setValue('jd',$data['result'][1]['combined_description']);
+        $templateProcessor->setValue('dls',$data['result'][2]['combined_description']);
 
         // tabel nilai mata pelajaran
-        $templateProcessor->cloneRowAndSetValues('order', $data['result']);
+        // $templateProcessor->cloneRowAndSetValues('order', $data['result']);
 
         // tabel ekstrakurikuler
         $templateProcessor->cloneRowAndSetValues('orderEx', $data['extracurriculars']);
@@ -439,5 +331,29 @@ class Report extends Controller
         $file_path = storage_path('/app/public/downloads/'.$filename);
         $templateProcessor->saveAs($file_path);
         return response()->download($file_path)->deleteFileAfterSend(true);; // <<< HERE
+    }
+
+    function getMode($arrInput){ 
+        if(is_array($arrInput)){ 
+ 
+            // Find the frequency of occurrence of unique numbers in the array 
+            $arrFrequency = [];
+            foreach( $arrInput as $v ) {
+                if (!isset($arrFrequency[$v])) {
+                    $arrFrequency[$v] = 0;
+                }
+                $arrFrequency[$v]++;
+            }
+ 
+            // If there is no mode, then return empty array
+            if( count($arrInput) == count($arrFrequency) ){
+                return []; 
+            }
+ 
+            // Get only the modes
+            $arrMode = array_keys($arrFrequency, max($arrFrequency));
+ 
+            return $arrMode; 
+        }     
     }
 }
