@@ -322,13 +322,6 @@ class ExportExcel extends Controller
             }
         }
 
-
-        // hapus sheet worksheet
-        $sheetIndex = $spreadsheet->getIndex(
-            $spreadsheet->getSheetByName('Worksheet')
-        );
-        $spreadsheet->removeSheetByIndex($sheetIndex);
-
         // Membuat file Excel
         $writer = new Xlsx($spreadsheet);
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx'); // <<< HERE
