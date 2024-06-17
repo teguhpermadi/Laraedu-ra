@@ -104,7 +104,7 @@ class Report extends Controller
                 'order' => $subject->subject->order,
                 'subject' => $subject->subject->name,
                 'code' => $subject->subject->code,
-                'predicate' => $this->getMode($dataScore)[0],
+                // 'predicate' => $this->getMode($dataScore)[0],
                 'combined_description' => $combinedResultDescription,
             ];
 

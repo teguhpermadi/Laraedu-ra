@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AcademicYearResource\Pages;
 use App\Filament\Resources\AcademicYearResource\RelationManagers;
+use App\Jobs\CopyDataAcademicYear;
 use App\Models\AcademicYear;
 use App\Models\Teacher;
 use Filament\Forms;
@@ -75,6 +76,15 @@ class AcademicYearResource extends Resource
                     ->action(function(AcademicYear $record){
                         AcademicYear::setActive($record->id);
                     })->visible(auth()->user()->hasPermissionTo('activated_academic::year'))
+                    ->button(),
+                Action::make('Copy Data')
+                    ->requiresConfirmation()
+                    ->action(
+                        function(AcademicYear $record){
+                            // copy data from another academic year
+                            dispatch(new CopyDataAcademicYear($record->id));
+                        }
+                    )
                     ->button(),
                 ActionGroup::make([
                     Tables\Actions\ViewAction::make(),
