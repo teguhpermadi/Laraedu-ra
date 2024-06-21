@@ -4,6 +4,8 @@ namespace App\Observers;
 
 use App\Models\Attendance;
 use App\Models\Attitude;
+use App\Models\DataStudent;
+use App\Models\StudentCompetency;
 use App\Models\StudentGrade;
 
 class StudentGradeObserver
@@ -31,6 +33,30 @@ class StudentGradeObserver
             'grade_id' => $studentGrade['grade_id'],
             'student_id' => $studentGrade['student_id'],
         ]);
+
+        // buat tinggi badan dan berat badan
+        DataStudent::updateOrCreate([
+            'student_id' => $studentGrade['student_id'],
+            'height' => 0,
+            'weight' => 0,
+        ]);
+
+        // buat student competency
+        $subjects = $studentGrade['teacherSubject'];
+        $teacherSubject = $studentGrade->teacherSubject;
+
+        foreach ($subjects as $subject) {
+            $comptencies = $subject['competencies'];
+            foreach ($comptencies as $competency) {
+                $data = [
+                    'teacher_subject_id' => $subject['id'],
+                    'student_id' => $studentGrade['student_id'],
+                    'competency_id' => $competency['id'],
+                ];
+
+                StudentCompetency::updateOrCreate($data);
+            }
+        }
     }
 
     /**
@@ -46,7 +72,10 @@ class StudentGradeObserver
      */
     public function deleted(StudentGrade $studentGrade): void
     {
-        //
+        Attendance::where('student_id', $studentGrade['student_id'])->delete();
+        Attitude::where('student_id', $studentGrade['student_id'])->delete();
+        DataStudent::where('student_id', $studentGrade['student_id'])->delete();
+        StudentCompetency::where('student_id', $studentGrade['student_id'])->delete();
     }
 
     /**
