@@ -13,6 +13,7 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Maatwebsite\Excel\Facades\Excel;
 use Filament\Resources\Components\Tab;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 
 class ListStudents extends ListRecords
 {
@@ -59,7 +60,7 @@ class ListStudents extends ListRecords
                     try {
                         Excel::import(new StudentImport, storage_path('/app/public/'.$data['file']) );
                     } catch (\Throwable $th) {
-                        Log::error($th);
+                        Log::error($th->getMessage());
                     }
                 })
                 ->extraModalFooterActions([
