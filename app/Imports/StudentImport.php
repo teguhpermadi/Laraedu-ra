@@ -40,8 +40,6 @@ class StudentImport implements ToCollection, WithHeadingRow, WithUpserts
 
             $student = Student::updateOrCreate([
                 'nisn' => $row['nisn'],
-            ],[
-                'nisn' => $row['nisn'],
                 'nis' => $row['nis'],
                 'name' => $row['nama_lengkap'],
                 'nick_name' => $row['nama_panggilan'],
@@ -51,8 +49,6 @@ class StudentImport implements ToCollection, WithHeadingRow, WithUpserts
             ]);
 
             DataStudent::updateOrCreate([
-                'student_id' => $student->id,
-            ],[
                 'student_id' => $student->id,
                 'student_address' => $row['alamat_siswa'],
                 'student_province'=> $row['provinsi_siswa'],

@@ -56,7 +56,11 @@ class ListStudents extends ListRecords
                 ])
                 ->action(function(array $data){
                     // dd($data->);
-                    Excel::import(new StudentImport, storage_path('/app/public/'.$data['file']) );
+                    try {
+                        Excel::import(new StudentImport, storage_path('/app/public/'.$data['file']) );
+                    } catch (\Throwable $th) {
+                        Log::error($th);
+                    }
                 })
                 ->extraModalFooterActions([
                     Action::make('Download Template Excel')
