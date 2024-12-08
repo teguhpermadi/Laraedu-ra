@@ -37,6 +37,7 @@ class StudentGradeObserver
         // buat tinggi badan dan berat badan
         DataStudent::updateOrCreate([
             'student_id' => $studentGrade['student_id'],
+        ],[
             'height' => 0,
             'weight' => 0,
         ]);
