@@ -10,6 +10,7 @@ use App\Models\Student;
 use App\Models\StudentExtracurricular;
 use Filament\Actions\Action;
 use Filament\Forms;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
@@ -45,9 +46,9 @@ class StudentExtracurricularResource extends Resource
                 Select::make('extracurricular_id')
                     ->options(Extracurricular::pluck('name', 'id'))
                     ->required(),
-                Select::make('student_ids')
+                CheckboxList::make('student_ids')
                     ->options(Student::pluck('name', 'id'))
-                    ->multiple()
+                    // ->multiple()
                     ->required(),
                 
             ]);
