@@ -45,7 +45,7 @@ class Report extends Controller
             }])->find($id);
 
         $subjects = $scores->studentGrade->teacherSubject;
-        
+
         $result = [];
 
         foreach ($subjects as $subject) {
@@ -166,6 +166,7 @@ class Report extends Controller
 
     public function report($data)
     {
+        // dd($data);
         $templateProcessor = new TemplateProcessor( storage_path('/app/public/templates/reportra.docx'));
         $templateProcessor->setValue('school_name',$data['school']['name']);
         $templateProcessor->setValue('school_address',$data['school']['address']);

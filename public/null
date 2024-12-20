@@ -1,106 +1,233 @@
-Teacher::find(2)
-Teacher::find(2)->userable()
-Teacher::find(2)->userable()->get()
-Teacher::find(2)->userable()->user()->first()
-Teacher::find(2)->userable()->->first()
-Teacher::find(2)->userable()->first()
-Teacher::find(2)->userable()->user(0->first()
-Teacher::find(2)->userable()->user()->first()
-Teacher::find(2)->userable()->user()
-Teacher::find(2)->userable()->user
-Teacher::find(2)->userable()->user()
-Teacher::find(2)->user()
-Teacher::find(2)
-Teacher::find(2)->userable()
-Teacher::find(2)->userable()->first()
-Teacher::find(2)->userable()->first()->user_id
-Teacher::find(2)->userable()->first()
-$teacher = Teacher::find(2);
+Student::find(402)
+Student::with('studentCompetency')->find(402)
+Student::with(['studentCompetency' => function($q){
+	$q->where('teacher_subject_id', 55);
+}])->find(402)
+$id = 402;
 
-$teacher->userable
-$teacher = Teacher::find(2);
+$scores = Student::with([
+  'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
+	$q->where('student_id',$id)->result();
+  }])->find($id);
+$id = 828;
 
-$teacher->userable
-$teacher = Teacher::find(2);
+$scores = Student::with([
+  'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
+	$q->where('student_id',$id)->result();
+  }])->find($id);
 
-$teacher->userable
-$teacher = Teacher::find(2);
+$id = 400;
 
-$teacher->userable
-$teacher = Teacher::find(2);
 
-$teacher->userable
-$teacher = Teacher::find(2);
-
-$teacher->userable
-$teacher = Teacher::find(2);
-
-$teacher->userable
-$teacher = Teacher::find(2);
-
-$teacher->userable
-$teacher = Teacher::find(2);
-
-$teacher->userable
-$teacher = Teacher::find(2);
-
-$teacher->userable->user
-$teacher = Teacher::find(2);
-
-$teacher->userable->user
-$teacher = Teacher::find(2);
-
-$teacher->userable->user
-$teacher = Teacher::find(2);
-
-$teacher->userable->user
-$teacher = Teacher::find(2);
-
-$teacher->userable->user
-$teacher = Teacher::find(2);
-
-$teacher->userable->user
-$grade = Grade::with('studentGrade')->find(6);
-$grade = Grade::with('studentGrade.student')->find(6);
-$grade = Grade::with('studentGrade.student')->find(6);
-$students = $grade->studentGrade;
-$grade = Grade::with('studentGrade.student')->find(6);
-$students = $grade->studentGrade->pluck('student');
-$grade = Grade::with('studentGrade.student.attendance')->find(6);
-$students = $grade->studentGrade->pluck('student');
-$grade = Grade::with('studentGrade.student.grade')->find(6);
-$students = $grade->studentGrade->pluck('student');
-$grade = Grade::with('studentGrade.student.studentGrade')->find(6);
-$students = $grade->studentGrade->pluck('student');
+$scores = Student::with([
+  'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
+	$q->where('student_id',$id)->result();
+  }])->find($id);
+$id = 402;
 
 
 
-$grade_id = Student::find($get('student_id'))->studentGrade->grade_id;
+$scores = Student::with([
+  'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
+	$q->where('student_id',$id)->result();
+  }])->find($id);
+$id = 402;
 
 
 
-$grade_id = Student::find($get(86))->studentGrade->grade_id;
+$scores = Student::with([
+  'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
+	$q->where('student_id',$id)->result();
+  }])->find($id);
+
+
+StudentGrade::find('341')->update([
+'grade_id' => 5
+]);
+$id = 402;
 
 
 
-$grade_id = Student::find(86)->studentGrade->grade_id;
+$scores = Student::with([
+  'studentGrade.teacherSubject.studentCompetency' => function($q) use ($id){
+	$q->where('student_id',$id)->result();
+  }])->find($id);
+$id = 402;
 
 
 
-$grade_id = Student::find(86)->studentGrade;
+$scores = Student::with([
+  'studentGrade' => function($q) use ($id){
+	$q->where('student_id',$id)->result();
+  }])->find($id);
+$id = 402;
 
 
 
-$grade_id = Student::find(86)->studentGrade->grade_id;
-$grade = Grade::with('studentGrade.student.studentGrade')->find(6);
-$students = $grade->studentGrade->pluck('student');
+$scores = Student::with([
+  'studentGrade'
+  ])->find($id);
+$id = 402;
 
 
-$grade = Grade::with('studentGrade.student.attendance')->find(6);
-$students = $grade->studentGrade->pluck('student');
+
+$scores = Student::with([
+  'studentGrade'
+  ])->find($id);
+$id = 402;
 
 
-$grade = Grade::with('studentGrade.student.grade','studentGrade.student.attendance')->find(6);
-$students = $grade->studentGrade->pluck('student');
+
+$scores = Student::with([
+  'studentGrade'
+  ])->find($id);
+$id = 402;
 
 
+
+$scores = Student::with([
+  'studentGrade'
+  ])->find($id);
+
+
+StudentGrade::find('341')->delete()
+$id = 402;
+
+
+
+$scores = Student::with([
+  'studentGrade'
+  ])->find($id);
+$id = 402;
+
+
+
+$scores = Student::with([
+  'studentGrade'
+  ])->find($id);
+$id = 402;
+
+
+
+$scores = Student::with([
+  'attendance'
+  ])->find($id);
+
+$id = 400;
+
+
+$scores = Student::with([
+  'attendance'
+  ])->find($id);
+
+$id = 400;
+
+
+$scores = Student::with([
+  'attendance'
+])->find($id);
+
+
+$data = [
+  'academic_year_id'=> 3,
+  'grade_id'=> 5,
+  'student_id'=> 402,
+];
+
+Attendance::create($data);
+
+$id = 400;
+
+
+$scores = Student::with([
+  'attitude'
+])->find($id);
+
+$id = 400;
+
+
+$scores = Student::with([
+  'attitude'
+])->find($id);
+
+
+$data = [
+  'academic_year_id'=> 3,
+  'grade_id'=> 5,
+  'student_id'=> 402,
+];
+
+Attitude::create($data);
+
+$id = 400;
+
+
+$scores = Student::with([
+  'attitude'
+])->find($id);
+
+
+$data = [
+  'academic_year_id'=> 3,
+  'grade_id'=> 5,
+  'student_id'=> 402,
+];
+
+
+
+$id = 400;
+
+
+$scores = Student::with([
+  'attitude'
+])->find($id);
+
+
+$data = [
+  'academic_year_id'=> 3,
+  'grade_id'=> 5,
+  'student_id'=> 402,
+];
+$scores
+
+
+$id = 400;
+
+
+$scores = Student::with([
+  'dataStudent'
+])->find($id);
+$id = 402;
+
+
+
+$scores = Student::with([
+  'dataStudent'
+])->find($id);
+$id = 402;
+
+
+
+$scores = Student::with([
+  'dataStudent'
+])->find($id);
+
+DataStudent::where('student_id', $id);
+$id = 402;
+
+
+
+$scores = Student::with([
+  'dataStudent'
+])->find($id);
+
+DataStudent::where('student_id', $id)->get();
+$id = 402;
+$id = 400;
+
+
+$scores = Student::with([
+  'dataStudent'
+])->find($id);
+
+DataStudent::where('student_id', $id)->get();
