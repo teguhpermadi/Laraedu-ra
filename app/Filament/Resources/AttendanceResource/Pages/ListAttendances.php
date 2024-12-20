@@ -18,7 +18,7 @@ class ListAttendances extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            // Actions\CreateAction::make(),
+            Actions\CreateAction::make(),
             Action::make('upload')
             ->form([
                 FileUpload::make('file')

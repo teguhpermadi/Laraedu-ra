@@ -2,7 +2,10 @@
 
 namespace App\Filament\Resources\StudentResource\RelationManagers;
 
+use App\Models\AcademicYear;
 use Filament\Forms;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -18,9 +21,11 @@ class GradesRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                Hidden::make('academic_id')
+                    ->default(AcademicYear::where('active', 1)->first()->id),
+                Select::make('grade_id')
+                    ->relationship('grade', 'name')
+                    ->required(),
             ]);
     }
 
