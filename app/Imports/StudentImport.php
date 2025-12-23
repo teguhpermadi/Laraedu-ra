@@ -27,20 +27,9 @@ class StudentImport implements ToCollection, WithHeadingRow, WithUpserts
     public function collection(Collection $rows)
     {
         // $data = [];
-        foreach ($rows as $row) 
+        foreach ($rows as $index => $row) 
         {
-            // $data = [
-            //     'nisn' => $row['nisn'],
-            //     'nis' => $row['nis'],
-            //     'name' => $row['nama_lengkap'],
-            //     'nick_name' => $row['nama_panggilan'],
-            //     'gender' => Str::lower($row['jenis_kelamin']),
-            //     'city_born' => $row['tempat_lahir'],
-            //     'birthday' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_lahir'], 'Asia/Jakarta'),
-            // ];
-
-            // dd($data);
-
+            $currentRow = $index + 2; // +2 karena heading di baris 1 dan index mulai dari 0
             try {
                 $student = Student::updateOrCreate([
                     'nisn' => $row['nisn'],
@@ -89,9 +78,10 @@ class StudentImport implements ToCollection, WithHeadingRow, WithUpserts
                     'height' => $row['tinggi_badan'],
                     'weight' => $row['berat_badan'],
                 ]);
+
+                Log::info("Student Import Success: NISN {$row['nisn']} on row {$currentRow}");
             } catch (\Throwable $th) {
-                //throw $th;
-                Log::error($th);
+                Log::error("Student Import Failed: NISN " . ($row['nisn'] ?? 'unknown') . " on row {$currentRow}. Error: " . $th->getMessage());
             }
             
         }

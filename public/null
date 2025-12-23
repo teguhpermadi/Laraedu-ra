@@ -231,3 +231,75 @@ $scores = Student::with([
 ])->find($id);
 
 DataStudent::where('student_id', $id)->get();
+StudentCompetency::first()
+
+
+TeacherSubject::with('competency')->find(55);
+
+
+TeacherSubject::with('competencies')->find(55);
+
+
+$competencies = TeacherSubject::with('competencies')->find(55);
+
+
+$competencies = TeacherSubject::with('competencies')->find(55);
+
+$competency_id = $competencies->pluck('competencies.id')
+
+
+$competencies = TeacherSubject::with('competencies')->find(55);
+
+$competency_id = $competencies->pluck('competency.id')
+
+
+$competencies = TeacherSubject::with('competencies')->find(55);
+
+$competency_id = $competencies->pluck('id')
+
+
+$competencies = TeacherSubject::with('competencies')->find(55);
+
+$competency_id = $competencies->pluck('competency_id')
+
+
+$competencies = TeacherSubject::with('competencies')->find(55);
+
+
+
+
+$competencies = TeacherSubject::with('competencies')->find(55);
+
+$competency_id = $competencies->competencies->pluck('id')
+
+
+$data = TeacherSubject::with('competencies')->find(55);
+
+$competencies = $data->competencies->pluck('id');
+
+$data = [];
+foreach($competencies as $competency){
+  $data[] = [
+  	'teacher_subject_id' => 55,
+	'student_id' => 402,
+	'competency_id' => $competency,
+  ];
+}
+
+$data;
+
+
+$data = TeacherSubject::with('competencies')->find(55);
+
+$competencies = $data->competencies->pluck('id');
+
+$data = [];
+foreach($competencies as $competency){
+  $data[] = [
+  	'teacher_subject_id' => 55,
+	'student_id' => 402,
+	'competency_id' => $competency,
+  ];
+}
+
+StudentCompetency::insert($data);
