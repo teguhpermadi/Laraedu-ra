@@ -15,25 +15,22 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithProgressBar;
 
-class StudentImport implements ToCollection, WithHeadingRow, WithUpserts
+class StudentImport implements ToCollection, WithHeadingRow
 {
     use Importable;
-    
+
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function collection(Collection $rows)
     {
         // $data = [];
-        foreach ($rows as $index => $row) 
-        {
+        foreach ($rows as $index => $row) {
             $currentRow = $index + 2; // +2 karena heading di baris 1 dan index mulai dari 0
             try {
-                $student = Student::updateOrCreate([
-                    'nisn' => $row['nisn'],
-                ],[
+                $student = Student::create([
                     'nisn' => $row['nisn'],
                     'nis' => $row['nis'],
                     'name' => $row['nama_lengkap'],
@@ -42,14 +39,14 @@ class StudentImport implements ToCollection, WithHeadingRow, WithUpserts
                     'city_born' => $row['tempat_lahir'],
                     'birthday' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_lahir'], 'Asia/Jakarta'),
                 ]);
-    
-                DataStudent::updateOrCreate([
+
+                DataStudent::create([
                     'student_id' => $student->id,
                     'student_address' => $row['alamat_siswa'],
-                    'student_province'=> $row['provinsi_siswa'],
-                    'student_city'=> $row['kota_siswa'],
-                    'student_district'=> $row['kecamatan_siswa'],
-                    'student_village'=> $row['kelurahan_siswa'],
+                    'student_province' => $row['provinsi_siswa'],
+                    'student_city' => $row['kota_siswa'],
+                    'student_district' => $row['kecamatan_siswa'],
+                    'student_village' => $row['kelurahan_siswa'],
                     'religion' => $row['agama'],
                     'previous_school' => $row['asal_sekolah'],
                     'date_received' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_diterima'], 'Asia/Jakarta'),
@@ -71,31 +68,22 @@ class StudentImport implements ToCollection, WithHeadingRow, WithUpserts
                     'parent_address' => $row['alamat_orangtua'],
                     'parent_village' => $row['kelurahan_orangtua'],
                     'parent_address' => $row['alamat_orangtua'],
-                    'parent_province'=> $row['provinsi_orangtua'],
-                    'parent_city'=> $row['kota_orangtua'],
-                    'parent_district'=> $row['kecamatan_orangtua'],
-                    'parent_village'=> $row['kelurahan_orangtua'],
+                    'parent_province' => $row['provinsi_orangtua'],
+                    'parent_city' => $row['kota_orangtua'],
+                    'parent_district' => $row['kecamatan_orangtua'],
+                    'parent_village' => $row['kelurahan_orangtua'],
                     'height' => $row['tinggi_badan'],
                     'weight' => $row['berat_badan'],
                 ]);
 
-                Log::info("Student Import Success: NISN {$row['nisn']} on row {$currentRow}");
+                $identifier = $row['nisn'] ?: $row['nama_lengkap'];
+                Log::info("Student Import Success: {$identifier} on row {$currentRow}");
             } catch (\Throwable $th) {
-                Log::error("Student Import Failed: NISN " . ($row['nisn'] ?? 'unknown') . " on row {$currentRow}. Error: " . $th->getMessage());
+                $identifier = $row['nisn'] ?? $row['nama_lengkap'] ?? 'unknown';
+                Log::error("Student Import Failed: {$identifier} on row {$currentRow}. Error: " . $th->getMessage());
             }
-            
         }
 
         // dd($data);
-    }
-
-    public function uniqueBy()
-    {
-        return ['nisn', 'nis'];
-    }
-
-    public function upsertColumns()
-    {
-        return ['name', 'gender'];
     }
 }
