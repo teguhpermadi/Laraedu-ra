@@ -136,11 +136,11 @@ class CompetencyResource extends Resource
             Split::make([
                 Stack::make([
                     TextColumn::make('code')->weight(FontWeight::Bold),
-                    TextInputColumn::make('description')->wrap(),
+                    TextInputColumn::make('description'),
                 ]),
                 Stack::make([
                     TextColumn::make('code_skill')->weight(FontWeight::Bold),
-                    TextInputColumn::make('description_skill')->wrap(),
+                    TextInputColumn::make('description_skill'),
                 ]),
                 TextColumn::make('passing_grade'),
             ]),
