@@ -21,7 +21,6 @@ use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -136,11 +135,11 @@ class CompetencyResource extends Resource
             Split::make([
                 Stack::make([
                     TextColumn::make('code')->weight(FontWeight::Bold),
-                    TextInputColumn::make('description'),
+                    TextColumn::make('description')->wrap(),
                 ]),
                 Stack::make([
                     TextColumn::make('code_skill')->weight(FontWeight::Bold),
-                    TextInputColumn::make('description_skill'),
+                    TextColumn::make('description_skill')->wrap(),
                 ]),
                 TextColumn::make('passing_grade'),
             ]),

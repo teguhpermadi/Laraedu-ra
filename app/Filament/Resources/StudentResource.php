@@ -42,7 +42,7 @@ class StudentResource extends Resource
     protected static ?string $model = Student::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
@@ -58,7 +58,7 @@ class StudentResource extends Resource
                 TextInput::make('nick_name'),
                 TextInput::make('city_born')->required(),
                 DatePicker::make('birthday')->required(),
-                Select::make('gender')->options(['laki-laki'=>'Laki-laki', 'perempuan'=>'Perempuan'])->required(),
+                Select::make('gender')->options(['laki-laki' => 'Laki-laki', 'perempuan' => 'Perempuan'])->required(),
                 // Select::make('active')->boolean()->required(),
             ]);
     }
@@ -67,12 +67,14 @@ class StudentResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->searchable(),
-                TextColumn::make('nick_name')->searchable(),
-                TextColumn::make('gender'),
-                IconColumn::make('active')->boolean(),
+                TextColumn::make('name')->searchable()->sortable(),
+                TextColumn::make('nick_name')->searchable()->sortable(),
+                TextColumn::make('gender')->sortable(),
+                IconColumn::make('active')->boolean()->sortable(),
                 TextInputColumn::make('dataStudent.height')->label('tinggi badan'),
                 TextInputColumn::make('dataStudent.weight')->label('berat badan'),
+                TextColumn::make('created_at')
+                    ->dateTime()->sortable(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -90,7 +92,7 @@ class StudentResource extends Resource
                 //                     'email' => Str::slug($record->name).'@student.com',
                 //                     'password' => Hash::make('password'),
                 //                 ]);
-                        
+
                 //         $user->assignRole('student');
 
                 //         Userable::create([
@@ -126,7 +128,7 @@ class StudentResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
@@ -134,7 +136,7 @@ class StudentResource extends Resource
             GradesRelationManager::class,
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -143,7 +145,7 @@ class StudentResource extends Resource
             'view' => Pages\ViewStudent::route('/{record}'),
             'edit' => Pages\EditStudent::route('/{record}/edit'),
         ];
-    }    
+    }
 
     public static function getEloquentQuery(): Builder
     {
@@ -158,76 +160,76 @@ class StudentResource extends Resource
         return $infolist
             ->schema([
                 Section::make('Identitas')
-                ->columns([
-                    'sm' => 1,
-                    'md' => 2,
-                    'xl' => 4,
-                    '2xl' => 6,
-                ])
-                ->schema([
-                    TextEntry::make('nisn'),
-                    TextEntry::make('nis'),
-                    TextEntry::make('name'),
-                    TextEntry::make('nick_name'),
-                    TextEntry::make('gender'),
-                    TextEntry::make('city_born'),
-                    TextEntry::make('birthday'),
-                    TextEntry::make('dataStudent.religion')->label('Religion'),
-                    TextEntry::make('height'),
-                    TextEntry::make('weight'),
-                ]),
+                    ->columns([
+                        'sm' => 1,
+                        'md' => 2,
+                        'xl' => 4,
+                        '2xl' => 6,
+                    ])
+                    ->schema([
+                        TextEntry::make('nisn'),
+                        TextEntry::make('nis'),
+                        TextEntry::make('name'),
+                        TextEntry::make('nick_name'),
+                        TextEntry::make('gender'),
+                        TextEntry::make('city_born'),
+                        TextEntry::make('birthday'),
+                        TextEntry::make('dataStudent.religion')->label('Religion'),
+                        TextEntry::make('height'),
+                        TextEntry::make('weight'),
+                    ]),
                 Section::make('Data')
-                ->columns([
-                    'sm' => 1,
-                    'md' => 2,
-                    'xl' => 4,
-                    '2xl' => 6,
-                ])
-                ->schema([
-                    TextEntry::make('dataStudent.previous_school')->label('Previous School'),
-                    TextEntry::make('dataStudent.parent_address')->label('Parent Address'),
-                    TextEntry::make('dataStudent.date_received')->label('Date Received'),
-                    TextEntry::make('dataStudent.grade_received')->label('Grade Received'),
-                ]),
+                    ->columns([
+                        'sm' => 1,
+                        'md' => 2,
+                        'xl' => 4,
+                        '2xl' => 6,
+                    ])
+                    ->schema([
+                        TextEntry::make('dataStudent.previous_school')->label('Previous School'),
+                        TextEntry::make('dataStudent.parent_address')->label('Parent Address'),
+                        TextEntry::make('dataStudent.date_received')->label('Date Received'),
+                        TextEntry::make('dataStudent.grade_received')->label('Grade Received'),
+                    ]),
                 Section::make('Father')
-                ->columns([
-                    'sm' => 1,
-                    'md' => 2,
-                    'xl' => 4,
-                    '2xl' => 6,
-                ])
-                ->schema([
-                    TextEntry::make('dataStudent.father_name')->label('Father Name'),
-                    TextEntry::make('dataStudent.father_education')->label('Father Education'),
-                    TextEntry::make('dataStudent.father_occupation')->label('Father Occupation'),
-                    TextEntry::make('dataStudent.father_phone')->label('Father Phone'),
-                ]),
+                    ->columns([
+                        'sm' => 1,
+                        'md' => 2,
+                        'xl' => 4,
+                        '2xl' => 6,
+                    ])
+                    ->schema([
+                        TextEntry::make('dataStudent.father_name')->label('Father Name'),
+                        TextEntry::make('dataStudent.father_education')->label('Father Education'),
+                        TextEntry::make('dataStudent.father_occupation')->label('Father Occupation'),
+                        TextEntry::make('dataStudent.father_phone')->label('Father Phone'),
+                    ]),
                 Section::make('Mother')
-                ->columns([
-                    'sm' => 1,
-                    'md' => 2,
-                    'xl' => 4,
-                    '2xl' => 6,
-                ])
-                ->schema([
-                    TextEntry::make('dataStudent.mother_name')->label('mother Name'),
-                    TextEntry::make('dataStudent.mother_education')->label('mother Education'),
-                    TextEntry::make('dataStudent.mother_occupation')->label('mother Occupation'),
-                    TextEntry::make('dataStudent.mother_phone')->label('mother Phone'),
-                ]),
+                    ->columns([
+                        'sm' => 1,
+                        'md' => 2,
+                        'xl' => 4,
+                        '2xl' => 6,
+                    ])
+                    ->schema([
+                        TextEntry::make('dataStudent.mother_name')->label('mother Name'),
+                        TextEntry::make('dataStudent.mother_education')->label('mother Education'),
+                        TextEntry::make('dataStudent.mother_occupation')->label('mother Occupation'),
+                        TextEntry::make('dataStudent.mother_phone')->label('mother Phone'),
+                    ]),
                 Section::make('Guardian')
-                ->columns([
-                    'sm' => 1,
-                    'md' => 2,
-                    'xl' => 4,
-                    '2xl' => 6,
-                ])
-                ->schema([
-                    TextEntry::make('dataStudent.guardian_name')->label('guardian Name'),
-                    TextEntry::make('dataStudent.guardian_education')->label('guardian Education'),
-                    TextEntry::make('dataStudent.guardian_occupation')->label('guardian Occupation'),
-                    TextEntry::make('dataStudent.guardian_phone')->label('guardian Phone'),
-                ]),
+                    ->columns([
+                        'sm' => 1,
+                        'md' => 2,
+                        'xl' => 4,
+                        '2xl' => 6,
+                    ])
+                    ->schema([
+                        TextEntry::make('dataStudent.guardian_name')->label('guardian Name'),
+                        TextEntry::make('dataStudent.guardian_education')->label('guardian Education'),
+                        TextEntry::make('dataStudent.guardian_occupation')->label('guardian Occupation'),
+                        TextEntry::make('dataStudent.guardian_phone')->label('guardian Phone'),
+                    ]),
             ]);
     }
 }
