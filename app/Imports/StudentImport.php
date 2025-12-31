@@ -42,7 +42,7 @@ class StudentImport implements ToCollection, WithHeadingRow
                     ]
                 );
 
-                DataStudent::updateOrCreate(
+                $student->dataStudent()->updateOrCreate(
                     ['student_id' => $student->id],
                     [
                         'student_address' => $row['alamat_siswa'],
@@ -73,8 +73,8 @@ class StudentImport implements ToCollection, WithHeadingRow
                         'parent_province' => $row['provinsi_orangtua'],
                         'parent_city' => $row['kota_orangtua'],
                         'parent_district' => $row['kecamatan_orangtua'],
-                        'height' => $row['tinggi_badan'],
-                        'weight' => $row['berat_badan'],
+                        // 'height' => $row['tinggi_badan'],
+                        // 'weight' => $row['berat_badan'],
                     ]
                 );
 
