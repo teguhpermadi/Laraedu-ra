@@ -32,7 +32,7 @@ class Report extends Controller
 
         $student = Student::with('dataStudent')->find($id);
         if (!$student) return $this->showError('Data Siswa tidak ditemukan');
-        
+
         $grade = StudentGrade::with('grade')->where('student_id', $id)->first();
         if (!$grade) return $this->showError('Siswa belum masuk pembagian kelas (Student Grade)');
 
@@ -41,7 +41,7 @@ class Report extends Controller
 
         $attendance = Attendance::where('student_id', $id)->first();
         if (!$attendance) return $this->showError('Data Absensi belum diisi');
-        
+
         $attitude = Attitude::where('student_id', $id)->first();
         if (!$attitude) return $this->showError('Data Sikap belum diisi');
 
@@ -88,9 +88,9 @@ class Report extends Controller
             $tingkatkanDescription = implode('; ', $tingkatkan);
 
             if ($sangatBaikDescription) {
-                $combinedResultDescription .= 'Ananda sudaH SANGAT BERKEMBANG dalam:' . $sangatBaikDescription;
+                $combinedResultDescription .= 'Ananda sudah SANGAT BERKEMBANG dalam:' . $sangatBaikDescription;
                 if ($baikDescription) {
-                    $combinedResultDescription .= '</w:t><w:p/><w:t></w:t><w:p/><w:t> Ananda juga ';
+                    $combinedResultDescription .= '</w:t><w:p/><w:t></w:t><w:p/><w:t>';
                 }
                 // if($tingkatkan){
                 //     $combinedResultDescription .= '</w:t><w:p/><w:t></w:t><w:p/><w:t> Diharapkan pada semester selanjutnya ananda dapat mempertahankan kemampuannya dan lebih meningkatkan diri dalam: ';
@@ -285,7 +285,7 @@ class Report extends Controller
     {
         $student = Student::find($id);
         if (!$student) return $this->showError('Data Siswa tidak ditemukan');
-        
+
         $data = $this->cover($student);
         return $data;
     }
